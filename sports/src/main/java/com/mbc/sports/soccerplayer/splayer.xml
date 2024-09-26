@@ -1,0 +1,69 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mbc.sports.soccerplayer.PlayerService">
+    
+    <insert id="playersoccer">
+    	insert into player_soccer values(playernum_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},0,0,0,#{param10})
+    </insert>
+    
+    <insert id="playerbaseball">
+    	insert into player_baseball values(playernum_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},0,0,0,#{param10})
+    </insert>
+
+	<select id="selectTeam" resultType="com.mbc.sports.soccerplayer.SPlayerDTO">
+		select * from player_soccer where tname=#{param1} order by main asc
+	</select>
+	
+	<select id="detail" resultType="com.mbc.sports.soccerplayer.SPlayerDTO">
+		select playernum,pimage,tname,pname,pnumber,to_char(pbirth,'yyyy / MM / dd')pbirth,height,weight,main,pchar,clickup,step,indent from player_soccer where playernum=#{param1}
+	</select>
+
+	<update id="clickup">
+		update player_soccer set clickup=clickup+1 where pnumber=#{param1}
+	</update>
+
+	<insert id="commentin">
+		insert into splayer_comment(playernum, writer, ucomment, step, indent) values(#{param1},#{param2},#{param3},#{param4},0)
+	</insert>
+
+	<select id="comment" resultType="com.mbc.sports.soccerplayer.UcommentDTO">
+		select * from splayer_comment where playernum=#{param1}
+	</select>
+
+	<select id="setStep" resultType="int">
+		select NVL(max(step),0)
+		from splayer_comment 
+		where playernum=#{param1}
+	</select>
+	
+	<update id="updateset">
+		update player_soccer set step=#{param1} where playernum=#{param2}
+	</update>
+	
+	<update id="heart">
+		update splayer_comment set heart=heart+1 where playernum=#{param1} and writer=#{param2} and ucomment=#{param3}
+	</update>
+	
+	<select id="allTeamSelect" resultType="com.mbc.sports.soccerplayer.SPlayerDTO">
+		select * from player_soccer order by tname
+	</select>
+	
+	<select id="playerdelete" resultType="com.mbc.sports.soccerplayer.SPlayerDTO">
+		select * from player_soccer where playernum=#{param1}
+	</select>
+	
+	<delete id="delete">
+		delete from player_soccer where playernum=#{param1}
+	</delete>
+	
+	<update id="playersoccerupdate">
+		update player_soccer set tname=#{param1},pname=#{param2},pnumber=#{param3},pbirth=#{param4},height=#{param5},weight=#{param6},main=#{param7},pimage=#{param8},pchar=#{param9} where playernum=#{param10}
+	</update>
+	
+	<update id="playerbaseballupdate">
+		update player_baseball set tname=#{param1},pname=#{param2},pnumber=#{param3},pbirth=#{param4},height=#{param5},weight=#{param6},main=#{param7},pimage=#{param8},pchar=#{param9} where playernum=#{param10}
+	</update>
+	
+</mapper>

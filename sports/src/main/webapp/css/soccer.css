@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/*커서*/
+* {
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;	
+}
+.cursor,
+.cursor *,
+a,
+a *,
+select,
+button,
+button *,
+input[type="submit"],
+input[type="button"],
+input[type="button"] *,
+input[type="reset"],
+input[type="reset"] *,
+label,
+label *
+ {
+	cursor: url('../image/soccer/cursor/pointer.png'), auto !important;
+}
+input:read-only {
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;
+}
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+	cursor: url('../image/soccer/cursor/text.png'), auto !important;
+}
+input:disabled,
+textarea:disabled,
+button:disabled {
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;
+}
+
+
+
+/*코치존 캘린더*/
+.header {
+	display: flex;
+	font-size: 48px;
+	justify-content: space-around;/*아이템들을 일정한 간격으로 벌려 배치합니다.*/
+	align-items: center;
+	padding-bottom: 12px;
+	margin: 12px 24px 12px 24px;
+	border-bottom: 2px solid var(--line-color);/*header쪽과 달력을 구분하기 위해 밑에만 선을 넣어줍시다.*/
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.main {
+	/*요일과 날짜는 가로가아니라 세로로 정렬되야 하므로 flex-diretion: column;을 해줍시다.*/
+	display: flex;
+	flex-direction: column;
+	margin: 12px 24px 0px 24px;
+}
+.daies {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.dates {
+	/*wrap을 주어서 한줄에 날짜가 7개만 나오게 만들겁니다.*/
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.date, .day{
+	/*width가 100/7을 가지기 때문에 한 줄에 7개의 날짜와 요일이 정렬됩니다.*/
+	text-align: center;
+	width: calc(100%/7);
+	padding: 16px 0 16px 0;
+	box-sizing: border-box;
+}
+.date:nth-child(7n),
+.day:nth-child(7n) {
+	/*.date와 .day의 7n번째 요소만 적용시킵니다. 즉 토요일의 세로줄만 적용합니다.*/
+	background-color: var(--sat-color);
+	color: blue;/*글자색입니다.*/
+}
+.date:nth-child(7n+1),
+.day:nth-child(7n+1) {
+	/*.date와 .day의 7n+1번째 요소만 적용시킵니다. 즉 일요일의 세로줄만 적용합니다.*/
+	background-color: var(--sun-color);
+	color: red;
+}
+.today {
+	/*오늘 날짜에 테두리를 줍니다. !important로 border의 우선순위를 1순위로 만들 수 있습니다.*/
+	border: 2px solid var(--today-color) !important;
+}
+
+
+.common_pop_hide {
+	display: block;
+	min-width: 20px;
+	width: 20px;
+	height: 20px;
+	margin-top: 4px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.common_pop_hide img {
+	display: block;
+	width: 100%;
+	height: auto;
+	background-size: contain;
+}

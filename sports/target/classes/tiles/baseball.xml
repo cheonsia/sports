@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseballLayout" template="/WEB-INF/views/baseball/first/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/baseball/first/footer.jsp"/>
+	</definition>
+
+	<definition name="baseballmain" extends="baseballLayout">
+		<put-attribute name="title" value="메인페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/first/main.jsp"/>
+	</definition>
+	
+	<definition name="baseballplayerinput" extends="baseballLayout">
+		<put-attribute name="title" value="선수목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/player/input.jsp"/>
+	</definition>
+	
+	<definition name="baseballplayerlistout" extends="baseballLayout">
+		<put-attribute name="title" value="선수목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/player/listout.jsp"/>
+	</definition>
+	
+	
+	<definition name="baseballcalendar" extends="baseballLayout">
+		<put-attribute name="title" value="야구 캘린더"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/direct/calendar.jsp"/>
+	</definition>
+	
+	<definition name="baseballstrategy" extends="baseballLayout">
+		<put-attribute name="title" value="야구 전략"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/direct/strategy.jsp"/>
+	</definition>
+</tiles-definitions>

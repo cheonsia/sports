@@ -1,0 +1,89 @@
+@charset "UTF-8";
+* {
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;	
+}
+
+#footer {
+	position: fixed;
+	width: calc(100vw - 40px);
+	min-height: 60px;
+	height: auto;
+	color: #f9f9f9;
+	text-align: center;
+	background-color: #b0c4b0;
+	padding: 10px 20px;
+	right: 0;
+	bottom: 0;
+}
+
+.footer_flex {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: auto;
+}
+
+.footer_logo {
+	width: max-content;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 0 20px 0 0;
+}
+
+.footer_logo + p {
+	font-size: 13px;
+}
+
+.footer_logo img {
+	display: block;
+	width: 30px;
+	height: auto;
+	background-size: contain;
+}
+
+.footer_logo p.logo_txt {
+	font-size: 20px;
+	line-height: 29px;
+	font-weight: bold;
+	color: #3d3d3d;
+    font-family: 'SF_HambakSnow';
+    margin-left: 5px;
+}
+
+
+
+@media (min-width: 1250px) {
+	#footer {
+		width: calc(100vw - 240px);
+		min-height: 60px;
+		margin-left: auto;
+	}
+
+	.footer_logo + p {
+		font-size: 16px;
+	}
+}
+
+
+
+@media (max-width: 359px) {
+	#footer {
+		min-height: 80px;
+	}
+	
+	.footer_flex {
+		display: block;
+	}
+	
+	.footer_flex p {
+		font-size: 14px;
+	}
+	
+	.footer_flex + p {
+		font-size: 12px;
+	}
+}

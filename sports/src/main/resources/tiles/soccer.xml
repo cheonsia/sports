@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="soccerLayout" template="/WEB-INF/views/soccer/first/layout.jsp">
+      <put-attribute name="title" value=""/>
+      <put-attribute name="top" value="/WEB-INF/views/soccer/first/top.jsp"/>
+      <put-attribute name="body" value=""/>
+      <put-attribute name="footer" value="/WEB-INF/views/soccer/first/footer.jsp"/>
+   </definition>
+   
+   <definition name="index" extends="soccerLayout">
+		<put-attribute name="title" value="환영합니다"/>
+		<put-attribute name="body" value="/WEB-INF/views/index.jsp"/>
+	</definition>
+
+   <definition name="soccermain" extends="soccerLayout">
+		<put-attribute name="title" value="메인페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/first/main.jsp"/>
+	</definition>
+	
+	<definition name="soccerplayerinput" extends="soccerLayout">
+		<put-attribute name="title" value="선수 정보 등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/player/input.jsp"/>
+	</definition>
+	
+	<definition name="soccerplayerlistout" extends="soccerLayout">
+		<put-attribute name="title" value="팀 선수 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/player/listout.jsp"/>
+	</definition>
+	
+	<definition name="soccerplayerdetail" extends="soccerLayout">
+		<put-attribute name="title" value="선수 상세 정보"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/player/detail.jsp"/>
+	</definition>
+
+	<definition name="soccerpdeleteview" extends="soccerLayout">
+		<put-attribute name="title" value="선수 정보 삭제"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/player/delete.jsp"/>
+	</definition>
+	<definition name="soccerpupdateview" extends="soccerLayout">
+		<put-attribute name="title" value="선수 정보 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/player/update.jsp"/>
+	</definition>
+
+   <definition name="soccerTeamRank" extends="soccerLayout">
+      <put-attribute name="title" value="축구팀 랭킹 순위"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/rank/teamRank.jsp"/>
+   </definition>  
+
+   <definition name="soccerPlayerRank" extends="soccerLayout">
+      <put-attribute name="title" value="축구팀 선수 랭킹 순위"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/rank/playerRank.jsp"/>
+   </definition>  
+   
+	<definition name="soccercalendar" extends="soccerLayout">
+		<put-attribute name="title" value="축구 캘린더"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/direct/calendar.jsp"/>
+	</definition
+	>
+	<definition name="soccerstrategy" extends="soccerLayout">
+		<put-attribute name="title" value="축구 전략"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/direct/strategy.jsp"/>
+	</definition>	
+   
+</tiles-definitions>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+<definition name="memberLayout" template="/WEB-INF/views/soccer/first/layout.jsp">
+	<put-attribute name="title" value=""/>
+	<put-attribute name="top" value="/WEB-INF/views/soccer/first/top.jsp"/>
+	<put-attribute name="body" value=""/>
+	<put-attribute name="footer" value="/WEB-INF/views/soccer/first/footer.jsp"/>
+</definition>
+
+<definition name="signup" extends="memberLayout">
+	<put-attribute name="title" value="회원가입"/>
+	<put-attribute name="body" value="/WEB-INF/views/member/signup/signup.jsp"/>
+</definition>
+
+<definition name="general" extends="memberLayout">
+	<put-attribute name="title" value="일반 회원 회원가입"/>
+	<put-attribute name="body" value="/WEB-INF/views/member/signup/normal.jsp"/>
+</definition>
+
+<definition name="super" extends="memberLayout">
+	<put-attribute name="title" value="감독 회원가입"/>
+	<put-attribute name="body" value="/WEB-INF/views/member/signup/super.jsp"/>
+</definition>
+
+<definition name="soccerlogin" extends="memberLayout">
+	<put-attribute name="title" value="로그인"/>
+	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+</definition>
+
+<definition name="baseballlogin" extends="memberLayout">
+	<put-attribute name="title" value="로그인"/>
+	<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
+	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+</definition>
+   
+</tiles-definitions>

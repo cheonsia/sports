@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mbc.sports.soccerrank.SRankService">
+	<resultMap type="com.mbc.sports.soccerrank.SoccerPlayerDTO" id="spdto">
+		<result property="playernum" column="playernum"/>
+		<result property="year" column="year"/>
+		<result property="round" column="round"/>
+		<result property="gain" column="gain"/>
+		<result property="assist" column="assist"/>
+		<result property="attackpoint" column="attackpoint"/>
+		<result property="avgscore" column="avgscore"/>
+		<result property="mom" column="mom"/>
+		<result property="best11" column="best11"/>
+		<result property="shoot" column="shoot"/>
+		<result property="ranking" column="ranking"/>
+		<result property="possibleshoot" column="possibleshoot"/>
+		<collection property="playerDTO" ofType="com.mbc.sports.soccerplayer.SPlayerDTO" resultMap="playerdto"/>
+	</resultMap>
+
+	<resultMap type="com.mbc.sports.soccerplayer.SPlayerDTO" id="playerdto">
+		<result property="playernum" column="playernum"/>
+		<result property="tname" column="tname"/>
+		<result property="pname" column="pname"/>
+		<result property="pnumber" column="pnumber"/>
+	</resultMap>
+	
+	 
+	 <!--  팀별 렝킹 시스템 -->
+	 <select id="teamRank" resultType="com.mbc.sports.soccerrank.SoccerTeamDTO">
+		 select year,team, (win + draw + lose) as round, win, draw, lose
+			 , (win*3 + draw) as winscore
+			 , gain, lost, (gain-lost) as range
+			 , assist, foul,
+			 row_number () over (order by (win * 3 + draw)  desc, gain desc)  as rank
+			 from soccer_team
+	 </select>
+	 
+	 <!--  선수별 렝킹 시스템 -->
+	 <select id="playerRank" resultMap="spdto">
+	 	select ps.playernum, ps.tname, ps.pname, ps.pnumber,
+	 	sp.*, row_number () over (order by sp.gain desc) as ranking
+		from player_soccer ps, soccer_player sp
+		where ps.playernum = sp.playernum
+	 </select>
+</mapper>

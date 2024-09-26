@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/*커서*/
+* {
+	cursor: url('./image/baseball/cursor2.png'), auto !important;	
+}
+
+a,
+select,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+	cursor: url('./image/baseball/pointer2.png'), auto !important;
+}
+
+input:read-only {
+	cursor: url('./image/baseball/cursor2.png'), auto !important;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+	cursor: url('./image/baseball/text2.png'), auto !important;
+}
+ 
+input:disabled,
+textarea:disabled,
+button:disabled {
+	cursor: url('./image/baseball/cursor2.png'), auto !important;
+}
