@@ -126,6 +126,39 @@
 			console.log('sd');
 		});		
 	});
+	function commentDelete(playernum,step){
+		var pnumber = $("#pnumber").val();
+		var teamarea = $("#teamarea").val();
+		if(!confirm("정말로 삭제 하시겠습니까?")){
+			alert("삭제가 취소되었습니다.");
+			
+		}else{
+			alert("삭제되었습니다.");
+			location.href="commentdelete?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea;
+		}
+	}
+	function commentUpdate(playernum,step){
+		var ucomment =$('#'+playernum+'_'+step).val();
+		var pnumber = $("#pnumber").val();
+		var teamarea = $("#teamarea").val();
+		if(!confirm("수정하시겠습니까?")){
+			alert("수정이 취소되었습니다.");
+			
+		}else{
+			alert("수정이 완료되었습니다.");
+			location.href="soccercommentupdate?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea+"&ucomment="+ucomment;
+		}
+	}
+	function commentChange(playernum,step) {
+		$('input[name="comment_val_'+playernum+'_'+step+'"]').prop('readonly', false);
+		$('input[name="comment_val_'+playernum+'_'+step+'"]').focus();
+		$('#btn_'+playernum+'_'+step).text('수정하기');
+
+		setTimeout(function(){
+			$('#btn_'+playernum+'_'+step).attr('onclick','commentUpdate('+playernum+','+step+')');
+		}, 2000);
+	}
+	
 </script>
 </head>
 <body>
@@ -193,26 +226,35 @@
 </table>
 	<c:if test="${dto.step!=0}">
 		<c:forEach items="${clist}" var="cli">
+			<input type="hidden" name="pnumber" id="pnumber"  value="${dto.pnumber}">
+			<input type="hidden" name="teamarea" id="teamarea" value="${teamarea}">
 			<div class="commentresult">
-
 				<div class="cocomentresult">
 					<p class="p2 p">
 						<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.writer}
 					</p>
+					<div>
+					<p class="p1 p">┗</p>
+					<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
 					<p class="p1 p">
-						┗ ${cli.ucomment}&emsp;
 						${cli.cdate}&emsp;
-							<a href="heart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&pnumber=${dto.pnumber}">
+							<a href="soccerheart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&pnumber=${dto.pnumber}">
 								<img src="./image/soccer/logo/soccer.ico" height="80px">
-						${cli.heart}
-							</a>
+								${cli.heart}
+							</a>&emsp;&emsp;&emsp;&emsp;&emsp;
+						<!-- 
+						<a onclick="commentUpdate(${cli.playernum},${cli.step})" >수정</a>&emsp;
+						 -->
+						<a href="javascript:void(0)" id="btn_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step})">수정</a>&emsp;
+						<a onclick="commentDelete(${cli.playernum},${cli.step})">삭제</a>
 					</p>
+					</div>
 				</div>
 			</div>
 		</c:forEach>
 	</c:if>
 	
-	<form action="commentsave" method="post">
+	<form action="soccercommentsave" method="post">
 	<input type="hidden" name="playernum" value="${dto.playernum}">
 	<input type="hidden" name="teamarea" value="${teamarea}">
 	<input type="hidden" name="pnumber" value="${dto.pnumber}">
@@ -227,8 +269,8 @@
 	
 	<input type="button" value="이전페이지" onclick="location.href='selectTeam?name=${dto.tname}&area=${teamarea}'">
 	
-	<input type="button" value="수정" onclick="location.href='playerupdate?playernum=${dto.playernum}'">
-	<input type="button" value="삭제" onclick="location.href='playerdelete?playernum=${dto.playernum}'">
+	<input type="button" value="수정" onclick="location.href='soccerplayerupdate?playernum=${dto.playernum}'">
+	<input type="button" value="삭제" onclick="location.href='soccerplayerdelete?playernum=${dto.playernum}'">
 	
 </body>
 </html>

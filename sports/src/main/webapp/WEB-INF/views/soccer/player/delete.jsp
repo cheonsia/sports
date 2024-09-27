@@ -175,7 +175,7 @@
 	<tr>
 		<div class="bt">
 			<td>
-				<input type="button" value="삭제" onclick="location.href='delete?playernum=${dto.playernum}&tname=${dto.tname}&pimage=${dto.pimage}'">
+				<input type="button" value="삭제" onclick="location.href='soccerdelete?playernum=${dto.playernum}&tname=${dto.tname}&pimage=${dto.pimage}'">
 				<input type="button" value="메인으로" onclick="location.href='./'">
 			</td>
 		</div>

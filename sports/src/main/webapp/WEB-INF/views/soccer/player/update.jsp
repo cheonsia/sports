@@ -30,11 +30,13 @@ th{
 </style>
 </head>
 <body>
-<form action="updatesave" method="post" enctype="multipart/form-data" id="form1" name="form1">
+<form action="soccerupdatesave" method="post" enctype="multipart/form-data" id="form1" name="form1">
 <input type="hidden" value="${dto.playernum}" name="playernum">
 <input type="hidden" value="${dto.pimage}" name="rimage">
+<input type="hidden" value="${dto.pimage}" name="mtname">
+<input type="hidden" value="${dto.pimage}" name="rimage">
 <c:choose>
-	<c:when test="${dto.play=='축구'}">
+	<c:when test="${dto.play=='soccer'}">
 		<table align="center">
 			<tr>
 				<td rowspan="9" width="200px"> <input type="file" name="pimage">
@@ -123,20 +125,18 @@ th{
 			<tr>
 				<th>팀</th>
 				<td>
-					<select name="tname">
-						<option value="kangwon">강원</option>
-						<option value="gwangju">광주</option>
-						<option value="gimcheon">김천</option>
-						<option value="daegu">대구</option>
-						<option value="daejeon">대전</option>
-						<option value="seoul">서울</option>
-						<option value="suwon">수원</option>
-						<option value="ulsan">울산</option>
-						<option value="incheon">인천</option>
-						<option value="jeonbuk">전북</option>
-						<option value="jeju">제주</option>
-						<option value="pohang">포항</option>
-					</select>
+					<select name="btname">
+					<option value="kia">KIA</option>
+					<option value="kt">KT</option>
+					<option value="lg">LG</option>
+					<option value="nc">NC</option>
+					<option value="ssg">SSG</option>
+					<option value="doosan">두산</option>
+					<option value="lotte">롯데</option>
+					<option value="samsung">삼성</option>
+					<option value="kiwoom">키움</option>
+					<option value="hanwha">한화</option>
+				</select>
 				</td>
 			</tr>
 			<tr>
@@ -163,24 +163,16 @@ th{
 				<th>주포지션</th>
 				<td colspan="2">
 					<div id="baseball" hidden>
-						<p>투수</p>
-						<input type="checkbox" name="main" value="선발"> 선발
-						<input type="checkbox" name="main" value="중계"> 중계
-						<input type="checkbox" name="main" value="마무리"> 마무리
-						<p>타자</p>
-						<input type="checkbox" name="main" value="포수"> 포수
-						<input type="checkbox" name="main" value="1루수"> 1루수
-						<input type="checkbox" name="main" value="2루수"> 2루수
-						<input type="checkbox" name="main" value="3루수"> 3루수
-						<input type="checkbox" name="main" value="유격수"> 유격수
-						<input type="checkbox" name="main" value="좌익수"> 좌익수
-						<input type="checkbox" name="main" value="중견수"> 중견수
-						<input type="checkbox" name="main" value="우익수"> 우익수
+						<input type="radio" name="bmain" value="투수"> 투수
+						<input type="radio" name="bmain" value="포수"> 포수
+						<input type="radio" name="bmain" value="내야수"> 내야수
+						<input type="radio" name="bmain" value="외야수"> 외야수
+						<input type="radio" name="bmain" value="지명타자"> 지명타자
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<th>특이사항</th>
+				<th>특징</th>
 				<td>
 					<input type="text" name="pchar" value="${dto.pchar}">
 				</td>
