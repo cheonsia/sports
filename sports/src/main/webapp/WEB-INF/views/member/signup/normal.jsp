@@ -307,7 +307,7 @@
 	<form action="generalsave" method="post" name="generalform">
 		<div>
 			<label>아이디</label>
-			<input type="text" name="id" id="id" placeholder="4~10글자 이내로 입력">
+			<input type="text" name="id" id="id" placeholder="4~10글자 이내로 입력" onchange="idcheck_reset()">
 			<input type="button" value="중복확인" id="idcheck">
 			<input type="hidden" id="idcheck2" value="">
 		</div>
