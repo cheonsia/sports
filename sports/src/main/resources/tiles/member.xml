@@ -26,6 +26,26 @@
 	<put-attribute name="body" value="/WEB-INF/views/member/signup/super.jsp"/>
 </definition>
 
+<definition name="signup_look_up" extends="baseLayout">
+		<put-attribute name="title" value="회원 조회하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/signup/signup_look_up.jsp"/>
+	</definition>
+	
+	<definition name="del_mem_view2" extends="baseLayout">
+		<put-attribute name="title" value="회원 삭제하기전 확인하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/signup/del_mem_view.jsp"/>
+	</definition>
+	
+	<definition name="detail_view" extends="baseLayout">
+		<put-attribute name="title" value="회원 상세보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/detail_view.jsp"/>
+	</definition>
+	
+	<definition name="mypage" extends="baseLayout">
+		<put-attribute name="title" value="마이페이지"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp"/>
+	</definition>
+
 <definition name="soccerlogin" extends="memberLayout">
 	<put-attribute name="title" value="로그인"/>
 	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
