@@ -2,7 +2,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mbc.sports.soccerplayer.PlayerService">
+<mapper namespace="com.mbc.sports.soccerplayer.SPlayerService">
     
     <insert id="playersoccer">
     	insert into player_soccer values(playernum_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},0,0,0,#{param10})
@@ -64,6 +64,14 @@
 	
 	<update id="playerbaseballupdate">
 		update player_baseball set tname=#{param1},pname=#{param2},pnumber=#{param3},pbirth=#{param4},height=#{param5},weight=#{param6},main=#{param7},pimage=#{param8},pchar=#{param9} where playernum=#{param10}
+	</update>
+	
+	<delete id="commentdelete">
+		delete from splayer_comment where playernum=#{param1} and step=#{param2}
+	</delete>
+	
+	<update id="commentupdate">
+		update splayer_comment set ucomment=#{param3} where playernum=#{param1} and step=#{param2}
 	</update>
 	
 </mapper>

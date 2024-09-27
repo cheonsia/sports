@@ -38,4 +38,8 @@ public interface SPlayerService {
 	void playerbaseballupdate(String tname, String pname, int pnumber, String pbirth, int height, int weight,
 			String main, String pimage, String pchar, int playernum);
 
+	void commentdelete(int playernum, int step);
+
+	void commentupdate(int playernum, int step, String ucomment);
+
 }
