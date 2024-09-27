@@ -12,5 +12,22 @@
 	<select id="getId" resultType="int">
 	select count(*) from sportsmember where id=#{param1}
 	</select>
+	
+	<insert id="superinsert">
+	insert into sportsmember values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},
+	#{param8},#{param9},#{param10},#{param11},#{param12},#{param13},#{param14})
+	</insert>
+	
+	<select id="allget" resultType="com.mbc.sports.member.MemberDTO">
+	select id,name,birthday,tel,email,zzip_code,user_add1,user_add2,sport,team,voe,rr,part from sportsmember
+	</select>
+	
+	<select id="memberget" resultType="com.mbc.sports.member.MemberDTO">
+	select * from sportsmember where id=#{param1}
+	</select>
+	
+	<delete id="del_mem">
+	delete from sportsmember where id=#{param1}
+	</delete>
 
 	</mapper>
