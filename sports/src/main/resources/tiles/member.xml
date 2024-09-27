@@ -26,32 +26,32 @@
 	<put-attribute name="body" value="/WEB-INF/views/member/signup/super.jsp"/>
 </definition>
 
-<definition name="signup_look_up" extends="baseLayout">
+<definition name="member_list" extends="memberLayout">
 		<put-attribute name="title" value="회원 조회하기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/signup/signup_look_up.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/signup/member.jsp"/>
 	</definition>
 	
-	<definition name="del_mem_view2" extends="baseLayout">
-		<put-attribute name="title" value="회원 삭제하기전 확인하기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/signup/del_mem_view.jsp"/>
+	<definition name="member_delete" extends="memberLayout">
+		<put-attribute name="title" value="회원 정보 삭제"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/signup/delete.jsp"/>
 	</definition>
 	
-	<definition name="detail_view" extends="baseLayout">
-		<put-attribute name="title" value="회원 상세보기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/detail_view.jsp"/>
+	<definition name="member_detail" extends="memberLayout">
+		<put-attribute name="title" value="회원 정보 상세"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/detail.jsp"/>
 	</definition>
 	
-	<definition name="mypage" extends="baseLayout">
+	<definition name="mypage" extends="memberLayout">
 		<put-attribute name="title" value="마이페이지"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp"/>
 	</definition>
 
-<definition name="soccerlogin" extends="memberLayout">
+<definition name="soccer_login" extends="memberLayout">
 	<put-attribute name="title" value="로그인"/>
 	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
 </definition>
 
-<definition name="baseballlogin" extends="memberLayout">
+<definition name="baseball_login" extends="memberLayout">
 	<put-attribute name="title" value="로그인"/>
 	<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
 	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>

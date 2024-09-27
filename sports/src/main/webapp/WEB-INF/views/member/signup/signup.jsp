@@ -9,5 +9,6 @@
 <body>
 <button onclick="location.href='general'">일반회원</button>
 <button onclick="location.href='super'">감독</button>
+<button onclick="location.href='member_list'">회원 조회</button>
 </body>
 </html>

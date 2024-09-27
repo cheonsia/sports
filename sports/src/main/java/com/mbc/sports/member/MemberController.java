@@ -121,7 +121,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	}
 
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
-	public void ID_Check(String id, HttpServletResponse response) throws IOException {
+	public void IDCheck(String id, HttpServletResponse response) throws IOException {
 		
 		response.setContentType("text/html;charset=utf-8");
 		MemberService ss = sqlsession.getMapper(MemberService.class);
@@ -130,65 +130,65 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		prw.print(result);
 	}
 	
-	@RequestMapping(value = "/signup_lookup", method = RequestMethod.GET)
-	public String sign_up_look_up(Model mo) {
+	@RequestMapping(value = "/member_list", method = RequestMethod.GET)
+	public String member_list(Model mo) {
 				
 		MemberService ss = sqlsession.getMapper(MemberService.class);
 		ArrayList<MemberDTO> list = ss.allget();
 		mo.addAttribute("list", list);
 		
-		return "signup_look_up";
+		return "member_list";
 	}
 	
-	@RequestMapping(value = "/del_mem_view", method = RequestMethod.GET)
+	@RequestMapping(value = "/member_delete", method = RequestMethod.GET)
 	public String Member_Delete_View(String id, Model mo) {
 		
 		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO del_mem = ss.memberget(id);
-		mo.addAttribute("del", del_mem);
+		MemberDTO member = ss.memberget(id);
+		mo.addAttribute("del", member);
 		
-		return "del_mem_view2";
+		return "member_delete";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete_member", method = RequestMethod.POST)
 	public String Member_Delete(HttpServletRequest request) {
 		
 		String id = request.getParameter("id");
 		String part = request.getParameter("part");
 		
 		if(part.equals("°¨µ¶")) {
-			String voe_fname = request.getParameter("voe");
-			String rr_fname = request.getParameter("rr");
+			String fname1 = request.getParameter("voe");
+			String fname2 = request.getParameter("rr");
 			
-			File voe_img = new File(path+"\\"+voe_fname);
-			voe_img.delete();
+			File img1 = new File(path+"\\"+fname1);
+			img1.delete();
 			
-			File rr_img = new File(path+"\\"+rr_fname);
-			rr_img.delete();
+			File img2 = new File(path+"\\"+fname2);
+			img2.delete();
 		}
 		
 		MemberService ss = sqlsession.getMapper(MemberService.class);
 		ss.del_mem(id);
 		
-		return "redirect:/signup_lookup";
+		return "redirect:/member_list";
 	}
 	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/member_detail", method = RequestMethod.GET)
 	public String Detail_View(String id, Model mo) {
 		
 		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO want_mem = ss.memberget(id);
-		mo.addAttribute("wm", want_mem);
+		MemberDTO member = ss.memberget(id);
+		mo.addAttribute("wm", member);
 		
-		return "detail_view";
+		return "member_detail";
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String Mypage(String id, Model mo) {
 		
 		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO mypage_member = ss.memberget(id);
-		mo.addAttribute("my", mypage_member);
+		MemberDTO member = ss.memberget(id);
+		mo.addAttribute("my", member);
 		
 		return "mypage";
 	}

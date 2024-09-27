@@ -341,9 +341,6 @@ div.pw i{
 	border:none;
 	width: auto;
 }
-div {
-border: 1px solid #e8e8e8;
-}
 
 </style>
 <title>감독 회원가입</title>

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="delete" method="post">
+<form action="delete_member" method="post">
 <div>
 	<label>아이디</label>
 	<input type="text" name="id" id="id_id" value="${del.id}" readonly>
@@ -79,7 +79,7 @@
 </div>
 <div>
 	<input type="submit" value="삭제">
-	<input type="button" value="취소" onclick="location.href='signup_lookup'">
+	<input type="button" value="취소" onclick="javascript:history.go(-1)">
 </div>
 </form>
 
