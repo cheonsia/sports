@@ -37,7 +37,7 @@ font-size: 30px;
 		<td>${spo.id}</td><td>${spo.name}</td><td>${spo.birthday}</td><td>${spo.tel}</td>
 		<td>${spo.email}</td><td>${spo.zzip_code}</td><td>${spo.user_add1}</td>
 		<td>${spo.user_add2}</td><td>${spo.sport}</td><td>${spo.team}</td><td>${spo.part}</td>
-	  	<td><button type="button" onclick="member_delete?id=${spo.id}">삭제</button></td>
+	  	<td><button type="button" onclick="location.href='member_delete?id=${spo.id}'">삭제</button></td>
 	  </tr>
     </c:forEach>
     </tbody>
