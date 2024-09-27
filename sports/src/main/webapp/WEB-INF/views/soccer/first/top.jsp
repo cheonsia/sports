@@ -193,7 +193,7 @@
                               <a href="soccer_player_ranking">- 순위</a>
                            </li>   
                            <li>
-                              <a href="soccerplayerlist" onclick="playMove()">- 선수 정보</a>
+                              <a href="javascript:void(0)" onclick="playMove()">- 선수 정보</a>
                            </li>
                            <c:if test="${superlogin||adminlogin}">
 	                           <li>
@@ -217,7 +217,7 @@
                         </ul>
                      </li>
                      <li>
-                        <a href="javascript:void(0)" class="side_menu_title">굿즈</a>
+                        <a href="soccergoods" class="side_menu_title">굿즈</a>
                      </li>
                   </ul>
                    
