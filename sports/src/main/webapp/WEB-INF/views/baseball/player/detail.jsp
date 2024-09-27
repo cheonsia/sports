@@ -134,7 +134,7 @@
 			
 		}else{
 			alert("삭제되었습니다.");
-			location.href="commentdelete?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea;
+			location.href="baseballcommentdelete?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea;
 		}
 	}
 	function commentUpdate(playernum,step){
@@ -146,7 +146,7 @@
 			
 		}else{
 			alert("수정이 완료되었습니다.");
-			location.href="soccercommentupdate?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea+"&ucomment="+ucomment;
+			location.href="baseballcommentupdate?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea+"&ucomment="+ucomment;
 		}
 	}
 	function commentChange(playernum,step) {
@@ -158,7 +158,6 @@
 			$('#btn_'+playernum+'_'+step).attr('onclick','commentUpdate('+playernum+','+step+')');
 		}, 2000);
 	}
-	
 </script>
 </head>
 <body>
@@ -170,22 +169,10 @@
 	<tr>
 		<td rowspan="8">
 			<div class="img1">
-			<img alt="" src="./image/soccer/player/${dto.pimage}" width="300px">
+			<img alt="" src="./image/baseball/player/${dto.pimage}" width="300px">
 			</div>
 		</td>
-		<td>소속: 
-			<c:if test="${dto.tname=='kangwon'}">강원</c:if>
-            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
-            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
-            <c:if test="${dto.tname=='daegu'}">대구</c:if>
-            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
-            <c:if test="${dto.tname=='seoul'}">서울</c:if>
-            <c:if test="${dto.tname=='suwon'}">수원</c:if>
-            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
-            <c:if test="${dto.tname=='incheon'}">인천</c:if>
-            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
-            <c:if test="${dto.tname=='jeju'}">제주</c:if>
-            <c:if test="${dto.tname=='pohang'}">포항</c:if>
+		<td>소속: ${dto.tname}
         </td>
 	</tr>
 	<tr>
@@ -216,8 +203,8 @@
 					<img alt="" src="./image/soccer/logo/soccer.ico" width="50px" style="text-align: center;">
 				</a>
 				 -->
-				 <button type="button" onclick="location.href='clickup?playernum=${dto.playernum}&pnumber=${dto.pnumber}&tname=${dto.tname}&teamarea=${teamarea}'">
-					<img alt="" src="./image/soccer/logo/soccer.ico" width="50px">
+				 <button type="button" onclick="location.href='baseballclickup?playernum=${dto.playernum}&pnumber=${dto.pnumber}&tname=${dto.tname}&teamarea=${teamarea}'">
+					<img alt="" src="./image/baseball/logo/baseball.ico" width="50px">
 				 </button>
 			</div>
 		</td>
@@ -238,8 +225,8 @@
 					<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
 					<p class="p1 p">
 						${cli.cdate}&emsp;
-							<a href="soccerheart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&pnumber=${dto.pnumber}">
-								<img src="./image/soccer/logo/soccer.ico" height="80px">
+							<a href="baseballheart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&pnumber=${dto.pnumber}">
+								<img src="./image/baseball/logo/baseball.ico" height="80px">
 								${cli.heart}
 							</a>&emsp;&emsp;&emsp;&emsp;&emsp;
 						<!-- 
@@ -254,12 +241,13 @@
 		</c:forEach>
 	</c:if>
 	
-	<form action="soccercommentsave" method="post">
+	<form action="baseballcommentsave" method="post">
 	<input type="hidden" name="playernum" value="${dto.playernum}">
 	<input type="hidden" name="teamarea" value="${teamarea}">
 	<input type="hidden" name="pnumber" value="${dto.pnumber}">
 	<input type="hidden" name="step" value="${dto.step}">
 	<input type="hidden" name="indent" value="${dto.indent}">
+	<input type="hidden" name="tname" value="${dto.tname}">
 		<div class="comment">
 			<input class="writer" type="text" name="writer" placeholder="작성자"> 
 			<input type="text" name="comment" placeholder="작성한 댓글은 삭제 및 수정 불가능하오니 신중하게 작성 부탁드립니다:)"> 
@@ -269,8 +257,8 @@
 	
 	<input type="button" value="이전페이지" onclick="location.href='selectTeam?name=${dto.tname}&area=${teamarea}'">
 	
-	<input type="button" value="수정" onclick="location.href='soccerplayerupdate?playernum=${dto.playernum}'">
-	<input type="button" value="삭제" onclick="location.href='soccerplayerdelete?playernum=${dto.playernum}'">
+	<input type="button" value="수정" onclick="location.href='baseballplayerupdate?playernum=${dto.playernum}'">
+	<input type="button" value="삭제" onclick="location.href='baseballpdeleteview?playernum=${dto.playernum}'">
 	
 </body>
 </html>

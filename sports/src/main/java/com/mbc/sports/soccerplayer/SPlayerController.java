@@ -20,8 +20,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Controller
 public class SPlayerController {
 	
-	String splayerpath = "C:\\mbc6\\spring\\sports\\src\\main\\webapp\\image\\soccer\\player";
-	String bplayerpath = "C:\\mbc6\\spring\\sports\\src\\main\\webapp\\image\\baseball\\player";
+	String splayerpath = "C:\\sports\\sports\\sports\\src\\main\\webapp\\image\\soccer\\player";
+	String bplayerpath = "C:\\sports\\sports\\sports\\src\\main\\webapp\\image\\baseball\\player";
 	
 	@Autowired
 	SqlSession sqlsession;
@@ -70,10 +70,10 @@ public class SPlayerController {
 
 	@RequestMapping(value = "/soccerplayerlist")
 	   public String playerlist() {      
-	      return "soccerplayerlistout";
+	      return "soccerplayerlist";
 	}
 	
-	@RequestMapping(value = "/soccerselectTeam")
+	@RequestMapping(value = "/selectTeam")
 	public String selectTeam(HttpServletRequest request, Model mo) {
 		String tname = request.getParameter("name");
 		String soccer_area_han = request.getParameter("area");
@@ -87,7 +87,7 @@ public class SPlayerController {
 		}
 		mo.addAttribute("teamarea",soccer_area_han);
 		
-		return "soccerplayerlistout";
+		return "soccerplayerlist";
 	}
 	
 	@RequestMapping(value = "/soccerdetail")
@@ -116,7 +116,7 @@ public class SPlayerController {
 		model.addAttribute("playernum", playernum);
 		model.addAttribute("pnumber", pnumber);
 		model.addAttribute("teamarea", tname);
-		return "redirect:/pdetail";
+		return "redirect:/soccerdetail";
 	}
 	
 	@RequestMapping(value = "/soccercommentsave")
@@ -137,7 +137,7 @@ public class SPlayerController {
 		model.addAttribute("teamarea", teamarea);
 		model.addAttribute("playernum", playernum);
 		
-		return "redirect:/pdetail";
+		return "redirect:/soccerdetail";
 	}
 	
 	@RequestMapping(value = "/soccerheart")
@@ -154,7 +154,7 @@ public class SPlayerController {
 		model.addAttribute("pnumber",pnumber);
 		model.addAttribute("teamarea",teamarea);
 		
-		return "redirect:/pdetail";
+		return "redirect:/soccerdetail";
 	}
 	
 	@RequestMapping(value = "/soccerplayerdelete")
@@ -176,7 +176,7 @@ public class SPlayerController {
 		ps.delete(playernum);
 		File img = new File(splayerpath+"\\"+pimage);
 		img.delete();
-		model.addAttribute("tname", tname);
+		model.addAttribute("name", tname);
 		
 		return "redirect:/selectTeam";
 	}
@@ -211,15 +211,53 @@ public class SPlayerController {
 		String pchar = mul.getParameter("pchar");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		mf.transferTo(new File(splayerpath+"\\"+pimage));
-		if(play.equals("축구")) {
+		if(play.equals("soccer")) {
 			ps.playersoccerupdate(tname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,playernum);			
 		} else {
 			ps.playerbaseballupdate(tname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,playernum);
 		}
-		model.addAttribute("tname", tname);
+		model.addAttribute("name", tname);
 		
 		return "redirect:/selectTeam";
 	}
 	
+	@RequestMapping(value = "/commentdelete")
+	public String commentdelete(HttpServletRequest request,Model mo) {
+		int playernum = Integer.parseInt(request.getParameter("playernum"));
+		int step = Integer.parseInt(request.getParameter("step"));
+		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
+		String teamarea = request.getParameter("teamarea");
+		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
+		ps.commentdelete(playernum,step);
+		mo.addAttribute("teamarea",teamarea);
+		mo.addAttribute("playernum",playernum);
+		mo.addAttribute("pnumber",pnumber);
+		
+		
+		return "redirect:/soccerdetail";
+	}
+	
+	@RequestMapping(value = "/soccercommentupdate")
+	public String soccercommentupdate(HttpServletRequest request,Model mo) {
+		int playernum = Integer.parseInt(request.getParameter("playernum"));
+		int step = Integer.parseInt(request.getParameter("step"));
+		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
+		String teamarea = request.getParameter("teamarea");
+		String ucomment = request.getParameter("ucomment");
+		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
+		ps.commentupdate(playernum,step,ucomment);
+		ArrayList<UcommentDTO> clist = ps.comment(playernum); //PLAYERNUM 선수의 댓글 모두 다 가지고 오기
+		mo.addAttribute("teamarea",teamarea);
+		mo.addAttribute("playernum",playernum);
+		mo.addAttribute("pnumber",pnumber);
+		mo.addAttribute("clist", clist);
+		
+		return "redirect:/soccerdetail";
+	}
+	
+	@RequestMapping(value = "/soccergoods")
+	public String soccergoods(HttpServletRequest request, Model model) {
+		return "soccergoods";
+	}
 	
 }

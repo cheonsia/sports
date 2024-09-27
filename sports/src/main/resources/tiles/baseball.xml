@@ -16,15 +16,35 @@
 	</definition>
 	
 	<definition name="baseballplayerinput" extends="baseballLayout">
-		<put-attribute name="title" value="선수목록"/>
+		<put-attribute name="title" value="선수 정보 등록"/>
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/input.jsp"/>
 	</definition>
 	
-	<definition name="baseballplayerlistout" extends="baseballLayout">
-		<put-attribute name="title" value="선수목록"/>
+	<definition name="baseballplayerlist" extends="baseballLayout">
+		<put-attribute name="title" value="팀 정보 목록"/>
 		<put-attribute name="body" value="/WEB-INF/views/baseball/player/listout.jsp"/>
 	</definition>
 	
+	<definition name="baseballplayerdetail" extends="baseballLayout">
+      <put-attribute name="title" value="선수 상세 정보"/>
+      <put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/player/detail.jsp"/>
+   </definition>
+   
+   <definition name="baseballpdeleteview" extends="baseballLayout">
+      <put-attribute name="title" value="선수 정보 삭제"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/player/pdeleteview.jsp"/>
+   </definition>
+   
+   <definition name="baseballpupdateview" extends="baseballLayout">
+      <put-attribute name="title" value="선수 정보 수정"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/player/pupdateview.jsp"/>
+   </definition>
+   
+   <definition name="baseballgoods" extends="baseballLayout">
+      <put-attribute name="title" value="굿즈샵"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/player/goods.jsp"/>
+   </definition>
 	
 	<definition name="baseballcalendar" extends="baseballLayout">
 		<put-attribute name="title" value="야구 캘린더"/>

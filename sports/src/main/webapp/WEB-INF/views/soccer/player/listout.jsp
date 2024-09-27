@@ -48,7 +48,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 				<c:if test="${j.main=='MF'}">
 					<div class="B">
-						<a href="pdetail?playernum=${j.playernum}&pnumber=${j.pnumber}">
+						<a href="soccerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}">
 							<img alt="" src="./image/soccer/player/${j.pimage}" width="200px"/>
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>
@@ -62,7 +62,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='FW'}">
 						<div class="B">
-							<a href="pdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
+							<a href="soccerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
 								<img alt="" src="./image/soccer/player/${j.pimage}" width="200px">
 								<p>${j.pname}</p>
 								<p>| ${j.pnumber} |</p>
@@ -76,7 +76,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='GK'}">
 						<div class="B">
-							<a href="pdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
+							<a href="soccerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
 							<img alt="" src="./image/soccer/player/${j.pimage}" width="200px">
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>
@@ -90,7 +90,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='DF'}">
 						<div class="B">
-							<a href="pdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
+							<a href="soccerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
 							<img alt="" src="./image/soccer/player/${j.pimage}" width="200px">
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>

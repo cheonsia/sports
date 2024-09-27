@@ -30,10 +30,8 @@ th{
 </style>
 </head>
 <body>
-<form action="soccerupdatesave" method="post" enctype="multipart/form-data" id="form1" name="form1">
+<form action="baseballupdatesave" method="post" enctype="multipart/form-data" id="form1" name="form1">
 <input type="hidden" value="${dto.playernum}" name="playernum">
-<input type="hidden" value="${dto.pimage}" name="rimage">
-<input type="hidden" value="${dto.pimage}" name="mtname">
 <input type="hidden" value="${dto.pimage}" name="rimage">
 <c:choose>
 	<c:when test="${dto.play=='soccer'}">
@@ -115,11 +113,11 @@ th{
 		<table align="center">
 			<tr>
 				<td rowspan="9" width="200px"> <input type="file" name="pimage">
-					<img alt="" src="./image/soccer/player/${dto.pimage}" width="250px">
+					<img alt="" src="./image/baseball/player/${dto.pimage}" width="250px">
 				</td>
 				<th>종목</th>
 				<td>
-					<input type="text" value="${dto.play}" readonly>
+					<input type="text" name="play" value="${dto.play}" readonly>
 				</td>
 			</tr>
 			<tr>
@@ -162,12 +160,11 @@ th{
 			<tr>
 				<th>주포지션</th>
 				<td colspan="2">
-					<div id="baseball" hidden>
-						<input type="radio" name="bmain" value="투수"> 투수
-						<input type="radio" name="bmain" value="포수"> 포수
-						<input type="radio" name="bmain" value="내야수"> 내야수
-						<input type="radio" name="bmain" value="외야수"> 외야수
-						<input type="radio" name="bmain" value="지명타자"> 지명타자
+					<div id="baseball">
+						<input type="radio" name="main" value="투수"> 투수
+						<input type="radio" name="main" value="포수"> 포수
+						<input type="radio" name="main" value="내야수"> 내야수
+						<input type="radio" name="main" value="외야수"> 외야수
 					</div>
 				</td>
 			</tr>

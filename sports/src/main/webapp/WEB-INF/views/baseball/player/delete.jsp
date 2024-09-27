@@ -133,22 +133,10 @@
 	<tr>
 		<td rowspan="8">
 			<div class="img1">
-			<img alt="" src="./image/soccer/player/${dto.pimage}" width="300px">
+			<img alt="" src="./image/baseball/player/${dto.pimage}" width="300px">
 			</div>
 		</td>
-		<td>소속: 
-			<c:if test="${dto.tname=='kangwon'}">강원</c:if>
-            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
-            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
-            <c:if test="${dto.tname=='daegu'}">대구</c:if>
-            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
-            <c:if test="${dto.tname=='seoul'}">서울</c:if>
-            <c:if test="${dto.tname=='suwon'}">수원</c:if>
-            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
-            <c:if test="${dto.tname=='incheon'}">인천</c:if>
-            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
-            <c:if test="${dto.tname=='jeju'}">제주</c:if>
-            <c:if test="${dto.tname=='pohang'}">포항</c:if>
+		<td>소속: ${dto.tname}
         </td>
 	</tr>
 	<tr>
@@ -175,7 +163,7 @@
 	<tr>
 		<div class="bt">
 			<td>
-				<input type="button" value="삭제" onclick="location.href='soccerdelete?playernum=${dto.playernum}&tname=${dto.tname}&pimage=${dto.pimage}'">
+				<input type="button" value="삭제" onclick="location.href='baseballdelete?playernum=${dto.playernum}&tname=${dto.tname}&pimage=${dto.pimage}'">
 				<input type="button" value="메인으로" onclick="location.href='./'">
 			</td>
 		</div>
