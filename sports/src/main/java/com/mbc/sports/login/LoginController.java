@@ -27,7 +27,7 @@ public class LoginController {
 		HttpSession hs = request.getSession();
 		String sports = (String)hs.getAttribute("sports");
 		if(sports==null) sports="绵备";
-		return (sports.equals("具备"))?"baseballlogin":"soccerlogin";
+		return (sports.equals("具备"))?"baseball_login":"soccer_login";
 	}
 	
 	@RequestMapping(value = "/logincheck",method = RequestMethod.POST)
