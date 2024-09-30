@@ -48,7 +48,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form action="playersave" method="post" enctype="multipart/form-data" id="form1" name="form1">
+<form action="baseballplayersave" method="post" enctype="multipart/form-data" id="form1" name="form1">
 <table align="center">
 	<tr>
 		<td rowspan="9" width="200px"> <input type="file" name="pimage"> </td>
