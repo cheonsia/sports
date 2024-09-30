@@ -17,7 +17,7 @@
 	
 	<definition name="baseballplayerinput" extends="baseballLayout">
 		<put-attribute name="title" value="선수 정보 등록"/>
-		<put-attribute name="body" value="/WEB-INF/views/soccer/player/input.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/player/input.jsp"/>
 	</definition>
 	
 	<definition name="baseballplayerlist" extends="baseballLayout">

@@ -37,45 +37,27 @@ $(document).ready(function(){
 		<td rowspan="9" width="200px"> <input type="file" name="pimage"> </td>
 		<th>종목</th>
 		<td>
-			<input type="text" id =play name="play" value="${play}" readonly>
+			<input type="text" id =play name="play" value="축구" readonly>
 		</td>
 	</tr>
 	
 	<tr>
 		<th>팀</th>
 		<td>
-			<c:choose>
-				<c:when test="${play=='축구'}">
-					<select name="tname">
-						<option value="kangwon">강원</option>
-						<option value="gwangju">광주</option>
-						<option value="gimcheon">김천</option>
-						<option value="daegu">대구</option>
-						<option value="daejeon">대전</option>
-						<option value="seoul">서울</option>
-						<option value="suwon">수원</option>
-						<option value="ulsan">울산</option>
-						<option value="incheon">인천</option>
-						<option value="jeonbuk">전북</option>
-						<option value="jeju">제주</option>
-						<option value="pohang">포항</option>
-					</select>
-				</c:when>
-				<c:when test="${play=='야구'}">
-					<select name="btname">
-		               <option value="kia">KIA</option>
-		               <option value="kt">KT</option>
-		               <option value="lg">LG</option>
-		               <option value="nc">NC</option>
-		               <option value="ssg">SSG</option>
-		               <option value="doosan">두산</option>
-		               <option value="lotte">롯데</option>
-		               <option value="samsung">삼성</option>
-		               <option value="kiwoom">키움</option>
-		               <option value="hanwha">한화</option>
-		            </select>
-				</c:when>
-			</c:choose>
+			<select name="stname">
+				<option value="kangwon">강원</option>
+				<option value="gwangju">광주</option>
+				<option value="gimcheon">김천</option>
+				<option value="daegu">대구</option>
+				<option value="daejeon">대전</option>
+				<option value="seoul">서울</option>
+				<option value="suwon">수원</option>
+				<option value="ulsan">울산</option>
+				<option value="incheon">인천</option>
+				<option value="jeonbuk">전북</option>
+				<option value="jeju">제주</option>
+				<option value="pohang">포항</option>
+			</select>
 		</td>
 	</tr>
 	<tr>
@@ -101,25 +83,12 @@ $(document).ready(function(){
 	<tr>
 		<th>주포지션</th>
 		<td colspan="2">
-			<c:choose>
-			<c:when test="${play=='축구'}">
-				<div id="soccer">
-					<input type="radio" name="smain" value="FW"> FW
-					<input type="radio" name="smain" value="MF"> MF
-					<input type="radio" name="smain" value="DF"> DF
-					<input type="radio" name="smain" value="GK"> GK
-				</div>
-			</c:when>
-			<c:when test="${play=='야구'}">
-				<div id="baseball">
-					<input type="radio" name="bmain" value="투수"> 투수
-					<input type="radio" name="bmain" value="포수"> 포수
-					<input type="radio" name="bmain" value="내야수"> 내야수
-					<input type="radio" name="bmain" value="외야수"> 외야수
-				</div>
-			</c:when>
-			</c:choose>
-		</td>
+			<div id="soccer">
+				<input type="radio" name="smain" value="FW"> FW
+				<input type="radio" name="smain" value="MF"> MF
+				<input type="radio" name="smain" value="DF"> DF
+				<input type="radio" name="smain" value="GK"> GK
+			</div>
 	</tr>
 	<tr>
 		<th>특징</th>
