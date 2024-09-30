@@ -131,6 +131,7 @@
 			    height: 40px;
 			    background-color: #e1e1e1;
 			    border: 1px solid #e1e1e1;
+			    border-top: none;
 			}
 			
 			.custom_calendar_table td {
@@ -181,9 +182,9 @@
 			}
 			
 			.custom_calendar_table thead.cal_week {
-			    min-height: 38px;
-			    height: 38px;
-			   	max-height: 38px;
+			    min-height: 36px;
+			    height: 36px;
+			   	max-height: 36px;
 			   	border: 1px solid #E5ECEA;
 			}
 			
@@ -198,6 +199,10 @@
 			    background-color: #E5ECEA;
 			    word-break:break-all;
 			    text-align: center;
+			}
+			
+			.custom_calendar_table tbody tr {
+				height: auto;
 			}
 			
 			.custom_calendar_table tbody td {
@@ -238,11 +243,7 @@
 			}
 			
 			.custom_calendar_table tbody td.select_day span {
-			    color: #fff;
-			}
-			
-			.custom_calendar_table tbody td.td_today {
-			    text-decoration: underline;
+			    color: #fff!important;
 			}
 			
 			.custom_calendar_table tbody td span.day_txt {
@@ -252,9 +253,18 @@
 				transform: translateX(-50%);			
 			}
 			
+			.custom_calendar_table tbody td.td_today span.day_txt {
+			    text-decoration: underline!important;
+			    font-weight: bold;
+			}
+			
 			span.work_in {
 			    position: absolute;
-			    font-family: 'Ownglyph_kimkonghae';
+			    width: 100%;
+				height: 34px;
+				font-size: 14px;
+				line-height: 34px;
+				font-weight: bold;
 			    max-width: calc(100% - 30px);
 			    top: 60%;
 			    left: 50%;
@@ -262,6 +272,47 @@
 			    white-space: nowrap;
 			    overflow: hidden;
 			    text-overflow: ellipsis;
+			}
+			
+			span.work_start.work_in {
+				border-radius: 5px 0 0 5px;
+				background-color: #9cb79c;
+				padding: 0 5px;
+				margin-left: 10px;
+			}
+			
+			span.work_end.work_in {
+				border-radius: 0 5px 5px 0;
+				background-color: #bb0000;
+				padding: 0 5px;
+				margin-left: -10px;
+			}
+			
+			span.work_ing.work_in {
+				max-width: none;
+				height: 34px;
+				border-radius: 0;
+				background-color: #bb0000;
+			}
+			
+			span.work_start.work_in {
+				color: #f9f9f9;
+				border-radius: 5px 0 0 5px;
+				background-color: #bb0000;
+				padding: 0 5px;
+				margin-left: 10px;
+			}
+			
+			span.work_start.work_in.work_end {
+				color: #333!important;
+				width: max-content!important;
+				border: none!important;
+				background-color: transparent!important;
+				padding: 0!important;
+				margin: 0!important;
+			}
+			.custom_calendar_table tbody td.select_day span.work_start.work_in.work_end {
+			    color: #ddd!important;
 			}
 			
 			.schedule_list_inner {
@@ -311,12 +362,70 @@
 			}
 
 
+			/*훈련일기 상세 팝업 시작*/
+			.traning_pop_whole.detail_pop {
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				bottom: -200vh;
+				bottom: 0;
+				left: 0;
+				z-index: 4;
+				transition: 0.5s;
+			}
+			
+			.detail_pop_whole.pop_show {
+				bottom: 0;
+				transition: 0.5s;
+			}
+			
+			.detail_pop_bg {
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.5);
+				z-index:0;
+				display: none;
+			}
+			
+			.detail_pop_box {
+				position: absolute;
+				width: calc(100% - 40px);
+				height: calc(100% - 50px);
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: #f9f9f9;
+				border-radius: 30px 30px 0 0;
+				padding: 20px 20px 0 20px;
+			}
+			
+			.detail_pop_flex {
+				max-width: 1000px;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: space-between;
+				align-items: start;
+				margin: 0 auto;
+			}
+			
+			p.detail_pop_title {
+				font-size: 24px;
+				line-height: 36px;
+				font-weight: bold;
+				color: #3d3d3d;
+				text-align: center;
+				margin: 0 auto;
+			}
+
+
 			/*훈련일기 팝업 시작*/
 			.traning_pop_whole {
 				position: fixed;
 				width: 100vw;
 				height: 100vh;
-				bottom: 0;
 				bottom: -200vh;
 				left: 0;
 				z-index: 4;
@@ -409,7 +518,7 @@
 				line-height: 28px;
 				color: #777;
 				text-align: center;
-				margin: 50px auto 10px auto;
+				margin: 60px auto 10px auto;
 			}
 			
 			p.traning_choose_pop_title2 {
@@ -463,6 +572,17 @@
 				display: none;
 			}
 			
+			.traning_pop_date#traning_pop_date2 div {
+				display: flex;
+				flex-wrap: nowrap;
+			}
+			
+			.traning_pop_date#traning_pop_date2 div p {
+				line-height: 42px;
+				margin: 0 10px;
+			}
+			
+			input.traning_calendar_input,
 			input.traning_calendar_datepicker,
 			input.traning_calendar_datepicker2 {
 				width: calc(100% - 22px);
@@ -470,19 +590,11 @@
 				line-height: 60px;
 				border: 1px solid #e1e1e1;
 				border-radius: 5px;
+				padding: 0 10px;				
 			}
-			
-			input[name="traning_plus_date"].traning_calendar_datepicker {
-				max-width: 100px;
-				text-align: center;
-			}
-			
-			p#traning_pop_date_txt {
-				font-size: 20px;
-				line-height: 36px;
-				font-weight: 400;
-				color: #3d3d3d;
-				text-align: start;
+
+			input.traning_calendar_input {
+				max-width: 130px;
 			}
 			
 			/*datepicker*/
@@ -640,7 +752,6 @@
 				height: 22.77vh;
 				max-height: 100px;
 				margin: 10px 10px 0 0;
-				overflow: hidden;
 			}
 			
 			.traning_people_list div div label {
@@ -686,6 +797,11 @@
 			
 			input[name="traning_player_choose"]:checked + span > img.player_chk_img {
 				display: block;
+			}
+			
+			.traning_people_list div p {
+				text-align: center;
+				margin: 0 auto;
 			}
 			
 			
@@ -756,9 +872,17 @@
 				margin-top: 5px;
 			}
 			
+			.traning_plus_flex div {
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: start;
+				align-items: center;
+			}
+			
 			input.traning_plus_time {
+				min-width: 68px;
 				width: calc(100% - 20px);
-				max-width: 100px;
+				max-width: 68px;
 			    height: 40px;
 			    line-height: 60px;
 			    text-align: center;
@@ -767,6 +891,14 @@
 			    background-color: #fff;
 			    margin-left: 10px;
 				cursor: url('./image/soccer/cursor/cursor.png'), auto !important;
+			}
+			
+			input.traning_plus_time + p {
+				margin-left: 5px;
+			}
+			
+			p + input.traning_plus_time {
+				margin-left: 5px;
 			}
 			
 			input.traning_plus_content {
@@ -798,6 +930,82 @@
 				background-color: #0c400c;
 			}
 			
+			
+			/*메모*/
+			.traning_memo_whole {
+				width: 100%;
+				height: auto;
+				margin: 0 auto;
+			}
+			
+			.traning_memo_inner {
+				width: 100%;
+				height: auto;
+				margin: 0 auto;
+			}
+			
+			.traning_memo_inner textarea {
+				display: block;
+				width: calc(100% - 22px);
+				height: 200px;
+				border: 1px solid #e1e1e1;
+				padding: 5px 10px;
+				border-radius: 5px;
+			}
+			
+			.traning_memo_inner p {
+				font-size: 14px;
+				line-height: 20px;
+				font-weight: 400;
+				color: #999;
+				text-align: end;
+				margin: 5px 0 0 auto;
+			}
+			
+			.traning_memo_inner p span {
+				font-weight: bold;
+				color: #333;
+			}
+			
+			
+			/*버튼*/
+			.training_memo_btn_whole {
+				width: 100%;
+				height: auto;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+				margin: 10px auto 30px auto;
+			}
+			
+			.training_memo_btn {
+				display: block;
+				width: 100%;
+				max-width: 100px;
+				height: 40px;
+				font-size: 16px;
+				line-height: 24px;
+				font-weight: 400;
+				border: 1px solid transparent;
+				border-radius: 5px;
+			}
+			
+			.training_memo_btn.memo_btn_cancel {
+				color: #556B2F;
+				background-color: #fff;
+				border-color: #556B2F;				
+			}
+			
+			.training_memo_btn.memo_btn_save {
+				color: #fff;
+				background-color: #556B2F;
+				border-color: #556B2F;
+			}
+			
+			.training_memo_btn + .training_memo_btn {
+				margin-left: 20px;
+			}
 			
 			
 			
@@ -838,11 +1046,6 @@
 				input.traning_plus_content {
 					margin-left: 10px;
 				}
-				
-				input.traning_plus_time,
-				input[name="traning_plus_date"].traning_calendar_datepicker {
-					min-width: 100px;
-				}
 			}
 			
 			
@@ -869,40 +1072,14 @@
 			}
 		</style>
 		<!-- css 다 복붙 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 		<script type="text/javascript">
-	        $(function(){
+	        $(function() {
 		        var nowDate = new Date();
 		        var todayDate = new Date();
 		        var td_year = todayDate.getFullYear();
 		        var td_month = todayDate.getMonth() + 1;
 		        var td_day = todayDate.getDate();
-		        
-				$('input[class="traning_calendar_datepicker"]').daterangepicker ({//달력 api
-				    singleDatePicker: true,
-				    showDropdowns: true,
-				    locale: {
-						format: 'YYYY-MM-DD'
-					},
-					setValue: function(){
-				        var choosed_yy = $('#calendar_choosed_yy').val();
-				        var choosed_mm = $('#calendar_choosed_mm').val();
-				        var choosed_dd = $('#calendar_choosed_dd').val();
-				        var choosed_date = choosed_yy + '-' + choosed_mm + '-' + choosed_dd;
-						choosed_date;
-				    },
-				}, function(start, end, label) {
-					console.log(start.format('YYYY-MM-DD'));
-				});
-
-				$('input[class="traning_calendar_datepicker2"]').daterangepicker({//날짜 여러개 선택하는 달력 api
-					opens: 'center',
-				    locale: {
-						format: 'YYYY-MM-DD'
-					},
-				}, function(start, end, label) {
-					console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-				});
-	        	
 				
 	        	//달력
 		        function calendarMake() {
@@ -937,8 +1114,9 @@
 		            
 		            var thisMonth = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1);
 		            var thisLastDay = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0);
-		            var tag = "<tr>";
+		            
 		            var cnt = 0;
+	            	var tag = "<tr>";
 		            //빈 공백 만들어주기
 		            for (i = 0; i < thisMonth.getDay(); i++) {
 		                tag += "<td></td>";
@@ -947,7 +1125,9 @@
 	
 		            //날짜 채우기
 		            for (i = 1; i <= thisLastDay.getDate(); i++) {
-		                if (cnt % 7 == 0) { tag += "<tr>"; }
+		                if (cnt % 7 == 0) {
+							tag += "<tr>";
+						}
 		                if(year + '' + ('0'+month).slice(-2) + '' + ('0'+i).slice(-2) == year2 + ('0'+month2).slice(-2) + ('0'+day).slice(-2)) {//오늘 날짜
 		                    tag += "<td id="+ (year+ '' + ('0'+month).slice(-2) + '' + ('0'+i).slice(-2)) +" class='calendar_td td_today'>" + "<span class='day_txt'>" + ('0'+i).slice(-2) + "</span></td>";
 		                }else {
@@ -1000,7 +1180,6 @@
 		                    }
 		                });
 		            };
-		            $('#20240913').append('<span class="work_in work_end">일정입력</span>');
 		            
 		            $('.calendar_td').on('click', function() {
 		                var ths_td_id = $(this).attr('id');
@@ -1018,13 +1197,16 @@
 		                $('#calendar_schedule_date').text(date_title + ' ' + day + '일');
 			            $('#calendar_choosed_dd').attr('value', day);
 		            });
-		        }
+		        };
 			});
 
 	        function scheduleShow() {
-				var selected_date = $('#calendar_schedule_date').text();//선택한 날짜 가져오기
-				$('#traning_pop_date_txt').html(selected_date);//선택된 날짜 보여주기
-
+	        	var calendar_choosed_yy = $('#calendar_choosed_yy').val();
+	        	var calendar_choosed_mm = $('#calendar_choosed_mm').val();
+	        	var calendar_choosed_dd = $('#calendar_choosed_dd').val();
+				var selected_date = calendar_choosed_yy + '-' + calendar_choosed_mm + '-' + calendar_choosed_dd;
+				$('#traning_select_date1').attr('value', selected_date);
+				$('#traning_select_date2').attr('value', selected_date);
 				$('body').css('overflow', 'hidden');
 				$('.traning_pop_whole').addClass("pop_show");
 				$('.traning_pop_bg').show();
@@ -1051,13 +1233,149 @@
 					$('#traning_pop_date2').hide();
 				}
 			}
-	        
+
+	        var people_array = [];
 	        function peopleChooseAll() {
+	        	people_array = [];
 				$('input[name="traning_player_choose"]').prop('checked', true);
+				$('input[name="traning_player_choose"]').each(function() {
+					var player_name = $(this).val();
+					var player_num = $(this).attr('data-type');
+	        		if($(this).is(':checked')) {//체크했을 때
+	   	        		people_array.push(player_name, player_num);
+	        		}
+	        		else {//체크 해제시
+	        			var people_num = people_array.indexOf(player_num);
+	        			people_array.splice((player_num - 1), 2);
+	        		}
+				});
+        		$('#chked_member_val').attr('value', people_array);
 			}
 	        
-	        function scheduleDetail() {
+	        function peopleChoose(ths) {
+	        	var people_len = $('input[name="traning_player_choose"]').length;
+	        	var people_chk_len = $('input[name="traning_player_choose"]:checked').length;
+	        	
+	        	if(people_len == people_chk_len) {//선수들 전체 다 선택 됐을 때
+	        		$('#traning_people_select1').prop('checked', true);
+	        		$('#traning_people_select2').prop('checked', false);	        		
+	        	}
+	        	else {
+	        		$('#traning_people_select1').prop('checked', false);
+	        		$('#traning_people_select2').prop('checked', true);
+	        	}
+	        	
+	        	//선택된 선수 및 번호 배열에 넣기
+	        	var ths_val = $(ths).val();
+        		var ths_num = ths.dataset.type;
+        		if($(ths).is(':checked')) {//체크했을 때
+   	        		people_array.push(ths_val, ths_num);
+        		}
+        		else {//체크 해제시
+        			var people_num = people_array.indexOf(ths_num);
+        			people_array.splice((people_num - 1), 2);
+        		}
+        		$('#chked_member_val').attr('value', people_array);
+			}
+	        
+			var schedule_len = 1;
+	        function schedulePlus(object) {
+	        	schedule_len++;
+	        	if(schedule_len > 3) {
+					alertShow('저장 불가', '3개 이상의 훈련 일정은 등록하실 수 없습니다.');
+	        	}else {
+					var schedule_div = '';
+					schedule_div += '<div class="traning_plus_row" id="traning_plus_row' + schedule_len + '">';
+					schedule_div += '	<div class="traning_plus_flex">';
+					schedule_div += '		<input type="date" id="traning_plus_date' + schedule_len + '" value="" name="traning_plus_date' + schedule_len + '" class="traning_calendar_input">';
+					schedule_div += '		<div>';
+					schedule_div += '			<input type="number" id="traning_plus_time' + schedule_len + '_1" value="" name="traning_plus_time' + schedule_len + '_1" class="traning_plus_time" placeholder="00">';
+					schedule_div += '			<p>:</p>';
+					schedule_div += '			<input type="number" id="traning_plus_time' + schedule_len + '_2" value="" name="traning_plus_time' + schedule_len + '_2" class="traning_plus_time" placeholder="00">';
+					schedule_div += '		</div>';
+					schedule_div += '	</div>';
+					schedule_div += '	<div class="traning_plus_flex">';
+					schedule_div += '		<input type="text" name="traning_plus_content' + schedule_len + '" class="traning_plus_content" placeholder="일정 입력(30자 이내)" maxlength="30">';
+					schedule_div += '		<button type="button" data-id="traning_plus_row' + schedule_len + '" class="traning_plus_btn traning_minus_btn" onclick="scheduleDelete(this)">일정 삭제</button>';
+					schedule_div += '	</div>';
+					schedule_div += '</div>';
+					$('.traning_plus_inner').append(schedule_div);
+	        	}
+			}
+	        
+	        function scheduleDelete(ths) {
+				var ths_id = ths.dataset.id;
+				var sche_len = $('.traning_plus_row').length;
+				$('#'+ths_id).remove();
+				for(var i = schedule_len; i <= sche_len; i++) {
+					$('#traning_plus_row'+schedule_len).attr('id', 'traning_plus_row'+(schedule_len - 1));
+					$('#traning_plus_row'+(schedule_len - 1)).find('#traning_plus_date'+schedule_len).attr('id', 'traning_plus_date'+(schedule_len - 1));
+					$('#traning_plus_row'+(schedule_len - 1)).find('#traning_plus_time'+schedule_len+'_1').attr('id', 'traning_plus_date'+(schedule_len - 1)+'_1');
+					$('#traning_plus_row'+(schedule_len - 1)).find('#traning_plus_time'+schedule_len+'_2').attr('id', 'traning_plus_date'+(schedule_len - 1)+'_2');
+					$('#traning_plus_row'+(schedule_len - 1)).find('.traning_plus_content').attr('name', 'traning_plus_content'+(schedule_len - 1));
+					$('#traning_plus_row'+(schedule_len - 1)).find('button').attr('data-id', 'traning_plus_row'+(schedule_len - 1));
+				}
+				schedule_len--;
+			}
+	        
+	        function scheduleKeyup() {
+				var schedule_len = $('#training_memo_txtarea').val().length;
+				$('#traning_memo_len').text(schedule_len);
+				if(schedule_len > 300) {
+					alertShow('메모 글자', '300자 이하로 적어주세요.');
+					$('#traning_memo_len').text('300');
+				}
+			}
+	        
+	        $('.traning_plus_content').on('keyup', function() {
+				var input_len = $(this).val().length;
+				if(input_len >= 31) {
+					alertShow('텍스트 초과', '일정은 최대 30자입니다.');
+				}
+			});
+	        
+	        var TRDATE_array = [];
+	        function traingSaveChk() {
+	        	TRDATE_array = [];//배열 초기화
+	        	var traning_date_choose = $('input[name="traning_date_choose"]:checked').val();
+	        	
+	        	var date_val = $('#traning_select_date1').val();
+	        	var date_val2 = $('#traning_select_date2').val();
+	        	var date_val3 = $('#traning_select_date3').val();
 				
+				if(traning_date_choose == '당일') {
+					if(date_val == '') {
+						alertShow('날짜 선택', '날짜를 선택해주세요.<br/>선택하신 날짜로 저장됩니다.');
+						return false;
+					}
+				}
+				else {
+					if(date_val2 == '' || date_val3 == '') {
+						alertShow('날짜 선택', '날짜를 선택해주세요.<br/>선택하신 날짜로 저장됩니다.');
+						return false;
+					}
+				}
+	        	
+				var member_len = $('input[name="traning_player_choose"]:checked').length;
+				if(member_len <= 0) {
+					alertShow('인원 선택', '인원은 1명 이상 선택되어야 합니다.');
+					return false;
+				}
+				
+				var plus_num = $('.traning_calendar_input').length;
+				for(var i = 1; i <= plus_num; i++) {
+					var plus_date = $('input[id="traning_plus_date' + i + '"]').val();
+					var traning_plus_time1 = $('input[id="traning_plus_time' + i + '_1"]').val();
+					var traning_plus_time2 = $('input[id="traning_plus_time' + i + '_2"]').val();
+					var traning_plus_content = $('input[name="traning_plus_content' + i + '"]').val();
+					
+					if(plus_date != '' && traning_plus_time1 != '' && traning_plus_time2 != '' && traning_plus_content != '') {
+						TRDATE_array.push(plus_date,traning_plus_time1,traning_plus_time2,traning_plus_content);
+						$('#chked_traing_val').attr('value', TRDATE_array);
+					}
+				}
+				
+				$('#soccer_calendar_save').submit();
 			}
 		</script>
 	</head>
@@ -1080,19 +1398,81 @@
 				<div class="calendar_schedule_inner">
 					<div class="schedule_list_box">
 						<!-- schedule_list_inner div 반복 -->
-						<div class="schedule_list_inner" onclick="scheduleDetail()">
-							<!-- 전지훈련: schedule_long 클래스명 추가 -->
-							<span class="schedule_list_span"></span>
-							<div class="schedule_list_txt">
-								<p>날짜 / 시간</p>
-								<p>스케줄내용스케줄내용스케줄내용스케줄내용스케줄내용스케줄내용스케줄내용</p>
+						<c:forEach items="${calendar_list}" var="calendar">
+							<div class="schedule_list_inner">
+								<!-- 전지훈련: schedule_long 클래스명 추가 -->
+								<c:choose>
+									<c:when test="${calendar.TRDATE == calendar.TRDATE2}">
+										<span class="schedule_list_span"></span>
+									</c:when>
+									<c:otherwise>
+										<span class="schedule_list_span schedule_long"></span>
+									</c:otherwise>
+								</c:choose>
+								<div class="schedule_list_txt">
+									<p><c:choose><c:when test="${calendar.TRDATE == calendar.TRDATE2}">${calendar.TRDATE} / 당일</c:when><c:otherwise>${calendar.TRDATE} ~ ${calendar.TRDATE2} / 전지훈련</c:otherwise></c:choose></p>
+									
+									<script type="text/javascript">
+								        $(function() {//달력에 일정 띄우기 위한 js 코드
+											var date = `${calendar.TRDATE}`;
+											var tr_content = `${calendar.TRCONTENT}`;
+											var date_yy = date.slice(0,4);
+											var date_mm = date.slice(5,7);
+											var date_dd = date.slice(8,10);
+											var date_wh = date_yy + date_mm + date_dd;
+											//td id를 쓰기 위해서 년/월/일
+											
+											var date2 = `${calendar.TRDATE2}`;
+											var date2_yy = date2.slice(0,4);
+											var date2_mm = date2.slice(5,7);
+											var date2_dd = date2.slice(8,10);
+											var date2_wh = date2_yy + date2_mm + date2_dd;
+											//td id를 쓰기 위해서 년/월/일
+
+											var con_array = tr_content.split(',');
+											var con_array_len = con_array.length;
+											var con_content_val = "";
+											
+											con_content_val = con_array[3];												
+											
+											if(date_wh == date2_wh) {
+												if(con_array_len <= 4) {
+													$('#'+date_wh).append('<span class="work_start work_in work_end">' + con_content_val + '</span>');
+												}
+												else {
+													$('#'+date_wh).append('<span class="work_start work_in work_end">' + con_content_val + ' 외 ' + ((con_array_len / 4) - 1) + '개</span>');
+												}
+											}
+											else {
+												if(con_array_len <= 4) {
+													$('#'+date_wh).append('<span class="work_start work_in">' + con_content_val + '</span>');
+												}
+												else {
+													$('#'+date_wh).append('<span class="work_start work_in">' + con_content_val + ' 외 ' + ((con_array_len / 4) - 1) + '개</span>');
+												}
+												for(var i = date_wh; i < date2_wh; i++) {
+													if(i != date_wh) {
+														$('#'+i).append('<span class="work_in work_ing"></span>');
+													}
+												}
+												$('#'+date2_wh).append('<span class="work_in work_end"></span>');
+											}
+								        });
+									</script>
+									<p id="content_${calendar.TRNUM}">dd</p>
+								</div>
 							</div>
-						</div>
+						</c:forEach>
+						<c:if test="${empty calendar_list}">
+							<p class="no_data_txt">달력 데이터가<br/>없습니다.</p>
+						</c:if>
 					</div>
 				</div>
 			</div>
 	        <div id="calendarForm"></div>
 		</div>
+
+        <!-- 훈련일기 등록 팝업 -->
         <div class="traning_pop_whole">
         	<div class="traning_pop_bg"></div>
         	<div class="traning_pop_box">
@@ -1104,94 +1484,116 @@
         		</div>
         		<p class="traning_pop_subtext">오늘의 훈련이 어땠는지 적어주세요.</p>
         		<div class="traning_pop_inner">
-	        		<div class="traning_date_pop_choose">
-	        			<p class="traning_choose_pop_title">훈련 날짜 선택</p>
-	        			<div class="traning_date_pop_flex">
-		        			<label for="traning_date_choose1">
-		        				<input type="radio" name="traning_date_choose" id="traning_date_choose1" onchange="traningDateSelect(this)" data-type="당일" hidden checked>
-		        				<span>당일</span>
-		        			</label>
-		        			<label for="traning_date_choose2">
-		        				<input type="radio" name="traning_date_choose" id="traning_date_choose2" onchange="traningDateSelect(this)" data-type="전지훈련" hidden>
-		        				<span>전지훈련</span>
-		        			</label>
-	        			</div>
-		       			<div id="traning_pop_date1" class="traning_pop_date">
-							<input type="text" id="traning_select_date1" value="" name="traning_select_date" class="traning_calendar_datepicker">
+	        		<form action="soccerCalendarSave" id="soccer_calendar_save" method="post">
+						<c:choose>
+							<c:when test="${areaset}">
+								<input type="hidden" value="${area.area_eng}" name="soccer_calendar_team1">
+								<input type="hidden" value="${area.area_kor}" name="soccer_calendar_team2">
+							</c:when>
+						</c:choose>
+			        	<input type="hidden" id="chked_member_val" name="chked_member_val">
+			        	<input type="hidden" id="chked_traing_val" name="chked_traing_val">
+						<input type="hidden" id="calendar_info_val" name="calendar_info_val" value="soccer">
+		        		<div class="traning_date_pop_choose">
+		        			<p class="traning_choose_pop_title">훈련 날짜 선택</p>
+		        			<div class="traning_date_pop_flex">
+			        			<label for="traning_date_choose1">
+			        				<input type="radio" name="traning_date_choose" id="traning_date_choose1" onchange="traningDateSelect(this)" data-type="당일" value="당일" hidden checked>
+			        				<span>당일</span>
+			        			</label>
+			        			<label for="traning_date_choose2">
+			        				<input type="radio" name="traning_date_choose" id="traning_date_choose2" onchange="traningDateSelect(this)" data-type="전지훈련" value="전지훈련" hidden>
+			        				<span>전지훈련</span>
+			        			</label>
+		        			</div>
+			       			<div id="traning_pop_date1" class="traning_pop_date">
+								<input type="date" id="traning_select_date1" value="" name="traning_select_date1" class="traning_calendar_datepicker">
+			       			</div>
+			       			<div id="traning_pop_date2" class="traning_pop_date">
+			       				<div>
+									<input type="date" id="traning_select_date2" value="" name="traning_select_date2" class="traning_calendar_datepicker">
+									<p> ~ </p>
+									<input type="date" id="traning_select_date3" value="" name="traning_select_date3" class="traning_calendar_datepicker2" placeholder="날짜 선택">
+			       				</div>
+			       			</div>
+		        		</div>
+		       			<div class="traning_people_inner">
+		        			<p class="traning_choose_pop_title">훈련 인원 선택</p>
+		       				<div class="traning_people_choose">
+		       					<label for="traning_people_select1">
+		       						<input type="radio" id="traning_people_select1" name="traning_people_select" onclick="peopleChooseAll()" value="전체" hidden>
+		       						<span>전체</span>
+		       					</label>
+		       					<label for="traning_people_select2">
+		       						<input type="radio" id="traning_people_select2" name="traning_people_select" value="선택" checked hidden>
+		       						<span>선택</span>
+		       					</label>
+		       				</div>
+		       				<div class="traning_people_list">
+		       					<div>
+		       						<!-- 선수 명단 및 사진 반복 -->
+		       						<c:forEach items="${player_list}" var="my" begin="1" step="1">
+		       							<div>
+				       						<label for="traning_player_choose_${my.playernum}">
+				       							<input type="hidden" value="${my.playernum}" name="traning_player_number">
+				       							<input type="checkbox" id="traning_player_choose_${my.playernum}" onclick="peopleChoose(this)" name="traning_player_choose" data-type="${my.playernum}" value="${my.pname}" hidden>
+				       							<span>
+				       								<img alt="체크 이미지" src="./image/soccer/icon/player_chk.png" class="player_chk_img">
+					       							<img alt="선수 이미지" src="./image/soccer/player/${my.pimage}" class="player_img">
+				       							</span>
+					       						<p>${my.pname}</p>
+				       						</label>
+		       							</div>
+		       						</c:forEach>
+		       						<c:if test="${empty player_list}">
+		       							<p class="no_data_txt">
+		       								선수 명단이 없습니다.
+		       								<br/>
+		       								등록해주세요.
+		       							</p>
+		       						</c:if>
+		       					</div>
+		       				</div>
 		       			</div>
-		       			<div id="traning_pop_date2" class="traning_pop_date">
-							<input type="text" id="traning_select_date2" value="" name="traning_select_date2" class="traning_calendar_datepicker2" placeholder="날짜 선택">
+		       			<div class="traning_map_inner">
+		        			<p class="traning_choose_pop_title">훈련 장소 입력</p>
+		        			<div class="traning_map_flex">
+			       				<input type="text" id="traning_map_input" name="traning_map_input" maxlength="50" placeholder="훈련 장소 입력(50자 이내)">
+		        			</div>
 		       			</div>
-	        		</div>
-	       			<div class="traning_people_inner">
-	        			<p class="traning_choose_pop_title">훈련 인원 선택</p>
-	       				<div class="traning_people_choose">
-	       					<label for="traning_people_select1">
-	       						<input type="radio" id="traning_people_select1" name="traning_people_select" onclick="peopleChooseAll()" value="전체" hidden>
-	       						<span>전체</span>
-	       					</label>
-	       					<label for="traning_people_select2">
-	       						<input type="radio" id="traning_people_select2" name="traning_people_select" value="선택" checked hidden>
-	       						<span>선택</span>
-	       					</label>
-	       				</div>
-	       				<div class="traning_people_list">
-	       					<div>
-	       						<!-- 선수 명단 및 사진 반복 -->
-	       						<c:forEach items="${player_list}" var="my" begin="1" step="1">
-	       							<div>
-			       						<label for="traning_player_choose_${my.playernum}">
-			       							<input type="checkbox" id="traning_player_choose_${my.playernum}" name="traning_player_choose" value="${my.pname}" hidden>
-			       							<span>
-			       								<img alt="체크 이미지" src="./image/soccer/icon/player_chk.png" class="player_chk_img">
-				       							<img alt="선수 이미지" src="./image/soccer/player/<c:choose><c:when test="${areaset}">${area.area_kor}</c:when></c:choose>/${my.pimage}" class="player_img">
-			       							</span>
-			       						</label>
-			       						<p>${my.pname}</p>
-	       							</div>
-	       						</c:forEach>
-	       						<c:if test="${empty player_list}">
-	       							<p class="no_data_txt">
-	       								선수 명단이 없습니다.
-	       								<br/>
-	       								등록해주세요.
-	       							</p>
-	       						</c:if>
-	       					</div>
-	       				</div>
-	       			</div>
-	       			<div class="traning_map_inner">
-	        			<p class="traning_choose_pop_title">훈련 장소 선택</p>
-	        			<div class="traning_map_flex">
-		       				<input type="text" id="traning_map_input" placeholder="훈련 장소 입력">
-	        			</div>
-	       			</div>
-	       			<div class="traning_plus_whole">
-	        			<p class="traning_choose_pop_title">훈련 일정</p>
-	        			<p class="traning_choose_pop_title2">일정은 최대 3개까지 추가 가능합니다.</p>
-						<div class="traning_plus_inner">
-							<div class="traning_plus_row">
-								<div class="traning_plus_flex">
-									<input type="text" id="traning_plus_date1" data-id="traning_plus_date1" value="" name="traning_plus_date" class="traning_calendar_datepicker">
-									<input type="text" id="traning_plus_time1" data-id="traning_plus_time1" value="" name="traning_plus_time" class="traning_plus_time" placeholder="시간 선택" readonly>
-								</div>
-								<div class="traning_plus_flex">
-									<input type="text" name="traning_plus_content1" class="traning_plus_content" placeholder="일정 입력">
-									<button type="button" class="traning_plus_btn">일정 추가</button>
+		       			<div class="traning_plus_whole">
+		        			<p class="traning_choose_pop_title">훈련 일정</p>
+		        			<p class="traning_choose_pop_title2">일정은 최대 3개까지 추가 가능합니다. (일정은 30자 이내)</p>
+							<div class="traning_plus_inner">
+								<div class="traning_plus_row">
+									<input type="date" id="traning_plus_date1" value="" name="traning_plus_date" class="traning_calendar_input">
+									<div class="traning_plus_flex">
+										<div>
+											<input type="number" id="traning_plus_time1_1" value="" name="traning_plus_time" class="traning_plus_time" placeholder="00">
+											<p>:</p>
+											<input type="number" id="traning_plus_time1_2" value="" name="traning_plus_time" class="traning_plus_time" placeholder="00">
+										</div>
+									</div>
+									<div class="traning_plus_flex">
+										<input type="text" name="traning_plus_content1" maxlength="30" class="traning_plus_content" placeholder="일정 입력(30자 이내)">
+										<button type="button" onclick="schedulePlus(this)" class="traning_plus_btn">일정 추가</button>
+									</div>
 								</div>
 							</div>
-							<div class="traning_plus_row">
-								<div class="traning_plus_flex">
-									<input type="text" id="traning_plus_date2" data-id="traning_plus_date2" value="" name="traning_plus_date" class="traning_calendar_datepicker">
-									<input type="text" id="traning_plus_time2" data-id="traning_plus_time2" value="" name="traning_plus_time" class="traning_plus_time" placeholder="시간 선택" readonly>
-								</div>
-								<div class="traning_plus_flex">
-									<input type="text" name="traning_plus_content2" class="traning_plus_content" placeholder="일정 입력">
-									<button type="button" class="traning_plus_btn traning_minus_btn">일정 삭제</button>
-								</div>
+		       			</div>
+		       			<div class="traning_memo_whole">
+		        			<p class="traning_choose_pop_title">훈련 메모</p>
+		        			<p class="traning_choose_pop_title2">이번 훈련에 대하여 메모가 있으시다면 적어주세요.(최대 300자)</p>
+							<div class="traning_memo_inner">
+								<textarea id="training_memo_txtarea" name="training_memo_txtarea" maxlength="300" onkeyup="scheduleKeyup()"></textarea>
+								<p><span id="traning_memo_len">0</span>/300</p>
 							</div>
-						</div>
-	       			</div>
+		       			</div>
+		       			<div class="training_memo_btn_whole">
+		       				<button type="button" class="training_memo_btn memo_btn_cancel">닫기</button>
+		       				<button type="button" onclick="traingSaveChk()" class="training_memo_btn memo_btn_save">저장</button>
+		       			</div>
+	       			</form>
        			</div>
         	</div>
         </div>
