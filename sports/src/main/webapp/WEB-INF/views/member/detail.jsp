@@ -77,13 +77,13 @@
 	<c:choose>
 		<c:when test="${wm.part == '감독'}">
 			<div>
-				<button type="button">승인하기</button>
-				<button type="button">거부하기</button>
+				<button type="button">승인</button>
+				<button type="button">거부</button>
 			</div>
 		</c:when>
 	</c:choose>
 	<div>
-		<button type="button" onclick="location.href='signup_lookup'">이전으로</button>
+		<button type="button" onclick="javascript:history.go(-1)">이전으로</button>
 	</div>
 
 </body>
