@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,21 +49,26 @@ public class LoginController {
 			npath="redirect:/main";
 		}else { //회원 로그인
 			LoginService ls = sqlsession.getMapper(LoginService.class);
-			LoginDTO ldto = ls.logincheck(id,pw);
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			LoginDTO ldto = ls.logincheck(id);
 			if(ldto!=null){
-				String part = ldto.getPart();
-				String sport = ldto.getSport();
-				if(part.equals("일반")) {
-					hs.setAttribute("normallogin", true);				
+				if(passwordEncoder.matches(pw, ldto.getPw())) {
+					String part = ldto.getPart();
+					String sport = ldto.getSport();
+					if(part.equals("일반")) {
+						hs.setAttribute("normallogin", true);				
+					}
+					if(part.equals("감독")) {
+						hs.setAttribute("superlogin", true);
+					}
+					hs.setAttribute("member", ldto);
+					hs.setAttribute("sports", sport);
+					npath="redirect:/main";
+				}else {
+					npath="redirect:/login";				
 				}
-				if(part.equals("감독")) {
-					hs.setAttribute("superlogin", true);
-				}
-				hs.setAttribute("member", ldto);
-				hs.setAttribute("sports", sport);
-				npath="redirect:/main";
 			}else {
-				npath="redirect:/login";				
+				npath="redirect:/signup";								
 			}
 		}
 		return npath;
@@ -95,11 +102,14 @@ public class LoginController {
 		}
 		else {
 			LoginService ls = sqlsession.getMapper(LoginService.class);
-			LoginDTO ldto = ls.logincheck(id,pw);
+			LoginDTO ldto = ls.logincheck(id);
 			String msg;
 			if(ldto!=null){
-				String name = ldto.getName();
-				prw.print(name+"님 환영합니다!");
+				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				if(passwordEncoder.matches(pw, ldto.getPw())) {
+					String name = ldto.getName();
+					prw.print(name+"님 환영합니다!");
+				}
 			}else {
 				prw.print("아이디 혹은 비밀번호가 틀립니다.");			
 			}
