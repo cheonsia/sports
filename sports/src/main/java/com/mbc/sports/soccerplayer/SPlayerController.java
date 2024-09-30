@@ -20,8 +20,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Controller
 public class SPlayerController {
 	
-	String splayerpath = "C:\\sports\\sports\\sports\\src\\main\\webapp\\image\\soccer\\player";
-	String bplayerpath = "C:\\sports\\sports\\sports\\src\\main\\webapp\\image\\baseball\\player";
+	String splayerpath = "C:\\project\\sports\\sports\\src\\main\\webapp\\image\\soccer\\player";
+	String bplayerpath = "C:\\project\\sports\\sports\\src\\main\\webapp\\image\\baseball\\player";
 	
 	@Autowired
 	SqlSession sqlsession;
@@ -48,7 +48,7 @@ public class SPlayerController {
 		pimage = filesave(pimage,mf.getBytes());
 		String pchar = mul.getParameter("pchar");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
-		if(play.equals("soccer")) {
+		if(play.equals("축구")) {
 			String main = mul.getParameter("smain");
 			ps.playersoccer(stname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,play);	
 			mf.transferTo(new File(splayerpath+"\\"+pimage));
@@ -57,8 +57,11 @@ public class SPlayerController {
 			ps.playerbaseball(btname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,play);
 			mf.transferTo(new File(bplayerpath+"\\"+pimage));
 		}
-		 
-		return "redirect:/";
+		if(play.equals("축구")) {
+			return "redirect:/soccermain";
+		}else {
+			return "redirect:/baseballmain";
+		}
 	}
 	
 	private String filesave(String pimage, byte[] bytes) {
