@@ -109,9 +109,9 @@ public class LoginController {
 				if(passwordEncoder.matches(pw, ldto.getPw())) {
 					String name = ldto.getName();
 					prw.print(name+"님 환영합니다!");
-				}
-			}else {
+				}else {
 				prw.print("아이디 혹은 비밀번호가 틀립니다.");			
+				}
 			}
 		}
 	}
