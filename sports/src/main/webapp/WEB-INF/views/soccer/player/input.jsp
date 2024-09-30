@@ -112,26 +112,17 @@ $(document).ready(function(){
 			</c:when>
 			<c:when test="${play=='야구'}">
 				<div id="baseball">
-					<p>투수</p>
-					<input type="checkbox" name="bmain" value="선발"> 선발
-					<input type="checkbox" name="bmain" value="중계"> 중계
-					<input type="checkbox" name="bmain" value="마무리"> 마무리
-					<p>타자</p>
-					<input type="checkbox" name="bmain" value="포수"> 포수
-					<input type="checkbox" name="bmain" value="1루수"> 1루수
-					<input type="checkbox" name="bmain" value="2루수"> 2루수
-					<input type="checkbox" name="bmain" value="3루수"> 3루수
-					<input type="checkbox" name="bmain" value="유격수"> 유격수
-					<input type="checkbox" name="bmain" value="좌익수"> 좌익수
-					<input type="checkbox" name="bmain" value="중견수"> 중견수
-					<input type="checkbox" name="bmain" value="우익수"> 우익수
+					<input type="radio" name="bmain" value="투수"> 투수
+					<input type="radio" name="bmain" value="포수"> 포수
+					<input type="radio" name="bmain" value="내야수"> 내야수
+					<input type="radio" name="bmain" value="외야수"> 외야수
 				</div>
 			</c:when>
 			</c:choose>
 		</td>
 	</tr>
 	<tr>
-		<th>특이사항</th>
+		<th>특징</th>
 		<td>
 			<input type="text" name="pchar">
 		</td>
