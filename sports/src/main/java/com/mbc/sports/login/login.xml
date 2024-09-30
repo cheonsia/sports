@@ -4,8 +4,12 @@
 
 <mapper namespace="com.mbc.sports.login.LoginService">
 
+<select id="password" resultType="string">
+	select pw from sportsmember where id=#{param1}
+</select>
+
 <select id="logincheck" resultType="com.mbc.sports.login.LoginDTO">
-	select id,pw,name,sport,part from sportsmember where id=#{param1} and pw=#{param2}
+	select id,pw,name,sport,part from sportsmember where id=#{param1}
 </select>
 
 </mapper>
