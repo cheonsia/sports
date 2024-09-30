@@ -110,16 +110,16 @@
 	 
 	function updateList(str){
 	    var gf = document.generalform;
-	    var teamLen = gf.TeamList.length;
+	    var teamLen = gf.team.length;
 	    var numActs;
 	 
 	    for (var i = 0; i < acts.length; i++){
 	        if (str == acts[i].name) {
 	            numActs = acts[i].list.length;
 	            for (var j = 0; j < numActs; j++)
-	            	gf.TeamList.options[j] = new Option(acts[i].list[j], acts[i].list[j]);
+	            	gf.team.options[j] = new Option(acts[i].list[j], acts[i].list[j]);
 	            for (var j = numActs; j < teamLen; j++)
-	            	gf.TeamList.options[numActs] = null;
+	            	gf.team.options[numActs] = null;
 	        }
 	    }
 	}
