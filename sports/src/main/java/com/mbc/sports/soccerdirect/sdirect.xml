@@ -5,4 +5,10 @@
 	<select id="selectCalendarArea" resultType="com.mbc.sports.soccerdirect.DirectDTO">
 		select playernum, tname, pname, pimage from player_soccer where tname = #{param1}
 	</select>
+	<insert id="soccercalendarsave">
+		insert into direct_trade values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, TRNUM_SEQ.nextval, #{param8})
+	</insert>
+	<select id="selectCalendarInfo" resultType="com.mbc.sports.soccerdirect.SoccerCalendarDTO">
+		select TRNAME, to_char(TRDATE,'yyyy-MM-dd')TRDATE, to_char(TRDATE2,'yyyy-MM-dd')TRDATE2, TRMEMBER, TRPLACE, TRCONTENT, TRMEMO, TRNUM, TRINFO from direct_trade where TRNAME = #{param1} and TRINFO = #{param2} order by TRDATE asc
+	</select>
 </mapper>
