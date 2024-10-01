@@ -13,7 +13,7 @@
 			<c:when test="${name=='KIA'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCKp8knO8a6tSI1oaLjfd9XA';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -33,7 +33,7 @@
 			<c:when test="${name=='KT'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCvScyjGkBUx2CJDMNAi9Twg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -53,7 +53,7 @@
 			<c:when test="${name=='LG'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCL6QZZxb-HR4hCh_eFAnQWA';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -73,7 +73,7 @@
 			<c:when test="${name=='NC'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UC8_FRgynMX8wlGsU6Jh3zKg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -93,7 +93,7 @@
 			<c:when test="${name=='SSG'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCt8iRtgjVqm5rJHNl1TUojg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -113,7 +113,7 @@
 			<c:when test="${name=='두산'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCsebzRfMhwYfjeBIxNX1brg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -133,7 +133,7 @@
 			<c:when test="${name=='롯데'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCAZQZdSY5_YrziMPqXi-Zfw';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -153,7 +153,7 @@
 			<c:when test="${name=='삼성'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCMWAku3a3h65QpLm63Jf2pw';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -173,7 +173,7 @@
 			<c:when test="${name=='키움'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UC_MA8-XEaVmvyayPzG66IKg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -193,7 +193,7 @@
 			<c:when test="${name=='한화'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCdq4Ji3772xudYRUatdzRrg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -213,7 +213,7 @@
 			<c:when test="${name=='jeonbuk'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCKxMSkJHBIpn5b4vUQHYliQ';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -233,7 +233,7 @@
 			<c:when test="${name=='jeju'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCQfQeoiJTN2EVqde4_0PlUA';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
@@ -253,7 +253,7 @@
 			<c:when test="${name=='pohang'}">
 				<script type="text/javascript">
 					var 채널아이디 = 'UCOZQIw1I6ixjQZ_va_eCn7w';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
+					var 키 = 'key입력';	
 					$.ajax({
 							type : "GET",
 							dataType : "json",
