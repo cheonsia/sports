@@ -29,9 +29,9 @@
     </thead>
     <tbody>
     <c:forEach items="${list}" var="spo">
-	      <tr onclick="location.href='member_detail?id=${spo.id}'">
-      		<td onclick="location.href='member_detail?id=${spo.id}'">${spo.id}</td>
-			<td onclick="location.href='member_detail?id=${spo.id}'">${spo.part}</td>
+      <tr>
+        <td onclick="location.href='member_detail?id=${spo.id}'">${spo.id}</td>
+	  		<td onclick="location.href='member_detail?id=${spo.id}'">${spo.part}</td>
       		<td onclick="location.href='member_detail?id=${spo.id}'">${spo.name}</td>
       		<td onclick="location.href='member_detail?id=${spo.id}'">${spo.birthday}</td>
       		<td onclick="location.href='member_detail?id=${spo.id}'">${spo.tel}</td>

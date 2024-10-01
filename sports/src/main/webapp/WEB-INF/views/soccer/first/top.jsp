@@ -175,7 +175,7 @@
 							<a href="login">로그인</a>
 	               		</c:when>
 	               		<c:when test="${normallogin || superlogin}">
-							<a href="mypage">${member.name}님(${member.part})</a>
+							<a href="mypage?id=${member.id}">${member.name}님(${member.part})</a>
 							<a href="logout">로그아웃</a>
 	               		</c:when>
 	               		<c:when test="${adminlogin}">
