@@ -44,6 +44,11 @@
             var area_val_han = $('input[name="team"]').val();//input[name="team"] 값 가져옴
             location.href = "baseballselectTeam?tname="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
+         
+         function baseball_highlight() {//좌측 사이드메뉴 하이라이트 클릭 시
+             var area_val = $('input[name="team"]').val();//baseball_area 값 가져옴
+             window.location.href = "baseball_highlight?name="+area_val;//컨트롤러에 영어/한글 지역 가져감
+          }
 
          function coachCalendarMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#baseball_area').val();//baseball_area 값 가져옴
@@ -211,7 +216,7 @@
                               <a href="soccer_team_ranking">- 순위</a>
                            </li>
                            <li>
-                              <a href="javascript:void(0)">- 하이라이트</a>
+                              <a href="javascript:void(0)" onclick="baseball_highlight()">- 하이라이트</a>
                            </li>
                         </ul>
                      </li>
