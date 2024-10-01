@@ -8,4 +8,8 @@ public interface SRankService {
 
 	ArrayList<SoccerPlayerDTO> playerRank();
 
+	ArrayList<SoccerPlayerDTO> playerAssistRank();
+
+	ArrayList<SoccerPlayerDTO> playerMOMRank();
+	
 }
