@@ -23,6 +23,7 @@
 		<result property="tname" column="tname"/>
 		<result property="pname" column="pname"/>
 		<result property="pnumber" column="pnumber"/>
+		<result property="pimage" column="pimage"/>
 	</resultMap>
 	
 	 
@@ -38,8 +39,22 @@
 	 
 	 <!--  선수별 렝킹 시스템 -->
 	 <select id="playerRank" resultMap="spdto">
-	 	select ps.playernum, ps.tname, ps.pname, ps.pnumber,
-	 	sp.*, row_number () over (order by sp.gain desc) as ranking
+	 	select ps.playernum, ps.tname, ps.pname, ps.pnumber, ps.pimage,
+	 	sp.*, row_number () over (order by sp.gain desc, sp.round asc) as ranking
+		from player_soccer ps, soccer_player sp
+		where ps.playernum = sp.playernum
+	 </select>
+
+	 <select id="playerAssistRank" resultMap="spdto">
+	 	select ps.playernum, ps.tname, ps.pname, ps.pnumber, ps.pimage,
+	 	sp.*, row_number () over (order by sp.assist desc, sp.round asc) as ranking
+		from player_soccer ps, soccer_player sp
+		where ps.playernum = sp.playernum
+	 </select>
+
+	 <select id="playerMOMRank" resultMap="spdto">
+	 	select ps.playernum, ps.tname, ps.pname, ps.pnumber, ps.pimage,
+	 	sp.*, row_number () over (order by sp.mom desc, sp.round asc) as ranking
 		from player_soccer ps, soccer_player sp
 		where ps.playernum = sp.playernum
 	 </select>
