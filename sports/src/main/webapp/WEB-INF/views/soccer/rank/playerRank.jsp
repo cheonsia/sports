@@ -366,7 +366,7 @@
 		<th>Match</th>
 		<th>Rate</th>
 		<th rowspan="2">MOM</th>
-		<th rowspan="2">Best11</th>
+		<th>Best11</th>
 		<th>Shoot</th>
 		<th>OnTargetShot</th>
 	</tr>
