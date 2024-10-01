@@ -40,11 +40,17 @@
             window.location.replace(ths_href + "?name=" + ths_id + "&area=" + ths_type);
          }
 
-         function playMove() {//좌측 사이드메뉴 선수 목록 클릭 시
+         function playMove() { //좌측 사이드메뉴 선수 목록 클릭 시
             var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
             var area_val_han = $('input[name="team"]').val();//input[name="team"] 값 가져옴
             location.href = "selectTeam?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
+         
+         function soccer_highlight() {//좌측 사이드메뉴 하이라이트 클릭 시
+             var area_val = $('input[name="soccer_area"]').val();//soccer_area 값 가져옴
+             window.location.href = "soccer_highlight?name="+area_val;//컨트롤러에 영어/한글 지역 가져감
+          }
+         
 
          function soccerCalendarMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
@@ -212,7 +218,8 @@
                               <a href="soccer_team_ranking">- 순위</a>
                            </li>
                            <li>
-                              <a href="javascript:void(0)">- 하이라이트</a>
+                           <!-- 2024.09.30 수정 -->
+                              <a href="javascript:void(0)" onclick="soccer_highlight()">- 하이라이트</a>
                            </li>
                         </ul>
                      </li>
@@ -251,7 +258,7 @@
          </aside>
          <nav class="header_team_logo scroll_div" id="header_team" data-id="header_team" ontouch="scrollEvent(this)">
             <div class="header_logo_inner scroll_inn">
-               <input type="text" id="soccer_area" value="<c:choose><c:when test="${areaset}">${area.area_eng}</c:when><c:otherwise>ALL</c:otherwise></c:choose>" hidden>
+               <input type="text" id="soccer_area" name="soccer_area" value="<c:choose><c:when test="${areaset}">${area.area_eng}</c:when><c:otherwise>ALL</c:otherwise></c:choose>" hidden>
                <a href="javascript:void(0)" id="soccer_ALL" data-id="ALL" data-type="ALL" onclick="soccerClick(this)" class="header_logo_all">
                   <img alt="" src="./image/soccer/logo/all.png">
                   <p class="header_all_txt">ALL</p>

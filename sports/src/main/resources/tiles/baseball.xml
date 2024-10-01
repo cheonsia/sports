@@ -55,4 +55,9 @@
 		<put-attribute name="title" value="야구 전략"/>
 		<put-attribute name="body" value="/WEB-INF/views/baseball/direct/strategy.jsp"/>
 	</definition>
+	
+	<definition name="baseball_highlight" extends="baseballLayout">
+		<put-attribute name="title" value="야구 경기 하이라이트"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/game/highlight.jsp"/>
+	</definition>
 </tiles-definitions>
