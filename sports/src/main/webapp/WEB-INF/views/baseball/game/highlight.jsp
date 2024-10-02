@@ -230,26 +230,6 @@
 			    });
 			</script>
 		</c:when>
-			<c:when test="${name=='한화'}">
-				<script type="text/javascript">
-					var 채널아이디 = 'UCdq4Ji3772xudYRUatdzRrg';
-					var 키 = 'AIzaSyBS60Akd3NsIblBL--MaopBa3_HheVXyqE';	
-					$.ajax({
-							type : "GET",
-							dataType : "json",
-							url : "https://www.googleapis.com/youtube/v3/search?part=id&channelId="+채널아이디+"&maxResults=4&order=date&type=video&key="+키,
-							success : function(data) {},
-							complete : function(data) {},
-							error : function(xhr, status, error) {} 
-						});
-				</script>
-				<div>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/s3l_SS_WRCs?si=XGOn1Lun4rqSXTxk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/bHTxR7isans?si=rsIrDcgEp3vstOq3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/K9RkIveMUH8?si=zK34uamiMHRha_o-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/MYuinBa--hY?si=EyWfYq0VgTHcWMaa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-				</div>
-			</c:when>
 		</c:choose>
 	</body>
 </html>
