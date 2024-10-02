@@ -2,7 +2,24 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mbc.sports.baseballdirect.DirectService">
-	<select id="selectCalendarArea" resultType="com.mbc.sports.baseballdirect.DirectDTO">
-		select tname, pname, pimage from player_soccer where tname = #{param1}
+	<select id="selectPlayerArea" resultType="com.mbc.sports.baseballdirect.DirectDTO">
+		select playernum, tname, pname, pimage from player_baseball where tname = #{param1}
 	</select>
+
+	<!-- 전술 -->
+	<select id="selectStrategyList" resultType="com.mbc.sports.baseballdirect.BaseballStrategyDTO">
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where starea = #{param1}
+	</select>
+	<insert id="baseballStrategySave">
+		insert into direct_strategy values (stnum_seq.nextval, #{param1}, #{param2}, SYSDATE, #{param3}, #{param4})
+	</insert>
+	<select id="strategyListFind" resultType="com.mbc.sports.baseballdirect.BaseballStrategyDTO">
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where stnum = #{param1}
+	</select>
+	<delete id="baseballStrategyDelete">
+		delete from direct_strategy where stnum = #{param1}
+	</delete>
+	<update id="baseballStrategyUpdate">
+		update direct_strategy set stname = #{param2}, stinfo = #{param3} where stnum = #{param1}
+	</update>
 </mapper>
