@@ -11,4 +11,21 @@
 	<select id="selectCalendarInfo" resultType="com.mbc.sports.soccerdirect.SoccerCalendarDTO">
 		select TRNAME, to_char(TRDATE,'yyyy-MM-dd')TRDATE, to_char(TRDATE2,'yyyy-MM-dd')TRDATE2, TRMEMBER, TRPLACE, TRCONTENT, TRMEMO, TRNUM, TRINFO from direct_trade where TRNAME = #{param1} and TRINFO = #{param2} order by TRDATE asc
 	</select>
+	
+	<!-- 전술 -->
+	<select id="selectStrategyList" resultType="com.mbc.sports.soccerdirect.SoccerStrategyDTO">
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where starea = #{param1}
+	</select>
+	<insert id="soccerstrategysave">
+		insert into direct_strategy values (stnum_seq.nextval, #{param1}, #{param2}, SYSDATE, #{param3}, #{param4})
+	</insert>
+	<select id="strategylistfind" resultType="com.mbc.sports.soccerdirect.SoccerStrategyDTO">
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where stnum = #{param1}
+	</select>
+	<delete id="soccerStrategyDelete">
+		delete from direct_strategy where stnum = #{param1}
+	</delete>
+	<update id="soccerStrategyUpdate">
+		update direct_strategy set stname = #{param2}, stinfo = #{param3} where stnum = #{param1}
+	</update>
 </mapper>
