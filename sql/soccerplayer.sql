@@ -361,7 +361,7 @@ insert into player_soccer values(playernum_seq.nextval, 'daegu', '박진영', 40,'2
 insert into player_soccer values(playernum_seq.nextval, 'daegu', '박상영', 41,'2005-09-14', 188, 78, 'GK', '41GK박상영.jpg', '', 0, 0, 0, '축구');
 insert into player_soccer values(playernum_seq.nextval, 'daegu', '정윤서', 42,'1997-11-26', 193, 83, 'DF', '42DF정윤서.jpg', '스트라이커,윙어', 0, 0, 0, '축구');
 insert into player_soccer values(playernum_seq.nextval, 'daegu', '김민영', 43,'2000-171-13', 178, 65, 'FW', '43FW김민영.jpg', '스트라이커,윙어', 0, 0, 0, '축구');
-insert into player_soccer values(playernum_seq.nextval, 'daegu', '김정현', 44,'2000-06-09', 185, 77, 'MF', '44MF김정현.jgp', '공격형 미드필더,중앙 미드필더', 0, 0, 0, '축구');
+insert into player_soccer values(playernum_seq.nextval, 'daegu', '김정현', 44,'2000-06-09', 185, 77, 'MF', '44MF김정현.jpg', '공격형 미드필더,중앙 미드필더', 0, 0, 0, '축구');
 insert into player_soccer values(playernum_seq.nextval, 'daegu', '김현준', 45,'2002-02-15', 183, 78, 'DF', '45DF김현준.jpg', '센터백', 0, 0, 0, '축구');
 insert into player_soccer values(playernum_seq.nextval, 'daegu', '임지민', 46,'2002-05-13', 173, 70, 'DF', '46DF임지민.jpg', '라이트백', 0, 0, 0, '축구');
 insert into player_soccer values(playernum_seq.nextval, 'daegu', '박세민', 47,'2002-05-30', 176, 71, 'FW', '47FW박세민.jpg', '윙어,공격형 미드필더', 0, 0, 0, '축구');
