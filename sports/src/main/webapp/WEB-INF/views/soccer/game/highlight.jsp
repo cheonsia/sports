@@ -17,7 +17,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCuLjoid8kKTKITvkUP94kJA&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCuLjoid8kKTKITvkUP94kJA&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -39,7 +39,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCPLHmQevKu4uTiOh1UjoL4w&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCPLHmQevKu4uTiOh1UjoL4w&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -61,7 +61,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -83,7 +83,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -105,7 +105,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -127,7 +127,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCI50QJRCvW1NxwbjB57rGVA&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCI50QJRCvW1NxwbjB57rGVA&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -149,7 +149,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCo2pmNaOCgv26neeCAkLj9w&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCo2pmNaOCgv26neeCAkLj9w&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -171,7 +171,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCXtWUl6qmPtibHVKIXbZlcA&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCXtWUl6qmPtibHVKIXbZlcA&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -193,7 +193,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCHPiDeQQyVcYe-nhyUanSWg&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCHPiDeQQyVcYe-nhyUanSWg&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -215,7 +215,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCZ8lUWJ0_vZZf-SiNedia7Q&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCZ8lUWJ0_vZZf-SiNedia7Q&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -237,7 +237,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCGA9gUrYCb4hRk_wHBzB_nQ&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCGA9gUrYCb4hRk_wHBzB_nQ&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -259,7 +259,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCKxMSkJHBIpn5b4vUQHYliQ&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCKxMSkJHBIpn5b4vUQHYliQ&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -281,7 +281,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCQfQeoiJTN2EVqde4_0PlUA&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCQfQeoiJTN2EVqde4_0PlUA&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
@@ -303,7 +303,7 @@
 			        $.ajax({
 			            type: "GET",
 			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCOZQIw1I6ixjQZ_va_eCn7w&type=video&key=AIzaSyArZsW_CpsaHfMJ1rzljzaAzZyViZ-Xji0",
+			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCOZQIw1I6ixjQZ_va_eCn7w&type=video&key=key입력",
 			            contentType : "application/json",
 			            success : function(data) {
 			                data.items.forEach(function(element, index) {
