@@ -687,7 +687,8 @@
         			}
         		}
         		$('#chked_member_val').attr('value', people_array);
-	        	$('.strategy_btn_submit').prop('disabled', false);
+	        	$('#strategy_btn_change').prop('disabled', false);
+	        	$('#strategy_btn_change').addClass('strategy_btn_change');
 	        };
 
 	        /*이미지 드래그*/
@@ -733,7 +734,8 @@
 
 	        function playerDragEnd() {
 	        	isDrag = false;
-	        	$('.strategy_btn_submit').prop('disabled', false);
+	        	$('#strategy_btn_change').prop('disabled', false);
+	        	$('#strategy_btn_change').addClass('strategy_btn_change');
 			}
 
 	        /*전략 초기화*/
@@ -788,7 +790,7 @@
 				var area_kor = $('input[name="area_kor"]').val();
 				var stnum = ths.dataset.number;
 
-				if($('#strategy_btn_flex').hasClass('btn_on') || $('#strategy_btn_change').attr('disabled') == false) {
+				if($('#strategy_btn_flex').hasClass('btn_on') || $('#strategy_btn_change').hasClass('strategy_btn_change')) {
 					strategyListHide();
 					strategyShow();
 				}
@@ -827,6 +829,20 @@
 				}
 				
 				$('#strategy_form_update').submit();
+			}
+	        
+	        /*새로운 전략으로*/
+	        function newStrategyGo() {
+				var area_eng = $('input[name="area_eng"]').val();
+				var area_kor = $('input[name="area_kor"]').val();
+
+				if($('#strategy_btn_flex').hasClass('btn_on') || $('#strategy_btn_change').hasClass('strategy_btn_change')) {
+					strategyListHide();
+					strategyShow();
+				}
+				else {
+		        	location.href='soccerstrategy?name=${area.area_eng}&area=${area.area_kor}';
+				}
 			}
 	   </script>
 	</head>
@@ -936,7 +952,19 @@
 							<div class="strategy_save_bg"></div>
 							<div class="strategy_save_whole">
 								<div class="strategy_save_box">
-									<p>전략 이름을 확인/수정해주세요.</p>
+									<p>전략 이름을 저장/수정해주세요.</p>
+									<input type="hidden" name="strategy_stnum" value="${strategyPlayerList.stnum}">
+									<input type="text" name="strategy_name" value="${strategyPlayerList.stname}">
+									<div class="strategy_save_flex">
+										<button type="button" onclick="strategyHide()" class="strategy_btn strategy_btn_cancel">닫기</button>
+										<button type="button" onclick="strategyChk2()" class="strategy_btn strategy_btn_submit">전략 저장</button>
+									</div>
+								</div>
+							</div>
+							<div class="strategy_save_bg"></div>
+							<div class="strategy_save_whole">
+								<div class="strategy_save_box">
+									<p>전략 이름을 저장/수정해주세요.</p>
 									<input type="hidden" name="strategy_stnum" value="${strategyPlayerList.stnum}">
 									<input type="text" name="strategy_name" value="${strategyPlayerList.stname}">
 									<div class="strategy_save_flex">
@@ -994,7 +1022,7 @@
 						<div class="strategy_save_flex">
 							<button type="button" onclick="strategyListHide()" class="strategy_btn strategy_btn_cancel">닫기</button>
 							<c:if test="${areaset != null}">
-								<button type="button" onclick="location.href='soccerstrategy?name=${area.area_eng}&area=${area.area_kor}'" class="strategy_btn strategy_btn_submit">새로운 전략</button>
+								<button type="button" onclick="newStrategyGo()" class="strategy_btn strategy_btn_submit">새로운 전략</button>
 							</c:if>
 						</div>
 					</div>
