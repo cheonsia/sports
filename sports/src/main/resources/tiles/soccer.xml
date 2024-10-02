@@ -68,6 +68,11 @@
 	<definition name="soccergoods" extends="soccerLayout">
 		<put-attribute name="title" value="축구 전략"/>
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/goods.jsp"/>
+	</definition>
+	
+	<definition name="soccer_highlight" extends="soccerLayout">
+		<put-attribute name="title" value="축구 경기 하이라이트"/>
+		<put-attribute name="body" value="/WEB-INF/views/soccer/game/highlight.jsp"/>
 	</definition>	
    
 </tiles-definitions>

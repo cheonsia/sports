@@ -15,9 +15,9 @@
             }
          }
 
-         function baseballClick(ths) {//top 속 축구 로고 클릭 시
-            var ths_id = ths.dataset.id;//각 축구 로고 속 data-id 값을 가져옴
-            var ths_type = ths.dataset.type;//각 축구 로고 속 data-type 값을 가져옴
+         function baseballClick(ths) {//top 속 야구 로고 클릭 시
+            var ths_id = ths.dataset.id;//각 야구 야구 속 data-id 값을 가져옴
+            var ths_type = ths.dataset.type;//각 야구 로고 속 data-type 값을 가져옴
             $('#baseball_area').attr("value", ths_id);//baseball_area 에 data-id 값 할당
             $('#side_rightbar_txt').val(ths_type);//side_rightbar_txt 에 data-type 값 할당
             $.ajax({//동기화 자세한 설명은 패스한다. 모르시면 안 돼요...ㅠㅠ
@@ -28,7 +28,7 @@
                success: function() { //addAttribute, HttpSession에 저장시키기 위함이라 별다른 문구 송출 X
                },
                error: function() {
-                  alertShow('저장 에러','구단을 저장하는데 에러가 났습니다.<br/>잠시만 기다려주세요.');
+                  alertShow('로딩 중','로딩 중입니다.<br/>잠시만 기다려주세요.');
                },
             });
 
@@ -36,6 +36,7 @@
             $('#baseball_'+ths_id).addClass('clicked_on');
          
             var ths_href = window.location.pathname;
+            if(ths_href.includes("baseballplayerdetail")){ths_href = "baseballselectTeam";}
                window.location.replace(ths_href + "?tname=" + ths_id + "&area=" + ths_type);
          }
          
@@ -44,6 +45,11 @@
             var area_val_han = $('input[name="team"]').val();//input[name="team"] 값 가져옴
             location.href = "baseballselectTeam?tname="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
+         
+         function baseball_highlight() {//좌측 사이드메뉴 하이라이트 클릭 시
+             var area_val = $('input[name="team"]').val();//baseball_area 값 가져옴
+             window.location.href = "baseball_highlight?name="+area_val;//컨트롤러에 영어/한글 지역 가져감
+          }
 
          function coachCalendarMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#baseball_area').val();//baseball_area 값 가져옴
@@ -168,7 +174,7 @@
 							<a href="login">로그인</a>
 	               		</c:when>
 	               		<c:when test="${normallogin || superlogin}">
-							<a href="mypage">${member.name}님(${member.part})</a>
+							<a href="mypage?id=${member.id}">${member.name}님(${member.part})</a>
 							<a href="logout">로그아웃</a>
 	               		</c:when>
 	               		<c:when test="${adminlogin}">
@@ -211,7 +217,7 @@
                               <a href="soccer_team_ranking">- 순위</a>
                            </li>
                            <li>
-                              <a href="javascript:void(0)">- 하이라이트</a>
+                              <a href="javascript:void(0)" onclick="baseball_highlight()">- 하이라이트</a>
                            </li>
                         </ul>
                      </li>

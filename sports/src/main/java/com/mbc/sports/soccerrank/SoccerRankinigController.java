@@ -24,7 +24,11 @@ public class SoccerRankinigController {
 	public String scplayerrank(Model model) {
 		SRankService srs = sqlSession.getMapper(SRankService.class);
 		ArrayList<SoccerPlayerDTO> sprlist = srs.playerRank();
+		ArrayList<SoccerPlayerDTO> sprassist = srs.playerAssistRank();
+		ArrayList<SoccerPlayerDTO> sprmom = srs.playerMOMRank();
 		model.addAttribute("sprlist",sprlist);
+		model.addAttribute("sprassist",sprassist);
+		model.addAttribute("sprmom",sprmom);
 		return "soccerPlayerRank";
 	}
 }

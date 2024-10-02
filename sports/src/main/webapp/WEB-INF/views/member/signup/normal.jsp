@@ -129,8 +129,12 @@
 		var gf = document.generalform;
 	 	////중복확인 여부 확인
 	 	var idchecked = gf.idcheck2.value;
-	 	if(idchecked==1 || idchecked=="") {
+	 	if(idchecked=="") {
 	 		alertShow('아이디 중복확인 오류','아이디 중복확인을 해주세요.');
+	 		return false;
+	 	}
+	 	else if(idchecked==1) {
+	 		alertShow('아이디 중복확인 오류','이미 사용중인 아이디를 입력했습니다.');
 	 		return false;
 	 	}
 		////아이디
@@ -149,12 +153,18 @@
 		////비밀번호 체크
 		var vpw=/^[a-zA-Z0-9]{6,16}$/;
 		var cpw=gf.pw.value;
+		var cpwcheck=gf.pwcheck.value;
+		
 		if(cpw=="") {
 			alertShow('비밀번호 입력오류','비밀번호를 입력해주세요.');
 			return false;
 		}
 		else if(!vpw.test(cpw)) {
 			alertShow('비밀번호 입력오류','비밀번호는 영문자와 숫자로만 6~16글자 이내로만 작성해야합니다.');
+			return false;
+		}
+		else if(cpw!=cpwcheck) {
+			alertShow('비밀번호 입력오류','비밀번호와 비밀번호 확인 칸을 똑같이 입력해주세요.');
 			return false;
 		}
 		////이름 체크
@@ -231,7 +241,7 @@
 		var cadd1=gf.user_add1.value;
 		var cadd2=gf.user_add2.value;
 		var vcode=/^[0-9]{5}$/;
-		if(cadd1=="") {
+		if(code=="") {
 			alertShow('주소 입력 오류','우편주소를 검색해주세요.');
 			return false;
 		}
