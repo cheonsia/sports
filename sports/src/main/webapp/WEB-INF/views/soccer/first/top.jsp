@@ -29,7 +29,7 @@
                   //addAttribute, HttpSession에 저장시키기 위함이라 별다른 문구 송출 X
                },
                error: function() {
-                  alertShow('저장 에러','구단을 저장하는데 에러가 났습니다.<br/>잠시만 기다려주세요.');
+                  alertShow('로딩 중','로딩 중입니다.<br/>잠시만 기다려주세요.');
                },
             });
 
