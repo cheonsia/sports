@@ -787,7 +787,14 @@
 				var area_eng = $('input[name="area_eng"]').val();
 				var area_kor = $('input[name="area_kor"]').val();
 				var stnum = ths.dataset.number;
-				location.href="strategyListFind?name="+area_eng+"&area="+area_kor+"&stnum="+stnum;
+
+				if($('#strategy_btn_flex').hasClass('btn_on') || $('#strategy_btn_change').attr('disabled') == false) {
+					strategyListHide();
+					strategyShow();
+				}
+				else {
+					location.href="strategyListFind?name="+area_eng+"&area="+area_kor+"&stnum="+stnum;
+				}
 			}
 			
 			/*전략 삭제*/
@@ -923,7 +930,7 @@
 									<c:if test="${areaset != null}">
 										<button type="button" onclick="strategyDeleteShow()" class="strategy_btn strategy_btn_cancel">삭제</button>
 									</c:if>
-									<button type="button" onclick="strategyShow()" class="strategy_btn strategy_btn_submit" disabled>수정</button>
+									<button type="button" onclick="strategyShow()" id="strategy_btn_change" class="strategy_btn strategy_btn_submit" disabled>수정</button>
 								</div>
 							</div>
 							<div class="strategy_save_bg"></div>
@@ -950,7 +957,7 @@
 				        	<input type="hidden" id="chked_member_val" name="chked_member_val">
 							<div class="strategy_map" onmousemove="playerDragMove(this, event)" onmouseup="playerDragEnd(this, event)"></div>
 							<img alt="경기장 이미지" src="./image/soccer/icon/soccer_play_bg.png" class="strategy_bg">
-							<div class="strategy_btn_flex">
+							<div id="strategy_btn_flex" class="strategy_btn_flex">
 								<div>
 									<button type="button" onclick="strategyReset()" class="strategy_btn strategy_btn_reset">초기화</button>
 									<button type="button" onclick="strategyShow()" class="strategy_btn strategy_btn_submit">저장</button>
