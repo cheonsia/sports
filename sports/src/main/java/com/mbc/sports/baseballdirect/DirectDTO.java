@@ -1,8 +1,17 @@
 package com.mbc.sports.baseballdirect;
 public class DirectDTO {
 	String tname, pname, pimage;
+	int playernum;
 
 	public DirectDTO() {}
+
+	public int getPlayernum() {
+		return playernum;
+	}
+
+	public void setPlayernum(int playernum) {
+		this.playernum = playernum;
+	}
 
 	public String getTname() {
 		return tname;
