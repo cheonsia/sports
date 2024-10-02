@@ -15,9 +15,9 @@
             }
          }
 
-         function baseballClick(ths) {//top 속 축구 로고 클릭 시
-            var ths_id = ths.dataset.id;//각 축구 로고 속 data-id 값을 가져옴
-            var ths_type = ths.dataset.type;//각 축구 로고 속 data-type 값을 가져옴
+         function baseballClick(ths) {//top 속 야구 로고 클릭 시
+            var ths_id = ths.dataset.id;//각 야구 야구 속 data-id 값을 가져옴
+            var ths_type = ths.dataset.type;//각 야구 로고 속 data-type 값을 가져옴
             $('#baseball_area').attr("value", ths_id);//baseball_area 에 data-id 값 할당
             $('#side_rightbar_txt').val(ths_type);//side_rightbar_txt 에 data-type 값 할당
             $.ajax({//동기화 자세한 설명은 패스한다. 모르시면 안 돼요...ㅠㅠ
@@ -36,6 +36,7 @@
             $('#baseball_'+ths_id).addClass('clicked_on');
          
             var ths_href = window.location.pathname;
+            if(ths_href.includes("baseballplayerdetail")){ths_href = "baseballselectTeam";}
                window.location.replace(ths_href + "?tname=" + ths_id + "&area=" + ths_type);
          }
          
