@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SoccerDirectController {
 	@Autowired
 	SqlSession sqlSession;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(SoccerDirectController.class);
 	@RequestMapping(value = "/soccercalendar", method = RequestMethod.GET)
 	public String soccercalendar(HttpServletRequest request, Model model) {
@@ -32,10 +32,15 @@ public class SoccerDirectController {
 		return "soccercalendar";
 	}
 
-	@RequestMapping(value = "/soccerstrategy", method = RequestMethod.GET)
+	@RequestMapping(value = "/soccerstrategy")
 	public String soccerstrategy(HttpServletRequest request, Model model) {
 		String areaname1 = request.getParameter("name");
 		String areaname2 = request.getParameter("area");
+		DirectService ds = sqlSession.getMapper(DirectService.class);
+		ArrayList <DirectDTO> list = ds.selectCalendarArea(areaname1);
+		ArrayList <SoccerStrategyDTO> list2 = ds.selectStrategyList(areaname2);
+		model.addAttribute("player_list", list);
+		model.addAttribute("strategy_list", list2);
 		return "soccerstrategy";
 	}
 
@@ -63,7 +68,79 @@ public class SoccerDirectController {
 
 		model.addAttribute("name", team2);
 		model.addAttribute("area", team);
-		
+
 		return "redirect:/soccercalendar";
+	}
+
+	@RequestMapping(value = "/soccerStrategySave", method = RequestMethod.POST)
+	public String soccerStrategySave(HttpServletRequest request, Model model) {
+//		시퀀스: stnum(stnum_seq), 전략이름: stname, 
+//		축구/야구 종류: stkind, 추가 날짜: stdate, 
+//		구단: starea, 이미지 및 x/y 좌표: stifo
+		String strategy_name = request.getParameter("strategy_name");//전략 이름
+		String calendar_info_val = "soccer";//축구인지 야구인지
+		String team = request.getParameter("area_kor");//팀 한글//구단
+		String team2 = request.getParameter("area_eng");//팀 영어
+		String chked_member_val = request.getParameter("chked_member_val");//전략 이미지 및 x/y 좌표
+
+		DirectService ds = sqlSession.getMapper(DirectService.class);
+		ds.soccerstrategysave(strategy_name,calendar_info_val,team,chked_member_val);
+
+		model.addAttribute("name", team2);
+		model.addAttribute("area", team);
+
+		return "redirect:/soccerstrategy";
+	}
+	
+	@RequestMapping(value = "/strategyListFind")
+	public String strategyListFind(HttpServletRequest request, Model model) {
+		String name = request.getParameter("name");
+		String area = request.getParameter("area");
+		int stnum = Integer.parseInt(request.getParameter("stnum"));
+		String calendar_info = "soccer";
+		
+		DirectService ds = sqlSession.getMapper(DirectService.class);
+		SoccerStrategyDTO strategy_player_list = ds.strategylistfind(stnum);
+		
+		ArrayList <DirectDTO> list = ds.selectCalendarArea(name);
+		ArrayList <SoccerStrategyDTO> list2 = ds.selectStrategyList(area);
+		model.addAttribute("player_list", list);
+		model.addAttribute("strategy_list", list2);
+		model.addAttribute("strategyPlayerList", strategy_player_list);
+		
+		return "soccerstrategy";
+	}
+
+	@RequestMapping(value = "/soccerStrategyDelete")
+	public String soccerStrategyDelete(HttpServletRequest request, Model model) {
+		int stnum = Integer.parseInt(request.getParameter("stnum"));
+		String name = request.getParameter("name");
+		String area = request.getParameter("area");
+
+		DirectService ds = sqlSession.getMapper(DirectService.class);
+		ds.soccerStrategyDelete(stnum);
+
+		model.addAttribute("name", name);
+		model.addAttribute("area", area);
+
+		return "redirect:/soccerstrategy";
+	}
+
+	@RequestMapping(value = "/soccerStrategyUpdate", method = RequestMethod.POST)
+	public String soccerStrategyUpdate(HttpServletRequest request, Model model) {
+		int stnum = Integer.parseInt(request.getParameter("strategy_stnum"));//전략 번호
+		String strategy_name = request.getParameter("strategy_name");//전략 이름
+		String team = request.getParameter("area_kor");//팀 한글//구단
+		String team2 = request.getParameter("area_eng");//팀 영어
+		String chked_member_val = request.getParameter("chked_member_val");//전략 이미지 및 x/y 좌표
+
+		DirectService ds = sqlSession.getMapper(DirectService.class);
+		ds.soccerStrategyUpdate(stnum,strategy_name,chked_member_val);
+
+		model.addAttribute("name", team2);
+		model.addAttribute("area", team);
+		model.addAttribute("stnum", stnum);
+
+		return "redirect:/strategyListFind";
 	}
 }

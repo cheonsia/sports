@@ -8,4 +8,9 @@ public interface DirectService {
 			String traning_people_select, String traning_map_input, String chked_traing_val,
 			String training_memo_txtarea, String calendar_info_val);
 	ArrayList<DirectDTO> selectCalendarInfo(String areaname, String calendar_info);
+	ArrayList<SoccerStrategyDTO> selectStrategyList(String areaname1);
+	void soccerstrategysave(String strategy_name, String calendar_info_val, String team, String chked_member_val);
+	SoccerStrategyDTO strategylistfind(int stnum);
+	void soccerStrategyDelete(int stnum);
+	void soccerStrategyUpdate(int stnum, String strategy_name, String calendar_info_val);
 }
