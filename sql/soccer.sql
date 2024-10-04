@@ -12,10 +12,8 @@
     , PCHAR VARCHAR2(100 BYTE) 
     , CLICKUP NUMBER(10, 0) DEFAULT 0 
     , STEP NUMBER(6, 0) DEFAULT 0 
-    , INDENT NUMBER(6, 0) DEFAULT 0 
     , PLAY VARCHAR2(20 BYTE) 
     );
-
 -- Ãà±¸ÆÀ ·©Å· Å×ÀÌºí
     CREATE TABLE SOCCER_TEAM (
       YEAR NUMBER(4, 0) 
