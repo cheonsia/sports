@@ -36,7 +36,7 @@
             $('#baseball_'+ths_id).addClass('clicked_on');
          
             var ths_href = window.location.pathname;
-            if(ths_href.includes("baseballplayerdetail")){ths_href = "baseballselectTeam";}
+            if(ths_href.includes('baseballdetail')||ths_href.includes('baseballplayerdelete')||ths_href.includes('baseballplayerupdate')){ths_href = "baseballselectTeam";}
                window.location.replace(ths_href + "?tname=" + ths_id + "&area=" + ths_type);
          }
          
@@ -214,7 +214,7 @@
                               <a href="javascript:void(0)">- 일정</a>
                            </li>
                            <li>
-                              <a href="soccer_team_ranking">- 순위</a>
+                              <a href="baseball_team_ranking">- 순위</a>
                            </li>
                            <li>
                               <a href="javascript:void(0)" onclick="baseball_highlight()">- 하이라이트</a>
@@ -229,10 +229,10 @@
 					<c:if test="${superlogin||adminlogin}">
 						<ul>
 							<li>
-	                        	<a href="baseballstrategy" class="side_menu_title" onclick="soccerStrategyMove()">전략</a>
+	                        	<a href="baseballstrategy" class="side_menu_title" onclick="baseballStrategyMove()">전략</a>
 	                    	</li>
 	                    	<li>
-	                       		<a href="baseballcalendar" class="side_menu_title" onclick="soccerCalendarMove()">캘린더</a>                        
+	                       		<a href="baseballcalendar" class="side_menu_title" onclick="baseballCalendarMove()">캘린더</a>                        
 	                    	</li>
                  		</ul>
                 	</c:if>

@@ -37,7 +37,7 @@
             $('#soccer_'+ths_id).addClass('clicked_on');
             
             var ths_href = window.location.pathname;
-            if(ths_href.includes('soccerdetail')) {ths_href="selectTeam";}
+            if(ths_href.includes('playerinput')||ths_href.includes('soccerdetail')||ths_href.includes('soccerplayerdelete')||ths_href.includes('soccerplayerupdate')) {ths_href="selectTeam";}
             window.location.replace(ths_href + "?name=" + ths_id + "&area=" + ths_type);
          }
 
