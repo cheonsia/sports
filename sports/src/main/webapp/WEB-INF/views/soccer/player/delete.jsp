@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table {
-		margin: 0 auto;
+		margin: 40px auto 0 auto;
 	}
 	td{
 		font-size: 24px;
@@ -121,65 +121,73 @@
 	.bt{
 		padding-top: 10px;
 		text-align: center;
+		display: flex;
+		width: max-content;
+		margin: 40px auto 0 auto;
 	}
+	.bt input[type="button"]{
+		width: 100px;
+		height: 40px;
+		font-size: 20px;
+	}
+	.bt input[type="button"] + input[type="button"]{
+		margin-left: 20px;
+	}
+	
 </style>
 </head>
 <body>
 	<h1>${dto.pname} 선수의 정보를 삭제하시겠습니까?</h1>
-<input type="hidden" value="${playernum}" id="playernum" name="playernum">
-<input type="hidden" value="${dto.pnumber}" id="pnum" name="pnum">
-<input type="hidden" value="${teamarea}" id="teamarea" name="teamarea">
-<table align="center">
-	<tr>
-		<td rowspan="8">
-			<div class="img1">
-			<img alt="" src="./image/soccer/player/${dto.pimage}" width="300px">
-			</div>
-		</td>
-		<td>소속: 
-			<c:if test="${dto.tname=='kangwon'}">강원</c:if>
-            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
-            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
-            <c:if test="${dto.tname=='daegu'}">대구</c:if>
-            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
-            <c:if test="${dto.tname=='seoul'}">서울</c:if>
-            <c:if test="${dto.tname=='suwon'}">수원</c:if>
-            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
-            <c:if test="${dto.tname=='incheon'}">인천</c:if>
-            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
-            <c:if test="${dto.tname=='jeju'}">제주</c:if>
-            <c:if test="${dto.tname=='pohang'}">포항</c:if>
-        </td>
-	</tr>
-	<tr>
-		<td>선수이름: ${dto.pname}</td>
-	</tr>
-	<tr>
-		<td>번호: ${dto.pnumber}</td>
-	</tr>
-	<tr>
-		<td>생년월일: ${dto.pbirth}</td>
-	</tr>
-	<tr>
-		<td>키: ${dto.height}</td>
-	</tr>
-	<tr>
-		<td>몸무게: ${dto.weight}</td>
-	</tr>
-	<tr>
-		<td>포지션: ${dto.main}</td>
-	</tr>
-	<tr>
-		<td>추가사항: ${dto.pchar}</td>
-	</tr>
-	<tr>
-		<div class="bt">
-			<td>
-				<input type="button" value="삭제" onclick="location.href='soccerdelete?playernum=${dto.playernum}&tname=${dto.tname}&pimage=${dto.pimage}'">
-				<input type="button" value="메인으로" onclick="location.href='./'">
+	<input type="hidden" value="${playernum}" id="playernum" name="playernum">
+	<input type="hidden" value="${dto.pnumber}" id="pnum" name="pnum">
+	<input type="hidden" value="${teamarea}" id="teamarea" name="teamarea">
+	<table>
+		<tr>
+			<td rowspan="8">
+				<div class="img1">
+				<img alt="" src="./image/soccer/player/${dto.pimage}" width="300px">
+				</div>
 			</td>
-		</div>
-	</tr>
-</table>
+			<td>소속: 
+				<c:if test="${dto.tname=='kangwon'}">강원</c:if>
+	            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
+	            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
+	            <c:if test="${dto.tname=='daegu'}">대구</c:if>
+	            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
+	            <c:if test="${dto.tname=='seoul'}">서울</c:if>
+	            <c:if test="${dto.tname=='suwon'}">수원</c:if>
+	            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
+	            <c:if test="${dto.tname=='incheon'}">인천</c:if>
+	            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
+	            <c:if test="${dto.tname=='jeju'}">제주</c:if>
+	            <c:if test="${dto.tname=='pohang'}">포항</c:if>
+	        </td>
+		</tr>
+		<tr>
+			<td>선수이름: ${dto.pname}</td>
+		</tr>
+		<tr>
+			<td>번호: ${dto.pnumber}</td>
+		</tr>
+		<tr>
+			<td>생년월일: ${dto.pbirth}</td>
+		</tr>
+		<tr>
+			<td>키: ${dto.height}</td>
+		</tr>
+		<tr>
+			<td>몸무게: ${dto.weight}</td>
+		</tr>
+		<tr>
+			<td>포지션: ${dto.main}</td>
+		</tr>
+		<tr>
+			<td>추가사항: ${dto.pchar}</td>
+		</tr>
+	</table>
+	<div class="bt">
+			<input type="button" value="삭제" onclick="location.href='soccerdelete?playernum=${dto.playernum}&tname=${dto.tname}&pimage=${dto.pimage}'">
+			<input type="button" value="취소" onclick="javascript:history.go(-1)">
+	</div>
 </body>
 </html>

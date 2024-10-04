@@ -79,7 +79,6 @@ public class SPlayerController {
 	@RequestMapping(value = "/selectTeam")
 	public String selectTeam(HttpServletRequest request, Model mo) {
 		String tname = request.getParameter("name");
-		String soccer_area_han = request.getParameter("area");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		if(tname.equals("ALL")) {
 			ArrayList<SPlayerDTO> list = ps.allTeamSelect();
@@ -87,57 +86,64 @@ public class SPlayerController {
 		} else {
 			ArrayList<SPlayerDTO> list = ps.selectTeam(tname);
 			mo.addAttribute("list", list);
-		}
-		mo.addAttribute("teamarea",soccer_area_han);
-		
+		}		
 		return "soccerplayerlist";
 	}
 	
 	@RequestMapping(value = "/soccerdetail")
-	public String pdetail(HttpServletRequest request, Model mo) {
-		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
+	public String pdetail(HttpServletRequest request, PageDTO page, Model mo) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
-		String teamarea = request.getParameter("teamarea");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
-		SPlayerDTO dto = ps.detail(playernum);
-		ArrayList<UcommentDTO> clist = ps.comment(playernum);
-		mo.addAttribute("dto", dto);
-		mo.addAttribute("teamarea",teamarea);
-		mo.addAttribute("clist", clist);
+		
+		String nowPage=request.getParameter("nowPage");
+		String cntPerPage=request.getParameter("cntPerPage");
+	     
+	     //전체레코드수구하기
+	     int total=ps.total(playernum);
+	     if(nowPage==null && cntPerPage == null) {
+	        nowPage="1";
+	        cntPerPage="10";
+	     }
+	     else if(nowPage==null) {
+	        nowPage="1";
+	     }
+	     else if(cntPerPage==null) {
+	        cntPerPage="10";
+	     }      
+
+	     SPlayerDTO dto = ps.select(playernum);
+	     page = new PageDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+
+	     mo.addAttribute("dto", dto);
+	     mo.addAttribute("paging",page);
+	     mo.addAttribute("clist",ps.comment(playernum, page.getStart(),page.getEnd()));
+
 		return "soccerplayerdetail";
 	}
 	
 	@RequestMapping(value = "/soccerclickup")
 	public String clickup(HttpServletRequest request, Model model) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
-		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
 		String tname = request.getParameter("tname");
-		String teamarea = request.getParameter("teamarea");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
-		ps.clickup(pnumber);
-		ps.comment(pnumber);
+		ps.clickup(playernum);
 		model.addAttribute("playernum", playernum);
-		model.addAttribute("pnumber", pnumber);
-		model.addAttribute("teamarea", tname);
 		return "redirect:/soccerdetail";
 	}
 	
 	@RequestMapping(value = "/soccercommentsave")
-	public String commentsave(HttpServletRequest request, Model model) {
+	public String commentsave(HttpServletRequest request,PageDTO page, Model model) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
-		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
+		String id = request.getParameter("id");
 		String writer= request.getParameter("writer");
 		String comment = request.getParameter("comment");
-		String teamarea = request.getParameter("teamarea");
 
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		int step= ps.setStep(playernum)+1;
-		ps.commentin(playernum,writer,comment,step);
+		ps.commentin(playernum,id,writer,comment,step);
 		ps.updateset(step, playernum);
-		ArrayList<UcommentDTO> clist = ps.comment(playernum);
+		ArrayList<UcommentDTO> clist = ps.comment(playernum,page.getStart(),page.getEnd());
 		model.addAttribute("clist", clist);
-		model.addAttribute("pnumber", pnumber);
-		model.addAttribute("teamarea", teamarea);
 		model.addAttribute("playernum", playernum);
 		
 		return "redirect:/soccerdetail";
@@ -146,16 +152,11 @@ public class SPlayerController {
 	@RequestMapping(value = "/soccerheart")
 	public String heart(HttpServletRequest request, Model model) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
-		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
 		String writer= request.getParameter("writer");
 		String ucomment = request.getParameter("ucomment");
-		String teamarea = request.getParameter("teamarea");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		ps.heart(playernum,writer,ucomment);
-		
 		model.addAttribute("playernum",playernum);
-		model.addAttribute("pnumber",pnumber);
-		model.addAttribute("teamarea",teamarea);
 		
 		return "redirect:/soccerdetail";
 	}
@@ -164,7 +165,7 @@ public class SPlayerController {
 	public String playerdelete(HttpServletRequest request, Model model) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
-		SPlayerDTO dto = ps.playerdelete(playernum);
+		SPlayerDTO dto = ps.select(playernum);
 		model.addAttribute("dto", dto);
 		
 		return "soccerpdeleteview";
@@ -188,39 +189,55 @@ public class SPlayerController {
 	public String playerupdate(HttpServletRequest request, Model model) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
-		SPlayerDTO dto = ps.playerdelete(playernum);
+		SPlayerDTO dto = ps.select(playernum);
 		model.addAttribute("dto", dto);
 		
 		return "soccerpupdateview";
 	}
 	
-	@RequestMapping(value = "/soccerupdatesave")
+	@RequestMapping(value = "/soccerupdatesave", method = RequestMethod.POST)
 	public String updatesave(MultipartHttpServletRequest mul, Model model) throws IOException {
-		String rimage = mul.getParameter("rimage");
-		File f = new File(splayerpath+"\\"+rimage);
-		f.delete();
+		int playernum = Integer.parseInt(mul.getParameter("playernum"));
 		String play = mul.getParameter("play");
 		String tname = mul.getParameter("tname");
 		String pname = mul.getParameter("pname");
 		int pnumber = Integer.parseInt(mul.getParameter("pnumber"));
-		int playernum = Integer.parseInt(mul.getParameter("playernum"));
 		String pbirth = mul.getParameter("pbirth");
 		String main = mul.getParameter("main");
 		int height = Integer.parseInt(mul.getParameter("height"));
 		int weight = Integer.parseInt(mul.getParameter("weight"));
+		String pchar = mul.getParameter("pchar");
+		String rimage = mul.getParameter("rimage");
+		
 		MultipartFile mf = mul.getFile("pimage");
 		String pimage = mf.getOriginalFilename();
 		pimage = filesave(pimage,mf.getBytes());
-		String pchar = mul.getParameter("pchar");
-		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		mf.transferTo(new File(splayerpath+"\\"+pimage));
-		if(play.equals("soccer")) {
+		
+		System.out.println(play);
+		System.out.println(tname);
+		System.out.println(pname);
+		System.out.println(pnumber);
+		System.out.println(playernum);
+		System.out.println(pbirth);
+		System.out.println(main);
+		System.out.println(height);
+		System.out.println(weight);
+		System.out.println(pchar);
+		System.out.println(pimage);
+		System.out.println(rimage);
+
+		File f = new File(splayerpath+"\\"+rimage);
+		f.delete();
+		
+		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
+		if(play.equals("축구")) {
 			ps.playersoccerupdate(tname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,playernum);			
 		} else {
 			ps.playerbaseballupdate(tname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,playernum);
 		}
-		model.addAttribute("name", tname);
 		
+		model.addAttribute("name", tname);
 		return "redirect:/selectTeam";
 	}
 	
@@ -228,33 +245,26 @@ public class SPlayerController {
 	public String commentdelete(HttpServletRequest request,Model mo) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
 		int step = Integer.parseInt(request.getParameter("step"));
-		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
-		String teamarea = request.getParameter("teamarea");
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		ps.commentdelete(playernum,step);
-		mo.addAttribute("teamarea",teamarea);
+		ps.updateset(ps.setStep(playernum), playernum);
+		
 		mo.addAttribute("playernum",playernum);
-		mo.addAttribute("pnumber",pnumber);
-		
-		
 		return "redirect:/soccerdetail";
 	}
 	
 	@RequestMapping(value = "/soccercommentupdate")
-	public String soccercommentupdate(HttpServletRequest request,Model mo) {
+	public String soccercommentupdate(HttpServletRequest request, PageDTO page, Model mo) {
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
 		int step = Integer.parseInt(request.getParameter("step"));
-		int pnumber = Integer.parseInt(request.getParameter("pnumber"));
-		String teamarea = request.getParameter("teamarea");
 		String ucomment = request.getParameter("ucomment");
+		
 		SPlayerService ps = sqlsession.getMapper(SPlayerService.class);
 		ps.commentupdate(playernum,step,ucomment);
-		ArrayList<UcommentDTO> clist = ps.comment(playernum); //PLAYERNUM 선수의 댓글 모두 다 가지고 오기
-		mo.addAttribute("teamarea",teamarea);
+		ArrayList<UcommentDTO> clist = ps.comment(playernum, page.getStart(),page.getEnd()); //PLAYERNUM 선수의 댓글 모두 다 가지고 오기
+
 		mo.addAttribute("playernum",playernum);
-		mo.addAttribute("pnumber",pnumber);
 		mo.addAttribute("clist", clist);
-		
 		return "redirect:/soccerdetail";
 	}
 	

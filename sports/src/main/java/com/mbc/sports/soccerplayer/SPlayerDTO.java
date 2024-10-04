@@ -7,7 +7,7 @@ public class SPlayerDTO {
 	String pbirth;
 	int height,weight;
 	String main,pchar;
-	int clickup,groups,step,indent;
+	int clickup,groups,step;
 	
 	public SPlayerDTO() {}
 
@@ -36,15 +36,6 @@ public class SPlayerDTO {
 	public void setStep(int step) {
 		this.step = step;
 	}
-
-	public int getIndent() {
-		return indent;
-	}
-
-	public void setIndent(int indent) {
-		this.indent = indent;
-	}
-
 	public int getClickup() {
 		return clickup;
 	}
@@ -131,17 +122,5 @@ public class SPlayerDTO {
 
 	public void setWeight(int weight) {
 		this.weight = weight;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "PlayerDTO [playernum=" + playernum + ", pimage=" + pimage + ", play=" + play + ", tname=" + tname
-				+ ", pname=" + pname + ", pnumber=" + pnumber + ", pbirth=" + pbirth + ", height=" + height
-				+ ", weight=" + weight + ", main=" + main + ", pchar=" + pchar + ", clickup=" + clickup + ", groups="
-				+ groups + ", step=" + step + ", indent=" + indent + "]";
-	}
-	
-	
+	}	
 }

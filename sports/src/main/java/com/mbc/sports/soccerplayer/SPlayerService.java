@@ -10,25 +10,23 @@ public interface SPlayerService {
 	void playerbaseball(String btname, String pname, int pnumber, String pbirth, int height, int weight, String main,
 			String pimage, String pchar, String play);
 
+	ArrayList<SPlayerDTO> allTeamSelect();
+
 	ArrayList<SPlayerDTO> selectTeam(String tname);
 
-	SPlayerDTO detail(int pnumber);
+	SPlayerDTO select(int playernum);
 
-	void clickup(int pnumber);
+	ArrayList<UcommentDTO> comment(int playernum, int start, int end);
 
-	ArrayList<UcommentDTO> comment(int pnumber);
-
-	void commentin(int pnumber, String writer, String comment, int step);
+	void clickup(int playernum);
 
 	int setStep(int playernum);
+
+	void commentin(int playernum, String id , String writer, String comment, int step);
 
 	void updateset(int step, int playernum);
 
 	void heart(int playernum, String writer, String ucomment);
-
-	ArrayList<SPlayerDTO> allTeamSelect();
-
-	SPlayerDTO playerdelete(int playernum);
 
 	void delete(int playernum);
 
@@ -41,5 +39,9 @@ public interface SPlayerService {
 	void commentdelete(int playernum, int step);
 
 	void commentupdate(int playernum, int step, String ucomment);
+
+	int total(int playernum);
+
+
 
 }

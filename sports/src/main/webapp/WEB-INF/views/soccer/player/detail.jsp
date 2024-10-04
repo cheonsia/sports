@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +9,19 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table {
-		margin: 0 auto;
+		margin: 0 auto 20px auto;
 	}
 	td{
-		font-size: 24px;
+		font-size: 20px;
 		padding-left: 30px;
+		height: 40px;
 	}
 	h1{
-		font-size: 40px;
+		font-size: 30px;
 	}
 	.img1{
 		text-align: center;
+		height: 360px;
 	}
 	textarea {
 	 height: 500px;
@@ -46,8 +49,32 @@
 	}
 	
 	.p1 img {
-		margin-top: -5px;
 		margin-right: 5px;
+	}
+	.click{
+		position: relative;
+		display: flex;
+    	justify-content: flex-start;
+    	align-items: center;
+	}
+	.click .hovermsg{
+		display: none;
+		position: absolute;
+		padding: 10px;
+		left: -50px;
+	}
+	.click .img{
+		margin-right: 15px;
+	}
+	.likebutton{
+		border: 1px solid;
+		border-radius: 40px;
+	}
+	.click:hover .hovermsg{
+		display: block;              
+	}
+	.likebutton:hover{
+		background-color: gray;
 	}
 	.first1{
 		display: flex; 
@@ -77,46 +104,76 @@
 		width: 100px;
 		text-align: center;
 	}
-	.commentresult{
+	.commentResult{
+		padding-left: 25px;
+    	width: 800px;
+    	margin: 20px auto 0 auto;
+	}
+	.commentResult hr{
+		width: 80%;
+	    margin: 10px auto;
+	}
+	
+	.eachResult{
+		padding-left: 170px;
+	}
+	.eachResult .p0{
+		font-weight: bold;
+	}
+	.commentvalue{
 		display: flex;
-		flex-wrap: wrap;
-		min-width: 800px;
-		max-width: 800px; 
-		margin: 10px auto 0 auto; 
+		margin-bottom: 10px;
 	}
-	.commentresult .p2{
-		display: flex; 
-		justify-content: flex-start;
-		max-width: 800px;
-		margin: 0 auto;
-		text-align: left;
+	.commentvalue .p1{
+		display: flex;
+	    width: 340px;
+   		justify-content: flex-start;
 	}
-	.commentresult .p1{
-		display: flex; 
-		justify-content: space-between;
-		max-width: 800px;
-		margin: 0 auto;
-		text-align: left;
+	.commentvalue .p2{
+		display: flex;
+	    width: 150px;
+	    padding-left: 0;
+	    justify-content: flex-start;
 	}
-	.commentresult .p1 a{
-		display: flex; 
-		justify-content: space-between;
-		align-items: center;
+	.commentvalue .p3{
+		display: flex;
+	    width: 120px;
+	    margin-left: 15px;
 	}
-	.c1{
-		width: 100%;
+	.commentvalue a{
+	    display: contents;
 	}
-	.cocomment{
-		max-width: 400px;
+	.no_show{
+		width: max-content;
+		margin: 45px auto;
 	}
-	.comment.cocomment input[type="text"].writer{
-		min-width: 100px;
-		max-width: 100px;
-		display: block;
+	.page{
+	    display: flex;
+	    margin: 0 auto;
+   	 	width: max-content;
+   	 	align-items:center;
+   	 	letter-spacing: 10px;
+   	
 	}
-	.indent_span{
-		display: block;
-		width: 50px;
+	.page a{
+		color: #939393;
+		font-size:15px;
+		text-align:center;
+	    text-decoration: none;
+	}
+	.page a:hover{
+		color: #000;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.page span{
+		color: teal;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.button_align{
+		margin: 10px auto 10px auto;
+	    width: max-content;
 	}
 </style>
 <script type="text/javascript">
@@ -124,56 +181,63 @@
 		$(".c1_a").click(function(){
 			$(this).parent('.p1').parent(".cocomentresult").next('.c1').toggle();
 			console.log('sd');
-		});		
+		});
 	});
 	function commentDelete(playernum,step){
 		var pnumber = $("#pnumber").val();
 		var teamarea = $("#teamarea").val();
 		if(!confirm("정말로 삭제 하시겠습니까?")){
-			alert("삭제가 취소되었습니다.");
+			alert("취소되었습니다.");
 			
 		}else{
-			alert("삭제되었습니다.");
-			location.href="commentdelete?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea;
+			alert("삭제 되었습니다.");
+			location.href="commentdelete?playernum="+playernum+"&step="+step;
 		}
 	}
 	function commentUpdate(playernum,step){
 		var ucomment =$('#'+playernum+'_'+step).val();
 		var pnumber = $("#pnumber").val();
-		var teamarea = $("#teamarea").val();
 		if(!confirm("수정하시겠습니까?")){
-			alert("수정이 취소되었습니다.");
+			alert("취소되었습니다.");
 			
 		}else{
-			alert("수정이 완료되었습니다.");
-			location.href="soccercommentupdate?playernum="+playernum+"&step="+step+"&pnumber="+pnumber+"&teamarea="+teamarea+"&ucomment="+ucomment;
+			alert("수정 완료되었습니다.");
+			location.href="soccercommentupdate?playernum="+playernum+"&step="+step+"&ucomment="+ucomment;
 		}
 	}
 	function commentChange(playernum,step) {
 		$('input[name="comment_val_'+playernum+'_'+step+'"]').prop('readonly', false);
 		$('input[name="comment_val_'+playernum+'_'+step+'"]').focus();
-		$('#btn_'+playernum+'_'+step).text('수정하기');
+		$('#edit_'+playernum+'_'+step).text('수정하기');
+		$('#delete_'+playernum+'_'+step).text('취소');
 
 		setTimeout(function(){
-			$('#btn_'+playernum+'_'+step).attr('onclick','commentUpdate('+playernum+','+step+')');
-		}, 2000);
+			$('#edit_'+playernum+'_'+step).attr('onclick','commentUpdate('+playernum+','+step+')');
+			$('#delete_'+playernum+'_'+step).attr('onclick','reCommentChange('+playernum+','+step+')');
+		}, 100);
+	}
+	function reCommentChange(playernum,step) {
+		$('#edit_'+playernum+'_'+step).text('수정');
+		$('#delete_'+playernum+'_'+step).text('삭제');
+
+		setTimeout(function(){
+			$('#edit_'+playernum+'_'+step).attr('onclick','commentChange('+playernum+','+step+')');
+			$('#delete_'+playernum+'_'+step).attr('onclick','commentDelete('+playernum+','+step+')');
+		}, 100);
 	}
 	
 </script>
 </head>
 <body>
 <h1>${dto.pname} 선수의 정보</h1>
-<input type="hidden" value="${playernum}" id="playernum" name="playernum">
 <input type="hidden" value="${dto.pnumber}" id="pnum" name="pnum">
 <input type="hidden" value="${teamarea}" id="teamarea" name="teamarea">
-<table align="center">
+<table>
 	<tr>
-		<td rowspan="8">
-			<div class="img1">
-			<img alt="" src="./image/soccer/player/${dto.pimage}" width="300px">
-			</div>
+		<td rowspan="9">
+			<img class="img1" alt="" src="./image/soccer/player/${dto.pimage}">
 		</td>
-		<td>소속: 
+		<td>소 속: 
 			<c:if test="${dto.tname=='kangwon'}">강원</c:if>
             <c:if test="${dto.tname=='gwangju'}">광주</c:if>
             <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
@@ -189,10 +253,10 @@
         </td>
 	</tr>
 	<tr>
-		<td>선수이름: ${dto.pname}</td>
+		<td>선 수 이 름: ${dto.pname}</td>
 	</tr>
 	<tr>
-		<td>번호: ${dto.pnumber}</td>
+		<td>번 호: ${dto.pnumber}</td>
 	</tr>
 	<tr>
 		<td>생년월일: ${dto.pbirth}</td>
@@ -210,67 +274,104 @@
 		<td>추가사항: ${dto.pchar}</td>
 	</tr>
 	<tr>
-		<td>	
+		<td class="click">	
 			<div class="img">
-				<!-- <a href="clickup?pnumber=${dto.pnumber}">
-					<img alt="" src="./image/soccer/logo/soccer.ico" width="50px" style="text-align: center;">
-				</a>
-				 -->
-				 <button type="button" onclick="location.href='clickup?playernum=${dto.playernum}&pnumber=${dto.pnumber}&tname=${dto.tname}&teamarea=${teamarea}'">
-					<img alt="" src="./image/soccer/logo/soccer.ico" width="50px">
+				 <button class="likebutton" type="button" onclick="location.href='soccerclickup?playernum=${dto.playernum}&pnumber=${dto.pnumber}&tname=${dto.tname}&teamarea=${teamarea}'">
+					<img alt="" src="./image/soccer/logo/soccer.ico" width="40px">
 				 </button>
 			</div>
+			<div>
+			${dto.clickup} 
+			<p class="hovermsg">버튼을 눌러 선수를 응원해주세요!</p>
+			</div>
 		</td>
-		<td> ${dto.clickup} </td>
 	</tr>
 </table>
-	<c:if test="${dto.step!=0}">
-		<c:forEach items="${clist}" var="cli">
-			<input type="hidden" name="pnumber" id="pnumber"  value="${dto.pnumber}">
-			<input type="hidden" name="teamarea" id="teamarea" value="${teamarea}">
-			<div class="commentresult">
-				<div class="cocomentresult">
-					<p class="p2 p">
-						<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.writer}
-					</p>
-					<div>
-					<p class="p1 p">┗</p>
-					<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
-					<p class="p1 p">
-						${cli.cdate}&emsp;
-							<a href="soccerheart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&pnumber=${dto.pnumber}">
-								<img src="./image/soccer/logo/soccer.ico" height="80px">
-								${cli.heart}
-							</a>&emsp;&emsp;&emsp;&emsp;&emsp;
-						<!-- 
-						<a onclick="commentUpdate(${cli.playernum},${cli.step})" >수정</a>&emsp;
-						 -->
-						<a href="javascript:void(0)" id="btn_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step})">수정</a>&emsp;
-						<a onclick="commentDelete(${cli.playernum},${cli.step})">삭제</a>
-					</p>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
-	</c:if>
-	
+	<!-- 댓글 구현 창 -->
 	<form action="soccercommentsave" method="post">
 	<input type="hidden" name="playernum" value="${dto.playernum}">
-	<input type="hidden" name="teamarea" value="${teamarea}">
-	<input type="hidden" name="pnumber" value="${dto.pnumber}">
 	<input type="hidden" name="step" value="${dto.step}">
-	<input type="hidden" name="indent" value="${dto.indent}">
 		<div class="comment">
-			<input class="writer" type="text" name="writer" placeholder="작성자"> 
-			<input type="text" name="comment" placeholder="작성한 댓글은 삭제 및 수정 불가능하오니 신중하게 작성 부탁드립니다:)"> 
+			<c:choose>
+				<c:when test="${normallogin || superlogin}">
+					<input type="hidden" name="id" value="${member.id}"> 
+					<input class="writer" type="text" name="writer" value="${member.name}" placeholder="작성자" readonly> 
+					<input type="text" name="comment" placeholder=" ${dto.pname} 선수에게 응원 메세지 남기기😊" required> 
+				</c:when>
+				<c:when test="${adminlogin}">
+					<input type="hidden" name="id" value="★"> 
+					<input class="writer" type="text" name="writer" value="관리자" readonly> 
+					<input type="text" name="comment" placeholder="댓글 내용 입력" required> 
+				</c:when>
+				<c:otherwise>
+					<input class="writer" type="text" name="writer" placeholder="작성자" readonly> 
+					<input type="text" name="comment" placeholder="댓글은 로그인 후 이용가능합니다." readonly> 
+				</c:otherwise>
+			</c:choose>
 			<input type="submit" value="댓글 달기">
 		</div>
 	</form>
-	
-	<input type="button" value="이전페이지" onclick="location.href='selectTeam?name=${dto.tname}&area=${teamarea}'">
-	
-	<input type="button" value="수정" onclick="location.href='soccerplayerupdate?playernum=${dto.playernum}'">
-	<input type="button" value="삭제" onclick="location.href='soccerplayerdelete?playernum=${dto.playernum}'">
+	<div class="commentResult">
+		<c:choose>
+			<c:when test="${normallogin || superlogin || adminlogin}">
+				<c:if test="${dto.step!=0}">
+					<c:forEach items="${clist}" var="cli">
+						<div class="eachResult">				
+							<p class="p0"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.id}(${fn:substring(cli.writer, 0, cli.writer.length()-1)}○)</p>
+							<div class="commentvalue">
+								<p class="p1">
+								┗<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
+								</p>
+								<p class="p p2">
+										<a href="soccerheart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}">				
+											<img src="./image/soccer/logo/soccer.ico" width="80px">${cli.heart}
+										</a>&emsp;
+									${cli.cdate}
+								</p>
+								<c:if test="${cli.id == member.id || adminlogin}">
+									<p class="p3">
+										<a href="javascript:void(0)" id="edit_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step})">수정</a>&emsp;
+										<a id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step})">삭제</a>
+									</p>
+								</c:if>
+							</div>
+						</div><hr>
+					</c:forEach>
+					<div class="page">
+						<c:if test="${paging.startPage!=1 }">
+					      <a href="soccerdetail?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
+						</c:if>   
+				     	<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p"> 
+				        	<c:choose>
+				           		<c:when test="${p == paging.nowPage}">
+				              		<b><span>${p}</span></b>
+				            	</c:when>   
+				            	<c:when test="${p != paging.nowPage}">
+				               		<a href="soccerdetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+				            	</c:when>   
+				         	</c:choose>
+				      	</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a href="soccerdetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}"></a>
+						</c:if>
+					</div>
+				</c:if>
+				<c:if test="${dto.step==0}">
+					<div class="no_show">선수에게 첫번째 응원메세지를 남겨주세요.</div>
+				</c:if>
+			</c:when>
+			<c:otherwise>
+				<div class="no_show">댓글은 로그인 후 볼 수 있습니다.</div>
+			</c:otherwise>
+		</c:choose>      
+	</div>
+	<div class="button_align">
+		<input type="button" value="이전페이지" onclick="location.href='selectTeam?name=${dto.tname}'">	
+		<c:if test="${superlogin || adminlogin}">
+			<input type="button" value="수정" onclick="location.href='soccerplayerupdate?playernum=${dto.playernum}'">
+			<input type="button" value="삭제" onclick="location.href='soccerplayerdelete?playernum=${dto.playernum}'">
+		</c:if>
+	</div>
 	
 </body>
 </html>
