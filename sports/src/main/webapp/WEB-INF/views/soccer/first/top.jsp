@@ -37,30 +37,33 @@
             $('#soccer_'+ths_id).addClass('clicked_on');
             
             var ths_href = window.location.pathname;
-            if(ths_href.includes('playerinput')||ths_href.includes('soccerdetail')||ths_href.includes('soccerplayerdelete')||ths_href.includes('soccerplayerupdate')) {ths_href="selectTeam";}
-            window.location.replace(ths_href + "?name=" + ths_id + "&area=" + ths_type);
+            if(ths_href.includes('playerinput')||ths_href.includes('detail')||ths_href.includes('playerdelete')||ths_href.includes('playerupdate')) {ths_href="selectTeam";}
+            window.location.replace(ths_href + "?name=" + ths_id + "&play=축구");
          }
 
          function playMove() { //좌측 사이드메뉴 선수 목록 클릭 시
             var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
-            var area_val_han = $('input[name="team"]').val();//input[name="team"] 값 가져옴
-            location.href = "selectTeam?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
+            if(area_val == "" || area_val== null) area_val = "ALL";
+            location.href = "selectTeam?name="+area_val+"&play=축구";//컨트롤러에 영어 지역 가져감
          }
          
          function soccer_highlight() {//좌측 사이드메뉴 하이라이트 클릭 시
              var area_val = $('input[name="soccer_area"]').val();//soccer_area 값 가져옴
-             window.location.href = "soccer_highlight?name="+area_val;//컨트롤러에 영어/한글 지역 가져감
+             if(area_val == "" || area_val== null) area_val = "ALL";
+             window.location.href = "soccer_highlight?name="+area_val;//컨트롤러에 영어 지역 가져감
           }
          
 
          function soccerCalendarMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
+            if(area_val == "" || area_val== null) area_val = "ALL";
             var area_val_han = $('#side_rightbar_txt').val();//side_rightbar_txt 값 가져옴
             location.href = "soccercalendar?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
 
          function soccerStrategyMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
+            if(area_val == "" || area_val== null) area_val = "ALL";
             var area_val_han = $('#side_rightbar_txt').val();//side_rightbar_txt 값 가져옴
             location.href = "soccerstrategy?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
