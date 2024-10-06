@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mbc.sports.comment.CommentService">
+	
+	<select id="getStep" resultType="int">
+		select NVL(max(step),0)
+		from splayer_comment 
+		where playernum=#{param1}
+	</select>
+	
+	<insert id="input">
+		insert into splayer_comment(playernum, id, writer, ucomment, step) values(#{param1},#{param2},#{param3},#{param4},#{param5})
+	</insert>
+	
+	<update id="updatePlayerStep">
+		update player_soccer set step=#{param1} where playernum=#{param2}
+	</update>
+	
+	<select id="total" resultType="int">
+		select count(*)
+		from splayer_comment
+		where playernum = #{param1}
+	</select>
+	
+	<select id="comment" resultType="com.mbc.sports.comment.CommentDTO">
+		select * 
+		from (
+			select rownum rn,A.* 
+			from(  
+				select playernum, step, id, writer, ucomment, 
+					case  to_char(cdate,'yyyy-MM-dd') when to_char(sysdate,'yyyy-MM-dd')then to_char(cdate,'HH24:MI')
+					else to_char(cdate,'yy/MM/dd') end  as cdate
+					,heart
+				from splayer_comment
+				where playernum = #{param1}
+				order by step desc)A)
+		   where rn between #{param2} AND #{param3}
+	</select>
+
+	<delete id="delete">
+		delete from splayer_comment where playernum=#{param1} and step=#{param2}
+	</delete>
+	
+	<update id="update">
+		update splayer_comment set ucomment=#{param3} where playernum=#{param1} and step=#{param2}
+	</update>	
+	
+	<update id="heart">
+		update splayer_comment set heart=heart+1 where playernum=#{param1} and writer=#{param2} and ucomment=#{param3}
+	</update>
+</mapper>
