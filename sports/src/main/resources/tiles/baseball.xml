@@ -27,18 +27,17 @@
 	
 	<definition name="baseballplayerdetail" extends="baseballLayout">
       <put-attribute name="title" value="선수 상세 정보"/>
-      <put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
-      <put-attribute name="body" value="/WEB-INF/views/baseball/player/detail.jsp"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/player/detail.jsp"/>
    </definition>
    
-   <definition name="baseballpdeleteview" extends="baseballLayout">
+   <definition name="baseballplayerdelete" extends="baseballLayout">
       <put-attribute name="title" value="선수 정보 삭제"/>
-      <put-attribute name="body" value="/WEB-INF/views/baseball/player/pdeleteview.jsp"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/player/delete.jsp"/>
    </definition>
    
-   <definition name="baseballpupdateview" extends="baseballLayout">
+   <definition name="baseballplayerupdate" extends="baseballLayout">
       <put-attribute name="title" value="선수 정보 수정"/>
-      <put-attribute name="body" value="/WEB-INF/views/baseball/player/pupdateview.jsp"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/player/update.jsp"/>
    </definition>
    
    <definition name="baseballgoods" extends="baseballLayout">

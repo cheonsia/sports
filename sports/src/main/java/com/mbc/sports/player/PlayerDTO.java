@@ -1,6 +1,6 @@
-package com.mbc.sports.soccerplayer;
+package com.mbc.sports.player;
 
-public class SPlayerDTO {
+public class PlayerDTO {
 	int playernum;
 	String pimage,play,tname,pname;
 	int pnumber;
@@ -9,7 +9,7 @@ public class SPlayerDTO {
 	String main,pchar;
 	int clickup,groups,step;
 	
-	public SPlayerDTO() {}
+	public PlayerDTO() {}
 
 	
 

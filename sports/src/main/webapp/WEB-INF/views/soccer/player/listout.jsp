@@ -48,7 +48,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 				<c:if test="${j.main=='MF'}">
 					<div class="B">
-						<a href="soccerdetail?playernum=${j.playernum}">
+						<a href="playerdetail?playernum=${j.playernum}&play=축구">
 							<img alt="" src="./image/soccer/player/${j.pimage}" width="200px"/>
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>
@@ -62,7 +62,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='FW'}">
 						<div class="B">
-							<a href="soccerdetail?playernum=${j.playernum}">
+							<a href="playerdetail?playernum=${j.playernum}&play=축구">
 								<img alt="" src="./image/soccer/player/${j.pimage}" width="200px">
 								<p>${j.pname}</p>
 								<p>| ${j.pnumber} |</p>
@@ -76,7 +76,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='GK'}">
 						<div class="B">
-							<a href="soccerdetail?playernum=${j.playernum}">
+							<a href="playerdetail?playernum=${j.playernum}&play=축구">
 							<img alt="" src="./image/soccer/player/${j.pimage}" width="200px">
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>
@@ -90,7 +90,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='DF'}">
 						<div class="B">
-							<a href="soccerdetail?playernum=${j.playernum}">
+							<a href="playerdetail?playernum=${j.playernum}&play=축구">
 							<img alt="" src="./image/soccer/player/${j.pimage}" width="200px">
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>

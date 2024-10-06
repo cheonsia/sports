@@ -48,7 +48,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 				<c:if test="${j.main=='투수'}">
 					<div class="B">
-						<a href="baseballplayerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}">
+						<a href="playerdetail?playernum=${j.playernum}&play=야구">
 							<img alt="" src="./image/baseball/player/${j.pimage}" width="200px"/>
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>
@@ -62,7 +62,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='포수'}">
 						<div class="B">
-							<a href="baseballplayerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
+							<a href="playerdetail?playernum=${j.playernum}&play=야구">
 								<img alt="" src="./image/baseball/player/${j.pimage}" width="200px">
 								<p>${j.pname}</p>
 								<p>| ${j.pnumber} |</p>
@@ -76,7 +76,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='내야수'}">
 						<div class="B">
-							<a href="baseballplayerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
+							<a href="playerdetail?playernum=${j.playernum}&play=야구">
 							<img alt="" src="./image/baseball/player/${j.pimage}" width="200px">
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>
@@ -90,7 +90,7 @@ p.no_data_txt{
 				<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='외야수'}">
 						<div class="B">
-							<a href="baseballplayerdetail?playernum=${j.playernum}&pnumber=${j.pnumber}&teamarea=${teamarea}">
+							<a href="playerdetail?playernum=${j.playernum}&play=야구">
 							<img alt="" src="./image/baseball/player/${j.pimage}" width="200px">
 							<p>${j.pname}</p>
 							<p>| ${j.pnumber} |</p>

@@ -183,26 +183,23 @@
 			console.log('sd');
 		});
 	});
-	function commentDelete(playernum,step){
-		var pnumber = $("#pnumber").val();
-		var teamarea = $("#teamarea").val();
+	function commentDelete(playernum,step,play)
 		if(!confirm("정말로 삭제 하시겠습니까?")){
 			alert("취소되었습니다.");
 			
 		}else{
 			alert("삭제 되었습니다.");
-			location.href="commentdelete?playernum="+playernum+"&step="+step;
+			location.href="commentdelete?playernum="+playernum+"&step="+step+"&play="+play;
 		}
 	}
-	function commentUpdate(playernum,step){
+	function commentUpdate(playernum,step,play){
 		var ucomment =$('#'+playernum+'_'+step).val();
-		var pnumber = $("#pnumber").val();
 		if(!confirm("수정하시겠습니까?")){
 			alert("취소되었습니다.");
 			
 		}else{
 			alert("수정 완료되었습니다.");
-			location.href="soccercommentupdate?playernum="+playernum+"&step="+step+"&ucomment="+ucomment;
+			location.href="commentupdate?playernum="+playernum+"&step="+step+"&ucomment="+ucomment+"&play="+play;
 		}
 	}
 	function commentChange(playernum,step) {
@@ -230,26 +227,38 @@
 </head>
 <body>
 <h1>${dto.pname} 선수의 정보</h1>
-<input type="hidden" value="${dto.pnumber}" id="pnum" name="pnum">
-<input type="hidden" value="${teamarea}" id="teamarea" name="teamarea">
 <table>
 	<tr>
 		<td rowspan="9">
-			<img class="img1" alt="" src="./image/soccer/player/${dto.pimage}">
+		<c:choose>
+			<c:when test="${dto.play == '축구'}">
+				<img class="img1" alt="" src="./image/soccer/player/${dto.pimage}">
+			</c:when>
+			<c:otherwise>
+				<img class="img1" alt="" src="./image/baseball/player/${dto.pimage}">
+			</c:otherwise>
+		</c:choose> 
 		</td>
-		<td>소 속: 
-			<c:if test="${dto.tname=='kangwon'}">강원</c:if>
-            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
-            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
-            <c:if test="${dto.tname=='daegu'}">대구</c:if>
-            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
-            <c:if test="${dto.tname=='seoul'}">서울</c:if>
-            <c:if test="${dto.tname=='suwon'}">수원</c:if>
-            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
-            <c:if test="${dto.tname=='incheon'}">인천</c:if>
-            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
-            <c:if test="${dto.tname=='jeju'}">제주</c:if>
-            <c:if test="${dto.tname=='pohang'}">포항</c:if>
+		<td>소 속:
+		<c:choose>
+			<c:when test="${dto.play == '축구'}">
+				<c:if test="${dto.tname=='kangwon'}">강원</c:if>
+	            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
+	            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
+	            <c:if test="${dto.tname=='daegu'}">대구</c:if>
+	            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
+	            <c:if test="${dto.tname=='seoul'}">서울</c:if>
+	            <c:if test="${dto.tname=='suwon'}">수원</c:if>
+	            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
+	            <c:if test="${dto.tname=='incheon'}">인천</c:if>
+	            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
+	            <c:if test="${dto.tname=='jeju'}">제주</c:if>
+	            <c:if test="${dto.tname=='pohang'}">포항</c:if>
+			</c:when>
+			<c:otherwise>
+				${dto.tname}
+			</c:otherwise>
+		</c:choose> 
         </td>
 	</tr>
 	<tr>
@@ -276,20 +285,28 @@
 	<tr>
 		<td class="click">	
 			<div class="img">
-				 <button class="likebutton" type="button" onclick="location.href='soccerclickup?playernum=${dto.playernum}&pnumber=${dto.pnumber}&tname=${dto.tname}&teamarea=${teamarea}'">
-					<img alt="" src="./image/soccer/logo/soccer.ico" width="40px">
-				 </button>
+				 <button class="likebutton" type="button" onclick="location.href='clickup?playernum=${dto.playernum}&play=${dto.play}'">
+					<c:choose>
+						<c:when test="${dto.play == '축구'}">
+					 		 <img alt="" src="./image/soccer/logo/soccer.ico" width="40px">
+						</c:when>
+						<c:otherwise>
+							 <img alt="" src="./image/baseball/logo/baseball.ico" width="40px">					
+						</c:otherwise>
+					</c:choose>
+				</button>
 			</div>
 			<div>
-			${dto.clickup} 
-			<p class="hovermsg">버튼을 눌러 선수를 응원해주세요!</p>
+				${dto.clickup} 
+				<p class="hovermsg">버튼을 눌러 선수를 응원해주세요!</p>
 			</div>
 		</td>
 	</tr>
 </table>
 	<!-- 댓글 구현 창 -->
-	<form action="soccercommentsave" method="post">
+	<form action="commentsave" method="post">
 	<input type="hidden" name="playernum" value="${dto.playernum}">
+	<input type="hidden" name="play" value="${dto.play}">
 	<input type="hidden" name="step" value="${dto.step}">
 		<div class="comment">
 			<c:choose>
@@ -323,7 +340,7 @@
 								┗<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
 								</p>
 								<p class="p p2">
-										<a href="soccerheart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}">				
+										<a href="heart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&play=${dto.play}">				
 											<img src="./image/soccer/logo/soccer.ico" width="80px">${cli.heart}
 										</a>&emsp;
 									${cli.cdate}
@@ -331,7 +348,7 @@
 								<c:if test="${cli.id == member.id || adminlogin}">
 									<p class="p3">
 										<a href="javascript:void(0)" id="edit_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step})">수정</a>&emsp;
-										<a id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step})">삭제</a>
+										<a id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step},${dto.play})">삭제</a>
 									</p>
 								</c:if>
 							</div>
@@ -339,7 +356,7 @@
 					</c:forEach>
 					<div class="page">
 						<c:if test="${paging.startPage!=1 }">
-					      <a href="soccerdetail?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
+					      <a href="pagedetail?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
 						</c:if>   
 				     	<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p"> 
 				        	<c:choose>
@@ -347,12 +364,12 @@
 				              		<b><span>${p}</span></b>
 				            	</c:when>   
 				            	<c:when test="${p != paging.nowPage}">
-				               		<a href="soccerdetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+				               		<a href="pagedetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
 				            	</c:when>   
 				         	</c:choose>
 				      	</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="soccerdetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}"></a>
+							<a href="pagedetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}"></a>
 						</c:if>
 					</div>
 				</c:if>
@@ -366,10 +383,10 @@
 		</c:choose>      
 	</div>
 	<div class="button_align">
-		<input type="button" value="이전페이지" onclick="location.href='selectTeam?name=${dto.tname}'">	
+		<input type="button" value="확인" onclick="location.href='selectTeam?name=${dto.tname}'">	
 		<c:if test="${superlogin || adminlogin}">
-			<input type="button" value="수정" onclick="location.href='soccerplayerupdate?playernum=${dto.playernum}'">
-			<input type="button" value="삭제" onclick="location.href='soccerplayerdelete?playernum=${dto.playernum}'">
+			<input type="button" value="수정" onclick="location.href='playerupdate?playernum=${dto.playernum}&play=${dto.play}'">
+			<input type="button" value="삭제" onclick="location.href='goplayerdelete?playernum=${dto.playernum}&play=${dto.play}'">
 		</c:if>
 	</div>
 	

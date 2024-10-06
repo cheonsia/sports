@@ -41,7 +41,7 @@
 <body>
 	<h1>선수 등록</h1>
 	<form action="playersave" method="post" enctype="multipart/form-data" id="form1" name="form1">
-		<table align="center">
+		<table >
 			<tr>
 				<td rowspan="9" width="200px"> <input type="file" name="pimage"> </td>
 				<th>종목</th>
@@ -93,10 +93,10 @@
 				<th>주포지션</th>
 				<td colspan="2">
 					<div id="soccer">
-						<input type="radio" name="smain" value="FW"> FW
-						<input type="radio" name="smain" value="MF"> MF
-						<input type="radio" name="smain" value="DF"> DF
-						<input type="radio" name="smain" value="GK"> GK
+						<input type="radio" name="main" value="FW"> FW
+						<input type="radio" name="main" value="MF"> MF
+						<input type="radio" name="main" value="DF"> DF
+						<input type="radio" name="main" value="GK"> GK
 					</div>
 			</tr>
 			<tr>

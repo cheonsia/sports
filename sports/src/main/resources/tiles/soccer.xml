@@ -36,11 +36,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/detail.jsp"/>
 	</definition>
 
-	<definition name="soccerpdeleteview" extends="soccerLayout">
+	<definition name="soccerplayerdelete" extends="soccerLayout">
 		<put-attribute name="title" value="선수 정보 삭제"/>
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/delete.jsp"/>
 	</definition>
-	<definition name="soccerpupdateview" extends="soccerLayout">
+	<definition name="soccerplayerupdate" extends="soccerLayout">
 		<put-attribute name="title" value="선수 정보 수정"/>
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/update.jsp"/>
 	</definition>
