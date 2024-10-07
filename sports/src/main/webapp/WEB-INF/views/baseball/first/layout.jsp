@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="./css/common.css">
 		<link rel="stylesheet" href="./css/header.css">
 		<link rel="stylesheet" href="./css/footer.css">
-		<link rel="stylesheet" href="./css/soccer.css">
+		<link rel="stylesheet" href="./css/baseball.css">
 		<link rel="shortcut icon" href="./image/baseball/logo/baseball.ico">
 	</head>
 	<body>
