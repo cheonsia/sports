@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface CommentService {
 	//저장 시 사용 함수
 	int getStep(int playernum);
-	void input(int playernum, String writer, String comment, int step);
+	void input(int playernum, int step, String id, String writer, String comment);
 	void updatePlayerStep(int step, int playernum);
 
 	//출력 시 사용되는 함수
@@ -16,5 +16,6 @@ public interface CommentService {
 
 	void update(int playernum, int step, String ucomment);
 	
-	void heart(int playernum, String writer, String comment);
+	void heartUp(int playernum, String step);
+	int heart(int playernum, String step);
 }

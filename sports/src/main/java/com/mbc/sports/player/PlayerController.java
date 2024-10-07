@@ -218,22 +218,26 @@ public class PlayerController {
 		
 		MultipartFile mf = mul.getFile("pimage");
 		String pimage = mf.getOriginalFilename();
-		pimage = filesave(pimage,mf.getBytes());
+		pimage = (pimage.equals("")) ? rimage : filesave(pimage,mf.getBytes());
 		
 		
 		if(play.equals("√‡±∏")) {
 			SPlayerService sps = sqlsession.getMapper(SPlayerService.class);
 			sps.update(tname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,playernum);			
-			mf.transferTo(new File(splayerpath+"\\"+pimage));
-			File f = new File(splayerpath+"\\"+rimage);
-			f.delete();
+			if(!pimage.equals(rimage)) {
+				mf.transferTo(new File(splayerpath+"\\"+pimage));
+				File f = new File(splayerpath+"\\"+rimage);
+				f.delete();
+			}
 		}
 		else {
 			BPlayerService bps = sqlsession.getMapper(BPlayerService.class);
 			bps.update(tname,pname,pnumber,pbirth,height,weight,main,pimage,pchar,playernum);						
-			mf.transferTo(new File(bplayerpath+"\\"+pimage));
-			File f = new File(bplayerpath+"\\"+rimage);
-			f.delete();
+			if(!pimage.equals(rimage)) {
+				mf.transferTo(new File(bplayerpath+"\\"+pimage));
+				File f = new File(bplayerpath+"\\"+rimage);
+				f.delete();
+			}
 		}
 		model.addAttribute("name", tname);
 		model.addAttribute("play", play);

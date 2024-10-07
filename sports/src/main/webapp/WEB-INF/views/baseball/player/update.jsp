@@ -55,8 +55,9 @@
 		<input type="hidden" value="${dto.pimage}" name="rimage">
 		<table align="center">
 			<tr>
-				<td rowspan="9" width="200px"> <input type="file" name="pimage">
+				<td rowspan="9" width="200px"> 
 					<img alt="" src="./image/baseball/player/${dto.pimage}" width="250px">
+					<input type="file" name="pimage">
 				</td>
 				<th>종목</th>
 				<td>

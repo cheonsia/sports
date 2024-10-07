@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="input">
-		insert into splayer_comment(playernum, id, writer, ucomment, step) values(#{param1},#{param2},#{param3},#{param4},#{param5})
+		insert into splayer_comment(playernum, step, id, writer, ucomment) values(#{param1},#{param2},#{param3},#{param4},#{param5})
 	</insert>
 	
 	<update id="updatePlayerStep">
@@ -47,7 +47,10 @@
 		update splayer_comment set ucomment=#{param3} where playernum=#{param1} and step=#{param2}
 	</update>	
 	
-	<update id="heart">
-		update splayer_comment set heart=heart+1 where playernum=#{param1} and writer=#{param2} and ucomment=#{param3}
+	<update id="heartUp">
+		update splayer_comment set heart=heart+1 where playernum=#{param1} and step=#{param2}
 	</update>
+	<select id="heart" resultType="_int">
+		select heart from splayer_comment where playernum=#{param1} and step=#{param2}
+	</select>
 </mapper>

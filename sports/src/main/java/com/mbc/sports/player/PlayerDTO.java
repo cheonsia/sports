@@ -11,8 +11,6 @@ public class PlayerDTO {
 	
 	public PlayerDTO() {}
 
-	
-
 	public int getPlayernum() {
 		return playernum;
 	}

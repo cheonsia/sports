@@ -126,12 +126,12 @@
 	}
 	.commentvalue .p1{
 		display: flex;
-	    width: 340px;
+	    width: 280px;
    		justify-content: flex-start;
 	}
 	.commentvalue .p2{
 		display: flex;
-	    width: 150px;
+	    width: 200px;
 	    padding-left: 0;
 	    justify-content: flex-start;
 	}
@@ -175,51 +175,71 @@
 		margin: 10px auto 10px auto;
 	    width: max-content;
 	}
+	.button_align input[type="button"]{
+		width: 100px;
+		height: 40px;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".c1_a").click(function(){
 			$(this).parent('.p1').parent(".cocomentresult").next('.c1').toggle();
-			console.log('sd');
-		});
+		});	
 	});
-	function commentDelete(playernum,step,play)
+	
+	function heart(playernum,step){
+		$.ajax({
+			type : "post",
+			url : "heart",
+			async : true,
+			data : {"playernum" : playernum,"step":step},
+			success:function(data){
+				console.log(step);
+				$('#heartresult_'+step).val(data);
+			},
+			error:function(data){
+				alert("오류");
+			}
+		});		
+	}
+	
+	function commentDelete(playernum,step,play){
 		if(!confirm("정말로 삭제 하시겠습니까?")){
 			alert("취소되었습니다.");
-			
 		}else{
 			alert("삭제 되었습니다.");
 			location.href="commentdelete?playernum="+playernum+"&step="+step+"&play="+play;
 		}
 	}
+	
 	function commentUpdate(playernum,step,play){
 		var ucomment =$('#'+playernum+'_'+step).val();
 		if(!confirm("수정하시겠습니까?")){
 			alert("취소되었습니다.");
 			
 		}else{
-			alert("수정 완료되었습니다.");
+			alert("수정되었습니다.");
 			location.href="commentupdate?playernum="+playernum+"&step="+step+"&ucomment="+ucomment+"&play="+play;
 		}
 	}
-	function commentChange(playernum,step) {
+	function commentChange(playernum,step,play) {
 		$('input[name="comment_val_'+playernum+'_'+step+'"]').prop('readonly', false);
 		$('input[name="comment_val_'+playernum+'_'+step+'"]').focus();
 		$('#edit_'+playernum+'_'+step).text('수정하기');
 		$('#delete_'+playernum+'_'+step).text('취소');
 
 		setTimeout(function(){
-			$('#edit_'+playernum+'_'+step).attr('onclick','commentUpdate('+playernum+','+step+')');
-			$('#delete_'+playernum+'_'+step).attr('onclick','reCommentChange('+playernum+','+step+')');
+			$('#edit_'+playernum+'_'+step).attr('onclick','commentUpdate('+playernum+','+step+',"'+ play +'")');
+			$('#delete_'+playernum+'_'+step).attr('onclick','reCommentChange('+playernum+','+step+',"'+play+'")');
 		}, 100);
 	}
-	function reCommentChange(playernum,step) {
+	function reCommentChange(playernum,step,play) {
 		$('#edit_'+playernum+'_'+step).text('수정');
 		$('#delete_'+playernum+'_'+step).text('삭제');
 
 		setTimeout(function(){
-			$('#edit_'+playernum+'_'+step).attr('onclick','commentChange('+playernum+','+step+')');
-			$('#delete_'+playernum+'_'+step).attr('onclick','commentDelete('+playernum+','+step+')');
+			$('#edit_'+playernum+'_'+step).attr('onclick','commentChange('+playernum+','+step+',"'+play+'")');
+			$('#delete_'+playernum+'_'+step).attr('onclick','commentDelete('+playernum+','+step+',"'+play+'")');
 		}, 100);
 	}
 	
@@ -340,15 +360,18 @@
 								┗<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
 								</p>
 								<p class="p p2">
-										<a href="heart?playernum=${dto.playernum}&writer=${cli.writer}&ucomment=${cli.ucomment}&play=${dto.play}">				
-											<img src="./image/soccer/logo/soccer.ico" width="80px">${cli.heart}
-										</a>&emsp;
-									${cli.cdate}
+								<!--  
+										<a href="heart?playernum=${dto.playernum}&step=${cli.step}&play=${dto.play}">				
+										</a>
+								-->
+									<img src="./image/soccer/logo/soccer.ico" width="80px" onclick="heart(${dto.playernum},${cli.step})">
+									<input type="text" class="heart" name="heartresult" id="heartresult_${cli.step}" value="${cli.heart}" readonly>
+									<input type="text" class="commentDate" name="cdate" value="${cli.cdate}" readonly>
 								</p>
 								<c:if test="${cli.id == member.id || adminlogin}">
 									<p class="p3">
-										<a href="javascript:void(0)" id="edit_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step})">수정</a>&emsp;
-										<a id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step},${dto.play})">삭제</a>
+										<a href="javascript:void(0)" id="edit_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step},'${dto.play}')">수정</a>&emsp;
+										<a id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step},'${dto.play}')">삭제</a>
 									</p>
 								</c:if>
 							</div>
@@ -364,12 +387,12 @@
 				              		<b><span>${p}</span></b>
 				            	</c:when>   
 				            	<c:when test="${p != paging.nowPage}">
-				               		<a href="pagedetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
+				               		<a href="playerdetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}&play=${dto.play}">${p}</a>
 				            	</c:when>   
 				         	</c:choose>
 				      	</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="pagedetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}"></a>
+							<a href="playerdetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}&play=${dto.play}"></a>
 						</c:if>
 					</div>
 				</c:if>
@@ -383,7 +406,7 @@
 		</c:choose>      
 	</div>
 	<div class="button_align">
-		<input type="button" value="확인" onclick="location.href='selectTeam?name=${dto.tname}'">	
+		<input type="button" value="확인" onclick="location.href='selectTeam?name=${dto.tname}&play=${dto.play}'">	
 		<c:if test="${superlogin || adminlogin}">
 			<input type="button" value="수정" onclick="location.href='playerupdate?playernum=${dto.playernum}&play=${dto.play}'">
 			<input type="button" value="삭제" onclick="location.href='goplayerdelete?playernum=${dto.playernum}&play=${dto.play}'">
