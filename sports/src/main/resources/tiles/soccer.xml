@@ -45,6 +45,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/update.jsp"/>
 	</definition>
 
+   <definition name="soccerRankRegist" extends="soccerLayout">
+      <put-attribute name="title" value="선수 전적 등록"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/rank/regist.jsp"/>
+   </definition>  
+ 
+   <definition name="soccerRankEdit" extends="soccerLayout">
+      <put-attribute name="title" value="선수 전적 수정"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/rank/edit.jsp"/>
+   </definition>  
+
    <definition name="soccerTeamRank" extends="soccerLayout">
       <put-attribute name="title" value="축구팀 랭킹 순위"/>
       <put-attribute name="body" value="/WEB-INF/views/soccer/rank/teamRank.jsp"/>
@@ -66,7 +76,7 @@
 	</definition>
 	
 	<definition name="soccergoods" extends="soccerLayout">
-		<put-attribute name="title" value="축구 전략"/>
+		<put-attribute name="title" value="축구 굿즈샵"/>
 		<put-attribute name="body" value="/WEB-INF/views/soccer/player/goods.jsp"/>
 	</definition>
 	
