@@ -53,7 +53,7 @@
 			<tr>
 				<th>팀</th>
 				<td>
-					<select name="stname">
+					<select name="tname">
 						<option value="kangwon">강원</option>
 						<option value="gwangju">광주</option>
 						<option value="gimcheon">김천</option>
