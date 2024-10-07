@@ -15,10 +15,10 @@
 		<result property="shoot" column="shoot"/>
 		<result property="ranking" column="ranking"/>
 		<result property="possibleshoot" column="possibleshoot"/>
-		<collection property="playerDTO" ofType="com.mbc.sports.soccerplayer.SPlayerDTO" resultMap="playerdto"/>
+		<collection property="playerDTO" ofType="com.mbc.sports.player.PlayerDTO" resultMap="playerdto"/>
 	</resultMap>
 
-	<resultMap type="com.mbc.sports.soccerplayer.SPlayerDTO" id="playerdto">
+	<resultMap type="com.mbc.sports.player.PlayerDTO" id="playerdto">
 		<result property="playernum" column="playernum"/>
 		<result property="tname" column="tname"/>
 		<result property="pname" column="pname"/>

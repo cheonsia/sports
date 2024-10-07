@@ -1,12 +1,12 @@
 package com.mbc.sports.soccerrank;
 
-import com.mbc.sports.soccerplayer.SPlayerDTO;
+import com.mbc.sports.player.PlayerDTO;
 
 public class SoccerPlayerDTO {
 	int playernum, year, round, gain, assist, attackpoint;
 	double avgscore;
 	int mom, best11, shoot, possibleshoot,ranking;
-	SPlayerDTO playerDTO;
+	PlayerDTO playerDTO;
 	public SoccerPlayerDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -78,10 +78,10 @@ public class SoccerPlayerDTO {
 	public void setPossibleshoot(int possibleshoot) {
 		this.possibleshoot = possibleshoot;
 	}
-	public SPlayerDTO getPlayerDTO() {
+	public PlayerDTO getPlayerDTO() {
 		return playerDTO;
 	}
-	public void setPlayerDTO(SPlayerDTO playerDTO) {
+	public void setPlayerDTO(PlayerDTO playerDTO) {
 		this.playerDTO = playerDTO;
 	}
 	public int getRanking() {
