@@ -1,6 +1,6 @@
 package com.mbc.sports;
 public class TopDTO {
-	String area_eng, area_kor;
+	String area_eng="ALL", area_kor="ALL";
 
 	public TopDTO() {}
 	public TopDTO(String area_eng, String area_kor) {
