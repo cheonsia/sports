@@ -309,6 +309,10 @@ input[id="side_rightbar_txt"] {
 	margin-bottom: 0;
 }
 
+.side_rightbar_flex.scroll_inn ul + ul {
+	margin-left: 30px;
+}
+
 .side_rightbar_flex ul li ul {
 	display: none;
 }
@@ -416,6 +420,10 @@ a.side_menu_click + ul li:last-child a {
 		display: block;
 		margin-left: 0;
 		margin-right: 0;
+	}
+	
+	.side_rightbar_flex.scroll_inn ul + ul {
+		margin-left: 0;
 	}
 	
 	.side_rightbar_flex ul li ul {
