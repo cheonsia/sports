@@ -60,8 +60,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/baseball/game/highlight.jsp"/>
 	</definition>
 	
-	<definition name="baseball_random" extends="baseballLayout">
+	<definition name="baseballRandom" extends="baseballLayout">
 		<put-attribute name="title" value="랜덤뽑기"/>
 		<put-attribute name="body" value="/WEB-INF/views/baseball/random/random.jsp"/>
+	</definition>
+	
+	<definition name="randomResult" extends="baseballLayout">
+		<put-attribute name="title" value="랜덤뽑기 결과"/>
+		<put-attribute name="body" value="/WEB-INF/views/baseball/random/result.jsp"/>
 	</definition>
 </tiles-definitions>
