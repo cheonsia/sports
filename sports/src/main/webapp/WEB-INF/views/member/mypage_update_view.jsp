@@ -168,7 +168,7 @@ function check() {
 	
 	var part = uf.part.value;
 	
-	if(part == '일반') {
+	/* if(part == '일반') {
 		uf.submit();
 	}
 	else if(part == '감독') {
@@ -183,9 +183,9 @@ function check() {
 		else if(!vteam.test(team)) {
 			alertShow('팀 입력 오류','팀 이름은 한글과 영어 대소문자, 숫자로만 입력해주세요.');
 			return false;
-		}
+		} */
 		uf.submit();
-	}
+	//}
 }
 
 
