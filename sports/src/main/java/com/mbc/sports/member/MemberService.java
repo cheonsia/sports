@@ -19,4 +19,11 @@ public interface MemberService {
 
 	void del_mem(String id);
 
+	String pwCheck(String id);
+
+	void pwupdate(String id, String pw);
+
+	void mypageupdate(String id, String name, String tel, String zipp_code, String user_add1, String user_add2,
+			String sport, String team, String voe_fname, String rr_fname);
+
 }

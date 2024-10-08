@@ -2,7 +2,7 @@ package com.mbc.sports.member;
 
 public class MemberDTO {
 	String id,pw,name,birthday,tel,email;
-	int zzip_code;
+	String zzip_code;
 	String user_add1,user_add2,sport,team,voe,rr,part;
 	String ADMIN_ID, ADMIN_PW;
 	
@@ -65,11 +65,11 @@ public class MemberDTO {
 		this.email = email;
 	}
 
-	public int getZzip_code() {
+	public String getZzip_code() {
 		return zzip_code;
 	}
 
-	public void setZzip_code(int zzip_code) {
+	public void setZzip_code(String zzip_code) {
 		this.zzip_code = zzip_code;
 	}
 
