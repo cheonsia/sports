@@ -24,6 +24,7 @@
 			
 			
 			.random_whole {
+				position: relative;
 				width: 100%;
 				height: auto;
 				margin: 0 auto;
@@ -299,7 +300,7 @@
 				width: max-content;
 				max-width: 100%;
 				height: auto;
-				top: 50%;
+				top: 48%;
 				left: 50%;
 				transform: translate(-50%, -50%);
 				padding: 50px;
@@ -422,7 +423,7 @@
 						$('#player_weight').html(randomRealArray[5]);//몸무게
 						$('#player_position').html(randomRealArray[6]);//포지션
 						
-						$('#random_result_copy').attr('value', '팀: '+ randomRealArray[0] + ', 선수 이름: ' + randomRealArray[1] + ', 등 번호: ' + randomRealArray[2] + ', 생일: ' +  randomRealArray[3] + ', 키: ' + randomRealArray[4] + ', 몸무게: ' + randomRealArray[5] + ', 포지션: ' + randomRealArray[6])
+						$('#random_result_copy').attr('value', '팀: '+ randomRealArray[0] + ', 선수 이름: ' + randomRealArray[1] + ', 선수 번호: ' + randomRealArray[2] + ', 생일: ' +  randomRealArray[3] + ', 키: ' + randomRealArray[4] + ', 몸무게: ' + randomRealArray[5] + ', 포지션: ' + randomRealArray[6])
 						$('.random_img_logo').attr('src', team_img);
 						
 						resultShow();
@@ -468,8 +469,8 @@
 									<p id="player_name">플레이어 이름</p>
 								</div>
 								<div>
-									<p>등 번호</p>
-									<p id="player_num">등 번호</p>
+									<p>선수 번호</p>
+									<p id="player_num">선수 번호</p>
 								</div>
 								<div>
 									<p>생일</p>
