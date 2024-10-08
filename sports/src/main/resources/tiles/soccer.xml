@@ -84,5 +84,23 @@
 		<put-attribute name="title" value="축구 경기 하이라이트"/>
 		<put-attribute name="body" value="/WEB-INF/views/soccer/game/highlight.jsp"/>
 	</definition>	
+   <definition name="soccer_schedule" extends="soccerLayout">
+      <put-attribute name="title" value="축구 경기 일정"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/game/schedule.jsp"/>
+   </definition>
    
+   <definition name="soccer_gameinfo" extends="soccerLayout">
+      <put-attribute name="title" value="축구 경기 일정"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/game/info.jsp"/>
+   </definition>
+   
+   <definition name="soccer_gamedelete" extends="soccerLayout">
+      <put-attribute name="title" value="축구 경기 일정 삭제"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/game/delete.jsp"/>
+   </definition>
+   
+   <definition name="soccer_gameupdate" extends="soccerLayout">
+      <put-attribute name="title" value="축구 경기 일정 수정"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/game/update.jsp"/>
+   </definition>
 </tiles-definitions>
