@@ -19,28 +19,69 @@ public class RandomController {
 	@Autowired
 	SqlSession sqlSession;
 	
-	@RequestMapping(value = "soccer_random")
-	public String soccer_random(HttpServletRequest request, Model mo) {
+	@RequestMapping(value = "soccerRandom")
+	public String soccerRandom(HttpServletRequest request, Model mo) {
 		String name = request.getParameter("name");
 		mo.addAttribute("name",name);
-		return "soccer_random";
+		return "soccerRandom";
 	}
 	
-	@RequestMapping(value = "baseball_random")
-	public String baseball_random(HttpServletRequest request, Model mo) {
+	@RequestMapping(value = "baseballRandom")
+	public String baseballRandom(HttpServletRequest request, Model mo) {
 		String name = request.getParameter("name");
-		mo.addAttribute("name",name);
-		return "baseball_random";
+		mo.addAttribute("name", name);
+		return "baseballRandom";
+	}
+	
+	
+	@RequestMapping(value = "randomResult")
+	public String randomResult(HttpServletRequest request, Model mo) {
+		String name = request.getParameter("name");
+		mo.addAttribute("name", name);
+		return "randomResult";
 	}
 	
 	@RequestMapping(value = "randomSelectAll")
 	public String randomSelectAll(HttpServletRequest request, Model mo) {
-		String name = request.getParameter("name");
+		String name = "ALL";
 		RandomService rs = sqlSession.getMapper(RandomService.class);
-		ArrayList<PlayerDTO> allList = rs.randomSelectAll();
-		mo.addAttribute("allList", allList);
-		mo.addAttribute("name",name);
-		logger.info("Á¤º¸: " + allList);
-		return "redirect:/baseball_random";
+		ArrayList<PlayerDTO> randomList = rs.randomSelectAll();
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "randomResult";
+	}
+	
+	@RequestMapping(value = "randomSelectBoth")
+	public String randomSelectBoth(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		String tname = request.getParameter("team");
+		String main = request.getParameter("position");
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.randomSelectBoth(tname,main);
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "randomResult";
+	}
+
+	@RequestMapping(value = "randomSelectTeam")
+	public String randomSelectTeam(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		String tname = request.getParameter("team");
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.randomSelectTeam(tname);
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "randomResult";
+	}
+
+	@RequestMapping(value = "randomSelectPosition")
+	public String randomSelectPosition(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		String main = request.getParameter("position");
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.randomSelectPosition(main);
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "randomResult";
 	}
 }
