@@ -10,6 +10,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <!-- CDN 방식 사용 -->
    <script>
+   //주소 API
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -47,20 +48,6 @@
         }).open();
     }
    	
-	////비밀번호 보기 구현
-	$(document).ready(function(){
-	    $('.pw i').on('click',function(){
-	        $('input').toggleClass('active');
-	        if($('input').hasClass('active')){
-	            $(this).attr('class',"fa fa-eye-slash fa-lg")
-	            .prev('input').attr('type',"text");
-	        }else{
-	            $(this).attr('class',"fa fa-eye fa-lg")
-	            .prev('input').attr('type','password');
-	        }
-	    });
-	});
-
 	//아이디 유효성 검사후 중복체크
 	$(document).ready(function() {
 		$("#idcheck").click(function() {
@@ -127,7 +114,7 @@
 	//유효성 체크 + 아이디 중복확인 여부
 	function check() {
 		var gf = document.generalform;
-	 	////중복확인 여부 확인
+	 	////ID 중복확인 여부 확인
 	 	var idchecked = gf.idcheck2.value;
 	 	if(idchecked=="") {
 	 		alertShow('아이디 중복확인 오류','아이디 중복확인을 해주세요.');
@@ -259,16 +246,22 @@
 		}
 		gf.submit();
 	}
-	//비밀번호
+	//비밀번호 일치 유무
 	function passwordCheck() {
-		var pw = document.getElementById("pw");					//비밀번호 
-		var pwcheck = document.getElementById("pwcheck");		//비밀번호 확인 값
+		var pw = $("#pw").val();	
+		var pwcheck = $("#pwcheck").val();	
 		var pw_message = document.getElementById("pw_message");	//확인 메세지
-		var correctColor = "#00ff00";	//맞았을 때 출력되는 색깔.
+		var correctColor = "#416b41";	//맞았을 때 출력되는 색깔.
 		var wrongColor = "#ff0000";		//틀렸을 때 출력되는 색깔
-		if(pw.value == pwcheck.value){//password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
-			pw_message.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
-			pw_message.innerHTML = "비밀번호가 일치합니다.";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
+		if(pw == pwcheck){ //password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
+			if(pw.length<6 ||pw.length>16){
+				pw_message.style.color = wrongColor;
+				pw_message.innerHTML = "비밀번호는 6~16자 이내로 입력해주세요.";				
+			}
+			else{
+				pw_message.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
+				pw_message.innerHTML = "비밀번호가 일치합니다.";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
+		}
 		}else{
 			pw_message.style.color = wrongColor;
 			pw_message.innerHTML = "비밀번호가 일치하지 않습니다.";
@@ -289,68 +282,124 @@
 	   else {
 	      $('#email_domain').val(domain);
 	   }
-	   
+		////비밀번호 보기 구현
+		$(document).ready(function(){
+		    $('.pw i').on('click',function(){
+		        $('.pw.').toggleClass('active');
+		        if($('.pw').hasClass('active')){
+		            $(this).attr('class',"fa fa-eye fa-lg")
+		            .prev('#pw').attr('type',"text");
+		        }else{
+		            $(this).attr('class',"fa fa-eye-slash fa-lg")
+		            .prev('#pw').attr('type','password');
+		        }
+		    });
+		});  
 	}
 	</script>
 	<style type="text/css">
-		div.pw{
-		    position: relative;
-		    padding: 20px;
+		.generalform{
+			width: 800px;
+			margin: 0 auto;
 		}
-		div.pw i{
-		    position: absolute;
-		    color: black;
+		.generalform div{
+			display: flex;
+		    align-items: center;
+		    height:40px;
+		    margin: 0 auto 20px auto;
+		    
 		}
-		.pw1 {
-			border: 1px solid #000000;
-			
+		.generalform input[type="password"],
+		.generalform input[type="text"]{
+			width: 280px;
+			height: auto;
+			margin: 0 10px 0 10px;
+			border: 1px solid #e8e8e8;
 		}
-		.pw1 input[type="password"] {
-			border:none;
-			width: auto;
+		label{
+			width: 120px;
 		}
+		.generalform .pw1{
+			display: flex;
+		    align-items: center;
+		    margin: 0;
+		}
+		#pw,#pwcheck{
+			margin: 0 10px 0 10px;
+		}
+		.pw1 i{
+			margin: auto 0 auto 0;
+	        color: darkgreen;
+		}
+		#year,
+		#month,
+		#day,
+		.phone #fir_tel{
+			text-align: center;
+			width: 75px;
+			height: 25px;
+			margin: 0 10px 0 10px;
+			border: 1px solid #e8e8e8;
+		}
+		.col-sm-10{
+			display: block;
+		}
+		
+		.generalform input[type="text"]#mid_tel,
+		.generalform input[type="text"]#end_tel{
+			width:60px;
+		}
+		.generalform .email_write{
+			width:300px;
+			margin:0;
+		}
+		.generalform .email_write .form_w200{
+			width:120px;
+		}
+		
 	</style>
 <meta charset="UTF-8">
 <title>일반회원 회원가입</title>
 </head>
 <body>
-	<form action="generalsave" method="post" name="generalform">
-		<div>
-			<label>아이디</label>
+	<h1>회원가입</h1>
+	<form action="generalsave" method="post" name="generalform" class="generalform">
+		<input type="hidden" name="part" id="part" value="일반">
+		<div class="id">
+			<label for="id">아이디</label>
 			<input type="text" name="id" id="id" placeholder="4~10글자 이내로 입력" onchange="idcheck_reset()">
 			<input type="button" value="중복확인" id="idcheck">
 			<input type="hidden" id="idcheck2" value="">
 		</div>
-		<div class="pw">
-			<label>비밀번호</label>
-			<div class="pw1">
-				<input type="password" name="pw" id="pw" placeholder="6~16글자 이내로 입력">
-				<i class="fa fa-eye fa-lg"></i>
-			</div>
+		<div class="input pw">
+		  <label for="pw" class="label password">비밀번호</label>
+		  <input type="password" id="pw" name="pw" class="form-input" placeholder="6~16자 이내로 입력">
+		  <div class="eyes">
+		  	<i class="fa fa-eye fa-lg"></i>
+		  </div>
 		</div>
 		<div class="pw">
-			<label>비밀번호확인</label>
+			<label for="pwcheck">비밀번호 확인</label>
 			<div class="pw1">
 				<input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호를 한번 더 입력" onkeyup="passwordCheck()">
-				<i class="fa fa-eye fa-lg"></i>
+				<i id="show_pw" class="fa fa-eye-slash fa-lg"></i>
 				  <span id="pw_message"></span>
 			</div>
 		</div>
-		<div>
-			<label>이름</label>
+		<div class="name">
+			<label for="name">이름</label>
 			<input type="text" name="name" id="name">
 		</div>
 		<div>
-			<label>생년월일</label>
+			<label for="year">생년월일</label>
 			<select name="year" id="year">
-				<option value="">년</option>
+				<option value="">--</option>
 					<c:forEach var="i" begin="1920" end="2024">
 					<option value="${i}">${i}</option>
 					</c:forEach>
-			</select>
-			-
+			</select>년
 			<select name="month" id="month">
-				<option value="">월</option>
+				<option value="">--</option>
 					<c:forEach var="i" begin="1" end="12">
 						<c:choose>
 							<c:when test="${i lt 10}">
@@ -361,10 +410,9 @@
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-			</select>
-			-
+			</select>월
 			<select name="day" id="day">
-				<option value="">일</option>
+				<option value="">--</option>
 					<c:forEach var="i" begin="1" end="31">
 						<c:choose>
 							<c:when test="${i lt 10}">
@@ -378,7 +426,7 @@
 			</select>
 			<input type="hidden" id="total_birthday" name="birthday" value="">
 		</div>
-		<div>
+		<div class="phone">
 			<label>전화번호</label>
 			<select id="fir_tel">
 				<option value="010">010</option>
@@ -394,30 +442,33 @@
 			<input type="hidden" id="total_tel" name="tel" value="">
 		</div>
 		<div>
-			<label>이메일</label>
-		<input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" /> @ 
-		<input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" placeholder="이메일 도메인" maxlength="18"/> 
-		<select class="select" id="mail_select" title="이메일 도메인 주소 선택" onchange="mailSelect()">
-		    <option value="emailall" selected>-선택-</option>
-		    <option value="naver.com">naver.com</option>
-		    <option value="gmail.com">gmail.com</option>
-		    <option value="hanmail.net">hanmail.net</option>
-		    <option value="hotmail.com">hotmail.com</option>
-		    <option value="korea.com">korea.com</option>
-		    <option value="nate.com">nate.com</option>
-		    <option value="yahoo.com">yahoo.com</option>
-		</select>
-			<input type="hidden" id="total_email" name="email" value="">
-		</div>
+			<label for="email_id">이메일</label>
+			<div class="email_write">
+				<input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" /> @ 
+				<input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" placeholder="이메일 도메인" maxlength="18"/> 
+			<select class="select" id="mail_select" title="이메일 도메인 주소 선택" onchange="mailSelect()">
+			    <option value="emailall" selected>-선택-</option>
+			    <option value="naver.com">naver.com</option>
+			    <option value="gmail.com">gmail.com</option>
+			    <option value="hanmail.net">hanmail.net</option>
+			    <option value="hotmail.com">hotmail.com</option>
+			    <option value="korea.com">korea.com</option>
+			    <option value="nate.com">nate.com</option>
+			    <option value="yahoo.com">yahoo.com</option>
+			</select>
+			</div>
+				<input type="hidden" id="total_email" name="email" value="">
+			</div>
 		<div class="col-sm-10">
 		    <label for="zipp_btn" class="form-label">주소</label><br/>
+	<!--    <div class="invalid-feedback">주소를 입력해주시기 바랍니다!</div> -->
 		    <input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" style="width: 10%; display: inline;">
-		    <input type="button" id="zipp_btn" class="btn btn-primary" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+		    <input type="button" id="zipp_btn" class="btn" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 		    <input type="text" class="form-control mb-2" name="user_add1" id="UserAdd1" maxlength="40" placeholder="기본 주소를 입력하세요" required readonly>
-		    <div class="invalid-feedback">주소를 입력해주시기 바랍니다!</div>
 		    <input type="text" class="form-control" name="user_add2" id="UserAdd2" maxlength="40" placeholder="상세 주소를 입력하세요">
 		</div>
 		<div>
+			<label>선호 스포츠</label>
 			<label>
 			<input type="radio" name="sport" onclick="updateList(this.value)" checked value="축구"><span><span></span></span><span>축구</span>
 			</label>
@@ -426,7 +477,8 @@
 			</label>
 		</div>
 		<div>
-			<select name="team">
+			<label for="team">선호 팀</label>
+			<select name="team" id="team">
 				<option value="강원">강원
 				<option value="울산">울산
 				<option value="수원FC">수원FC
@@ -440,9 +492,6 @@
 				<option value="전북">전북
 				<option value="대구">대구
 			</select>
-		</div>
-		<div>
-		<input type="hidden" name="part" id="part" value="일반">
 		</div>
 		<div>
 			<input type="button" value="회원가입" onclick="check()">
