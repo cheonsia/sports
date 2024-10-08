@@ -46,6 +46,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp"/>
 	</definition>
 
+	<definition name="mypage_update_view" extends="memberLayout">
+		<put-attribute name="title" value="마이페이지 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/mypage_update_view.jsp"/>
+	</definition>
+	
 <definition name="soccer_login" extends="memberLayout">
 	<put-attribute name="title" value="로그인"/>
 	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
