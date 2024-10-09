@@ -10,9 +10,12 @@
 $(document).ready(function () {
     // 비밀번호 수정 버튼 클릭 시 모달 창 표시
     $("btn-pwCheck").click(function () {
-        $("#PwCheckModal").modal("show");
+    	/* var pwcheck_input = document.getElementById('#pwcheck_id');
+    	pwcheck_input.value = null;
+    	pwcheck_input.focus;
 	   	$('#pwcheck_id').focus();
-	  	$('#pwcheck_id').empty();
+	  	$('input[name="pwcheck"]').val(''); */
+        $("#PwCheckModal").modal("show");
     });
 });
 
@@ -38,7 +41,7 @@ $(document).ready(function() {
 			async:true,
 			data:{"id":id, "pw":cpwcheck},
 			success:function(data) {
-				if(data==1) {
+				if(data=='1') {
 					////수정창 띄우기
 					$("#PwUpdateModal").modal("show");
 				}
@@ -115,7 +118,7 @@ $(document).ready(function() {
 			success:function(data) {
 				if(data==1) {
 					////마이페이지 수정창 이동하기
-					location.href="mypage_update?id=korea1"				
+					location.href="mypage_update?id=${my.id}"	
 				}
 				else{
 					alertShow('비밀번호 확인',"비밀번호가 다릅니다 다시 입력해주세요.");
@@ -170,59 +173,60 @@ $(document).ready(function() {
 
 <div>
 	<label>아이디</label>
-	<input type="text" name="id" id="id_id" value="korea1" readonly>
+	<input type="text" name="id" id="id_id" value="${my.id}" readonly>
 </div>
 <div>
 	<label>이름</label>
-	<input type="text" name="name" id="name_id" value="한라산" readonly>
+	<input type="text" name="name" id="name_id" value="${my.name}" readonly>
 </div>
 <div>
 	<label>생년월일</label>
-	<input type="text" id="birthday_id" name="birthday" value="1990-07-12" readonly>
+	<input type="text" id="birthday_id" name="birthday" value="${my.birthday}" readonly>
 </div>
 <div>
 	<label>전화번호</label>
-	<input type="text" id="tel_id" name="tel" value="010-1234-5678" readonly>
+	<input type="text" id="tel_id" name="tel" value="${my.tel}" readonly>
 </div>
 <div>
 	<label>이메일</label>
-	<input type="text" id="email_id" name="email" value="sasd123@gmail.com" readonly>
+	<input type="text" id="email_id" name="email" value="${my.email}" readonly>
 </div>
 <div>
     <label>우편주소</label>
-    
-		
-		
-	 	   <input type="text" name="zzip_code" id="zzip_code_id" value="34891" readonly>
-		
-	
+    <input type="text" name="zzip_code" id="zzip_code_id" value="${my.zzip_code}" readonly>
 </div>
 <div>
     <label>주소</label>
-    <input type="text" name="user_add1" id="user_add1_id" value="대전 중구 계백로1565번길 1 (유천동)" readonly>
-    <input type="text" name="user_add2" id="user_add2_id" value="2동 2호" readonly>
+    <input type="text" name="user_add1" id="user_add1_id" value="${my.user_add1}" readonly>
+    <input type="text" name="user_add2" id="user_add2_id" value="${my.user_add2}" readonly>
 </div>
 <div>
 <!-- 일반회원일 떄 -->
-	
+	<c:if test="${my.part == '일반'}">
 		<label>관심 종목</label>
-	
+	</c:if>
 <!-- 감독일 떄 -->
-	
-		<input type="text" id="sport_id" name="sport" value="축구" readonly>
+	<c:if test="${my.part == '감독'}">
+		<label>관리 종목</label>
+	</c:if>
+		<input type="text" id="sport_id" name="sport" value="${my.sport}" readonly>
 </div>
 <div>
-	
+<!-- 일반회원일 떄 -->	
+	<c:if test="${my.part == '일반'}">
 		<label>관심 팀</label>
-	
-	
-		<input type="text" id="team_id" name="team" value="인천" readonly>
+	</c:if>
+<!-- 감독일 떄 -->
+	<c:if test="${my.part == '감독'}">
+		<label>관리 팀</label>
+	</c:if>
+		<input type="text" id="team_id" name="team" value="${my.team}" readonly>
 </div>
 
 <!-- ------------------------------------------------------------------------------------------------------- -->
 <div>
 	<label>등급</label>
-	<input type="text" name="part" id="part_id" value="일반" readonly>
+	<input type="text" name="part" id="part_id" value="${my.part}" readonly>
 </div>
 <!-- ------------------------------------------------------------------------------------------------------- -->
 <div>

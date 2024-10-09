@@ -216,7 +216,7 @@
                         <a href="javascript:void(0)" class="side_menu_title side_menu_click">경기</a>
                         <ul>
                            <li>
-                              <a href="javascript:void(0)">- 일정</a>
+                              <a href="soccer_schedule">- 일정</a>
                            </li>
                            <li>
                               <a href="soccerTeamRanking">- 순위</a>

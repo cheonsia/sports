@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mbc.sports.HomeController;
+import com.mbc.sports.login.LoginDTO;
 
 @Controller
 public class MemberController {
@@ -97,7 +98,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		MultipartFile rr_mf = mul.getFile("rr");
 		String rr_fname = rr_mf.getOriginalFilename();
-		rr_fname = rr_filesave(voe_fname, voe_mf.getBytes());
+		rr_fname = rr_filesave(rr_fname, rr_mf.getBytes());
 		rr_mf.transferTo(new File(path+"\\"+rr_fname));
 		
 		String part=mul.getParameter("part");
@@ -192,5 +193,95 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		return "mypage";
 	}
+	
+	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
+	public void pw_Check(String id, String pw, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter prw = response.getWriter();
+		MemberService ss = sqlsession.getMapper(MemberService.class);
+		int result;
+		String pwcheck = ss.pwCheck(id);		
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if(passwordEncoder.matches(pw, pwcheck)) {
+			result=1;
+		}
+		else {
+			result=0;
+		}
+		
+		prw.print(result);
+	}
+	
+	@RequestMapping(value = "/pwUpdate", method = RequestMethod.POST)
+	public String pw_Update(String id, String pw, Model mo) {
+		
+		PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+		pw=passwordEncoder.encode(pw);
+		MemberService ss = sqlsession.getMapper(MemberService.class);
+		ss.pwupdate(id, pw);
+		mo.addAttribute("id", id);
+		
+		return "redirect:/mypage";
+	}
+	
+	@RequestMapping(value = "/mypage_update", method = RequestMethod.GET)
+	public String Mypage2(String id, Model mo) {
+		
+		MemberService ss = sqlsession.getMapper(MemberService.class);
+		MemberDTO update_member = ss.memberget(id);
+		mo.addAttribute("up", update_member);
+		
+		return "mypage_update_view";
+	}
+	
+	@RequestMapping(value = "/myUpdate", method = RequestMethod.POST)
+	public String mypage__Update(MultipartHttpServletRequest mul, Model mo) throws IOException {
+		String voe_fname,rr_fname;
+		String id=mul.getParameter("id");
+		String name=mul.getParameter("name");
+		String tel=mul.getParameter("tel");
+		String zipp_code=mul.getParameter("zipp_code");
+		String user_add1=mul.getParameter("user_add1");
+		String user_add2=mul.getParameter("user_add2");
+		String sport=mul.getParameter("sport");
+		String team=mul.getParameter("team");
+		String refvoe=mul.getParameter("refvoe");
+		String refrr=mul.getParameter("refrr");
+		MultipartFile voe_mf = mul.getFile("voe");
+		MultipartFile rr_mf = mul.getFile("rr");
+		voe_fname = voe_mf.getOriginalFilename();		
+		rr_fname = rr_mf.getOriginalFilename();
+		//회원
+		if(refvoe.equals("")||refvoe.equals(null)) {
+			voe_fname ="";
+		}
+		if(refrr.equals("")||refrr.equals(null)) {
+			rr_fname ="";
+		}
+		//감독
+		if(voe_fname.equals("")||voe_fname.equals(null)) {
+			voe_fname = refvoe;
+		}else{
+			voe_fname = voe_filesave(voe_fname, voe_mf.getBytes());
+			voe_mf.transferTo(new File(path+"\\"+voe_fname));
+			File file = new File(path+"\\"+refvoe);
+			file.delete();
+		}
+		if(rr_fname.equals("")||rr_fname.equals(null)) {
+			rr_fname = refvoe;
+		}else {
+			rr_fname = rr_filesave(rr_fname, rr_mf.getBytes());
+			rr_mf.transferTo(new File(path+"\\"+rr_fname));			
+			File file = new File(path+"\\"+refrr);
+			file.delete();
+		}
+		
+		MemberService ss = sqlsession.getMapper(MemberService.class);
+		ss.mypageupdate(id,name,tel,zipp_code,user_add1,user_add2,sport,team,voe_fname,rr_fname);
+		mo.addAttribute("id", id);
+		
+		return "redirect:/mypage";
+	}
+	
 
 }
