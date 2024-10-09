@@ -4,41 +4,31 @@
 "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-<definition name="memberLayout" template="/WEB-INF/views/soccer/first/layout.jsp">
-	<put-attribute name="title" value=""/>
-	<put-attribute name="top" value="/WEB-INF/views/soccer/first/top.jsp"/>
-	<put-attribute name="body" value=""/>
-	<put-attribute name="footer" value="/WEB-INF/views/soccer/first/footer.jsp"/>
-</definition>
-
-<definition name="signup" extends="memberLayout">
-	<put-attribute name="title" value="회원가입"/>
-	<put-attribute name="body" value="/WEB-INF/views/member/signup/signup.jsp"/>
-</definition>
-
-<definition name="general" extends="memberLayout">
-	<put-attribute name="title" value="일반 회원 회원가입"/>
-	<put-attribute name="body" value="/WEB-INF/views/member/signup/normal.jsp"/>
-</definition>
-
-<definition name="super" extends="memberLayout">
-	<put-attribute name="title" value="감독 회원가입"/>
-	<put-attribute name="body" value="/WEB-INF/views/member/signup/super.jsp"/>
-</definition>
-
-<definition name="member_list" extends="memberLayout">
-		<put-attribute name="title" value="회원 조회하기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/signup/member.jsp"/>
+	<definition name="memberLayout" template="/WEB-INF/views/soccer/first/layout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="top" value="/WEB-INF/views/soccer/first/top.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/soccer/first/footer.jsp"/>
 	</definition>
 	
-	<definition name="member_delete" extends="memberLayout">
+	<definition name="signup" extends="memberLayout">
+		<put-attribute name="title" value="회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/signup/main.jsp"/>
+	</definition>
+	
+	<definition name="signUpForm" extends="memberLayout">
+		<put-attribute name="title" value="회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/signup/signUp.jsp"/>
+	</definition>
+
+	<definition name="memberList" extends="memberLayout">
+		<put-attribute name="title" value="회원 조회"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/member.jsp"/>
+	</definition>
+	
+	<definition name="memberDelete" extends="memberLayout">
 		<put-attribute name="title" value="회원 정보 삭제"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/signup/delete.jsp"/>
-	</definition>
-	
-	<definition name="member_detail" extends="memberLayout">
-		<put-attribute name="title" value="회원 정보 상세"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/detail.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/delete.jsp"/>
 	</definition>
 	
 	<definition name="mypage" extends="memberLayout">
@@ -46,20 +36,20 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp"/>
 	</definition>
 
-	<definition name="mypage_update_view" extends="memberLayout">
-		<put-attribute name="title" value="마이페이지 수정"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/mypage_update_view.jsp"/>
+	<definition name="memberUpdate" extends="memberLayout">
+		<put-attribute name="title" value="회원 정보 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/update.jsp"/>
 	</definition>
 	
-<definition name="soccer_login" extends="memberLayout">
-	<put-attribute name="title" value="로그인"/>
-	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
-</definition>
-
-<definition name="baseball_login" extends="memberLayout">
-	<put-attribute name="title" value="로그인"/>
-	<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
-	<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
-</definition>
+	<!--  로그인 -->	
+	<definition name="soccerLogin" extends="memberLayout">
+		<put-attribute name="title" value="로그인"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+	</definition>
+	<definition name="baseballLogin" extends="memberLayout">
+		<put-attribute name="title" value="로그인"/>
+		<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+	</definition>
    
 </tiles-definitions>

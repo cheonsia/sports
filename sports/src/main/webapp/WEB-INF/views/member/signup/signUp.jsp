@@ -4,17 +4,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-   <!-- CDN 방식 사용 -->
-   <script>
-   //주소 API
+	<script>
+	$(document).ready(function(){
+		//비밀번호 보기 구현
+	    $('.pw i').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+		//아이디 유효성 검사후 중복체크
+		$("#idcheck").click(function() {
+			var id = $("#id").val();
+			var vid=/^[a-zA-Z0-9]{4,10}$/;
+			
+			if(id=="") {
+				alertShow('오류','아이디를 입력해주세요.');
+				return false;
+			}
+			else if(!vid.test(id)) {
+				alertShow('오류','아이디는 영문자와 숫자로만 4~10글자 이내로만 작성해야합니다.');
+				return false;
+			}
+			
+			$.ajax({
+				type:"post",
+				url:"idcheck",
+				async:true,
+				data:{"id":id},
+				success:function(data) {
+					if(data==1) {
+						alertShow('중복확인',"이미 사용중인 아이디 입니다.");
+						$('#idcheck2').val(1);
+					}else{
+						alertShow('중복확인',"사용할 수 있는 아이디 입니다.");
+						$('#idcheck2').val(0);
+					}
+				},
+				error:function() {
+					alertShow('에러','아이디를 다시 입력해주세요');
+				}
+			});
+		});
+	});
+	//주소 API CDN 방식 사용
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // 팝업을 통한 검색 결과 항목 클릭 시 실행
+              	// 팝업을 통한 검색 결과 항목 클릭 시 실행
                 var addr = ''; // 주소_결과값이 없을 경우 공백 
                 var extraAddr = ''; // 참고항목
 
@@ -38,7 +83,6 @@
                 } else {
                     document.getElementById("UserAdd1").value = '';
                 }
-
                 // 선택된 우편번호와 주소 정보를 input 박스에 넣는다.
                 document.getElementById('zipp_code_id').value = data.zonecode;
                 document.getElementById("UserAdd1").value = addr;
@@ -47,205 +91,6 @@
             }
         }).open();
     }
-   	
-	//아이디 유효성 검사후 중복체크
-	$(document).ready(function() {
-		$("#idcheck").click(function() {
-			var id = $("#id").val();
-			var vid=/^[a-zA-Z0-9]{4,10}$/;
-			
-			if(id=="") {
-				alertShow('아이디 입력오류','아이디를 입력해주세요.');
-				return false;
-			}
-			else if(!vid.test(id)) {
-				alertShow('아이디 입력오류','아이디는 영문자와 숫자로만 4~10글자 이내로만 작성해야합니다.');
-				return false;
-			}
-			
-			$.ajax({
-				type:"post",
-				url:"idcheck",
-				async:true,
-				data:{"id":id},
-				success:function(data) {
-					if(data==1) {
-						alertShow('중복확인',"이미 사용중인 아이디 입니다.");
-						$('#idcheck2').val(1);
-					}
-					else{
-						alertShow('중복확인',"사용할 수 있는 아이디 입니다.");
-						$('#idcheck2').val(0);
-					}
-				},
-				error:function() {
-					alertShow('에러','아이디를 다시 입력해주세요');
-				}
-			});
-		});
-	});
-	
-	//축구를 고를 떄와 야구를 골랐을 때 Select 내용 바꾸기
-	function Activity(name, list){
-	    this.name = name;
-	    this.list = list;
-	}
-	 
-	var acts = new Array();
-	    acts[0] = new Activity('축구', ['강원', '울산', '수원FC', '김천', '서울', '포항', '광주', '제주', '대전', '인천', '전북', '대구']);
-	    acts[1] = new Activity('야구', ['KIA', '삼성', 'LG', '두산', 'KT', '한화', '롯데', 'SSG', 'NC', '키움']);
-	 
-	function updateList(str){
-	    var gf = document.generalform;
-	    var teamLen = gf.team.length;
-	    var numActs;
-	 
-	    for (var i = 0; i < acts.length; i++){
-	        if (str == acts[i].name) {
-	            numActs = acts[i].list.length;
-	            for (var j = 0; j < numActs; j++)
-	            	gf.team.options[j] = new Option(acts[i].list[j], acts[i].list[j]);
-	            for (var j = numActs; j < teamLen; j++)
-	            	gf.team.options[numActs] = null;
-	        }
-	    }
-	}
-
-	//유효성 체크 + 아이디 중복확인 여부
-	function check() {
-		var gf = document.generalform;
-	 	////ID 중복확인 여부 확인
-	 	var idchecked = gf.idcheck2.value;
-	 	if(idchecked=="") {
-	 		alertShow('아이디 중복확인 오류','아이디 중복확인을 해주세요.');
-	 		return false;
-	 	}
-	 	else if(idchecked==1) {
-	 		alertShow('아이디 중복확인 오류','이미 사용중인 아이디를 입력했습니다.');
-	 		return false;
-	 	}
-		////아이디
-		var vid=/^[a-zA-Z0-9]{4,10}$/;
-		var cid=gf.id.value;
-		if(cid=="") {
-			alertShow('아이디 입력오류','아이디를 입력해주세요.');
-			gf.id.select();
-			return false;
-		}
-		else if(!vid.test(cid)) {
-			alertShow('아이디 입력오류','아이디는 영문자와 숫자로만 4~10글자 이내로만 작성해야합니다.');
-			gf.id.select();
-			return false;
-		}
-		////비밀번호 체크
-		var vpw=/^[a-zA-Z0-9]{6,16}$/;
-		var cpw=gf.pw.value;
-		var cpwcheck=gf.pwcheck.value;
-		
-		if(cpw=="") {
-			alertShow('비밀번호 입력오류','비밀번호를 입력해주세요.');
-			return false;
-		}
-		else if(!vpw.test(cpw)) {
-			alertShow('비밀번호 입력오류','비밀번호는 영문자와 숫자로만 6~16글자 이내로만 작성해야합니다.');
-			return false;
-		}
-		else if(cpw!=cpwcheck) {
-			alertShow('비밀번호 입력오류','비밀번호와 비밀번호 확인 칸을 똑같이 입력해주세요.');
-			return false;
-		}
-		////이름 체크
-		var vname=/^[가-힣]{2,5}$/;
-		var cname=gf.name.value;
-		
-		if(cname=="") {
-			alertShow('이름 입력오류','이름을 입력해주세요.');
-			return false;
-		}
-		else if(!vname.test(cname)) {
-			alertShow('이름 입력오류','이름은 한글로만 2~5글자이내로 작성해주세요.');
-			return false;
-		}
-		
-		////생년월일 체크 후 이어붙이기
-		var year = $("select[id='year'] option:selected").val();
-		var month = $("select[id='month'] option:selected").val();
-		var day = $("select[id='day'] option:selected").val();
-		var birth_regexp = /^\d{4}-\d{2}-\d{2}$/;//생년월일 정규식
-		
-		//생년월일 입력
-		var total_birthday = year + "-" + month + "-" + day;
-		if(birth_regexp.test(total_birthday)) {
-			$('#total_birthday').val(total_birthday);
-		}
-		else {
-			alertShow('생년월일 입력오류','다시 입력해주세요');
-			return false;
-		}
-		////전화번호 검사 및 합치기
-		var fir_tel = $("select[id='fir_tel'] option:selected").val();
-		var mid_tel = $('#mid_tel').val();
-		var end_tel = $('#end_tel').val();
-		var tel_regexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;//전화번호 정규식
-		//전화번호 입력 값
-		var total_tel = fir_tel + "-" + mid_tel + "-" + end_tel;
-		if(tel_regexp.test(total_tel)) {
-				
-			$('#total_tel').val(total_tel);
-		}
-		else {
-			alertShow('전화번호 입력오류','다시 입력해주세요');
-			return false;
-		}
-		////이메일
-		var mail_select = $("select[id='mail_select'] option:selected").val();
-		var email_val1 = $('#email_id').val();
-		var email_regexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//이메일 정규식
-		if(mail_select == 'emailall') {//이메일 입력
-			var email_val2 = $('#email_domain').val();
-			var total_email = email_val1 + "@" + email_val2;
-			if(email_regexp.test(total_email)) {
-				$('#total_email').val(total_email);
-			}
-			else {
-				alertShow('이메일 입력오류','다시 입력해주세요');
-				return false;
-			}
-		}
-		else {
-			var total_email = email_val1 + "@" + mail_select;
-			if(email_regexp.test(total_email)) {
-				$('#total_email').val(total_email);				
-			}
-			else {
-				alertShow('이메일 입력오류','다시 입력해주세요');
-				return false;
-			}
-		}
-		
-		////주소 체크
-		var code=gf.zipp_code.value;
-		var cadd1=gf.user_add1.value;
-		var cadd2=gf.user_add2.value;
-		var vcode=/^[0-9]{5}$/;
-		if(code=="") {
-			alertShow('주소 입력 오류','우편주소를 검색해주세요.');
-			return false;
-		}
-		else if(cadd1=="") {
-			alertShow('주소 입력 오류','기본 주소가 입력되지 않았습니다. 우편주소를 검색해주세요.');
-			return false;
-		}
-		else if(cadd2=="") {
-			alertShow('주소 입력 오류','상세 주소를 입력해주세요.');
-			return false;
-		}
-		else if(!vcode.test(code)) {
-			alertShow('주소 입력 오류','우편번호는 숫자로만 입력 가능합니다.');
-			return false;
-		}
-		gf.submit();
-	}
 	//비밀번호 일치 유무
 	function passwordCheck() {
 		var pw = $("#pw").val();	
@@ -267,50 +112,182 @@
 			pw_message.innerHTML = "비밀번호가 일치하지 않습니다.";
 		}
 	}
-	////중복확인을 한 후 아이디를 수정하면 다시 중복확인을 하게하기
+	//중복확인 후 아이디 수정 시 다시 중복확인 구현
 	function idcheck_reset() {
-	   $('#idcheck2').val(1);
+		$('#idcheck2').val(1);
 	}
-	////이메일 도메인에 값 넣기
+	//이메일 도메인에 값 넣기
 	function mailSelect() {
-	   
-	   var domain = $('#mail_select').find('option:selected').val();
-	   
-	   if(domain == 'emailall') {
-	      $('#email_domain').val("");
-	   }
-	   else {
-	      $('#email_domain').val(domain);
-	   }
-		////비밀번호 보기 구현
-		$(document).ready(function(){
-		    $('.pw i').on('click',function(){
-		        $('.pw.').toggleClass('active');
-		        if($('.pw').hasClass('active')){
-		            $(this).attr('class',"fa fa-eye fa-lg")
-		            .prev('#pw').attr('type',"text");
-		        }else{
-		            $(this).attr('class',"fa fa-eye-slash fa-lg")
-		            .prev('#pw').attr('type','password');
-		        }
-		    });
-		});  
+		var domain = $('#mail_select').find('option:selected').val();		
+		if(domain == 'emailall') {
+			$('#email_domain').val("");
+		}
+		else {
+			$('#email_domain').val(domain);
+		}		
+	}
+	//축구를 고를 떄와 야구를 골랐을 때 Select 내용 바꾸기
+	function Activity(name, list){
+	    this.name = name;
+	    this.list = list;
+	}
+	var acts = new Array();
+	    acts[0] = new Activity('축구', ['강원', '울산', '수원FC', '김천', '서울', '포항', '광주', '제주', '대전', '인천', '전북', '대구']);
+	    acts[1] = new Activity('야구', ['KIA', '삼성', 'LG', '두산', 'KT', '한화', '롯데', 'SSG', 'NC', '키움']);
+	function updateList(str){
+	    var teamLen = $('#team').val().length;
+	    var numActs;
+	 
+	    for (var i = 0; i < acts.length; i++){
+	        if (str == acts[i].name) {
+	            numActs = acts[i].list.length;
+	            for (var j = 0; j < numActs; j++)
+	            	gf.team.options[j] = new Option(acts[i].list[j], acts[i].list[j]);
+	            for (var j = numActs; j < teamLen; j++)
+	            	gf.team.options[numActs] = null;
+	        }
+	    }
+	}
+
+	//유효성 체크
+	function check() {
+		////아이디 체크
+		var vid = /^[a-zA-Z0-9]{4,10}$/;
+		var id = $('#id').val();
+	 	var idchecked = $('#idcheck2').val();
+	 	
+		if(id == "") {
+			alertShow('오류','아이디를 입력해주세요.');
+			$('#id').focus();
+			return false;
+		}
+		else if(!vid.test(id)) {
+			alertShow('오류','아이디는 영문자+숫자 4~10글자 이내로 작성해야합니다.');
+			$('#id').focus();
+			return false;
+		}
+		if(idchecked == "" || idchecked == 1) {
+	 		alertShow('오류','아이디 중복확인을 해주세요.');
+	 		return false;
+	 	}
+		//비밀번호 체크
+		var vpw = /^[a-zA-Z0-9]{6,16}$/;
+		var pw = $('#pw').val();
+		var pwcheck = $('#pwcheck').val();
+		if(pw=="") {
+			alertShow('오류','비밀번호를 입력해주세요.');
+			$('#pw').focus();
+			return false;
+		}
+		else if(!vpw.test(pw)) {
+			alertShow('오류','비밀번호는 영문자+숫자 6~16글자 이내로 작성해야합니다.');
+			$('#pw').focus();			
+			return false;
+		}
+		else if(pw != pwcheck) {
+			alertShow('오류','입력한 비밀번호가 일치하지 않습니다.다시 입력해주세요');
+			$('#pwcheck').focus();
+			return false;
+		}
+		////이름 체크
+		var vname=/^[가-힣]{2,5}$/;
+		var name=$('#name').val();
+		if(name=="") {
+			alertShow('오류','이름을 입력해주세요.');
+			$('#name').focus();
+			return false;
+		}
+		else if(!vname.test(name)) {
+			alertShow('오류','이름은 한글 2~5글자 이내로 작성해주세요.');
+			$('#name').focus();
+			return false;
+		}	
+		//생년월일 체크 후 이어붙이기		
+		var year = $("select[id='year'] option:selected").val();
+		var month = $("select[id='month'] option:selected").val();
+		var day = $("select[id='day'] option:selected").val();
+		var total_birthday = year + "-" + month + "-" + day;
+		var birth_regexp = /^\d{4}-\d{2}-\d{2}$/;//생년월일 정규식		
+		if(birth_regexp.test(total_birthday)) {
+			$('#total_birthday').val(total_birthday);
+		}
+		else {
+			alertShow('오류','생년월일을 입력해주세요');
+			$('#year').focus();
+			return false;
+		}
+		//전화번호 체크 후 이어붙이기
+		var fir_tel = $("select[id='fir_tel'] option:selected").val();
+		var mid_tel = $('#mid_tel').val();
+		var end_tel = $('#end_tel').val();
+		var total_tel = fir_tel + "-" + mid_tel + "-" + end_tel;		
+		var tel_regexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;//전화번호 정규식
+		if(tel_regexp.test(total_tel)) {
+			$('#total_tel').val(total_tel);
+		}
+		else {
+			alertShow('오류','전화번호를 다시 입력해주세요');
+			$('#mid_tel').focus();
+			return false;
+		}
+		//이메일 이어붙이기
+		var email_val1 = $('#email_id').val();
+		var email_val2 = $('#email_domain').val();
+		var total_email = email_val1 + "@" + email_val2;
+		var email_regexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//이메일 정규식
+		if(email_regexp.test(total_email)) {
+			$('#total_email').val(total_email);				
+		}
+		else {
+			alertShow('오류','이메일 형식이 맞지 않습니다');
+			$('#email_id').focus();
+			return false;
+		}			
+		//주소 체크
+		var code = $('#zipp_code').val();
+		var cadd1 = $('user_add1').val();
+		var cadd2 = $('user_add2').val();
+		if(code=="" || cadd1=="") {
+			alertShow('오류','우편주소를 검색해주세요.');
+			return false;
+		}
+		if(cadd2=="") {
+			alertShow('오류','상세 주소를 입력해주세요.');
+			return false;
+		}
+		//파일 체크
+		var part = $('#part').val();
+		if(part == '감독'){
+			//재직증명서 확인
+			var voe = $('#voe').val();
+			if(voe == "") {
+				alertShow('재직 증명서 등록 오류','재직 증명서를 등록해주세요.');
+				return false;
+			}
+			//등본 확인
+			var rr = $('#rr').value;		
+			if(rr == "") {
+				alertShow('등본 등록 오류','등본을 등록해주세요.');
+				return false;
+			}
+		}
+		$('#memberform').submit();
 	}
 	</script>
 	<style type="text/css">
-		.generalform{
+		.signform{
 			width: 800px;
 			margin: 0 auto;
 		}
-		.generalform div{
+		.signform div{
 			display: flex;
 		    align-items: center;
 		    height:40px;
 		    margin: 0 auto 20px auto;
 		    
 		}
-		.generalform input[type="password"],
-		.generalform input[type="text"]{
+		.signform input[type="password"],
+		.signform input[type="text"]{
 			width: 280px;
 			height: auto;
 			margin: 0 10px 0 10px;
@@ -319,7 +296,7 @@
 		label{
 			width: 120px;
 		}
-		.generalform .pw1{
+		.signform .pw1{
 			display: flex;
 		    align-items: center;
 		    margin: 0;
@@ -345,44 +322,41 @@
 			display: block;
 		}
 		
-		.generalform input[type="text"]#mid_tel,
-		.generalform input[type="text"]#end_tel{
+		.signform input[type="text"]#mid_tel,
+		.signform input[type="text"]#end_tel{
 			width:60px;
 		}
-		.generalform .email_write{
+		.signform .email_write{
 			width:300px;
 			margin:0;
 		}
-		.generalform .email_write .form_w200{
+		.signform .email_write .form_w200{
 			width:120px;
 		}
-		
 	</style>
-<meta charset="UTF-8">
-<title>일반회원 회원가입</title>
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form action="generalsave" method="post" name="generalform" class="generalform">
-		<input type="hidden" name="part" id="part" value="일반">
-		<div class="id">
+	<form action="memberSave" method="post" name="memberform" id="memberform" class="signform" enctype="multipart/form-data">
+		<input type="hidden" name="part" id="part" value="${part}">
+	<div class="id">
 			<label for="id">아이디</label>
 			<input type="text" name="id" id="id" placeholder="4~10글자 이내로 입력" onchange="idcheck_reset()">
 			<input type="button" value="중복확인" id="idcheck">
 			<input type="hidden" id="idcheck2" value="">
 		</div>
-		<div class="input pw">
-		  <label for="pw" class="label password">비밀번호</label>
-		  <input type="password" id="pw" name="pw" class="form-input" placeholder="6~16자 이내로 입력">
-		  <div class="eyes">
-		  	<i class="fa fa-eye fa-lg"></i>
-		  </div>
+		<div class="pw">
+			<label for="pw">비밀번호</label>
+			<div class="pw1">
+				<input type="password" name="pw" id="pw" placeholder="6~16글자 이내로 입력">
+				<i class="fa fa-eye-slash fa-lg"></i>
+			</div>
 		</div>
 		<div class="pw">
 			<label for="pwcheck">비밀번호 확인</label>
 			<div class="pw1">
 				<input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호를 한번 더 입력" onkeyup="passwordCheck()">
-				<i id="show_pw" class="fa fa-eye-slash fa-lg"></i>
+				<i class="fa fa-eye-slash fa-lg"></i>
 				  <span id="pw_message"></span>
 			</div>
 		</div>
@@ -423,11 +397,11 @@
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-			</select>
-			<input type="hidden" id="total_birthday" name="birthday" value="">
+			</select>일
+			<input type="hidden" id="birth" name="birth" value="">
 		</div>
 		<div class="phone">
-			<label>전화번호</label>
+			<label for="fir_tel">전화번호</label>
 			<select id="fir_tel">
 				<option value="010">010</option>
 				<option value="011">011</option>
@@ -457,8 +431,8 @@
 			    <option value="yahoo.com">yahoo.com</option>
 			</select>
 			</div>
-				<input type="hidden" id="total_email" name="email" value="">
-			</div>
+			<input type="hidden" id="total_email" name="email" value="">
+		</div>
 		<div class="col-sm-10">
 		    <label for="zipp_btn" class="form-label">주소</label><br/>
 	<!--    <div class="invalid-feedback">주소를 입력해주시기 바랍니다!</div> -->
@@ -468,7 +442,7 @@
 		    <input type="text" class="form-control" name="user_add2" id="UserAdd2" maxlength="40" placeholder="상세 주소를 입력하세요">
 		</div>
 		<div>
-			<label>선호 스포츠</label>
+			<label><c:if test="${part=='일반'}">선호 </c:if>종목</label>
 			<label>
 			<input type="radio" name="sport" onclick="updateList(this.value)" checked value="축구"><span><span></span></span><span>축구</span>
 			</label>
@@ -477,7 +451,12 @@
 			</label>
 		</div>
 		<div>
+		<c:if test="${part=='일반'}">
 			<label for="team">선호 팀</label>
+		</c:if>
+		<c:if test="${part=='감독'}">
+			<label for="team">관리 팀</label>
+		</c:if>
 			<select name="team" id="team">
 				<option value="강원">강원
 				<option value="울산">울산
@@ -493,6 +472,16 @@
 				<option value="대구">대구
 			</select>
 		</div>
+		<c:if test="${part=='감독'}">
+			<div>
+				<label>재직증명서</label>
+				<input type="file" name="voe" id="voe">
+			</div>
+			<div>
+				<label>등본</label>
+				<input type="file" name="rr" id="rr">
+			</div>
+		</c:if>
 		<div>
 			<input type="button" value="회원가입" onclick="check()">
 			<input type="button" value="취소" onclick="location.href='./'">

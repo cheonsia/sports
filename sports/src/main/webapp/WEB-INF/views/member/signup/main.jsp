@@ -7,8 +7,8 @@
 <title>회원가입</title>
 </head>
 <body>
-<button onclick="location.href='general'">일반회원</button>
-<button onclick="location.href='super'">감독</button>
-<button onclick="location.href='member_list'">회원 조회</button>
+	<h1>회원 가입</h1>
+	<button onclick="location.href='signupForm?part=일반'">일반회원</button>
+	<button onclick="location.href='signupForm?part=감독'">감독</button>
 </body>
 </html>
