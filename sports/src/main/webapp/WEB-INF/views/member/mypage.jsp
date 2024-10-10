@@ -4,6 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<style type="text/css">
+	.modal-body .pw1 input[type="password"]{
+		display: flex;
+	    align-items: center;
+	    margin: 0;
+	    width: max-content;
+	}
+	#pw,#pwcheck{
+		margin: 0 10px 0 10px;
+	}
+	.modal-body .pw1 i{
+		margin: auto 0 auto 0;
+        color: darkgreen;
+	}
+</style>
+<meta charset="UTF-8">
 <script type="text/javascript">
 	$(document).ready(function() {
 	    var year = $('#birth').val().substr(0,4);
@@ -18,6 +35,9 @@
 	        $("#updateModal").modal("show");
 	        $("#pw").focus();
 	    });
+    	$("#updateModal").on("shown.bs.modal", function () {		
+    		$("#pw").focus();
+    	});
 		//비밀번호 보기 구현
 	    $('.pw i').on('click',function(){
 	        $('input').toggleClass('active');
@@ -66,14 +86,13 @@
 	////비밀번호 확인 Enter
 	function btn_pwcheck(e) {
 		if(e.key == 'Enter') {
-			$('#pwupdate').click();
+			$('#mypageupdate').click();
 		}
 	}
 </script>
-<meta charset="UTF-8">
-<title>마이페이지</title>
 </head>
 <body>
+	<h1>'${my.name}'님의 정보</h1>
 	<input type="hidden" id="birth" name="birth" value="${my.birth}">
 	<div>
 		<label>아이디</label>
@@ -133,6 +152,18 @@
 		<input type="text" name="part" id="part" value="${my.part}" readonly>
 	</div>
 	<div>
+		<c:if test="${my.part == '감독'}">
+			<div>
+				<label>재직 증명서</label>
+				<img src="./image/member/super/${my.voe}" width="100px" height="70px">
+			</div>
+			<div>
+				<label>등본</label>			
+				<img src="./image/member/super/${my.rr}" width="100px" height="70px">
+			</div>
+		</c:if>
+	</div>
+	<div>
 		<c:choose>
 			<c:when test="${adminlogin}">
 			 	<c:if test="${my.inputaccess == 'no'}">
@@ -160,11 +191,12 @@
 		                    <span aria-hidden="true">&times;</span>
 		                </button>
 		            </div>
-		            <div class="modal-body">
-			            <div class="pw">
+		             <div class="modal-body">
+						<div class="pw">
 			                <p>비밀번호를 입력해주세요.</p>
 			                <div class="pw1">
-				                <input type="password" name="pw" id="pw" onkeydown="btn_mypage_pwcheck(event)">				                <i class="fa fa-eye-slash fa-lg"></i>
+				                <input type="password" name="pw" id="pw" onkeydown="btn_pwcheck(event)">
+				                <i class="fa fa-eye-slash fa-lg"></i>
 			                </div>
 			            </div>
 		            </div>

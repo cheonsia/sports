@@ -45,7 +45,7 @@
 						alertShow('중복확인',"이미 사용중인 아이디 입니다.");
 						$('#idcheck2').val(1);
 					}else{
-						alertShow('중복확인',"사용할 수 있는 아이디 입니다.");
+						alertShow('중복확인',"사용가능한 아이디 입니다.");
 						$('#idcheck2').val(0);
 					}
 				},
@@ -135,9 +135,9 @@
 	    acts[0] = new Activity('축구', ['강원', '울산', '수원FC', '김천', '서울', '포항', '광주', '제주', '대전', '인천', '전북', '대구']);
 	    acts[1] = new Activity('야구', ['KIA', '삼성', 'LG', '두산', 'KT', '한화', '롯데', 'SSG', 'NC', '키움']);
 	function updateList(str){
-	    var teamLen = $('#team').val().length;
+		var gf = document.memberform;
+	    var teamLen = gf.team.length;
 	    var numActs;
-	 
 	    for (var i = 0; i < acts.length; i++){
 	        if (str == acts[i].name) {
 	            numActs = acts[i].list.length;
@@ -206,10 +206,10 @@
 		var year = $("select[id='year'] option:selected").val();
 		var month = $("select[id='month'] option:selected").val();
 		var day = $("select[id='day'] option:selected").val();
-		var total_birthday = year + "-" + month + "-" + day;
+		var birth= year + "-" + month + "-" + day;
 		var birth_regexp = /^\d{4}-\d{2}-\d{2}$/;//생년월일 정규식		
-		if(birth_regexp.test(total_birthday)) {
-			$('#total_birthday').val(total_birthday);
+		if(birth_regexp.test(birth)) {
+			$('#birth').val(birth);
 		}
 		else {
 			alertShow('오류','생년월일을 입력해주세요');
@@ -245,8 +245,8 @@
 		}			
 		//주소 체크
 		var code = $('#zipp_code').val();
-		var cadd1 = $('user_add1').val();
-		var cadd2 = $('user_add2').val();
+		var cadd1 = $('#UserAdd1').val();
+		var cadd2 = $('#UserAdd2').val();
 		if(code=="" || cadd1=="") {
 			alertShow('오류','우편주소를 검색해주세요.');
 			return false;
@@ -435,7 +435,6 @@
 		</div>
 		<div class="col-sm-10">
 		    <label for="zipp_btn" class="form-label">주소</label><br/>
-	<!--    <div class="invalid-feedback">주소를 입력해주시기 바랍니다!</div> -->
 		    <input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" style="width: 10%; display: inline;">
 		    <input type="button" id="zipp_btn" class="btn" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 		    <input type="text" class="form-control mb-2" name="user_add1" id="UserAdd1" maxlength="40" placeholder="기본 주소를 입력하세요" required readonly>
@@ -458,18 +457,7 @@
 			<label for="team">관리 팀</label>
 		</c:if>
 			<select name="team" id="team">
-				<option value="강원">강원
-				<option value="울산">울산
-				<option value="수원FC">수원FC
-				<option value="김천">김천
-				<option value="서울">서울
-				<option value="포항">포항
-				<option value="광주">광주
-				<option value="제주">제주
-				<option value="대전">대전
-				<option value="인천">인천
-				<option value="전북">전북
-				<option value="대구">대구
+				<option value="">
 			</select>
 		</div>
 		<c:if test="${part=='감독'}">
