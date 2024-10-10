@@ -10,7 +10,8 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<style type="text/css">
 		.main_section{
-		margin-top: 30px;
+			margin: 30px 20px 0 20px;
+			overflow: auto;
 		}
 		.header_team_logo{
 			display: none;
@@ -39,6 +40,9 @@
 			height: auto;
 			margin: 0 10px 0 10px;
 			border: 1px solid #e8e8e8;
+		}
+		.signform input[type="text"]{
+			width: 220px;
 		}
 		.signform input[type="password"]:focus,
 		.signform input[type="text"]:focus{
@@ -69,7 +73,7 @@
 		#month,
 		#day{
 			text-align: center;
-			width: 70px;
+			width: 65px;
 			height: 25px;
 			margin: 0 10px 0 10px;
 			border: 1px solid #e8e8e8;
@@ -140,14 +144,14 @@
 		}
 		.team select{
 			border: 1px solid #e8e8e8;
-			min-width: 110px;
+			min-width: 100px;
 			height: 25px;
 			text-align: center;
 		}
 		.team label{
 			width:max-content;
 			min-width:max-content;
-			margin-right: 20px;
+			margin-right: 25px;
 		}
 		.signform .button{
 			width: max-content;
@@ -166,23 +170,31 @@
 			border: 1px solid #4c693f;
 			background-color: white;
 			color:#4c693f;
+		    border-radius: 5px;
 		}
 		.signform .button input:first-child:hover{
-			border: none;
 			background-color: #4c693f80;
 			color: white;
 			
 		}
+		.signform #idcheck,
 		.signform .button input:last-child{
 			border: none;
 			background-color: #4c693f;
 			color: white;
+		    border-radius: 5px;
 		}
+		.signform #idcheck:hover,
 		.signform .button input:last-child:hover{
-			border: none;
 			background-color: #4c693f80;
-			color: white;
 		}
+
+		.signform #idcheck{
+		    width: 70px;
+		    height: 30px;
+		    border-radius: 5px;
+		}
+	}
 	</style>
 	<script>
 	$(document).ready(function(){
