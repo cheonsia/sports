@@ -111,24 +111,18 @@
 			});
 		});
 	});
-	////비밀번호 확인 Enter
+	//비밀번호 확인 Enter
 	function btn_pwcheck(e) {
 		if(e.key == 'Enter') {
 			$('#pwupdate').click();
 		}
 	}
-	////비밀번호 수정 Enter
+	//비밀번호 수정 Enter
 	function btn_pwupdate(e) {
 		if(e.key == 'Enter') {
 			$('#pwupdate2').click();
 		}
 	}	
-	////비밀번호 수정 Enter
-	function btn_mypage_pwcheck(e) {
-		if(e.key == 'Enter') {
-			$('#mypageupdate').click();
-		}
-	}
 	//주소 API CDN 방식 사용
     function execDaumPostcode() {
         new daum.Postcode({
@@ -209,9 +203,9 @@
 	    acts[0] = new Activity('축구', ['강원', '울산', '수원FC', '김천', '서울', '포항', '광주', '제주', '대전', '인천', '전북', '대구']);
 	    acts[1] = new Activity('야구', ['KIA', '삼성', 'LG', '두산', 'KT', '한화', '롯데', 'SSG', 'NC', '키움']);
 	function updateList(str){
-	    var teamLen = $('#team').val().length;
+	 	var gf = document.updateform;
+	    var teamLen = gf.team.length;
 	    var numActs;
-	 
 	    for (var i = 0; i < acts.length; i++){
 	        if (str == acts[i].name) {
 	            numActs = acts[i].list.length;
@@ -281,8 +275,8 @@
 		}			
 		//주소 체크
 		var code = $('#zipp_code').val();
-		var cadd1 = $('user_add1').val();
-		var cadd2 = $('user_add2').val();
+		var cadd1 = $('#UserAdd1').val();
+		var cadd2 = $('#UserAdd2').val();
 		if(code=="" || cadd1=="") {
 			alertShow('오류','우편주소를 검색해주세요.');
 			return false;
@@ -290,22 +284,6 @@
 		if(cadd2=="") {
 			alertShow('오류','상세 주소를 입력해주세요.');
 			return false;
-		}
-		//파일 체크
-		var part = $('#part').val();
-		if(part == '감독'){
-			//재직증명서 확인
-			var voe = $('#voe').val();
-			if(voe == "") {
-				alertShow('재직 증명서 등록 오류','재직 증명서를 등록해주세요.');
-				return false;
-			}
-			//등본 확인
-			var rr = $('#rr').value;		
-			if(rr == "") {
-				alertShow('등본 등록 오류','등본을 등록해주세요.');
-				return false;
-			}
 		}
 		$('#updateform').submit();
 	}
@@ -340,7 +318,7 @@
 		#pw,#pwcheck{
 			margin: 0 10px 0 10px;
 		}
-		.modal-body.pw1 i{
+		.modal-body .pw1 i{
 			margin: auto 0 auto 0;
 	        color: darkgreen;
 		}
@@ -372,10 +350,11 @@
 	</style>
 </head>
 <body>
-	<form action="memberUpdate" method="post" id="updateform" enctype="multipart/form-data">
+	<form action="memberUpdate" method="post" id="updateform" name="updateform" enctype="multipart/form-data">
 		<input type="hidden" name="part" id="part" value="${my.part}">
 		<input type="hidden" name="refvoe" id="refvoe" value="${my.voe}">
 		<input type="hidden" name="refrr" id="refrr" value="${my.rr}">
+		<input type="hidden" name="sportvalue" id="sportvalue" value="${my.sport}">
 		<input type="hidden" name="teamvalue" id="teamvalue" value="${my.team}">
 		<div class="id">
 			<label for="id">아이디</label>
@@ -477,10 +456,10 @@
 		<div>
 			<label><c:if test="${my.part=='일반'}">선호 </c:if>종목</label>
 			<label>
-			<input type="radio" name="sport" onclick="updateList(this.value)" checked value="축구"><span><span></span></span><span>축구</span>
+			<input type="radio" name="sport" id="sport1" onclick="updateList(this.value)" checked value="축구"><span><span></span></span><span>축구</span>
 			</label>
 			<label>
-			<input type="radio" name="sport" onclick="updateList(this.value)" value="야구"><span><span></span></span><span>야구</span>
+			<input type="radio" name="sport" id="sport2" onclick="updateList(this.value)" value="야구"><span><span></span></span><span>야구</span>
 			</label>
 		</div>
 		<div>
