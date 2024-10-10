@@ -188,7 +188,7 @@
 							<a href="logout">로그아웃</a>
 	               		</c:when>
 	               		<c:when test="${adminlogin}">
-							<a href="member_list">관리자 계정</a>
+							<a href="memberList">관리자 계정</a>
 							<a href="logout">로그아웃</a>
 	               		</c:when>
 					</c:choose>
@@ -255,10 +255,10 @@
 	                       		<a href="javascript:void(0)" class="side_menu_title side_menu_click">회원</a>
 	                        	<ul>
 	                           		<li>
-	                            	  <a href="member_list">- 정보</a>
+	                            	  <a href="memberList">- 목록(${access})</a>
 	                           		</li>
 	                          		<li>
-	                             		<a href="javascript:void(0)">- 승인</a>
+	                             		<a href="memberNoList">- 승인 요청(${notAccess})</a>
 									</li>
 								</ul>
 							</li>

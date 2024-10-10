@@ -18,26 +18,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mbc.sports.member.MemberDTO;
+import com.mbc.sports.member.MemberService;
 
 @Controller
 public class LoginController {
 	@Autowired
 	SqlSession sqlsession;
-	
+
+	//로그인 창 이동
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest request) {
 		HttpSession hs = request.getSession();
 		String sports = (String)hs.getAttribute("sports");
 		if(sports==null) sports="축구";
-		return (sports.equals("야구"))?"baseball_login":"soccer_login";
+		return (sports.equals("야구"))?"baseballLogin":"soccerLogin";
 	}
-	
+	//로그인 관리
 	@RequestMapping(value = "/logincheck",method = RequestMethod.POST)
 	public String logincheck(HttpServletRequest request, HttpServletResponse response)  {
 		String npath="";
 		HttpSession hs = request.getSession();
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
 		//관리자 로그인
 		String path="classpath:admin.xml";
 		AbstractApplicationContext aac = new GenericXmlApplicationContext(path);		
@@ -45,27 +47,34 @@ public class LoginController {
 		String ADMIN_ID =dto.getADMIN_ID();
 		String ADMIN_PW =dto.getADMIN_PW();
 		if(id.equals(ADMIN_ID)&&pw.equals(ADMIN_PW)) {
+			MemberService ms =sqlsession.getMapper(MemberService.class);			
+			hs.setAttribute("access", ms.countmember());
+			hs.setAttribute("notAccess", ms.countnotmember());
 			hs.setAttribute("adminlogin", true);
 			npath="redirect:/main";
 		}else { //회원 로그인
 			LoginService ls = sqlsession.getMapper(LoginService.class);
 			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			LoginDTO ldto = ls.logincheck(id);
+			MemberDTO ldto = ls.logincheck(id);
 			if(ldto!=null){
-				if(passwordEncoder.matches(pw, ldto.getPw())) {
-					String part = ldto.getPart();
-					String sport = ldto.getSport();
-					if(part.equals("일반")) {
-						hs.setAttribute("normallogin", true);				
+				if(ls.access(id).equals("ok")){
+					if(passwordEncoder.matches(pw, ldto.getPw())) {
+						String part = ldto.getPart();
+						String sport = ldto.getSport();
+						if(part.equals("일반")) {
+							hs.setAttribute("normallogin", true);				
+						}
+						if(part.equals("감독")) {
+							hs.setAttribute("superlogin", true);
+						}
+						hs.setAttribute("member", ldto);
+						hs.setAttribute("sports", sport);
+						npath="redirect:/main";
+					}else {
+						npath="redirect:/login";				
 					}
-					if(part.equals("감독")) {
-						hs.setAttribute("superlogin", true);
-					}
-					hs.setAttribute("member", ldto);
-					hs.setAttribute("sports", sport);
-					npath="redirect:/main";
 				}else {
-					npath="redirect:/login";				
+					npath="redirect:/login";									
 				}
 			}else {
 				npath="redirect:/signup";								
@@ -73,7 +82,7 @@ public class LoginController {
 		}
 		return npath;
 	}
-	
+	//로그아웃
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession hs=request.getSession();
@@ -102,16 +111,25 @@ public class LoginController {
 		}
 		else {
 			LoginService ls = sqlsession.getMapper(LoginService.class);
-			LoginDTO ldto = ls.logincheck(id);
+			MemberDTO ldto = ls.logincheck(id);
 			String msg;
 			if(ldto!=null){
-				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				if(passwordEncoder.matches(pw, ldto.getPw())) {
-					String name = ldto.getName();
-					prw.print(name+"님 환영합니다!");
-				}else {
-				prw.print("아이디 혹은 비밀번호가 틀립니다.");			
+				if(ldto.getPart().equals("일반") && ls.access(id).equals("no")) {
+					prw.print("관리자가 임의로 차단한 계정입니다.\n추가 문의사항은 F&Q 게시판을 이용해주세요.");					
 				}
+				else if(ls.access(id).equals("no")){
+					prw.print("관리자의 승인이 필요한 계정입니다.");
+				}else {
+					PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+					if(passwordEncoder.matches(pw, ldto.getPw())) {
+						String name = ldto.getName();
+						prw.print(name+"님 환영합니다!");
+					}else {
+					prw.print("아이디 혹은 비밀번호가 틀립니다.");			
+					}
+				}
+			}else {
+				prw.print("회원정보가 없습니다.\n회원가입 페이지로 이동합니다.");					
 			}
 		}
 	}

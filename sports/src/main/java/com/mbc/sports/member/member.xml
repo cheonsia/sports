@@ -4,29 +4,33 @@
 
 	<mapper namespace="com.mbc.sports.member.MemberService">
 	
-	<insert id="normalinsert">
-	insert into sportsmember values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},
-	#{param8},#{param9},#{param10},#{param11},'','',#{param12})
-	</insert>
-	
 	<select id="getId" resultType="int">
 	select count(*) from sportsmember where id=#{param1}
 	</select>
-	
-	<insert id="superinsert">
+
+	<insert id="insert">
 	insert into sportsmember values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},
-	#{param8},#{param9},#{param10},#{param11},#{param12},#{param13},#{param14})
+		#{param8},#{param9},#{param10},#{param11},#{param12},#{param13},#{param14},#{param15})
 	</insert>
 	
-	<select id="allget" resultType="com.mbc.sports.member.MemberDTO">
-	select id,name,birthday,tel,email,zzip_code,user_add1,user_add2,sport,team,voe,rr,part from sportsmember
+	<select id="memberlist" resultType="com.mbc.sports.member.MemberDTO">
+		select id,name,birth,tel,email,zzip_code,user_add1,user_add2,sport,team,voe,rr,part,inputaccess
+		from sportsmember
+		where inputaccess='ok'
+	</select>
+	<select id="memberNotlist" resultType="com.mbc.sports.member.MemberDTO">
+		select id,name,birth,tel,email,zzip_code,user_add1,user_add2,sport,team,voe,rr,part,inputaccess 
+		from sportsmember
+		where inputaccess='no'
 	</select>
 	
-	<select id="memberget" resultType="com.mbc.sports.member.MemberDTO">
-	select * from sportsmember where id=#{param1}
+	<select id="select" resultType="com.mbc.sports.member.MemberDTO">
+	select * 
+	from sportsmember 
+	where id=#{param1}
 	</select>
 	
-	<delete id="del_mem">
+	<delete id="delete">
 	delete from sportsmember where id=#{param1}
 	</delete>
 	
@@ -38,12 +42,33 @@
 	update sportsmember set pw=#{param2} where id=#{param1}
 	</update>
 	
-	<update id="mypageupdate">
-		update sportsmember set name=#{param2}, tel=#{param3}, zzip_code=#{param4}, user_add1=#{param5}, user_add2=#{param6}, 
-		sport=#{param7}, team=#{param8}, voe=#{param9}, rr=#{param10} where id=#{param1}
+	<update id="update">
+		update sportsmember set name=#{param2}, birth=#{param3}, tel=#{param4}, zzip_code=#{param5}, user_add1=#{param6}, user_add2=#{param7}, 
+		sport=#{param8}, team=#{param9}, voe=#{param10}, rr=#{param11} where id=#{param1}
 	</update>
-	
-	<update id="VoeFileChange">
+	<update id="voeFileChange">
 		update sportsmember set voe=#{param2} where id=#{param1}
 	</update>
+	<update id="rrFileChange">
+		update sportsmember set rr=#{param2} where id=#{param1}
+	</update>
+	<!--  관리자 관련 -->
+	<select id="countmember" resultType="_int">
+		select count(*)
+		from sportsmember
+		where inputaccess='ok'
+	</select>
+	<select id="countnotmember" resultType="_int">
+		select count(*)
+		from sportsmember
+		where inputaccess='no'
+	</select>
+	<update id="updateAccess">
+		update sportsmember set inputaccess = 
+		case inputaccess 
+			when 'ok' then 'no'
+			else 'ok' end 
+		where id = #{param1}  
+	</update>
+	
 </mapper>

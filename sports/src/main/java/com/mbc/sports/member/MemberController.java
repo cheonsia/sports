@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,184 +21,131 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.mbc.sports.HomeController;
-import com.mbc.sports.login.LoginDTO;
-
 @Controller
 public class MemberController {
-	
-private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	@Autowired
+@Autowired
 	SqlSession sqlsession;
 	
 	String path="C:\\project\\sports\\sports\\src\\main\\webapp\\image\\super";
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String sign_up() {
+	public String signup() {
 		return "signup";
 	}
-	
-	@RequestMapping(value = "/general", method = RequestMethod.GET)
-	public String generalmember_sign_up() {
-		return "general";
-	}
-	
-	@RequestMapping(value = "/super", method = RequestMethod.GET)
-	public String super_sign_up() {
-		return "super";
-	}
-	
-	@RequestMapping(value = "/generalsave", method = RequestMethod.POST)
-	public String generalmember_save(HttpServletRequest request) {
-		
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
-		PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+	@RequestMapping(value = "/signupForm", method = RequestMethod.GET)
+	public String signupForm(String part, Model model) {
+		model.addAttribute("part",part);
+		return "signUpForm";
+	}	
+	//회원 저장
+	@RequestMapping(value = "/memberSave", method = RequestMethod.POST)
+	public String memberSave(MultipartHttpServletRequest mul) throws IOException {
+		String id = mul.getParameter("id");
+		String pw = mul.getParameter("pw");
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		pw=passwordEncoder.encode(pw);
-		String name=request.getParameter("name");
-		String birthday=request.getParameter("birthday");
-		String tel=request.getParameter("tel");
-		String email=request.getParameter("email");
-		String zipp_code=request.getParameter("zipp_code");
-		String user_add1=request.getParameter("user_add1");
-		String user_add2=request.getParameter("user_add2");
-		String sport=request.getParameter("sport");
-		String team=request.getParameter("team");
-		String part=request.getParameter("part");
+		String name = mul.getParameter("name");
+		String birth = mul.getParameter("birth");
+		String tel = mul.getParameter("tel");
+		String email = mul.getParameter("email");
+		String zipp_code = mul.getParameter("zipp_code");
+		String user_add1 = mul.getParameter("user_add1");
+		String user_add2 = mul.getParameter("user_add2");
+		String sport = mul.getParameter("sport");
+		String team = mul.getParameter("team");
+		String part = mul.getParameter("part");
+		String voe="",rr="",access="ok";
 		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		ss.normalinsert(id,pw,name,birthday,tel,email,zipp_code,user_add1,user_add2,sport,team,part);
-		
-		return "login";
+		if(part.equals("감독")) {
+			MultipartFile voeFull = mul.getFile("voe");
+			MultipartFile rrFull = mul.getFile("rr");
+			voe = voeFull.getOriginalFilename();
+			rr = rrFull.getOriginalFilename();
+			voe = filesave(voe, voeFull.getBytes());
+			rr = filesave(rr, rrFull.getBytes());
+			voeFull.transferTo(new File(path+"\\"+voe));
+			rrFull.transferTo(new File(path+"\\"+rr));
+			access="no";
+		}
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ms.insert(id,pw,name,birth,tel,email,zipp_code,user_add1,user_add2,sport,team,voe,rr,part,access);
+		return "redirect:/login";
 	}
-	
-	@RequestMapping(value = "/supersave", method = RequestMethod.POST)
-	public String superintendent_save(MultipartHttpServletRequest mul) throws IOException {
-		
-		String id=mul.getParameter("id");
-		String pw=mul.getParameter("pw");
-		PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-		pw=passwordEncoder.encode(pw);
-		String name=mul.getParameter("name");
-		String birthday=mul.getParameter("birthday");
-		String tel=mul.getParameter("tel");
-		String email=mul.getParameter("email");
-		String zipp_code=mul.getParameter("zipp_code");
-		String user_add1=mul.getParameter("user_add1");
-		String user_add2=mul.getParameter("user_add2");
-		String sport=mul.getParameter("sport");
-		String team=mul.getParameter("team");
-		MultipartFile voe_mf = mul.getFile("voe");
-		String voe_fname = voe_mf.getOriginalFilename();
-		voe_fname = voe_filesave(voe_fname, voe_mf.getBytes());
-		voe_mf.transferTo(new File(path+"\\"+voe_fname));
-		
-		MultipartFile rr_mf = mul.getFile("rr");
-		String rr_fname = rr_mf.getOriginalFilename();
-		rr_fname = rr_filesave(rr_fname, rr_mf.getBytes());
-		rr_mf.transferTo(new File(path+"\\"+rr_fname));
-		
-		String part=mul.getParameter("part");
-		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		ss.superinsert(id,pw,name,birthday,tel,email,zipp_code,user_add1,user_add2,sport,team,voe_fname,rr_fname,part);
-		
-		return "redirect:/";
-	}
-
-	private String voe_filesave(String voe_fname, byte[] bytes) {
+	//이미지 고유 저장
+	private String filesave(String fname, byte[] bytes) {
 		UUID uuid = UUID.randomUUID();
-		String fname = uuid.toString()+"_"+voe_fname;
-		return fname;
+		return uuid.toString()+"_"+fname;
 	}
-	
-	private String rr_filesave(String rr_fname, byte[] bytes) {
-		UUID uuid = UUID.randomUUID();
-		String fname = uuid.toString()+"_"+rr_fname;
-		return fname;
-	}
-
+	//ID 중복확인
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
-	public void IDCheck(String id, HttpServletResponse response) throws IOException {
-		
+	public void idCheck(String id, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		int result = ss.getId(id);
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		int result = ms.getId(id);
 		PrintWriter prw =response.getWriter();
 		prw.print(result);
 	}
-	
-	@RequestMapping(value = "/member_list", method = RequestMethod.GET)
-	public String member_list(Model mo) {
+	//승인된 회원 조회
+	@RequestMapping(value = "/memberList", method = RequestMethod.GET)
+	public String memberList(Model mo) {
 				
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		ArrayList<MemberDTO> list = ss.allget();
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ArrayList<MemberDTO> list = ms.memberlist();
 		mo.addAttribute("list", list);
 		
-		return "member_list";
+		return "memberList";
 	}
-	
-	@RequestMapping(value = "/member_delete", method = RequestMethod.GET)
-	public String Member_Delete_View(String id, Model mo) {
+	//승인 안된 회원 조회
+	@RequestMapping(value = "/memberNoList", method = RequestMethod.GET)
+	public String memberNoList(Model mo) {
 		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO member = ss.memberget(id);
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ArrayList<MemberDTO> list = ms.memberNotlist();
+		mo.addAttribute("list", list);
+		
+		return "memberList";
+	}
+	//회원 삭제 창 이동
+	@RequestMapping(value = "/memberdelete", method = RequestMethod.GET)
+	public String memberdelete(String id, Model mo) {
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		MemberDTO member = ms.select(id);
 		mo.addAttribute("del", member);
-		
-		return "member_delete";
+		return "memberDelete";
 	}
-	
-	@RequestMapping(value = "/delete_member", method = RequestMethod.POST)
-	public String Member_Delete(HttpServletRequest request) {
-		
+	//회원 삭제
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)
+	public String delete(HttpServletRequest request) {
 		String id = request.getParameter("id");
-		String part = request.getParameter("part");
-		
+		String part = request.getParameter("part");		
 		if(part.equals("감독")) {
-			String fname1 = request.getParameter("voe");
-			String fname2 = request.getParameter("rr");
-			
-			File img1 = new File(path+"\\"+fname1);
-			img1.delete();
-			
-			File img2 = new File(path+"\\"+fname2);
-			img2.delete();
-		}
-		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		ss.del_mem(id);
-		
-		return "redirect:/member_list";
+			String voe = request.getParameter("voe");
+			String rr = request.getParameter("rr");	
+			File voeImg = new File(path+"\\"+voe);
+			voeImg.delete();		
+			File rrImg = new File(path+"\\"+rr);
+			rrImg.delete();
+		}		
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ms.del_mem(id);
+		return "redirect:/memberList";
 	}
-	
-	@RequestMapping(value = "/member_detail", method = RequestMethod.GET)
-	public String Detail_View(String id, Model mo) {
-		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO member = ss.memberget(id);
-		mo.addAttribute("wm", member);
-		
-		return "member_detail";
-	}
-	
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String Mypage(String id, Model mo) {
-		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO member = ss.memberget(id);
-		mo.addAttribute("my", member);
-		
+	//마이페이지(상세페이지)로 이동
+	@RequestMapping(value = "/mypage")
+	public String mypage(String id, Model model) {
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		MemberDTO member = ms.select(id);
+		model.addAttribute("my", member);
 		return "mypage";
-	}
-	
+	}	
+	//비밀번호 확인
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
 	public void pw_Check(String id, String pw, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter prw = response.getWriter();
-		MemberService ss = sqlsession.getMapper(MemberService.class);
+		MemberService ms = sqlsession.getMapper(MemberService.class);
 		int result;
-		String pwcheck = ss.pwCheck(id);		
+		String pwcheck = ms.pwCheck(id);		
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if(passwordEncoder.matches(pw, pwcheck)) {
 			result=1;
@@ -208,37 +153,34 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		else {
 			result=0;
 		}
-		
 		prw.print(result);
 	}
-	
+	//비밀번호 수정
 	@RequestMapping(value = "/pwUpdate", method = RequestMethod.POST)
-	public String pw_Update(String id, String pw, Model mo) {
-		
+	public void pwUpdate(String id, String pw) {
 		PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 		pw=passwordEncoder.encode(pw);
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		ss.pwupdate(id, pw);
-		mo.addAttribute("id", id);
-		
-		return "redirect:/mypage";
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ms.pwupdate(id, pw);
 	}
-	
-	@RequestMapping(value = "/mypage_update", method = RequestMethod.GET)
-	public String Mypage2(String id, Model mo) {
+	//정보 수정 창으로 가기
+	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
+	public String memberupdate(String id, Model mo) {
 		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		MemberDTO update_member = ss.memberget(id);
-		mo.addAttribute("up", update_member);
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		MemberDTO update_member = ms.select(id);
+		mo.addAttribute("my", update_member);
 		
-		return "mypage_update_view";
+		return "memberUpdate";
 	}
-	
-	@RequestMapping(value = "/myUpdate", method = RequestMethod.POST)
-	public String mypage__Update(MultipartHttpServletRequest mul, Model mo) throws IOException {
-		String voe_fname,rr_fname;
+	//정보 수정
+	@RequestMapping(value = "/memberUpdate", method = RequestMethod.POST)
+	public String memberUpdate(MultipartHttpServletRequest mul, Model mo) throws IOException {
+		String voe="", rr="";
+		String part=mul.getParameter("part");
 		String id=mul.getParameter("id");
 		String name=mul.getParameter("name");
+		String birth = mul.getParameter("birth");
 		String tel=mul.getParameter("tel");
 		String zipp_code=mul.getParameter("zipp_code");
 		String user_add1=mul.getParameter("user_add1");
@@ -247,41 +189,44 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		String team=mul.getParameter("team");
 		String refvoe=mul.getParameter("refvoe");
 		String refrr=mul.getParameter("refrr");
-		MultipartFile voe_mf = mul.getFile("voe");
-		MultipartFile rr_mf = mul.getFile("rr");
-		voe_fname = voe_mf.getOriginalFilename();		
-		rr_fname = rr_mf.getOriginalFilename();
-		//회원
-		if(refvoe.equals("")||refvoe.equals(null)) {
-			voe_fname ="";
-		}
-		if(refrr.equals("")||refrr.equals(null)) {
-			rr_fname ="";
-		}
 		//감독
-		if(voe_fname.equals("")||voe_fname.equals(null)) {
-			voe_fname = refvoe;
-		}else{
-			voe_fname = voe_filesave(voe_fname, voe_mf.getBytes());
-			voe_mf.transferTo(new File(path+"\\"+voe_fname));
-			File file = new File(path+"\\"+refvoe);
-			file.delete();
+		if(part.equals("감독")) {
+			MultipartFile voe_mf = mul.getFile("voe");
+			MultipartFile rr_mf = mul.getFile("rr");
+			voe = voe_mf.getOriginalFilename();		
+			rr = rr_mf.getOriginalFilename();		
+			if(voe.equals("refvoe")) {
+				voe = refvoe;
+			}else{
+				voe = filesave(voe, voe_mf.getBytes());
+				voe_mf.transferTo(new File(path+"\\"+voe));
+				File file = new File(path+"\\"+refvoe);
+				file.delete();
+			}
+			if(rr.equals("refvoe")) {
+				rr = refvoe;
+			}else {
+				rr = filesave(rr, rr_mf.getBytes());
+				rr_mf.transferTo(new File(path+"\\"+rr));			
+				File file = new File(path+"\\"+refrr);
+				file.delete();
+			}
 		}
-		if(rr_fname.equals("")||rr_fname.equals(null)) {
-			rr_fname = refvoe;
-		}else {
-			rr_fname = rr_filesave(rr_fname, rr_mf.getBytes());
-			rr_mf.transferTo(new File(path+"\\"+rr_fname));			
-			File file = new File(path+"\\"+refrr);
-			file.delete();
-		}
-		
-		MemberService ss = sqlsession.getMapper(MemberService.class);
-		ss.mypageupdate(id,name,tel,zipp_code,user_add1,user_add2,sport,team,voe_fname,rr_fname);
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ms.update(id,name,birth,tel,zipp_code,user_add1,user_add2,sport,team,voe,rr);
 		mo.addAttribute("id", id);
-		
 		return "redirect:/mypage";
 	}
-	
-
+	//관리자 권한: 회원 승인 관리
+	@RequestMapping(value = "/memberAccess")
+	public String possible(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		MemberService ms = sqlsession.getMapper(MemberService.class);
+		ms.updateAccess(id);
+		
+		HttpSession hs = request.getSession();
+		hs.setAttribute("access", ms.countmember());
+		hs.setAttribute("notAccess", ms.countnotmember());
+		return "redirect:/memberList";
+	}
 }

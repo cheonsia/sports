@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 public interface MemberService {
 
-	void normalinsert(String id, String pw, String name, String birthday, String tel, String email, String zipp_code,
-			String user_add1, String user_add2, String sport, String team, String part);
-	
 	int getId(String id);
 
-	void superinsert(String id, String pw, String name, String birthday, String tel, String email, String zipp_code,
-			String user_add1, String user_add2, String sport, String team, String voe_fname, String rr_fname,
-			String part);
+	void insert(String id, String pw, String name, String birthday, String tel, String email, String zipp_code,
+			String user_add1, String user_add2, String sport, String team, String voe, String rr, String part,
+			String access);
+	
+	ArrayList<MemberDTO> memberlist();
 
-	ArrayList<MemberDTO> allget();
+	ArrayList<MemberDTO> memberNotlist();
 
-	MemberDTO memberget(String id);
+	MemberDTO select(String id);
 
 	void del_mem(String id);
 
@@ -23,7 +22,14 @@ public interface MemberService {
 
 	void pwupdate(String id, String pw);
 
-	void mypageupdate(String id, String name, String tel, String zipp_code, String user_add1, String user_add2,
+	void update(String id, String name, String birth, String tel, String zipp_code, String user_add1, String user_add2,
 			String sport, String team, String voe_fname, String rr_fname);
+	
+	int countmember();
+	
+	int countnotmember();
+
+	void updateAccess(String id);
+
 
 }
