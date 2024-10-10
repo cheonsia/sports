@@ -24,6 +24,7 @@
 			
 			
 			.random_whole {
+				position: relative;
 				width: 100%;
 				height: auto;
 				margin: 0 auto;
@@ -147,6 +148,25 @@
 				color: #006400;
 				background-color: #f9f9f9;
 				border-color: #006400;
+			}
+			
+			
+			button.re_random_show {
+				display: block;
+				width: 180px;
+				height: 40px;
+				color: #093d09;
+				background-color: #f9f9f9;
+				font-weight: bold;
+				border: 1px solid #093d09;
+				border-radius: 40px;
+				margin: 20px auto 0 auto;
+				cursor: url('./image/baseball/cursor/pointer2.png'), auto !important;
+			}
+			
+			button.re_random_show:hover {
+				color: #f9f9f9;
+				background-color: #006400;
 			}
 			
 			
@@ -299,7 +319,7 @@
 				width: max-content;
 				max-width: 100%;
 				height: auto;
-				top: 50%;
+				top: 48%;
 				left: 50%;
 				transform: translate(-50%, -50%);
 				padding: 50px;
@@ -422,7 +442,7 @@
 						$('#player_weight').html(randomRealArray[5]);//몸무게
 						$('#player_position').html(randomRealArray[6]);//포지션
 						
-						$('#random_result_copy').attr('value', '팀: '+ randomRealArray[0] + ', 선수 이름: ' + randomRealArray[1] + ', 등 번호: ' + randomRealArray[2] + ', 생일: ' +  randomRealArray[3] + ', 키: ' + randomRealArray[4] + ', 몸무게: ' + randomRealArray[5] + ', 포지션: ' + randomRealArray[6])
+						$('#random_result_copy').attr('value', '팀: '+ randomRealArray[0] + ', 선수 이름: ' + randomRealArray[1] + ', 선수 번호: ' + randomRealArray[2] + ', 생일: ' +  randomRealArray[3] + ', 키: ' + randomRealArray[4] + ', 몸무게: ' + randomRealArray[5] + ', 포지션: ' + randomRealArray[6])
 						$('.random_img_logo').attr('src', team_img);
 						
 						resultShow();
@@ -444,6 +464,20 @@
 						$('body').css('overflow', 'auto');
 						$('.random_show_whole').removeClass('random_show');
 					}
+
+					function NotReload(){
+					    if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116) ) {
+					        event.keyCode = 0;
+					        event.cancelBubble = true;
+					        event.returnValue = false;
+					    }
+					}
+
+					document.onkeydown = NotReload;
+					
+					function rePopShow() {
+						resultShow();
+					}
 				</script>
 				<input type="text" id="random_result_copy" value="">
 				<div class="random_box">
@@ -453,6 +487,7 @@
 						<img alt="핸들 이미지" src="./image/baseball/random/baseball_random_handle.png" class="random_img_handle">
 						<button type="button" onclick="randomReplay()" class="random_play_btn">다시 뽑기</button>
 					</div>
+					<button type="button" onclick="rePopShow()" class="re_random_show">결과 다시 보기</button>
 				</div>
 				<div class="random_show_whole">
 					<div class="random_show_bg"></div>
@@ -468,8 +503,8 @@
 									<p id="player_name">플레이어 이름</p>
 								</div>
 								<div>
-									<p>등 번호</p>
-									<p id="player_num">등 번호</p>
+									<p>선수 번호</p>
+									<p id="player_num">선수 번호</p>
 								</div>
 								<div>
 									<p>생일</p>

@@ -8,8 +8,185 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<style type="text/css">
+		.main_section{
+		margin-top: 30px;
+		}
+		.header_team_logo{
+			display: none;
+		}
+		h1{
+			margin:	0 auto 10px auto;
+		}
+		.signform{
+			width: 550px;
+			margin: 0 auto;
+		}
+		.signform *{
+			font-size: 14px;
+		}
+		
+		.signform div{
+			display: flex;
+		    align-items: center;
+		    height:40px;
+		    margin: 0 auto 10px auto;
+		    
+		}
+		.signform input[type="password"],
+		.signform input[type="text"]{
+			width: 160px;
+			height: auto;
+			margin: 0 10px 0 10px;
+			border: 1px solid #e8e8e8;
+		}
+		.signform input[type="password"]:focus,
+		.signform input[type="text"]:focus{
+			border-color: #556B2F60;
+			box-shadow: 0 0 7px rgba(158,187,139,20);
+		}
+		.signform input[type="radio"]{
+			display: none;
+		}
+		label{
+		    margin: 0;
+    		width: 120px;
+    		min-width: 120px;
+		}
+		.signform .pw1{
+			display: flex;
+		    align-items: center;
+		    margin: 0;
+		}
+		#pw,#pwcheck{
+			margin: 0 10px 0 10px;
+		}
+		.pw1 i{
+			margin: auto 0 auto 0;
+	        color: darkgreen;
+		}
+		#year,
+		#month,
+		#day{
+			text-align: center;
+			width: 70px;
+			height: 25px;
+			margin: 0 10px 0 10px;
+			border: 1px solid #e8e8e8;
+		}
+		.phone #fir_tel{
+			text-align: center;
+			width: 80px;
+			height: 25px;
+			margin: 0 10px 0 10px;
+			border: 1px solid #e8e8e8;		
+		}
+		.signform input[type="text"]#mid_tel,
+		.signform input[type="text"]#end_tel{
+			width:60px;
+		}
+		.signform .col-sm-10{
+			padding: 0; 
+			display:flex;
+			width: 100%;
+		    height: auto;
+		}
+		.signform .col-sm-10 .add{
+			display: block;
+			width: 100%;
+		    height: auto;
+		    margin: 0;
+		} 
+		.signform .col-sm-10 .add1{ 
+			display: flex;
+			margin: 0;
+		}
+		.signform .col-sm-10 .add2{ 
+			width: 100%;
+			margin: 0;
+		}
+		.signform .col-sm-10 #UserAdd1,
+		.signform .col-sm-10 #UserAdd2{ 
+			width: 380px;
+		}
+		.email{
+			width: 100%;
+		}
+		.signform .email_write{
+			width:300px;
+			margin:0;
+		}
+		.signform .email_write .form_w200{
+			width: 100px;
+		}
+		.signform .email_write .select{
+			text-align: center;
+			height: 25px;
+			margin: 0 10px 0 10px;
+			border: 1px solid #e8e8e8;		
+		}
+		input[type="radio"] + span{
+			width: 80px;
+			max-width: 80px;
+			height: 25px;
+			line-height: 25px;
+			text-align: center;
+		}		
+		input[type="radio"]:checked + span{
+			color:white;
+		}		
+		.signform .team{
+			margin: 0;
+		}
+		.team select{
+			border: 1px solid #e8e8e8;
+			min-width: 110px;
+			height: 25px;
+			text-align: center;
+		}
+		.team label{
+			width:max-content;
+			min-width:max-content;
+			margin-right: 20px;
+		}
+		.signform .button{
+			width: max-content;
+		    margin: 20px auto;
+		}
+		
+		.signform .button input[type="button"]{
+			width: 150px;
+			height: 40px;
+		}
+		
+		.signform .button input[type="button"]+input[type="button"]{
+			margin-left: 20px;
+		}	
+		.signform .button input:first-child{
+			border: 1px solid #4c693f;
+			background-color: white;
+			color:#4c693f;
+		}
+		.signform .button input:first-child:hover{
+			border: none;
+			background-color: #4c693f80;
+			color: white;
+			
+		}
+		.signform .button input:last-child{
+			border: none;
+			background-color: #4c693f;
+			color: white;
+		}
+		.signform .button input:last-child:hover{
+			border: none;
+			background-color: #4c693f80;
+			color: white;
+		}
+	</style>
 	<script>
 	$(document).ready(function(){
+		updateList('축구');
 		//비밀번호 보기 구현
 	    $('.pw i').on('click',function(){
 	        $('input').toggleClass('active');
@@ -45,7 +222,7 @@
 						alertShow('중복확인',"이미 사용중인 아이디 입니다.");
 						$('#idcheck2').val(1);
 					}else{
-						alertShow('중복확인',"사용할 수 있는 아이디 입니다.");
+						alertShow('중복확인',"사용가능한 아이디 입니다.");
 						$('#idcheck2').val(0);
 					}
 				},
@@ -135,9 +312,9 @@
 	    acts[0] = new Activity('축구', ['강원', '울산', '수원FC', '김천', '서울', '포항', '광주', '제주', '대전', '인천', '전북', '대구']);
 	    acts[1] = new Activity('야구', ['KIA', '삼성', 'LG', '두산', 'KT', '한화', '롯데', 'SSG', 'NC', '키움']);
 	function updateList(str){
-	    var teamLen = $('#team').val().length;
+		var gf = document.memberform;
+	    var teamLen = gf.team.length;
 	    var numActs;
-	 
 	    for (var i = 0; i < acts.length; i++){
 	        if (str == acts[i].name) {
 	            numActs = acts[i].list.length;
@@ -206,10 +383,10 @@
 		var year = $("select[id='year'] option:selected").val();
 		var month = $("select[id='month'] option:selected").val();
 		var day = $("select[id='day'] option:selected").val();
-		var total_birthday = year + "-" + month + "-" + day;
+		var birth= year + "-" + month + "-" + day;
 		var birth_regexp = /^\d{4}-\d{2}-\d{2}$/;//생년월일 정규식		
-		if(birth_regexp.test(total_birthday)) {
-			$('#total_birthday').val(total_birthday);
+		if(birth_regexp.test(birth)) {
+			$('#birth').val(birth);
 		}
 		else {
 			alertShow('오류','생년월일을 입력해주세요');
@@ -245,8 +422,8 @@
 		}			
 		//주소 체크
 		var code = $('#zipp_code').val();
-		var cadd1 = $('user_add1').val();
-		var cadd2 = $('user_add2').val();
+		var cadd1 = $('#UserAdd1').val();
+		var cadd2 = $('#UserAdd2').val();
 		if(code=="" || cadd1=="") {
 			alertShow('오류','우편주소를 검색해주세요.');
 			return false;
@@ -274,66 +451,6 @@
 		$('#memberform').submit();
 	}
 	</script>
-	<style type="text/css">
-		.signform{
-			width: 800px;
-			margin: 0 auto;
-		}
-		.signform div{
-			display: flex;
-		    align-items: center;
-		    height:40px;
-		    margin: 0 auto 20px auto;
-		    
-		}
-		.signform input[type="password"],
-		.signform input[type="text"]{
-			width: 280px;
-			height: auto;
-			margin: 0 10px 0 10px;
-			border: 1px solid #e8e8e8;
-		}
-		label{
-			width: 120px;
-		}
-		.signform .pw1{
-			display: flex;
-		    align-items: center;
-		    margin: 0;
-		}
-		#pw,#pwcheck{
-			margin: 0 10px 0 10px;
-		}
-		.pw1 i{
-			margin: auto 0 auto 0;
-	        color: darkgreen;
-		}
-		#year,
-		#month,
-		#day,
-		.phone #fir_tel{
-			text-align: center;
-			width: 75px;
-			height: 25px;
-			margin: 0 10px 0 10px;
-			border: 1px solid #e8e8e8;
-		}
-		.col-sm-10{
-			display: block;
-		}
-		
-		.signform input[type="text"]#mid_tel,
-		.signform input[type="text"]#end_tel{
-			width:60px;
-		}
-		.signform .email_write{
-			width:300px;
-			margin:0;
-		}
-		.signform .email_write .form_w200{
-			width:120px;
-		}
-	</style>
 </head>
 <body>
 	<h1>회원가입</h1>
@@ -415,7 +532,22 @@
 			<input type="text" maxlength="4" id="end_tel" size="5">
 			<input type="hidden" id="total_tel" name="tel" value="">
 		</div>
-		<div>
+		<div class="col-sm-10">
+		    <label for="zipp_btn" class="form-label">주소</label>		    
+		    <div class="add">
+			    <div class="add1">
+			        <input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" style="width: 15%; display: inline;">
+				    <input type="button" id="zipp_btn" class="btn" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+			    </div>
+			    <div class="add2">
+				    <input type="text" class="form-control mb-2" name="user_add1" id="UserAdd1" maxlength="40" placeholder="기본 주소를 입력하세요" required readonly>
+			    </div>
+			    <div class="add2">
+				    <input type="text" class="form-control" name="user_add2" id="UserAdd2" maxlength="40" placeholder="상세 주소를 입력하세요">
+			    </div>
+			</div>
+		</div>
+		<div class="email">
 			<label for="email_id">이메일</label>
 			<div class="email_write">
 				<input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" /> @ 
@@ -433,44 +565,25 @@
 			</div>
 			<input type="hidden" id="total_email" name="email" value="">
 		</div>
-		<div class="col-sm-10">
-		    <label for="zipp_btn" class="form-label">주소</label><br/>
-	<!--    <div class="invalid-feedback">주소를 입력해주시기 바랍니다!</div> -->
-		    <input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" style="width: 10%; display: inline;">
-		    <input type="button" id="zipp_btn" class="btn" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-		    <input type="text" class="form-control mb-2" name="user_add1" id="UserAdd1" maxlength="40" placeholder="기본 주소를 입력하세요" required readonly>
-		    <input type="text" class="form-control" name="user_add2" id="UserAdd2" maxlength="40" placeholder="상세 주소를 입력하세요">
-		</div>
-		<div>
+		<div class="sport">
 			<label><c:if test="${part=='일반'}">선호 </c:if>종목</label>
 			<label>
-			<input type="radio" name="sport" onclick="updateList(this.value)" checked value="축구"><span><span></span></span><span>축구</span>
+			<input type="radio" name="sport" onclick="updateList(this.value)" value="축구" checked><span>축구</span>
 			</label>
 			<label>
-			<input type="radio" name="sport" onclick="updateList(this.value)" value="야구"><span><span></span></span><span>야구</span>
+			<input type="radio" name="sport" onclick="updateList(this.value)" value="야구"><span>야구</span>
 			</label>
-		</div>
-		<div>
-		<c:if test="${part=='일반'}">
-			<label for="team">선호 팀</label>
-		</c:if>
-		<c:if test="${part=='감독'}">
-			<label for="team">관리 팀</label>
-		</c:if>
-			<select name="team" id="team">
-				<option value="강원">강원
-				<option value="울산">울산
-				<option value="수원FC">수원FC
-				<option value="김천">김천
-				<option value="서울">서울
-				<option value="포항">포항
-				<option value="광주">광주
-				<option value="제주">제주
-				<option value="대전">대전
-				<option value="인천">인천
-				<option value="전북">전북
-				<option value="대구">대구
-			</select>
+			<div class="team">
+				<c:if test="${part=='일반'}">
+					<label for="team">선호 팀</label>
+				</c:if>
+				<c:if test="${part=='감독'}">
+					<label for="team">관리 팀</label>
+				</c:if>
+					<select name="team" id="team">
+						<option value="">
+					</select>
+			</div>
 		</div>
 		<c:if test="${part=='감독'}">
 			<div>
@@ -482,9 +595,9 @@
 				<input type="file" name="rr" id="rr">
 			</div>
 		</c:if>
-		<div>
-			<input type="button" value="회원가입" onclick="check()">
+		<div class="button">
 			<input type="button" value="취소" onclick="location.href='./'">
+			<input type="button" value="회원가입" onclick="check()">
 		</div>
 	</form>
 </body>
