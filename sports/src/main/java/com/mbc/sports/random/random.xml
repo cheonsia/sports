@@ -14,17 +14,4 @@
 	<select id="randomSelectPosition" resultType="com.mbc.sports.random.PlayerDTO">
 		select tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main from PLAYER_BASEBALL where main = #{param1}
 	</select>
-	
-	<select id="SrandomSelectAll" resultType="com.mbc.sports.random.PlayerDTO">
-		select tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main from PLAYER_SOCCER
-	</select>
-	<select id="SrandomSelectBoth" resultType="com.mbc.sports.random.PlayerDTO">
-		select tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main from PLAYER_SOCCER where tname = #{param1} and main = #{param2}
-	</select>
-	<select id="SrandomSelectTeam" resultType="com.mbc.sports.random.PlayerDTO">
-		select tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main from PLAYER_SOCCER where tname = #{param1}
-	</select>
-	<select id="SrandomSelectPosition" resultType="com.mbc.sports.random.PlayerDTO">
-		select tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main from PLAYER_SOCCER where main = #{param1}
-	</select>
 </mapper>

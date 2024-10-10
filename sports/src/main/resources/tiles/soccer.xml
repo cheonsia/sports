@@ -103,15 +103,4 @@
       <put-attribute name="title" value="축구 경기 일정 수정"/>
       <put-attribute name="body" value="/WEB-INF/views/soccer/game/update.jsp"/>
    </definition>
-   
-   <definition name="soccerRandom" extends="soccerLayout">
-		<put-attribute name="title" value="랜덤뽑기"/>
-		<put-attribute name="body" value="/WEB-INF/views/soccer/random/random.jsp"/>
-	</definition>
-	
-	<definition name="SrandomResult" extends="soccerLayout">
-		<put-attribute name="title" value="랜덤뽑기 결과"/>
-		<put-attribute name="body" value="/WEB-INF/views/soccer/random/result.jsp"/>
-	</definition>
-	
 </tiles-definitions>

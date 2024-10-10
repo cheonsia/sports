@@ -47,12 +47,6 @@
             location.href = "selectTeam?name="+area_val+"&play=축구";//컨트롤러에 영어 지역 가져감
          }
          
-         function playRandom() {//좌측 사이드메뉴 선수 랜덤 클릭 시
-             var area_val = $('#soccer_area').val();//baseball_area 값 가져옴
-             if(area_val == "" || area_val== null) area_val = "ALL";
-             location.href = "soccerRandom?name="+area_val;//컨트롤러에 영어 지역 가져감
-         }
-         
          function soccer_highlight() {//좌측 사이드메뉴 하이라이트 클릭 시
              var area_val = $('input[name="soccer_area"]').val();//soccer_area 값 가져옴
              if(area_val == "" || area_val== null) area_val = "ALL";
@@ -216,9 +210,6 @@
 	                              <a href="playerinput?play=축구" onclick="playMove()">- 선수 등록</a>
 	                           </li>
                            </c:if>
-                            <li>
-                              <a href="javascript:void(0)" onclick="playRandom()">- 랜덤 뽑기</a>
-                           </li>
                         </ul>
                      </li>
                      <li>
