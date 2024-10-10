@@ -41,6 +41,13 @@ public class RandomController {
 		return "randomResult";
 	}
 	
+	@RequestMapping(value = "SrandomResult")
+	public String SrandomResult(HttpServletRequest request, Model mo) {
+		String name = request.getParameter("name");
+		mo.addAttribute("name", name);
+		return "SrandomResult";
+	}
+	
 	@RequestMapping(value = "randomSelectAll")
 	public String randomSelectAll(HttpServletRequest request, Model mo) {
 		String name = "ALL";
@@ -83,5 +90,49 @@ public class RandomController {
 		mo.addAttribute("randomList", randomList);
 		mo.addAttribute("name", name);
 		return "randomResult";
+	}
+	
+	@RequestMapping(value = "SrandomSelectAll")
+	public String SrandomSelectAll(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.SrandomSelectAll();
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "SrandomResult";
+	}
+	
+	@RequestMapping(value = "SrandomSelectBoth")
+	public String SrandomSelectBoth(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		String tname = request.getParameter("team");
+		String main = request.getParameter("position");
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.SrandomSelectBoth(tname,main);
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "SrandomResult";
+	}
+
+	@RequestMapping(value = "SrandomSelectTeam")
+	public String SrandomSelectTeam(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		String tname = request.getParameter("team");
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.SrandomSelectTeam(tname);
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "SrandomResult";
+	}
+
+	@RequestMapping(value = "SrandomSelectPosition")
+	public String SrandomSelectPosition(HttpServletRequest request, Model mo) {
+		String name = "ALL";
+		String main = request.getParameter("position");
+		RandomService rs = sqlSession.getMapper(RandomService.class);
+		ArrayList<PlayerDTO> randomList = rs.SrandomSelectPosition(main);
+		mo.addAttribute("randomList", randomList);
+		mo.addAttribute("name", name);
+		return "SrandomResult";
 	}
 }
