@@ -60,6 +60,26 @@
 		<put-attribute name="body" value="/WEB-INF/views/baseball/game/highlight.jsp"/>
 	</definition>
 	
+	<definition name="baseball_schedule" extends="baseballLayout">
+      <put-attribute name="title" value="야구 경기 일정"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/game/schedule.jsp"/>
+   </definition>
+   
+   <definition name="baseball_gameinfo" extends="baseballLayout">
+      <put-attribute name="title" value="야구 경기 일정"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/game/info.jsp"/>
+   </definition>
+   
+   <definition name="baseball_gamedelete" extends="baseballLayout">
+      <put-attribute name="title" value="야구 경기 일정 삭제"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/game/delete.jsp"/>
+   </definition>
+   
+   <definition name="baseball_gameupdate" extends="baseballLayout">
+      <put-attribute name="title" value="야구 경기 일정 수정"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/game/update.jsp"/>
+   </definition>
+	
 	<definition name="baseballRandom" extends="baseballLayout">
 		<put-attribute name="title" value="랜덤뽑기"/>
 		<put-attribute name="body" value="/WEB-INF/views/baseball/random/random.jsp"/>
