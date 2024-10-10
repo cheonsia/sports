@@ -269,7 +269,7 @@
 			.random_box {
 				width: 100%;
 				height: auto;
-				margin: 0 auto;
+				margin: 20px auto 0 auto;
 			}
 			
 			.random_img_whole {
@@ -297,13 +297,22 @@
 			    transform: translateX(-50%);
 			}
 			
-			img.random_img_logo{
+			img.random_img_logo {
 				position: absolute;
 				width: 100px;
 				height: auto;
 			    top: 110px;
 				left: 50%;
 			    transform: translateX(-50%);
+				z-index: 2;
+			}
+			
+			.random_img_whole video {
+				position: absolute;
+				display: block;
+				width: 100%;
+				height: auto;
+				z-index: 1;
 			}
 			
 			button.random_play_btn {
@@ -320,6 +329,7 @@
 				left: 50%;
 				transform: translateX(-50%);
 				cursor: url('./image/baseball/cursor/pointer2.png'), auto !important;
+				z-index: 2;
 			}
 			
 			button.random_play_btn:hover {
@@ -328,6 +338,10 @@
 				border-color: #006400;
 			}
 			
+			
+			#footer {
+				z-index: 3;
+			}
 			
 			
 			
@@ -343,91 +357,6 @@
 				}
 			}
 		</style>
-		<script type="text/javascript">
-			function randomNavClick(ths) {
-				var randomRadioVal = $('input[name="random_radio"]:checked').val();
-				var randomRadioLen = $('input[name="random_radio"]:checked').length;
-				var random_type = ths.dataset.type;
-				var random_val = ths.dataset.value;
-
-				if(random_type == 'all') {
-					$('#random_radio1').prop('checked', true);
-					$('#random_radio2').prop('checked', false);
-					$('#random_radio3').prop('checked', false);
-					$('.random_content_row').hide();
-				}
-				else {
-					if(randomRadioLen == 0) {
-						$('#random_radio1').prop('checked', true);
-						$('.random_content_row').hide();
-					}
-					else {
-						$('#random_radio1').prop('checked', false);
-						
-						if(random_val == 'team') {
-							if($('#random_radio2').is(':checked')) {
-								$('.random_content_row1').show();
-							}
-							else {
-								$('.random_content_row1').hide();
-							}
-						}
-						else {
-							if($('#random_radio3').is(':checked')) {
-								$('.random_content_row2').show();
-							}
-							else {
-								$('.random_content_row2').hide();
-							}
-						}
-					}
-				}
-			}
-
-			function randomPlay() {
-				var randomRadioVal = $('input[name="random_radio"]:checked').val();
-				var randomRadioLen = $('input[name="random_radio"]:checked').length;
-				var logo_len = $('input[name="random_content_logo"]:checked').length;
-				var logo_val = $('input[name="random_content_logo"]:checked').val();
-				var posi_len = $('input[name="random_content_position"]:checked').length;
-				var posi_val = $('input[name="random_content_position"]:checked').val();
-
-				if(randomRadioLen >= 2) {//팀/포지션 모두 선택 시
-					if(logo_len <= 0 || randomRadioVal == 'position') {
-						alertShow('팀, 포지션 선택','팀, 포지션은 반드시 하나씩 선택해주세요.');
-					}
-					else {
-						location.href = 'randomSelectBoth?team='+logo_val+'&position='+posi_val;
-					}
-				}
-				else {
-					if(randomRadioVal == 'all') {//모두 선택 시
-						location.href = 'randomSelectAll';
-					}
-					else if(randomRadioVal == 'team') {//팀 선택 시
-						if(logo_len <= 0) {
-							alertShow('팀 선택','팀은 반드시 하나 선택해주세요.');
-						}
-						else {
-							location.href = 'randomSelectTeam?team='+logo_val;
-						}
-					}
-					else if(randomRadioVal == 'position') {//포지션 선택 시
-						if(logo_len <= 0) {
-							alertShow('포지션 선택','포지션은 반드시 하나 선택해주세요.');
-						}
-						else {
-							location.href = 'randomSelectPosition?position='+posi_val;
-						}
-					}
-				}
-			}
-			
-			function randomTeamClick(ths) {
-				var ths_type = ths.dataset.type;
-				$('.random_img_logo').attr('src', './image/baseball/logo/'+ths_type+'.png');
-			}
-		</script>
 	</head>
 	<body>
 		<div class="random_whole">
@@ -464,43 +393,43 @@
 				<div class="random_content_row random_content_row1">
 					<div class="random_content_flex">
 						<label for="random_logo_kia">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_kia" data-id="kia" data-type="KIA" name="random_content_logo" value="KIA">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_kia" data-id="kia" data-type="KIA" name="random_content_logo" value="kia">
 							<img alt="기아 로고 이미지" src="./image/baseball/logo/KIA.png">
 						</label>
 						<label for="random_logo_kt">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_kt" data-id="kt" data-type="KT" name="random_content_logo" value="KT">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_kt" data-id="kt" data-type="KT" name="random_content_logo" value="kt">
 							<img alt="KT 로고 이미지" src="./image/baseball/logo/KT.png">
 						</label>
 						<label for="random_logo_lg">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_lg" data-id="lg" data-type="LG" name="random_content_logo" value="LG">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_lg" data-id="lg" data-type="LG" name="random_content_logo" value="lg">
 							<img alt="LG 로고 이미지" src="./image/baseball/logo/LG.png">
 						</label>
 						<label for="random_logo_nc">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_nc" data-id="nc" data-type="NC" name="random_content_logo" value="NC">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_nc" data-id="nc" data-type="NC" name="random_content_logo" value="nc">
 							<img alt="NC 로고 이미지" src="./image/baseball/logo/NC.png">
 						</label>
 						<label for="random_logo_ssg">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_ssg" data-id="ssg" data-type="SSG" name="random_content_logo" value="SSG">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_ssg" data-id="ssg" data-type="SSG" name="random_content_logo" value="ssg">
 							<img alt="SSG 로고 이미지" src="./image/baseball/logo/SSG.png">
 						</label>
 						<label for="random_logo_doosan">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_doosan" data-id="doosan" data-type="두산" name="random_content_logo" value="DOOSAN">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_doosan" data-id="doosan" data-type="두산" name="random_content_logo" value="doosan">
 							<img alt="두산 로고 이미지" src="./image/baseball/logo/두산.png">
 						</label>
 						<label for="random_logo_lotte">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_lotte" data-id="lotte" data-type="롯데" name="random_content_logo" value="LOTTE">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_lotte" data-id="lotte" data-type="롯데" name="random_content_logo" value="lotte">
 							<img alt="롯데 로고 이미지" src="./image/baseball/logo/롯데.png">
 						</label>
 						<label for="random_logo_samsung">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_samsung" data-id="samsung" data-type="삼성" name="random_content_logo" value="SAMSUNG">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_samsung" data-id="samsung" data-type="삼성" name="random_content_logo" value="samsung">
 							<img alt="삼성 로고 이미지" src="./image/baseball/logo/삼성.png">
 						</label>
 						<label for="random_logo_kiwoom">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_kiwoom" data-id="kiwoom" data-type="키움" name="random_content_logo" value="KIWOOM">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_kiwoom" data-id="kiwoom" data-type="키움" name="random_content_logo" value="kiwoom">
 							<img alt="키움 로고 이미지" src="./image/baseball/logo/키움.png">
 						</label>
 						<label for="random_logo_hanwha">
-							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_hanwha" data-id="hanwha" data-type="한화" name="random_content_logo" value="HANWHA">
+							<input type="radio" onclick="randomTeamClick(this)" id="random_logo_hanwha" data-id="hanwha" data-type="한화" name="random_content_logo" value="hanwha">
 							<img alt="한화 로고 이미지" src="./image/baseball/logo/한화.png">
 						</label>
 					</div>
@@ -533,6 +462,9 @@
 			<div class="random_box">
 				<div class="random_img_whole">
 					<img alt="로고 이미지" src="./image/baseball/logo/all.png" class="random_img_logo">
+					<video class="random_video" id="random_video" muted="muted">
+						<source src="./image/baseball/random/baseball.mp4" type="video/mp4">
+					</video>
 					<img alt="오락기 이미지" src="./image/baseball/random/baseball_random_bg.png" class="random_img_bg">
 					<img alt="핸들 이미지" src="./image/baseball/random/baseball_random_handle.png" class="random_img_handle">
 					<button type="button" onclick="randomPlay()" class="random_play_btn">뽑기!!</button>
@@ -540,4 +472,102 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript">
+		function randomNavClick(ths) {
+			var randomRadioVal = $('input[name="random_radio"]:checked').val();
+			var randomRadioLen = $('input[name="random_radio"]:checked').length;
+			var random_type = ths.dataset.type;
+			var random_val = ths.dataset.value;
+
+			if(random_type == 'all') {
+				$('#random_radio1').prop('checked', true);
+				$('#random_radio2').prop('checked', false);
+				$('#random_radio3').prop('checked', false);
+				$('.random_content_row').hide();
+			}
+			else {
+				if(randomRadioLen == 0) {
+					$('#random_radio1').prop('checked', true);
+					$('.random_content_row').hide();
+				}
+				else {
+					$('#random_radio1').prop('checked', false);
+					
+					if(random_val == 'team') {
+						if($('#random_radio2').is(':checked')) {
+							$('.random_content_row1').show();
+						}
+						else {
+							$('.random_content_row1').hide();
+						}
+					}
+					else {
+						if($('#random_radio3').is(':checked')) {
+							$('.random_content_row2').show();
+						}
+						else {
+							$('.random_content_row2').hide();
+						}
+					}
+				}
+			}
+		}
+
+		let random_video = document.getElementById('random_video');
+		function randomPlay() {
+			var randomRadioVal = $('input[name="random_radio"]:checked').val();
+			var randomRadioLen = $('input[name="random_radio"]:checked').length;
+			var logo_len = $('input[name="random_content_logo"]:checked').length;
+			var logo_val = $('input[name="random_content_logo"]:checked').val();
+			var posi_len = $('input[name="random_content_position"]:checked').length;
+			var posi_val = $('input[name="random_content_position"]:checked').val();
+			
+			if(randomRadioLen >= 2) {//팀/포지션 모두 선택 시
+				if(logo_len <= 0 || posi_len == 'position') {
+					alertShow('팀, 포지션 선택','팀, 포지션은 반드시 하나씩 선택해주세요.');
+				}
+				else {
+					random_video.play();
+					setTimeout(function() {
+						location.href = 'randomSelectBoth?team='+logo_val+'&position='+posi_val;
+					}, 4500);
+				}
+			}
+			else {
+				if(randomRadioVal == 'all') {//모두 선택 시
+					random_video.play();
+					setTimeout(function() {
+						location.href = 'randomSelectAll';
+					}, 4500);
+				}
+				else if(randomRadioVal == 'team') {//팀 선택 시
+					if(logo_len <= 0) {
+						alertShow('팀 선택','팀은 반드시 하나 선택해주세요.');
+					}
+					else {
+						random_video.play();
+						setTimeout(function() {
+							location.href = 'randomSelectTeam?team='+logo_val;
+						}, 4500);
+					}
+				}
+				else if(randomRadioVal == 'position') {//포지션 선택 시
+					if(posi_len <= 0) {
+						alertShow('포지션 선택','포지션은 반드시 하나 선택해주세요.');
+					}
+					else {
+						random_video.play();
+						setTimeout(function() {
+							location.href = 'randomSelectPosition?position='+posi_val;
+						}, 4500);
+					}
+				}
+			}
+		}
+		
+		function randomTeamClick(ths) {
+			var ths_type = ths.dataset.type;
+			$('.random_img_logo').attr('src', './image/baseball/logo/'+ths_type+'.png');
+		}
+	</script>
 </html>
