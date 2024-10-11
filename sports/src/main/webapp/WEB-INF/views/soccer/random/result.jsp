@@ -190,14 +190,32 @@
 				padding: 20px;
 			}
 			
-			p.random_player_txt {
-				font-size: 24px;
-				line-height: 36px;
-				font-weight: bold;
-				color: #999;
-				text-align: center;
-				margin: 0 auto 20px auto;
-			}
+			.random_show_team {
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            width: 100%;
+	            height: auto;
+	            margin: 0 auto 20px auto;
+	         }
+	         
+	         .random_show_team img {
+	            display: block;
+	            min-width: 60px;
+	            width: 60px;
+	            height: auto;
+	            background-size: contain;
+	            margin: 0 20px 0 0;
+	         }
+	         
+	         p.random_player_txt {
+	            font-size: 24px;
+	            line-height: 36px;
+	            font-weight: bold;
+	            color: #999;
+	            text-align: center;
+	            margin: 0;
+	         }
 			
 			.random_show_flex {
 				display: flex;
@@ -339,8 +357,9 @@
 					var height = `${randomList.height}`;
 					var weight = `${randomList.weight}`;
 					var main = `${randomList.main}`;
+					var pimage = `${randomList.pimage}`;
 					
-					randomInfoArray.push([tname]+","+[pname]+","+[pnumber]+","+[pbirth]+","+[height]+","+[weight]+","+[main]);
+					randomInfoArray.push([tname]+","+[pname]+","+[pnumber]+","+[pbirth]+","+[height]+","+[weight]+","+[main]+","+[pimage]);
 				</script>
 			</c:forEach>
 			<c:if test="${randomList != null}">
@@ -351,7 +370,7 @@
 				<script type="text/javascript">
 					$(document).ready(function() {
 						var random_num = Math.random();
-						random_num = random_num * 10;
+						random_num = random_num * randomInfoArray.length;
 						random_num = Math.floor(random_num);
 						if(random_num >= randomInfoArray.length) {
 							random_num = randomInfoArray.length - 1;
@@ -421,10 +440,11 @@
 							$('.random_player_txt').css('color', '#000000');
 						}
 
-						var player_img = './image/soccer/player/' + team_name + randomRealArray[1] + '.jpg';
+						var player_img = './image/soccer/player/' + randomRealArray[7];
 
 						$('#player_img').attr('src', player_img);
-						$('#player_team').html(randomRealArray[0]);//팀이름
+						$('#player_logo').attr('src', team_img);//팀이름
+						$('#player_team').html(team_name);//팀이름
 						$('#player_name').html(randomRealArray[1]);//플레이어이름
 						$('#player_num').html(randomRealArray[2]);//등번호
 						$('#player_birth').html(randomRealArray[3]);//생일
@@ -467,7 +487,10 @@
 				<div class="random_show_whole">
 					<div class="random_show_bg"></div>
 					<div class="random_show_box">
-						<p id="player_team" class="random_player_txt">팀 이름</p>
+	               		<div class="random_show_team">
+		                     <img alt="랜덤 로고 이미지" src="" id="player_logo">
+		                     <p id="player_team" class="random_player_txt">팀 이름</p>
+	                  	</div>	
 						<div class="random_show_flex">
 							<div class="random_player_img">
 								<img alt="랜덤으로 나온 선수 이미지" src="" id="player_img">
