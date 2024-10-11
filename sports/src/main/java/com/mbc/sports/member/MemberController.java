@@ -26,7 +26,7 @@ public class MemberController {
 @Autowired
 	SqlSession sqlsession;
 	
-	String path="C:\\project\\sports\\sports\\src\\main\\webapp\\image\\super";
+	String path="C:\\project\\sports\\sports\\src\\main\\webapp\\image\\member\\super";
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup() {
@@ -187,15 +187,15 @@ public class MemberController {
 		String user_add2=mul.getParameter("user_add2");
 		String sport=mul.getParameter("sport");
 		String team=mul.getParameter("team");
-		String refvoe=mul.getParameter("refvoe");
-		String refrr=mul.getParameter("refrr");
 		//감독
 		if(part.equals("감독")) {
+			String refvoe=mul.getParameter("refvoe");
+			String refrr=mul.getParameter("refrr");
 			MultipartFile voe_mf = mul.getFile("voe");
 			MultipartFile rr_mf = mul.getFile("rr");
 			voe = voe_mf.getOriginalFilename();		
 			rr = rr_mf.getOriginalFilename();		
-			if(voe.equals("refvoe")) {
+			if(voe.equals("")) {
 				voe = refvoe;
 			}else{
 				voe = filesave(voe, voe_mf.getBytes());
@@ -203,8 +203,8 @@ public class MemberController {
 				File file = new File(path+"\\"+refvoe);
 				file.delete();
 			}
-			if(rr.equals("refvoe")) {
-				rr = refvoe;
+			if(rr.equals("")) {
+				rr = refrr;
 			}else {
 				rr = filesave(rr, rr_mf.getBytes());
 				rr_mf.transferTo(new File(path+"\\"+rr));			
