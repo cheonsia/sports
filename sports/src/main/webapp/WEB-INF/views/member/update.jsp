@@ -17,7 +17,31 @@
 	    $('#year').val(year).prop("selected",true);
 	    $('#month').val(month).prop("selected",true);
 	    $('#day').val(day).prop("selected",true);
-		
+		$('#day').click(function(){
+			var year=$('#year').val();
+			var month=$('#month').val();
+			var day=$('#day').val();
+			if(month==2){
+				if(year%4==0){//29일까지
+					for(var i = 1;i <= 31;i++){
+						if(i<=29 && $("#day option").length-1 < i) {$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+						else{$("#day option[value=\""+i+"\"]").remove();}
+					}
+				}else{//28일까지
+					for(var i = 1;i <= 31;i++){
+						if( i<=28 && $("#day option").length-1 < i) { $("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+						else{$("#day option[value=\""+i+"\"]").remove();}
+			}}}
+			else if( month==4 || month==6 || month==9 || month==11){//30일까지
+				for(var i = 1;i <= 30;i++){
+					if ($("#day option").length-1 < i) {$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+					$("#day option[value=\"31\"]").remove();				
+				}
+			}else{
+				for(var i = 1;i <= 31;i++){
+			    	if ($("#day option").length-1 < i) {$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+			}}
+		});
 	    //전화번호 앞자리 선택
 		var fir_tel=$('#fir_telvalue').val();
 		$('#fir_tel').val(fir_tel).prop("selected",true);
