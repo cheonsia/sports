@@ -485,6 +485,8 @@
 				$('#random_radio3').prop('checked', false);
 				$('.random_content_row').hide();
 				$('.random_img_logo').attr('src', './image/baseball/logo/all.png');
+				$('input[name="random_content_logo"]').prop('checked', false);
+				$('input[name="random_content_position"]').prop('checked', false);
 			}
 			else {
 				if(randomRadioLen == 0) {
@@ -524,7 +526,7 @@
 			var posi_val = $('input[name="random_content_position"]:checked').val();
 			
 			if(randomRadioLen >= 2) {//팀/포지션 모두 선택 시
-				if(logo_len <= 0 || posi_len == 'position') {
+				if(logo_len <= 0 || posi_len <= 0) {
 					alertShow('팀, 포지션 선택','팀, 포지션은 반드시 하나씩 선택해주세요.');
 				}
 				else {
