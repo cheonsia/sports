@@ -227,7 +227,7 @@
                               <a href="baseball_schedule">- 일정</a>
                            </li>
                            <li>
-                              <a href="baseball_team_ranking">- 순위</a>
+                              <a href="baseballTeamRank">- 순위</a>
                            </li>
                            <li>
                               <a href="javascript:void(0)" onclick="baseball_highlight()">- 하이라이트</a>
