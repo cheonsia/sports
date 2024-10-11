@@ -224,7 +224,7 @@
                         <a href="javascript:void(0)" class="side_menu_title side_menu_click">경기</a>
                         <ul>
                            <li>
-                              <a href="javascript:void(0)">- 일정</a>
+                              <a href="baseball_schedule">- 일정</a>
                            </li>
                            <li>
                               <a href="baseball_team_ranking">- 순위</a>
@@ -301,7 +301,7 @@
                <a href="javascript:void(0)" id="baseball_kiwoom" data-id="kiwoom" data-type="키움" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/키움.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_hanwha" data-id="hanwha" data-type="한화" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_hanwha" data-id="hanhwa" data-type="한화" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/한화.png">
                </a>
             </div>
