@@ -1233,7 +1233,28 @@
 				}//for
 				schedule_len--;
 			}//scheduleDelete
-      
+     
+			//팀1 선택시 경기장 변경
+			$(document).ready(function(){
+				$(".select_team1").click(function(){
+					var team = $("input[name='team1']:checked").val();
+					var place="";
+					if(team=='강원') place="강릉종합운동장";
+					else if(team=="광주") place="광주축구전용구장";
+					else if(team=="김천") place="김천종합운동장";
+					else if(team=="대구") place="DGB대구은행파크";
+					else if(team=="대전") place="대전월드컵경기장";
+					else if(team=="서울") place="서울월드컵경기장";
+					else if(team=="수원") place="수원종합운동장";
+					else if(team=="울산") place="울산문수월드컵경기장";
+					else if(team=="인천") place="인천축구전용경기장";
+					else if(team=="전북") place="전주월드컵경기장";
+					else if(team=="제주") place="제주월드컵경기장";
+					else if(team=="포항") place="포항스틸야드";
+					$("#gamePlace").val(place).prop("selected", true);
+				});
+			});
+
 	function mapShow() {
 		$('body').css('overflow', 'hidden');
 		$('.map_pop_whole').addClass("pop_show");
@@ -1414,7 +1435,7 @@
 		       			<div class="traning_people_inner" >
 		        			<p class="traning_choose_pop_title">팀 선택</p>
 		       				<div class="traning_people_choose">
-			       				<div>
+			       				<div class="select_team1">
 			       					<label for="select_team1_gangwon">
 			       						<input type="radio" id="select_team1_gangwon" name="team1" value="강원">
 			       							<img alt="" src="./image/soccer/logo/강원.png" width="50px">
@@ -1531,7 +1552,7 @@
 		       			<div class="traning_map_inner">
 		        			<p class="traning_choose_pop_title">경기장소</p>
 		        			<div class="traning_map_flex">
-			       				<select name="gamePlace">
+			       				<select name="gamePlace" id="gamePlace">
 			       					<option value="강릉종합운동장">강릉종합운동장
 			       					<option value="춘천송암스포츠타운">춘천송암스포츠타운
 			       					<option value="광주축구전용구장">광주축구전용구장
