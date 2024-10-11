@@ -1,8 +1,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mbc.sports.soccerrank.SRankService">
-	<resultMap type="com.mbc.sports.soccerrank.SoccerPlayerDTO" id="spdto">
+<mapper namespace="com.mbc.sports.rank.SRankService">
+	<resultMap type="com.mbc.sports.rank.SoccerPlayerDTO" id="spdto">
 		<result property="playernum" column="playernum"/>
 		<result property="year" column="year"/>
 		<result property="round" column="round"/>
@@ -28,7 +28,7 @@
 	
 	 
 	 <!--  팀별 렝킹 시스템 -->
-	 <select id="teamRank" resultType="com.mbc.sports.soccerrank.SoccerTeamDTO">
+	 <select id="teamRank" resultType="com.mbc.sports.rank.SoccerTeamDTO">
 		 select year,team, (win + draw + lose) as round, win, draw, lose
 			 , (win*3 + draw) as winscore
 			 , gain, lost, (gain-lost) as range

@@ -1,4 +1,4 @@
-package com.mbc.sports.soccerrank;
+package com.mbc.sports.rank;
 
 import java.util.ArrayList;
 
