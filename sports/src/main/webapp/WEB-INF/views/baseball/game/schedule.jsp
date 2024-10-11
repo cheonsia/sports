@@ -1235,8 +1235,24 @@
 				}//for
 				schedule_len--;
 			}//scheduleDelete
-      
-	function mapShow() {
+    //팀2 선택시 경기장 변경
+	$(document).ready(function(){
+		$(".select_team2").click(function(){
+			var team = $("input[name='team2']:checked").val();
+			var place="";
+			if(team=='KIA') place="기아챔피언스필드";
+			else if(team=="KT") place="수원KT위즈파크";
+			else if(team=="LG" ||team=="두산") place="잠실야구장";
+			else if(team=="NC") place="창원NC파크";
+			else if(team=="SSG") place="인천SSG랜더스필드";
+			else if(team=="롯데") place="사직야구장";
+			else if(team=="삼성") place="대구삼성라이온즈파크";
+			else if(team=="키움") place="고척스카이돔";
+			else if(team=="한화") place="한화생명이글스파크";
+			$("#gamePlace").val(place).prop("selected", true);
+		});
+	});
+    function mapShow() {
 		$('body').css('overflow', 'hidden');
 		$('.map_pop_whole').addClass("pop_show");
 		$('.map_pop_bg').show();
@@ -1248,7 +1264,7 @@
 		$('.map_pop_bg').hide();
 	}//mapHide
       
-    function gameMap(gameplace) {
+    function gameMap(gameplace,team2) {
     	mapShow();
       	var gyung = "";
       	var wui = "";
@@ -1272,7 +1288,6 @@
       	}else if (gameplace=="잠실야구장" ) {
       		gyung = 127.071827;
       		wui = 37.5120673   ;
-      		var team2= $('#teamsel2').val();
       		imageSrc = (team2 =='두산') ? 'https://mbc-project-test.netlify.app/image/map_두산.png' :'https://mbc-project-test.netlify.app/image/map_LG.png';
       	}else if (gameplace=="창원NC파크") {
       		gyung = 128.5822292;
@@ -1388,7 +1403,7 @@
 											<img alt="" src="./image/baseball/logo/${date.team2}.png" width="50px">
 										</div>
 										<p style="text-align: center" >${date.gametime}</p>
-										<button type="button" onclick="gameMap('${date.gameplace}')" data-area="${date.gameplace}" class="selectPlace">${date.gameplace}</button>
+										<button type="button" onclick="gameMap('${date.gameplace}','${date.team2}')" data-area="${date.gameplace}" class="selectPlace">${date.gameplace}</button>
 									</div>
 								</c:forEach>
 						
@@ -1518,7 +1533,7 @@
 		       			<div class="traning_map_inner">
 		        			<p class="traning_choose_pop_title">경기장소</p>
 		        			<div class="traning_map_flex">
-			       				<select name="gamePlace">
+			       				<select name="gamePlace" id="gamePlace">
 			       					<option value="기아챔피언스필드">기아챔피언스필드
 			       					<option value="월명야구장">월명야구장
 			       					<option value="수원KT위즈파크">수원KT위즈파크
