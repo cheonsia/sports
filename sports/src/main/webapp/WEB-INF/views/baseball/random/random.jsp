@@ -128,7 +128,7 @@
 				background-color: #f9f9f9;
 				border: 1px solid #e1e1e1;
 				border-radius: 5px;
-				z-index: 1;
+				z-index: 2;
 			}
 			
 			.random_chk_whole:hover .random_chk_info {
