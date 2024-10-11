@@ -45,6 +45,15 @@ public class GameController {
 		mo.addAttribute("list", list);
 		return "soccer_schedule";
 	}
+	
+	@RequestMapping(value = "/baseball_schedule")
+	public String baseball_schedule(HttpServletRequest request, Model mo) {
+		GameService gs = sqlsession.getMapper(GameService.class);
+		ArrayList<GameDTO> list = gs.Bgameselect();
+		mo.addAttribute("list", list);
+		return "baseball_schedule";
+	}
+	
 	@RequestMapping(value = "/soccer_schedule_date")
 	public String soccer_schedule_date(HttpServletRequest request, Model mo) {
 		String date = request.getParameter("date");
@@ -58,6 +67,19 @@ public class GameController {
 		
 	}
 	
+	@RequestMapping(value = "/baseball_schedule_date")
+	public String baseball_schedule_date(HttpServletRequest request, Model mo) {
+		String date = request.getParameter("date");
+		GameService gs = sqlsession.getMapper(GameService.class);
+		ArrayList<GameDTO> datelist = gs.Bgameselectdate(date);
+		mo.addAttribute("datelist", datelist);
+		ArrayList<GameDTO> list = gs.Bgameselect();
+		mo.addAttribute("list", list);
+		mo.addAttribute("date", date);
+		return "baseball_schedule";
+		
+	}
+	
 	@RequestMapping(value = "/soccerGameSchedule")
 	public String soccerGameSchdule(HttpServletRequest request, Model mo) {
 		String team1 = request.getParameter("team1");
@@ -66,11 +88,22 @@ public class GameController {
 		String time = request.getParameter("gameTime");
 		String place = request.getParameter("gamePlace");
 		GameService gs = sqlsession.getMapper(GameService.class);
-		System.out.println(date);
-		System.out.println(time);
 		gs.gameinsert(team1,team2,date,time,place);
 		
 		return "redirect:/soccer_schedule";
+	}
+	
+	@RequestMapping(value = "/baseballGameSchedule")
+	public String baseballGameSchedule(HttpServletRequest request, Model mo) {
+		String team1 = request.getParameter("team1");
+		String team2 = request.getParameter("team2");
+		String date = request.getParameter("gameDate");
+		String time = request.getParameter("gameTime");
+		String place = request.getParameter("gamePlace");
+		GameService gs = sqlsession.getMapper(GameService.class);
+		gs.Bgameinsert(team1,team2,date,time,place);
+		
+		return "redirect:/baseball_schedule";
 	}
 	
 	@RequestMapping(value = "/soccer_gameinfo")
@@ -79,6 +112,14 @@ public class GameController {
 		ArrayList<GameDTO> list = gs.gameselect();
 		mo.addAttribute("list", list);
 		return "soccer_gameinfo";
+	}
+	
+	@RequestMapping(value = "/baseball_gameinfo")
+	public String baseball_gameinfo(HttpServletRequest request, Model mo) {
+		GameService gs = sqlsession.getMapper(GameService.class);
+		ArrayList<GameDTO> list = gs.Bgameselect();
+		mo.addAttribute("list", list);
+		return "baseball_gameinfo";
 	}
 	
 	@RequestMapping(value = "/soccer_gamedelete")
@@ -90,13 +131,29 @@ public class GameController {
 		return "soccer_gamedelete";
 	}
 	
+	@RequestMapping(value = "/baseball_gamedelete")
+	public String baseball_gamedelete(HttpServletRequest request, Model mo) {
+		int gamenum = Integer.parseInt(request.getParameter("gamenum"));
+		GameService gs = sqlsession.getMapper(GameService.class);
+		GameDTO dto = gs.Bselect(gamenum);
+		mo.addAttribute("dto", dto);
+		return "soccer_gamedelete";
+	}
+	
 	@RequestMapping(value = "/soccergamedelete")
 	public String soccerdelete(HttpServletRequest request, Model mo) {
 		int gamenum = Integer.parseInt(request.getParameter("gamenum"));
 		GameService gs = sqlsession.getMapper(GameService.class);
-		logger.info("받은 넘버!!!!!!!!!!"+gamenum);
 		gs.delete(gamenum);
 		return "redirect:/soccer_gameinfo";
+	}
+	
+	@RequestMapping(value = "/baseballgamedelete")
+	public String baseballgamedelete(HttpServletRequest request, Model mo) {
+		int gamenum = Integer.parseInt(request.getParameter("gamenum"));
+		GameService gs = sqlsession.getMapper(GameService.class);
+		gs.Bdelete(gamenum);
+		return "redirect:/baseball_gameinfo";
 	}
 	
 	@RequestMapping(value = "/soccer_gameupdate")
@@ -106,6 +163,15 @@ public class GameController {
 		GameDTO dto = gs.select(gamenum);
 		mo.addAttribute("dto", dto);
 		return "soccer_gameupdate";
+	}
+	
+	@RequestMapping(value = "/baseball_gameupdate")
+	public String baseball_gameupdate(HttpServletRequest request, Model mo) {
+		int gamenum = Integer.parseInt(request.getParameter("gamenum"));
+		GameService gs = sqlsession.getMapper(GameService.class);
+		GameDTO dto = gs.Bselect(gamenum);
+		mo.addAttribute("dto", dto);
+		return "baseball_gameupdate";
 	}
 	
 	@RequestMapping(value = "/soccerGameUpdate")
@@ -119,5 +185,18 @@ public class GameController {
 		GameService gs = sqlsession.getMapper(GameService.class);
 		gs.update(team1,team2,gamedate,gametime,gameplace,gamenum);
 		return "redirect:/soccer_gameinfo";
+	}
+	
+	@RequestMapping(value = "/baseballGameUpdate")
+	public String baseballGameUpdate(HttpServletRequest request, Model mo) {
+		int gamenum = Integer.parseInt(request.getParameter("gamenum"));
+		String team1 = request.getParameter("team1");
+		String team2 = request.getParameter("team2");
+		String gamedate = request.getParameter("gameDate");
+		String gametime = request.getParameter("gameTime");
+		String gameplace = request.getParameter("gamePlace");
+		GameService gs = sqlsession.getMapper(GameService.class);
+		gs.Bupdate(team1,team2,gamedate,gametime,gameplace,gamenum);
+		return "redirect:/baseball_gameinfo";
 	}
 }
