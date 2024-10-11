@@ -39,4 +39,37 @@
     	update soccer_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5} where gamenum = #{param6}
     </update>
     
+    <!-- 야구 -->
+    
+    <insert id="Bgameinsert">
+    	insert into baseball_game values(#{param1},#{param2},#{param3},#{param4},#{param5},baseball_game_seq.nextval)
+    </insert>
+    
+    <select id="Bgameselect" resultType="com.mbc.sports.game.GameDTO">
+    	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
+       	gametime,gameplace,gamenum
+		FROM baseball_game
+    </select>
+    <select id="Bgameselectdate" resultType="com.mbc.sports.game.GameDTO">
+    	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
+       	gametime,gameplace,gamenum
+		FROM baseball_game
+		where gamedate = #{param1}
+    </select>
+    
+    <select id="Bselect" resultType="com.mbc.sports.game.GameDTO">
+    	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
+       	gametime,gameplace,gamenum
+		FROM baseball_game
+		where gamenum = #{param1}
+    </select>
+    
+    <delete id="Bdelete">
+    	delete from baseball_game where gamenum = #{param1}
+    </delete>
+    
+    <update id="Bupdate">
+    	update baseball_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5} where gamenum = #{param6}
+    </update>
+    
 </mapper>

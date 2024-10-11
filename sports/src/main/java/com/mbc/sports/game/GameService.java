@@ -15,5 +15,17 @@ public interface GameService {
 	void update(String team1, String team2, String gamedate, String gametime, String gameplace, int gamenum);
 
 	ArrayList<GameDTO> gameselectdate(String date);
+
+	void Bupdate(String team1, String team2, String gamedate, String gametime, String gameplace, int gamenum);
+
+	GameDTO Bselect(int gamenum);
+
+	void Bdelete(int gamenum);
+
+	ArrayList<GameDTO> Bgameselect();
+
+	void Bgameinsert(String team1, String team2, String date, String time, String place);
+
+	ArrayList<GameDTO> Bgameselectdate(String date);
 	
 }
