@@ -484,6 +484,7 @@
 				$('#random_radio2').prop('checked', false);
 				$('#random_radio3').prop('checked', false);
 				$('.random_content_row').hide();
+				$('.random_img_logo').attr('src', './image/baseball/logo/all.png');
 			}
 			else {
 				if(randomRadioLen == 0) {
