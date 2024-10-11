@@ -22,7 +22,7 @@ td img {
 <body>
 <input type="button" value="결과 등록" onclick="location.href='playresult'">
 <input type="button" value="결과 수정" onclick="location.href='playresultedit'">
-<table align="center" border="1">
+<table>
 	<tr>
 		<th>Rank<br>(순위)</th>
 		<th>Team<br>(팀)</th>
