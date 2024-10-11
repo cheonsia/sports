@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 	<style type="text/css">
+		.container{
+		    width: 1300px;
+		}
 		.table.table-hover.memlist {
 			width:100%;
-		    min-width: 1040px;
+		    min-width: 1200px;
 		}
 		.table.table-hover.memlist th,
 		.table.table-hover.memlist td
