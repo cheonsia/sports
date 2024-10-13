@@ -79,6 +79,11 @@
       <put-attribute name="body" value="/WEB-INF/views/baseball/rank/team.jsp"/>
    </definition>
 	
+   <definition name="baseballPlayerRank" extends="baseballLayout">
+      <put-attribute name="title" value="야구 선수 순위"/>
+      <put-attribute name="body" value="/WEB-INF/views/baseball/rank/player.jsp"/>
+   </definition>
+	
 	<definition name="baseball_highlight" extends="baseballLayout">
 		<put-attribute name="title" value="야구 경기 하이라이트"/>
 		<put-attribute name="body" value="/WEB-INF/views/baseball/game/highlight.jsp"/>

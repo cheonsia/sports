@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 	<style type="text/css">
 		table{
-			width: 1200px;
+			width: 600px;
 			table-layout: fixed;
 		}
 		td{
@@ -55,43 +55,32 @@
 <body>
 <h1>KBO 정규리그 순위</h1>
 	<table>
-		<thead>
-			<tr>
-				<th>순위</th>
-				<th>팀명</th>
-				<th>경기</th>
-				<th>승</th>
-				<th>패</th>
-				<th>무</th>
-				<th>승률</th>
-				<th>게임차</th>
-				<th>연속</th>
-				<th>출타율</th>
-				<th>장타율</th>
-				<th>최근 10경기</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="team" items="${list}">
+		<c:forEach var="i" begin="0" end="${list.size()/5}" step="1">
+			<c:forEach items="player" var="player" begin="5*i" end="5*i+5" step="1">
+			<thead>
 				<tr>
-					<td>${team.rank}</td>
-					<td>
-						<img src="image/baseball/logo/${team.title}.png" width="25" height="25"> 
-						&emsp;${team.title}
-					</td>
-					<td>${team.match}</td>
-					<td>${team.victory}</td>
-					<td>${team.defeat}</td>
-					<td>${team.draw}</td>
-					<td>${team.rate}</td>
-					<td>${team.between}</td>
-					<td>${team.winning}</td>
-					<td>${team.base}</td>
-					<td>${team.slugging}</td>
-					<td>${team.recent}</td>
+					<th>순위</th>
+					<th>이름</th>
+					<th>팀명</th>
+					<th>기록</th>
 				</tr>
+			</thead>
+			<tbody>
+			<!-- 
+				<c:forEach var="player" items="${list}">
+			 -->
+					<tr>
+						<td>${player.rank}</td>
+						<td>${player.name}</td>
+						<td>${player.team}</td>
+						<td>${player.win}</td>
+					</tr>
+			<!-- 
+				</c:forEach>
+			 -->
+			</tbody>
 			</c:forEach>
-		</tbody>
+		</c:forEach>
 	</table>
 </body>
 </html>

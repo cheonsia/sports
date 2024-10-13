@@ -73,6 +73,6 @@ public class RankinigController {
 			e.printStackTrace();
 		}
 		model.addAttribute("list",list);
-		return "baseballTeamRank";
+		return "baseballPlayerRank";
 	}
 }
