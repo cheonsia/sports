@@ -205,7 +205,7 @@
                         <a href="javascript:void(0)" class="side_menu_title side_menu_click">선수</a>
                         <ul>
                            <li>
-                              <a href="baseball_player_ranking">- 순위</a>
+                              <a href="baseballPlayerRank">- 순위</a>
                            </li>   
                            <li>
                               <a href="javascript:void(0)" onclick="playMove()">- 선수 정보</a>

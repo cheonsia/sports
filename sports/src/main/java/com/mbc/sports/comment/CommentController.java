@@ -29,7 +29,8 @@ public class CommentController {
 		CommentService cs = sqlsession.getMapper(CommentService.class);
 		int step= cs.getStep(playernum)+1;
 		cs.input(playernum,step,id,writer,comment);
-		cs.updatePlayerStep(step, playernum);
+		if(play.equals("√‡±∏"))cs.updateSplayerStep(step, playernum);
+		else cs.updateBplayerStep(step, playernum) ;
 		
 		ArrayList<CommentDTO> clist = cs.comment(playernum,page.getStart(),page.getEnd());
 		model.addAttribute("clist", clist);

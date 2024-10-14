@@ -6,21 +6,24 @@
 	
 	<select id="getStep" resultType="int">
 		select NVL(max(step),0)
-		from splayer_comment 
+		from player_comment 
 		where playernum=#{param1}
 	</select>
 	
 	<insert id="input">
-		insert into splayer_comment(playernum, step, id, writer, ucomment) values(#{param1},#{param2},#{param3},#{param4},#{param5})
+		insert into player_comment(playernum, step, id, writer, ucomment) values(#{param1},#{param2},#{param3},#{param4},#{param5})
 	</insert>
 	
-	<update id="updatePlayerStep">
+	<update id="updateSplayerStep">
 		update player_soccer set step=#{param1} where playernum=#{param2}
+	</update>
+	<update id="updateBplayerStep">
+		update player_baseball set step=#{param1} where playernum=#{param2}
 	</update>
 	
 	<select id="total" resultType="int">
 		select count(*)
-		from splayer_comment
+		from player_comment
 		where playernum = #{param1}
 	</select>
 	
@@ -33,24 +36,24 @@
 					case  to_char(cdate,'yyyy-MM-dd') when to_char(sysdate,'yyyy-MM-dd')then to_char(cdate,'HH24:MI')
 					else to_char(cdate,'yy/MM/dd') end  as cdate
 					,heart
-				from splayer_comment
+				from player_comment
 				where playernum = #{param1}
 				order by step desc)A)
 		   where rn between #{param2} AND #{param3}
 	</select>
 
 	<delete id="delete">
-		delete from splayer_comment where playernum=#{param1} and step=#{param2}
+		delete from player_comment where playernum=#{param1} and step=#{param2}
 	</delete>
 	
 	<update id="update">
-		update splayer_comment set ucomment=#{param3} where playernum=#{param1} and step=#{param2}
+		update player_comment set ucomment=#{param3} where playernum=#{param1} and step=#{param2}
 	</update>	
 	
 	<update id="heartUp">
-		update splayer_comment set heart=heart+1 where playernum=#{param1} and step=#{param2}
+		update player_comment set heart=heart+1 where playernum=#{param1} and step=#{param2}
 	</update>
 	<select id="heart" resultType="_int">
-		select heart from splayer_comment where playernum=#{param1} and step=#{param2}
+		select heart from player_comment where playernum=#{param1} and step=#{param2}
 	</select>
 </mapper>

@@ -157,11 +157,14 @@ public class MemberController {
 	}
 	//비밀번호 수정
 	@RequestMapping(value = "/pwUpdate", method = RequestMethod.POST)
-	public void pwUpdate(String id, String pw) {
+	public void pwUpdate(String id, String pw, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter prw = response.getWriter();
 		PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
-		pw=passwordEncoder.encode(pw);
+		String cpw = passwordEncoder.encode(pw);
 		MemberService ms = sqlsession.getMapper(MemberService.class);
-		ms.pwupdate(id, pw);
+		ms.pwupdate(id, cpw);
+		prw.print("");
 	}
 	//정보 수정 창으로 가기
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)

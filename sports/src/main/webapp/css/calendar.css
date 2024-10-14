@@ -1,0 +1,817 @@
+@charset "UTF-8";
+@font-face{
+	font-family: 'Ownglyph_kimkonghae';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408@1.0/Ownglyph_kimkonghae.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+.main_section{
+	margin-top: 0;
+}
+.header_team_logo{
+	display: none;
+}
+/*캘린더 시작*/
+/*캘린더 좌측 리스트*/
+.calendar_whole{
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	overflow: hidden;
+}
+.calendar_schedule_whole{
+	min-width: 200px;
+	width: 200px;
+	height: calc(100vh - 180px);
+	background-color: #ececec;
+	margin-left: -200px;
+	transition: 0.5s;
+}
+.calendar_schedule_whole.calen_on{
+	margin-left: 0;
+	transition: 0.5s;
+}
+.calendar_schedule_title{
+	width: calc(100% - 40px);
+	height: auto;
+	padding: 20px;
+	background-color: #fff;
+	margin: 0 auto;
+}
+p.calendar_schedule_date{
+	text-align: center;
+}
+.calendar_schedule_inner{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.schedule_plus_btn{
+	display: block;
+	min-width: 100px;
+	width: 100px;
+	height: 32px;
+	font-size: 16px;
+	line-height: 34px;
+	font-weight: 400;
+	color: #3d3d3d;
+	background-color: #f9f9f9;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	margin: 10px auto 0 auto;
+}
+.schedule_plus_btn:hover{
+	font-weight: bold;
+	background-color: #00000010;				
+}
+.schedule_list_box{
+	width: calc(100% - 40px);
+	height: auto;
+	max-height: calc(100vh - 406px);
+	margin: 0 auto;
+	padding: 20px;
+	overflow: hidden;
+	overflow-y: auto;
+}
+.schedule_list_box::-webkit-scrollbar{
+	display: none;
+}
+/*달력 구간*/
+.custom_calendar_table{
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-spacing: 0;
+	margin: 0 auto;
+}
+.cal_date{
+	width: 100%;
+	height: 40px;
+	background-color: #e1e1e1;
+	border: 1px solid #e1e1e1;
+	border-top: none;
+}
+.custom_calendar_table td{
+	text-align: center;
+}
+.custom_calendar_table thead.cal_date th{
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: bold;
+	color: #fff;
+}
+.custom_calendar_table thead.cal_date th:first-child,
+.custom_calendar_table thead.cal_date th:last-child{
+	display: flex;
+	justify-content: center;
+	height: 40px;
+	max-height: 40px;
+}
+.custom_calendar_table thead.cal_date th p,
+.custom_calendar_table thead.cal_date th p span{
+	text-align: center;
+	color: #3d3d3d;
+}
+.custom_calendar_table thead.cal_date th button{
+	width: 40px;
+	height: 40px;
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.custom_calendar_table thead.cal_date th button *{
+	cursor: pointer;
+}
+.custom_calendar_table thead.cal_date th button > img{
+	display: block;
+	width: calc(100% - 20px);
+	height: auto;
+	background-size: contain;
+	margin: 0 auto;
+}
+.custom_calendar_table thead.cal_week{
+	min-height: 36px;
+	height: 36px;
+	max-height: 36px;
+	border: 1px solid #E5ECEA;
+}
+.custom_calendar_table thead.cal_week th{
+	width: max-content;
+	min-height: 36px;
+	height: 36px;
+	max-height: 36px;
+	font-size: 15px;
+	line-height: 36px;
+	color: #333333;
+	background-color: #E5ECEA;
+	word-break:break-all;
+	text-align: center;
+}
+.custom_calendar_table tbody tr{
+	height: 0.1px;
+}
+.custom_calendar_table tbody td{
+	position: relative;
+	width: 40px;
+	max-width: 40px;
+	height: calc((100vh - 238px) / 6);
+	font-size: 15px;
+	line-height: 44px;
+	color: #777;
+	cursor: pointer;
+	word-break:break-all;
+	border: 1px solid #e1e1e1;
+}
+.custom_calendar_table tbody td,
+.custom_calendar_table tbody td{
+	cursor: url('../image/soccer/cursor/pointer.png'), auto !important;
+}
+.custom_calendar_table tbody td:nth-child(1),
+.custom_calendar_table tbody td:nth-child(1) span{
+	color: red;
+	border-left: none;
+}
+.custom_calendar_table tbody td:nth-child(7),
+.custom_calendar_table tbody td:nth-child(7) span{
+	color: #288CFF;
+	border-right: none;
+}
+.custom_calendar_table tbody tr:first-child td{
+	border-top: none;
+}
+.custom_calendar_table tbody tr:last-child td{
+	border-bottom: none;
+}
+.custom_calendar_table tbody td.select_day{
+	background-color: #00462E;
+}
+.custom_calendar_table tbody td.select_day span{
+	color: #fff!important;
+}
+.custom_calendar_table tbody td span.day_txt{
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.custom_calendar_table tbody td.td_today span.day_txt{
+	text-decoration: underline!important;
+	font-weight: bold;
+}
+span.work_in{
+	position: absolute;
+	width: 100%;
+	height: 34px;
+	font-size: 14px;
+	line-height: 34px;
+	font-weight: bold;
+	max-width: calc(100% - 30px);
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+span.work_start.work_in{
+	border-radius: 5px 0 0 5px;
+	background-color: #9cb79c;
+	padding: 0 5px;
+	margin-left: 10px;
+}
+span.work_end.work_in{
+	color: #f9f9f9!important;
+	border-radius: 0 5px 5px 0;
+	background-color: #bb0000;
+	padding: 0 5px;
+	margin-left: -10px;
+}
+span.work_ing.work_in{
+	max-width: none;
+	height: 34px;
+	border-radius: 0;
+	background-color: #bb0000;
+}
+span.work_start.work_in{
+	color: #f9f9f9;
+	border-radius: 5px 0 0 5px;
+	background-color: #bb0000;
+	padding: 0 5px;
+	margin-left: 10px;
+}
+span.work_start.work_in.work_end{
+	color: #333!important;
+	width: max-content!important;
+	border: none!important;
+	background-color: transparent!important;
+	padding: 0!important;
+	margin: 0!important;
+}
+.custom_calendar_table tbody td.select_day span.work_start.work_in.work_end{
+	color: #ddd!important;
+}
+.schedule_list_inner{
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	overflow: hidden;
+	margin: 0 auto 20px auto;
+}
+span.schedule_list_span{
+	display: block;
+	min-width: 10px;
+	height: auto;
+	background-color: #556b2f;
+}
+span.schedule_list_span.schedule_long{
+	background-color: #bb0000;
+}
+.schedule_list_txt{
+	width: 100%;
+	height: auto;
+	margin: 0 0 0 20px;
+	overflow: hidden;
+}
+.schedule_list_txt p{
+	font-size: 15px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #3d3d3d;
+}
+.schedule_list_txt p + p{
+	margin-top: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/*훈련일지 팝업 시작*/
+.traning_show_whole,
+.traning_pop_whole{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	bottom: -200vh;
+	left: 0;
+	z-index: 4;
+	transition: 0.5s;
+}
+.traning_show_whole.pop_show,
+.traning_pop_whole.pop_show{
+	bottom: 0;
+	transition: 0.5s;
+}
+.traning_show_bg,
+.traning_pop_bg{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index:0;
+	display: none;
+}
+.traning_show_box,
+.traning_pop_box{
+	position: absolute;
+	width: calc(100% - 40px);
+	height: calc(100% - 50px);
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #f9f9f9;
+	border-radius: 30px 30px 0 0;
+	padding: 20px 20px 0 20px;
+}
+.traning_show_flex,
+.traning_pop_flex{
+	max-width: 1000px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0 auto;
+}
+p.traning_show_title,
+p.traning_pop_title{
+	font-size: 24px;
+	line-height: 36px;
+	font-weight: bold;
+	color: #3d3d3d;
+	text-align: center;
+	margin: 0 auto;
+}
+.common_pop_hide{
+	min-width: 30px;
+	width: 30px;
+	height: 30px;
+}
+p.traning_show_subtext,
+p.traning_pop_subtext{
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	color: #999;
+	text-align: center;
+	margin: 10px auto 0 auto;
+}
+.traning_show_inner,
+.traning_pop_inner{
+	width: 100%;
+	max-width: 1000px;
+	height: calc(100% - 70px);
+	overflow: hidden;
+	overflow-y: auto;
+	margin: 0 auto;
+}
+.traning_show_inner::-webkit-scrollbar,
+.traning_pop_inner::-webkit-scrollbar{
+	display: none;
+}
+/*훈련 날짜 선택*/
+.traning_date_pop_choose{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+p.traning_choose_pop_title{
+	font-size: 17px;
+	line-height: 28px;
+	color: #777;
+	text-align: center;
+	margin: 60px auto 10px auto;
+}
+p.traning_choose_pop_title2{
+	font-size: 14px;
+	line-height: 20px;
+	color: #999;
+	text-align: center;
+	margin: 0 auto 10px auto;
+}
+.traning_date_pop_flex{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+.traning_date_pop_choose label{
+	display: block;
+	width: max-content;
+	max-width: 100%;
+	margin: 0;
+}
+.traning_date_pop_choose label + label{
+	margin-left: 10px;
+}
+input[name="traning_date_choose"] + span,
+input[name="traning_date_choose2"] + span{
+	min-width: auto;
+	width: max-content;
+	max-width: 100%;
+	padding: 10px 20px;
+	background-color: #fff;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	margin: 0;
+}
+input[name="traning_date_choose"]:checked + span,
+input[name="traning_date_choose2"]:checked + span{
+	color: #f9f9f9;
+}
+.traning_show_date,
+.traning_pop_date{
+	width: 100%;
+	height: auto;
+	margin: 10px auto 0 auto;
+}
+.traning_show_date#traning_show_date2,
+.traning_show_date#traning_show_date4,
+.traning_pop_date#traning_pop_date2{
+	display: none;
+}
+.traning_show_date#traning_show_date2 div,
+.traning_show_date#traning_show_date4 div,
+.traning_pop_date#traning_pop_date2 div{
+	display: flex;
+	flex-wrap: nowrap;
+}
+.traning_show_date#traning_show_date2 div p,
+.traning_show_date#traning_show_date4 div p,
+.traning_pop_date#traning_pop_date2 div p{
+	line-height: 42px;
+	margin: 0 10px;
+}
+input.traning_calendar_input,
+input.traning_calendar_datepicker,
+input.traning_calendar_datepicker2{
+	width: calc(100% - 22px);
+	height: 40px;
+	line-height: 60px;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	padding: 0 10px;				
+}
+input.traning_calendar_input{
+	max-width: 130px;
+}
+/*훈련 인원 선택*/
+.traning_people_inner{
+	width: 100%;
+	margin: 0 auto;
+}
+.traning_people_choose{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+.traning_people_choose label{
+	display: block;
+	width: max-content;
+	max-width: 100%;
+	margin: 0;
+}
+.traning_people_choose label + label{
+	margin-left: 10px;
+}
+input[name="traning_people_select"] + span,
+input[name="traning_people_select2"] + span{
+	min-width: auto;
+	width: max-content;
+	max-width: 100%;
+	padding: 10px 20px;
+	background-color: #fff;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	margin: 0;
+}
+input[name="traning_people_select"]:checked + span,
+input[name="traning_people_select2"]:checked + span{
+	color: #f9f9f9;
+}
+p.no_data_txt{
+	padding-top: 20px;
+}
+/*선수명단 label*/
+.traning_people_list{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.traning_people_list div{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	align-items: stretch;
+}
+.traning_people_list div div{
+	width: calc(33.3% - 6.9px);
+	max-width: 100px;
+	height: auto;
+	margin: 10px 10px 0 0;
+}
+.traning_people_list div div label{
+	width: 100%;
+	height: 100%;
+}
+input[name="traning_player_choose"] + span,
+input[name="traning_player_choose2"] + span{
+	position: relative;
+	display: block;
+	width: calc(100% - 4px);
+	height: calc(100% - 4px);
+	background-color: transparent;
+	border: 2px solid #e1e1e1;
+	border-radius: 50vw;
+	max-height: 100px;
+	overflow: hidden;
+}
+input[name="traning_player_choose"]:checked + span,
+input[name="traning_player_choose2"]:checked + span{
+	border-color: #0c400c;
+	background-color: #0c400c10;
+}
+input[name="traning_player_choose"] + span > img.player_img,
+input[name="traning_player_choose2"] + span > img.player_img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	margin: 0 auto;
+}
+input[name="traning_player_choose"] + span > img.player_chk_img,
+input[name="traning_player_choose2"] + span > img.player_chk_img{
+	position: absolute;
+	min-width: 50px;
+	width: 50px;
+	height: 50px;
+	background-size: contain;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+}
+input[name="traning_player_choose"]:checked + span > img.player_chk_img,
+input[name="traning_player_choose2"]:checked + span > img.player_chk_img{
+	display: block;
+}
+.traning_people_list div p{
+	text-align: center;
+	margin: 0 auto;
+}
+/*지도*/
+.traning_map_inner{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.traning_map_flex{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+.traning_map_flex input{
+	width: 100%;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+}
+/* 훈련 일정 */
+.traning_plus_whole{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.traning_plus_inner,
+.traning_plus_inner2{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.traning_plus_row{
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	align-items: center;
+}
+.traning_plus_row + .traning_plus_row{
+	margin-top: 10px;
+}
+.traning_plus_flex{
+	width: max-content;
+	max-width: 100%;
+	height: auto;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: start;
+	align-items: center;
+}
+.traning_plus_flex + .traning_plus_flex{
+	width: 100%;
+	margin-top: 5px;
+}
+.traning_plus_flex div{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: start;
+	align-items: center;
+}
+input.traning_plus_time{
+	min-width: 68px;
+	width: calc(100% - 20px);
+	max-width: 68px;
+	height: 40px;
+	line-height: 60px;
+	text-align: center;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	background-color: #fff;
+	margin-left: 10px;
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;
+}
+input.traning_plus_time + p{
+	margin-left: 5px;
+}
+p + input.traning_plus_time{
+	margin-left: 5px;
+}
+input.traning_plus_content{
+	width: calc(100% - 20px);
+	height: 40px;
+	line-height: 60px;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	background-color: #fff;
+}
+.traning_plus_btn{
+	display: block;
+	min-width: 90px;
+	width: 90px;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid #0c400c;
+	border-radius: 5px;
+	margin: 0 0 0 10px;
+}
+.traning_plus_btn:hover{
+	background-color: #0c400c20;
+}
+.traning_plus_btn.traning_minus_btn{
+	color: #f9f9f9;
+	background-color: #0c400c;
+}
+/*메모*/
+.traning_memo_whole{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.traning_memo_inner{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.traning_memo_inner textarea{
+	display: block;
+	width: calc(100% - 22px);
+	height: 200px;
+	border: 1px solid #e1e1e1;
+	padding: 5px 10px;
+	border-radius: 5px;
+	background-color: #fff;
+}
+.traning_memo_inner p{
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #999;
+	text-align: end;
+	margin: 5px 0 0 auto;
+}
+.traning_memo_inner p span{
+	font-weight: bold;
+	color: #333;
+}
+/*버튼*/
+.training_memo_btn_whole{
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	margin: 10px auto 30px auto;
+}
+.training_memo_btn{
+	display: block;
+	width: 100%;
+	max-width: 100px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+.training_memo_btn.memo_btn_cancel{
+	color: #556B2F;
+	background-color: #fff;
+	border-color: #556B2F;				
+}
+.training_memo_btn.memo_btn_cancel:hover {
+	background-color: #556B2F10;
+}
+.training_memo_btn.memo_btn_save{
+	color: #fff;
+	background-color: #556B2F;
+	border-color: #556B2F;
+}
+.training_memo_btn.memo_btn_save:hover {
+	background-color: #0c400c;
+}
+.training_memo_btn.memo_btn_save.memo_btn_save2{
+	display: none;
+}
+.training_memo_btn + .training_memo_btn{
+	margin-left: 20px;
+}
+.training_memo_btn.memo_btn_delete{
+	color: #bb0000!important;
+	background-color: #f9f9f9!important;
+	border-color: #bb0000!important;
+}
+.training_memo_btn.memo_btn_delete:hover{
+	color: #bb0000!important;
+	background-color: #bb000010!important;
+	border-color: #bb0000!important;
+}
+.traning_show_whole input[type="date"]:disabled,
+.traning_show_whole input[type="text"]:disabled,
+.traning_show_whole input[type="number"]:disabled,
+.traning_show_whole textarea:disabled {
+	background-color: #f9f9f9;
+}
+.traning_show_whole .traning_plus_btn.traning_btn_new {
+	display: none;
+}
+@media (min-width: 768px){
+	.traning_people_list div label{
+		min-width: calc(20% - 12px);
+		width: calc(20% - 12px);
+	}
+}
+@media (min-width: 1024px){
+	.main_section{
+		width: 100%;
+	}
+	.custom_calendar_table tbody td{
+		height: calc((100vh - 238px) / 6);
+	}
+	.traning_show_box,
+	.traning_pop_box{
+		width: calc(100% - 100px);
+		height: calc(100% - 80px);
+		padding: 50px 50px 0 50px;
+		border-radius: 50px 50px 0 0;
+	}
+	.traning_plus_row{
+		flex-wrap: nowrap;
+	}
+	.traning_plus_flex + .traning_plus_flex{
+		width: 100%;
+		margin-top: 0;
+	}
+	input.traning_plus_content{
+		margin-left: 10px;
+	}
+}
+@media (min-width: 1250px){
+	.main_section{
+		max-width: none;
+	}
+	.calendar_schedule_whole{
+		height: calc(100vh - 130px);
+	}
+	.schedule_list_box{
+		max-height: calc(100vh - 357px);
+	}
+	.custom_calendar_table tbody td{
+		height: calc((100vh - 178px) / 6);
+	}
+}
