@@ -82,69 +82,60 @@
     		$("#pw").focus();
     	});
 
-		////비밀번호 확인(유효성 검사,AJAX) 후 비밀번호 수정창으로 이동
+		//// 비밀번호 수정창으로 이동
 		$("#pwCheck").click(function() {
-			var id=$('#id').val();
-			var pw=$('#pw').val();
-			$.ajax({
-				type:"post",
-				url:"pwCheck",
-				async:true,
-				data:{"id":id, "pw":pw},
-				success:function(data) {
-					if(data=='1') {
-						////수정창 띄우기
-						$("#PwUpdateModal").modal("show");
-					}else{
-						alertShow('오류',"비밀번호가 다릅니다 다시 입력해주세요.");
-					}
-				},
-				error:function() {
-					alertShow('오류','비밀번호를 다시 입력해주세요');
-				}
-			});
+			var pw = $("#pw").val();	
+			var vpw=/^[a-zA-Z0-9]{6,16}$/;
+			
+			if(pw=="") {
+				alertShow('오류','비밀번호를 입력해주세요.');
+				$("#PwCheckModal").modal("close")
+				return false;
+			}
+			else if(!vpw.test(pw)) {
+				alertShow('오류','비밀번호는 영문자+숫자 6~16글자 이내로 작성해야합니다.');
+				$("#PwCheckModal").modal("close")
+				return false;
+			}
+			$("#PwUpdateModal").modal("show");
 		});
     	$("#PwUpdateModal").on("shown.bs.modal", function () {		
     		$("#pwcheck").focus();
     	});
 		///수정한 비밀번호 유효성 검사
 		$("#pwupdate").click(function() {
-			var vpw=/^[a-zA-Z0-9]{6,16}$/;
 			var id=$('#id').val();
-			var pw=$('#pwcheck').val();
-			
-			if(pw=="") {
-				alertShow('오류','비밀번호를 입력해주세요.');
-				return false;
+			var pw = $("#pw").val();	
+			var pwcheck = $("#pwcheck").val();	
+			if(pw == pwcheck){
+				$.ajax({
+					type: "post",
+					url: "pwUpdate",
+					async: true,
+					data: {"id":id,"pw":pw},
+					success:function(){
+						alertShow('변경 완료',"비밀번호가 변경되었습니다");
+					},
+					error:function(){
+						alertShow("오류",'비밀번호를 다시 입력해주세요');
+					}
+				});				
+			}else{
+				alertShow('오류',"비밀번호가 다릅니다 다시 확인해주세요");
+				$("#PwUpdateModal").modal("close")
 			}
-			else if(!vpw.test(pw)) {
-				alertShow('오류','비밀번호는 영문자+숫자 6~16글자 이내로 작성해야합니다.');
-				return false;
-			}
-			$.ajax({
-				type: "post",
-				url: "pwUpdate",
-				async: true,
-				data: {"id":id,"pw":pw},
-				success(){
-					alertShow('변경 완료',"비밀번호가 변경되었습니다");
-				},
-				error(){
-					alertShow("오류",'비밀번호를 다시 입력해주세요');
-				}
-			});
 		});
 	});
 	//비밀번호 확인 Enter
 	function btn_pwcheck(e) {
 		if(e.key == 'Enter') {
-			$('#pwupdate').click();
+			$('#pwCheck').click();
 		}
 	}
 	//비밀번호 수정 Enter
 	function btn_pwupdate(e) {
 		if(e.key == 'Enter') {
-			$('#pwupdate2').click();
+			$('#pwupdate').click();
 		}
 	}	
 	//주소 API CDN 방식 사용
@@ -183,31 +174,6 @@
             }
         }).open();
     }
-	//비밀번호 일치 유무
-	function passwordCheck() {
-		var pw = $("#pw").val();	
-		var pwcheck = $("#pwcheck").val();	
-		var pw_message = document.getElementById("pw_message");	//확인 메세지
-		var correctColor = "#416b41";	//맞았을 때 출력되는 색깔.
-		var wrongColor = "#ff0000";		//틀렸을 때 출력되는 색깔
-		if(pw == pwcheck){ //password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
-			if(pw.length<6 ||pw.length>16){
-				pw_message.style.color = wrongColor;
-				pw_message.innerHTML = "비밀번호는 6~16자 이내로 입력해주세요.";				
-			}
-			else{
-				pw_message.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
-				pw_message.innerHTML = "비밀번호가 일치합니다.";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
-		}
-		}else{
-			pw_message.style.color = wrongColor;
-			pw_message.innerHTML = "비밀번호가 일치하지 않습니다.";
-		}
-	}
-	//중복확인 후 아이디 수정 시 다시 중복확인 구현
-	function idcheck_reset() {
-		$('#idcheck2').val(1);
-	}
 	//이메일 도메인에 값 넣기
 	function mailSelect() {
 		var domain = $('#mail_select').find('option:selected').val();		
@@ -537,7 +503,7 @@
 	            </div>
 	            <div class="modal-body">
 		            <div class="pw">
-		                <p>비밀번호를 입력해주세요.</p>
+		                <p>새로운 비밀번호를 입력해주세요.</p>
 		                <div class="pw1">
 			                <input type="password" name="pw" id="pw" onkeydown="btn_pwcheck(event)">
 			                <i class="fa fa-eye-slash fa-lg"></i>
@@ -565,7 +531,7 @@
 		            </div>
 		            <div class="modal-body">
 			            <div class="pw">
-			                <p>수정할 비밀번호를 입력해주세요.</p>
+			                <p>다시 한 번 비밀번호를 입력해주세요.</p>
 			                <div class="pw1">
 				                <input type="password" name="pwcheck" id="pwcheck" onkeydown="btn_pwupdate(event)">
 				                <i class="fa fa-eye-slash fa-lg"></i>
