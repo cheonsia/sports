@@ -381,43 +381,43 @@
             <div class="random_content_row random_content_row1">
                <div class="random_content_flex">
                   <label for="random_logo_kia">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kia" data-id="KIA" data-type="KIA" name="random_content_logo" value="kia">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kia" data-id="KIA" data-type="KIA" name="random_content_logo" value="KIA">
                      <img alt="기아 로고 이미지" src="./image/baseball/logo/KIA.png">
                   </label>
                   <label for="random_logo_kt">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kt" data-id="KT" data-type="KT" name="random_content_logo" value="kt">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kt" data-id="KT" data-type="KT" name="random_content_logo" value="KT">
                      <img alt="KT 로고 이미지" src="./image/baseball/logo/KT.png">
                   </label>
                   <label for="random_logo_lg">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lg" data-id="LG" data-type="LG" name="random_content_logo" value="lg">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lg" data-id="LG" data-type="LG" name="random_content_logo" value="LG">
                      <img alt="LG 로고 이미지" src="./image/baseball/logo/LG.png">
                   </label>
                   <label for="random_logo_nc">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_nc" data-id="NC" data-type="NC" name="random_content_logo" value="nc">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_nc" data-id="NC" data-type="NC" name="random_content_logo" value="NC">
                      <img alt="NC 로고 이미지" src="./image/baseball/logo/NC.png">
                   </label>
                   <label for="random_logo_ssg">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_ssg" data-id="SSG" data-type="SSG" name="random_content_logo" value="ssg">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_ssg" data-id="SSG" data-type="SSG" name="random_content_logo" value="SSG">
                      <img alt="SSG 로고 이미지" src="./image/baseball/logo/SSG.png">
                   </label>
                   <label for="random_logo_doosan">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_doosan" data-id="DOOSAN" data-type="두산" name="random_content_logo" value="doosan">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_doosan" data-id="DOOSAN" data-type="두산" name="random_content_logo" value="DOOSAN">
                      <img alt="두산 로고 이미지" src="./image/baseball/logo/두산.png">
                   </label>
                   <label for="random_logo_lotte">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lotte" data-id="LOTTE" data-type="롯데" name="random_content_logo" value="lotte">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lotte" data-id="LOTTE" data-type="롯데" name="random_content_logo" value="LOTTE">
                      <img alt="롯데 로고 이미지" src="./image/baseball/logo/롯데.png">
                   </label>
                   <label for="random_logo_samsung">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_samsung" data-id="SAMSUNG" data-type="삼성" name="random_content_logo" value="samsung">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_samsung" data-id="SAMSUNG" data-type="삼성" name="random_content_logo" value="SAMSUNG">
                      <img alt="삼성 로고 이미지" src="./image/baseball/logo/삼성.png">
                   </label>
                   <label for="random_logo_kiwoom">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kiwoom" data-id="KIWOOM" data-type="키움" name="random_content_logo" value="kiwoom">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kiwoom" data-id="KIWOOM" data-type="키움" name="random_content_logo" value="KIWOOM">
                      <img alt="키움 로고 이미지" src="./image/baseball/logo/키움.png">
                   </label>
                   <label for="random_logo_hanwha">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_hanwha" data-id="HANHWA" data-type="한화" name="random_content_logo" value="hanwha">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_hanwha" data-id="HANHWA" data-type="한화" name="random_content_logo" value="HANHWA">
                      <img alt="한화 로고 이미지" src="./image/baseball/logo/한화.png">
                   </label>
                </div>
