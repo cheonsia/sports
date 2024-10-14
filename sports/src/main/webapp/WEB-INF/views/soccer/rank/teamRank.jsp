@@ -5,54 +5,100 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-table {
-	margin-top: 50px;
-	width: 1000px;
-}
-th,td{
-	text-align: center;
-}
-td img {
-	width:30px;
-}
-</style>
+	<style type="text/css">
+		table{
+			width: 1200px;
+			table-layout: fixed;
+		}
+		td{
+			text-align: center;
+			border: 1px solid #e8e8e8;
+		}
+		th{
+			text-align: center;
+			background-color: #44674d;
+			color: #fff;
+		}
+		td img {
+			width:30px;
+		}
+		td input[type="text"]{
+			padding: 0px;
+			text-align: center;
+		}
+		tr th,
+		tr td{
+			width: 100%;
+			height: 36px;
+		}
+		tr th:nth-child(1),
+		tr td:nth-child(1){
+			min-width: 70px;
+			width: 70px;
+		}		
+		tr th:nth-child(2),
+		tr td:nth-child(2){
+			min-width: 150px;
+			width: 150px;
+		}
+		tr td:nth-child(2){
+			text-align: left;
+    		padding-left: 35px;
+		}
+		tr th:nth-child(12),
+		tr td:nth-child(12){
+			min-width: 200px;
+			width: 200px;
+		}
+	</style>
 </head>
 <body>
-<input type="button" value="결과 등록" onclick="location.href='playresult'">
-<input type="button" value="결과 수정" onclick="location.href='playresultedit'">
-<table align="center" border="1">
-	<tr>
-		<th>Rank<br>(순위)</th>
-		<th>Team<br>(팀)</th>
-		<th>Round<br>(라운드)</th>
-		<th>WinScore<br>(승점)</th>
-		<th>Win<br>(승)</th>
-		<th>Draw<br>(무)</th>
-		<th>Lose<br>(패)</th>
-		<th>Gain<br>(득점)</th>
-		<th>Lost<br>(실점)</th>
-		<th>Range<br>(득실차)</th>
-		<th>Assist<br>(도움)</th>
-		<th>Foul<br>(파울)</th>
-	</tr>
-	<c:forEach items="${strlist}" var="r">
-		<tr>
-			<td>${r.rank}</td>
-			<td><img src="./image/soccer/logo/${r.team}.png">${r.team}</td>
-			<td>${r.round}</td>
-			<td>${r.winscore}</td>
-			<td>${r.win}</td>
-			<td>${r.draw}</td>
-			<td>${r.lose}</td>
-			<td>${r.gain}</td>
-			<td>${r.lost}</td>
-			<td>${r.range}</td>
-			<td>${r.assist}</td>
-			<td>${r.foul}</td>
-		</tr>
-	</c:forEach>
-</table>
+<h1>KLeague 팀 순위</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>순위</th>
+				<th>팀명</th>
+				<th>경기 수</th>
+				<th>승점</th>
+				<th>승</th>
+				<th>무</th>
+				<th>패</th>
+				<th>득점</th>
+				<th>실점</th>
+				<th>득실차</th>
+				<th>도움</th>
+				<th>파울</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="team" items="${list}">
+				<tr>
+					<td>${team.rank}</td>
+					<td>
+					<c:choose>
+						<c:when test="${team.title=='수원FC'}">
+							<img src="image/soccer/logo/수원.png" width="25" height="25"> 
+						</c:when>
+						<c:otherwise>
+							<img src="image/soccer/logo/${team.title}.png" width="25" height="25"> 
+						</c:otherwise>
+					</c:choose>
+						&emsp;${team.title}
+					</td>
+					<td>${team.round}</td>
+					<td>${team.points}</td>
+					<td>${team.win}</td>
+					<td>${team.draw}</td>
+					<td>${team.lose}</td>
+					<td>${team.score}</td>
+					<td>${team.conceded}</td>
+					<td>${team.difference}</td>
+					<td>${team.assist}</td>
+					<td>${team.foul}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>
