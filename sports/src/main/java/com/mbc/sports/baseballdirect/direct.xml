@@ -2,9 +2,30 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mbc.sports.baseballdirect.DirectService">
+	<!-- 팀원들에 대한 캘린더 정보를 모두 가져옴 -->
 	<select id="selectPlayerArea" resultType="com.mbc.sports.baseballdirect.DirectDTO">
-		select playernum, tname, pname, pimage from player_baseball where tname = #{param1}
+		select playernum, tname, pname, pimage from player_baseball where tname = #{param1} order by main, pname
 	</select>
+	<!-- 훈련일정 저장 -->
+	<insert id="baseballcalendarsave">
+		insert into direct_trade values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, TRNUM_SEQ.nextval, #{param8})
+	</insert>
+	<!-- 훈련 정보 가져옴 -->
+	<select id="selectCalendarInfo" resultType="com.mbc.sports.baseballdirect.BaseballCalendarDTO">
+		select TRNAME, to_char(TRDATE,'yyyy-MM-dd')TRDATE, to_char(TRDATE2,'yyyy-MM-dd')TRDATE2, TRMEMBER, TRPLACE, TRCONTENT, TRMEMO, TRNUM, TRINFO from direct_trade where TRNAME = #{param1} and TRINFO = #{param2} order by TRDATE asc
+	</select>
+	<select id="selectCalendarData" resultType="com.mbc.sports.baseballdirect.BaseballCalendarDTO">
+		select TRNAME, to_char(TRDATE,'yyyy-MM-dd')TRDATE, to_char(TRDATE2,'yyyy-MM-dd')TRDATE2, TRMEMBER, TRPLACE, TRCONTENT, TRMEMO, TRNUM, TRINFO from direct_trade where TRNAME = #{param1} and TRINFO = #{param2} and last_day(to_date(#{param3}, 'yyyy-MM-dd')) >= TRDATE and TRDATE2 >= to_date(#{param3}, 'yyyy-MM-dd') order by TRDATE asc
+	</select>
+	<select id="selectCalendarDetail" resultType="com.mbc.sports.baseballdirect.BaseballCalendarDTO">
+		select TRNAME, to_char(TRDATE,'yyyy-MM-dd')TRDATE, to_char(TRDATE2,'yyyy-MM-dd')TRDATE2, TRMEMBER, TRPLACE, TRCONTENT, TRMEMO, TRNUM, TRINFO from direct_trade where TRNAME = #{param1} and TRINFO = #{param2} and TRNUM = #{param3}
+	</select>
+	<update id="baseballCalendarUpdate">
+		update direct_trade set TRDATE = to_date(#{param1}, 'yyyy-MM-dd'), TRDATE2 = to_date(#{param2}, 'yyyy-MM-dd'), TRMEMBER = #{param3}, TRPLACE = #{param4}, TRCONTENT = #{param5}, TRMEMO = #{param6} where TRNUM = #{param7}
+	</update>
+	<delete id="baseballCalendarDelete">
+		delete from direct_trade where TRNUM = #{param1}
+	</delete>
 
 	<!-- 전술 -->
 	<select id="selectStrategyList" resultType="com.mbc.sports.baseballdirect.BaseballStrategyDTO">
