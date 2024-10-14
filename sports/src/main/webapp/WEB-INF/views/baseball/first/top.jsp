@@ -59,18 +59,18 @@
              window.location.href = "baseball_highlight?name="+area_val;//컨트롤러에 영어/한글 지역 가져감
           }
 
-         function coachCalendarMove() {//좌측 사이드메뉴 코치존 클릭 시
+         function baseballCalendarMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#baseball_area').val();//baseball_area 값 가져옴
             if(area_val == "" || area_val== null) area_val = "ALL";
             var area_val_han = $('#side_rightbar_txt').val();//side_rightbar_txt 값 가져옴
-            location.href = "coachcalendar?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
+            location.href = "baseballcalendar?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
 
-         function coachStrategyMove() {//좌측 사이드메뉴 코치존 클릭 시
+         function baseballStrategyMove() {//좌측 사이드메뉴 코치존 클릭 시
             var area_val = $('#baseball_area').val();//baseball_area 값 가져옴
             if(area_val == "" || area_val== null) area_val = "ALL";
             var area_val_han = $('#side_rightbar_txt').val();//side_rightbar_txt 값 가져옴
-            location.href = "coachstrategy?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
+            location.href = "baseballstrategy?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
 
          /*팝업 구역*/
@@ -242,10 +242,10 @@
 					<c:if test="${superlogin||adminlogin}">
 						<ul>
 							<li>
-	                        	<a href="baseballstrategy" class="side_menu_title" onclick="baseballStrategyMove()">전략</a>
+	                        	<a href="javascript:void(0)" class="side_menu_title" onclick="baseballStrategyMove()">전략</a>
 	                    	</li>
 	                    	<li>
-	                       		<a href="baseballcalendar" class="side_menu_title" onclick="baseballCalendarMove()">캘린더</a>                        
+	                       		<a href="javascript:void(0)" class="side_menu_title" onclick="baseballCalendarMove()">캘린더</a>                        
 	                    	</li>
                  		</ul>
                 	</c:if>
@@ -274,34 +274,34 @@
                   <img alt="" src="./image/baseball/logo/all.png">
                   <p class="header_all_txt">ALL</p>
                </a>
-               <a href="javascript:void(0)" id="baseball_kia" data-id="KIA" data-type="KIA" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_KIA" data-id="KIA" data-type="KIA" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/KIA.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_kt" data-id="KT" data-type="KT" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_KT" data-id="KT" data-type="KT" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/KT.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_lg" data-id="LG" data-type="LG" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_LG" data-id="LG" data-type="LG" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/LG.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_nc" data-id="NC" data-type="NC" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_NC" data-id="NC" data-type="NC" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/NC.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_ssg" data-id="NC" data-type="SSG" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_SSG" data-id="SSG" data-type="SSG" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/SSG.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_doosan" data-id="DOOSAN" data-type="두산" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_DOOSAN" data-id="DOOSAN" data-type="두산" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/두산.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_lotte" data-id="LOTTE" data-type="롯데" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_LOTTE" data-id="LOTTE" data-type="롯데" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/롯데.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_samsung" data-id="SAMSUNG" data-type="삼성" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_SAMSUNG" data-id="SAMSUNG" data-type="삼성" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/삼성.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_kiwoom" data-id="KIWOOM" data-type="키움" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_KIWOOM" data-id="KIWOOM" data-type="키움" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/키움.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_hanwha" data-id="HANHWA" data-type="한화" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_HANHWA" data-id="HANHWA" data-type="한화" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/한화.png">
                </a>
             </div>
