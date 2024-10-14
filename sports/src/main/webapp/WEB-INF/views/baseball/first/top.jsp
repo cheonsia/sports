@@ -274,34 +274,34 @@
                   <img alt="" src="./image/baseball/logo/all.png">
                   <p class="header_all_txt">ALL</p>
                </a>
-               <a href="javascript:void(0)" id="baseball_kia" data-id="kia" data-type="KIA" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_kia" data-id="KIA" data-type="KIA" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/KIA.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_kt" data-id="kt" data-type="KT" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_kt" data-id="KT" data-type="KT" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/KT.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_lg" data-id="lg" data-type="LG" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_lg" data-id="LG" data-type="LG" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/LG.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_nc" data-id="nc" data-type="NC" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_nc" data-id="NC" data-type="NC" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/NC.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_ssg" data-id="ssg" data-type="SSG" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_ssg" data-id="NC" data-type="SSG" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/SSG.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_doosan" data-id="doosan" data-type="두산" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_doosan" data-id="DOOSAN" data-type="두산" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/두산.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_lotte" data-id="lotte" data-type="롯데" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_lotte" data-id="LOTTE" data-type="롯데" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/롯데.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_samsung" data-id="samsung" data-type="삼성" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_samsung" data-id="SAMSUNG" data-type="삼성" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/삼성.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_kiwoom" data-id="kiwoom" data-type="키움" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_kiwoom" data-id="KIWOOM" data-type="키움" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/키움.png">
                </a>
-               <a href="javascript:void(0)" id="baseball_hanwha" data-id="hanhwa" data-type="한화" onclick="baseballClick(this)">
+               <a href="javascript:void(0)" id="baseball_hanwha" data-id="HANHWA" data-type="한화" onclick="baseballClick(this)">
                   <img alt="" src="./image/baseball/logo/한화.png">
                </a>
             </div>

@@ -381,43 +381,43 @@
             <div class="random_content_row random_content_row1">
                <div class="random_content_flex">
                   <label for="random_logo_kia">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kia" data-id="kia" data-type="KIA" name="random_content_logo" value="kia">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kia" data-id="KIA" data-type="KIA" name="random_content_logo" value="kia">
                      <img alt="기아 로고 이미지" src="./image/baseball/logo/KIA.png">
                   </label>
                   <label for="random_logo_kt">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kt" data-id="kt" data-type="KT" name="random_content_logo" value="kt">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kt" data-id="KT" data-type="KT" name="random_content_logo" value="kt">
                      <img alt="KT 로고 이미지" src="./image/baseball/logo/KT.png">
                   </label>
                   <label for="random_logo_lg">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lg" data-id="lg" data-type="LG" name="random_content_logo" value="lg">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lg" data-id="LG" data-type="LG" name="random_content_logo" value="lg">
                      <img alt="LG 로고 이미지" src="./image/baseball/logo/LG.png">
                   </label>
                   <label for="random_logo_nc">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_nc" data-id="nc" data-type="NC" name="random_content_logo" value="nc">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_nc" data-id="NC" data-type="NC" name="random_content_logo" value="nc">
                      <img alt="NC 로고 이미지" src="./image/baseball/logo/NC.png">
                   </label>
                   <label for="random_logo_ssg">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_ssg" data-id="ssg" data-type="SSG" name="random_content_logo" value="ssg">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_ssg" data-id="SSG" data-type="SSG" name="random_content_logo" value="ssg">
                      <img alt="SSG 로고 이미지" src="./image/baseball/logo/SSG.png">
                   </label>
                   <label for="random_logo_doosan">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_doosan" data-id="doosan" data-type="두산" name="random_content_logo" value="doosan">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_doosan" data-id="DOOSAN" data-type="두산" name="random_content_logo" value="doosan">
                      <img alt="두산 로고 이미지" src="./image/baseball/logo/두산.png">
                   </label>
                   <label for="random_logo_lotte">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lotte" data-id="lotte" data-type="롯데" name="random_content_logo" value="lotte">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_lotte" data-id="LOTTE" data-type="롯데" name="random_content_logo" value="lotte">
                      <img alt="롯데 로고 이미지" src="./image/baseball/logo/롯데.png">
                   </label>
                   <label for="random_logo_samsung">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_samsung" data-id="samsung" data-type="삼성" name="random_content_logo" value="samsung">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_samsung" data-id="SAMSUNG" data-type="삼성" name="random_content_logo" value="samsung">
                      <img alt="삼성 로고 이미지" src="./image/baseball/logo/삼성.png">
                   </label>
                   <label for="random_logo_kiwoom">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kiwoom" data-id="kiwoom" data-type="키움" name="random_content_logo" value="kiwoom">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_kiwoom" data-id="KIWOOM" data-type="키움" name="random_content_logo" value="kiwoom">
                      <img alt="키움 로고 이미지" src="./image/baseball/logo/키움.png">
                   </label>
                   <label for="random_logo_hanwha">
-                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_hanwha" data-id="hanwha" data-type="한화" name="random_content_logo" value="hanwha">
+                     <input type="radio" onclick="randomTeamClick(this)" id="random_logo_hanwha" data-id="HANHWA" data-type="한화" name="random_content_logo" value="hanwha">
                      <img alt="한화 로고 이미지" src="./image/baseball/logo/한화.png">
                   </label>
                </div>
@@ -542,7 +542,7 @@
                random_video.play();
                setTimeout(function() {
                   location.href = 'randomSelectBoth?team='+logo_val+'&position='+posi_val;
-               }, 4500);
+               }, 3000);
             }
          }
          else {
@@ -550,7 +550,7 @@
                random_video.play();
                setTimeout(function() {
                   location.href = 'randomSelectAll';
-               }, 4500);
+               }, 3000);
             }
             else if(randomRadioVal == 'team') {//팀 선택 시
                if(logo_len <= 0) {
@@ -560,7 +560,7 @@
                   random_video.play();
                   setTimeout(function() {
                      location.href = 'randomSelectTeam?team='+logo_val;
-                  }, 4500);
+                  }, 3000);
                }
             }
             else if(randomRadioVal == 'position') {//포지션 선택 시
@@ -571,7 +571,7 @@
                   random_video.play();
                   setTimeout(function() {
                      location.href = 'randomSelectPosition?position='+posi_val;
-                  }, 4500);
+                  }, 3000);
                }
             }
          }
