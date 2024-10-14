@@ -355,53 +355,43 @@
 						var team_name = null;
 						var team_img = null;
 						if(randomRealArray[0] == 'KIA' || randomRealArray[0] == 'kia') {
-							team_name = '기아';
-							team_img = './image/baseball/logo/KIA.png';
+							team_name = 'KIA 타이거즈';
 							$('.random_player_txt').css('color', '#04131e');
 						}
 						else if(randomRealArray[0] == 'KT' || randomRealArray[0] == 'kt') {
-							team_name = '케이티';
-							team_img = './image/baseball/logo/KT.png';
+							team_name = 'KT 위즈';
 							$('.random_player_txt').css('color', '#0f1417');
 						}
 						else if(randomRealArray[0] == 'LG' || randomRealArray[0] == 'lg') {
-							team_name = '엘지';
-							team_img = './image/baseball/logo/LG.png';
+							team_name = 'LG 트윈스';
 							$('.random_player_txt').css('color', '#706e6f');
 						}
 						else if(randomRealArray[0] == 'NC' || randomRealArray[0] == 'nc') {
-							team_name = '엔씨';
-							team_img = './image/baseball/logo/NC.png';
+							team_name = 'NC 다이노스';
 							$('.random_player_txt').css('color', '#ad907b');
 						}
 						else if(randomRealArray[0] == 'SSG' || randomRealArray[0] == 'ssg') {
-							team_name = '신세계';
-							team_img = './image/baseball/logo/SSG.png';
+							team_name = 'SSG 랜더스';
 							$('.random_player_txt').css('color', '#c2192c');
 						}
 						else if(randomRealArray[0] == 'DOOSAN' || randomRealArray[0] == 'doosan') {
-							team_name = '두산';
-							team_img = './image/baseball/logo/두산.png';
+							team_name = '두산 베어스';
 							$('.random_player_txt').css('color', '#dd2524');
 						}
 						else if(randomRealArray[0] == 'LOTTE' || randomRealArray[0] == 'lotte') {
-							team_name = '롯데';
-							team_img = './image/baseball/logo/롯데.png';
+							team_name = '롯데 자이언츠';
 							$('.random_player_txt').css('color', '#0e2443');
 						}
 						else if(randomRealArray[0] == 'SAMSUNG' || randomRealArray[0] == 'samsung') {
-							team_name = '삼성';
-							team_img = './image/baseball/logo/삼성.png';
+							team_name = '삼성 라이온즈';
 							$('.random_player_txt').css('color', '#0460a7');
 						}
 						else if(randomRealArray[0] == 'KIWOOM' || randomRealArray[0] == 'kiwoom') {
-							team_name = '키움';
-							team_img = './image/baseball/logo/키움.png';
+							team_name = '키움 히어로즈';
 							$('.random_player_txt').css('color', '#7c1925');
 						}
 						else if(randomRealArray[0] == 'HANHWA' || randomRealArray[0] == 'hanhwa') {
-							team_name = '한화';
-							team_img = './image/baseball/logo/한화.png';
+							team_name = '한화 이글스';
 							$('.random_player_txt').css('color', '#eb5c1d');
 						}
 						$('#player_logo').attr('src', team_img);
@@ -414,7 +404,7 @@
 						$('#player_weight').html(randomRealArray[5]);//몸무게
 						$('#player_position').html(randomRealArray[6]);//포지션
 						$('#random_result_copy').attr('value', '팀: '+ randomRealArray[0] + ', 선수 이름: ' + randomRealArray[1] + ', 선수 번호: ' + randomRealArray[2] + ', 생일: ' +  randomRealArray[3] + ', 키: ' + randomRealArray[4] + ', 몸무게: ' + randomRealArray[5] + ', 포지션: ' + randomRealArray[6])
-						$('.random_img_logo').attr('src', team_img);
+						$('.random_img_logo').attr('src', './image/baseball/logo/'+team_name+'.png');
 						resultShow();
 					});
 					function resultCopy() {
