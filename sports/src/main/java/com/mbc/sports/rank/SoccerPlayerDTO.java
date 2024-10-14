@@ -1,93 +1,132 @@
 package com.mbc.sports.rank;
 
-import com.mbc.sports.player.PlayerDTO;
-
 public class SoccerPlayerDTO {
-	int playernum, year, round, gain, assist, attackpoint;
-	double avgscore;
-	int mom, best11, shoot, possibleshoot,ranking;
-	PlayerDTO playerDTO;
-	public SoccerPlayerDTO() {
+	String rank,playerName,teamName,score,assist,attackPoint,conceded,conner,
+	foul,shooting,offside,warning,exit,scoreless,businessTrip,change,record;
+	public SoccerPlayerDTO() {}
+	public SoccerPlayerDTO(String rank, String playerName, String teamName, String score, String assist,
+			String attackPoint, String conceded, String conner, String foul, String shooting, String offside,
+			String warning, String exit, String scoreless, String businessTrip, String change, String record) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.rank = rank;
+		this.playerName = playerName;
+		this.teamName = teamName;
+		this.score = score;
+		this.assist = assist;
+		this.attackPoint = attackPoint;
+		this.conceded = conceded;
+		this.conner = conner;
+		this.foul = foul;
+		this.shooting = shooting;
+		this.offside = offside;
+		this.warning = warning;
+		this.exit = exit;
+		this.scoreless = scoreless;
+		this.businessTrip = businessTrip;
+		this.change = change;
+		this.record = record;
 	}
-	public int getPlayernum() {
-		return playernum;
+	public String getRank() {
+		return rank;
 	}
-	public void setPlayernum(int playernum) {
-		this.playernum = playernum;
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
-	public int getYear() {
-		return year;
+	public String getPlayerName() {
+		return playerName;
 	}
-	public void setYear(int year) {
-		this.year = year;
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
-	public int getRound() {
-		return round;
+	public String getTeamName() {
+		return teamName;
 	}
-	public void setRound(int round) {
-		this.round = round;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
-	public int getGain() {
-		return gain;
+	public String getScore() {
+		return score;
 	}
-	public void setGain(int gain) {
-		this.gain = gain;
+	public void setScore(String score) {
+		this.score = score;
 	}
-	public int getAssist() {
+	public String getAssist() {
 		return assist;
 	}
-	public void setAssist(int assist) {
+	public void setAssist(String assist) {
 		this.assist = assist;
 	}
-	public int getAttackpoint() {
-		return attackpoint;
+	public String getAttackPoint() {
+		return attackPoint;
 	}
-	public void setAttackpoint(int attackpoint) {
-		this.attackpoint = attackpoint;
+	public void setAttackPoint(String attackPoint) {
+		this.attackPoint = attackPoint;
+	}
+	public String getConceded() {
+		return conceded;
+	}
+	public void setConceded(String conceded) {
+		this.conceded = conceded;
+	}
+	public String getConner() {
+		return conner;
+	}
+	public void setConner(String conner) {
+		this.conner = conner;
+	}
+	public String getFoul() {
+		return foul;
+	}
+	public void setFoul(String foul) {
+		this.foul = foul;
+	}
+	public String getShooting() {
+		return shooting;
+	}
+	public void setShooting(String shooting) {
+		this.shooting = shooting;
+	}
+	public String getOffside() {
+		return offside;
+	}
+	public void setOffside(String offside) {
+		this.offside = offside;
+	}
+	public String getWarning() {
+		return warning;
+	}
+	public void setWarning(String warning) {
+		this.warning = warning;
+	}
+	public String getExit() {
+		return exit;
+	}
+	public void setExit(String exit) {
+		this.exit = exit;
+	}
+	public String getScoreless() {
+		return scoreless;
+	}
+	public void setScoreless(String scoreless) {
+		this.scoreless = scoreless;
+	}
+	public String getBusinessTrip() {
+		return businessTrip;
+	}
+	public void setBusinessTrip(String businessTrip) {
+		this.businessTrip = businessTrip;
+	}
+	public String getChange() {
+		return change;
+	}
+	public void setChange(String change) {
+		this.change = change;
+	}
+	public String getRecord() {
+		return record;
+	}
+	public void setRecord(String record) {
+		this.record = record;
 	}
 	
-	public double getAvgscore() {
-		return avgscore;
-	}
-	public void setAvgscore(double avgscore) {
-		this.avgscore = avgscore;
-	}
-	public int getMom() {
-		return mom;
-	}
-	public void setMom(int mom) {
-		this.mom = mom;
-	}
-	public int getBest11() {
-		return best11;
-	}
-	public void setBest11(int best11) {
-		this.best11 = best11;
-	}
-	public int getShoot() {
-		return shoot;
-	}
-	public void setShoot(int shoot) {
-		this.shoot = shoot;
-	}
-	public int getPossibleshoot() {
-		return possibleshoot;
-	}
-	public void setPossibleshoot(int possibleshoot) {
-		this.possibleshoot = possibleshoot;
-	}
-	public PlayerDTO getPlayerDTO() {
-		return playerDTO;
-	}
-	public void setPlayerDTO(PlayerDTO playerDTO) {
-		this.playerDTO = playerDTO;
-	}
-	public int getRanking() {
-		return ranking;
-	}
-	public void setRanking(int ranking) {
-		this.ranking = ranking;
-	}
 }
