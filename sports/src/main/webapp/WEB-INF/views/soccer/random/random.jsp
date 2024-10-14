@@ -550,7 +550,7 @@
 		               random_video.play();
 		               setTimeout(function() {
 		                  location.href = 'SrandomSelectBoth?team='+logo_val+'&position='+posi_val;
-		               }, 4500);
+		               }, 3000);
 		            }
 		         }
 		         else {
@@ -558,7 +558,7 @@
 		               random_video.play();
 		               setTimeout(function() {
 		                  location.href = 'SrandomSelectAll';
-		               }, 4500);
+		               }, 3000);
 		            }
 		            else if(randomRadioVal == 'team') {//팀 선택 시
 		               if(logo_len <= 0) {
@@ -568,7 +568,7 @@
 		                  random_video.play();
 		                  setTimeout(function() {
 		                     location.href = 'SrandomSelectTeam?team='+logo_val;
-		                  }, 4500);
+		                  }, 3000);
 		               }
 		            }
 		            else if(randomRadioVal == 'position') {//포지션 선택 시
@@ -579,7 +579,7 @@
 		                  random_video.play();
 		                  setTimeout(function() {
 		                     location.href = 'SrandomSelectPosition?position='+posi_val;
-		                  }, 4500);
+		                  }, 3000);
 		               }
 		            }
 		         }
