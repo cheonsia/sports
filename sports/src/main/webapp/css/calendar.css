@@ -211,7 +211,7 @@ span.work_in{
 	line-height: 34px;
 	font-weight: bold;
 	max-width: calc(100% - 30px);
-	top: 60%;
+	top: 84%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	white-space: nowrap;
@@ -245,15 +245,22 @@ span.work_start.work_in{
 	margin-left: 10px;
 }
 span.work_start.work_in.work_end{
-	color: #333!important;
-	width: max-content!important;
-	border: none!important;
-	background-color: transparent!important;
-	padding: 0!important;
-	margin: 0!important;
+	color: #333 !important;
+    width: calc(100% - 30px) !important;
+    border: none !important;
+    background-color: #84eb83 !important;
+    margin: 0 !important;
+    top: 52px;
+    padding: 0 10px !important;
+    border-radius: 5px;
+}
+span.work_end.work_in + span.work_start.work_in.work_end,
+span.work_start.work_in + span.work_start.work_in.work_end,
+span.work_start.work_in.work_end + span.work_start.work_in.work_end {
+	top: 88px;
 }
 .custom_calendar_table tbody td.select_day span.work_start.work_in.work_end{
-	color: #ddd!important;
+	color: #333!important;
 }
 .schedule_list_inner{
 	width: 100%;
@@ -353,6 +360,14 @@ p.traning_pop_title{
 	min-width: 30px;
 	width: 30px;
 	height: 30px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+.common_pop_hide img {
+	width: 100%;
+	height: auto;
+	background-size: contain;
 }
 p.traning_show_subtext,
 p.traning_pop_subtext{
