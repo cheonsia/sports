@@ -1,7 +1,7 @@
 package com.mbc.sports.rank;
 
 public class BaseballPlayerDTO {
-	String rank, name, team, era, round, inning, win, lose, save, hold, out, hit, homerun, losepnt, fourball, deadball, winper;
+	String rank, name, team, era, round, inning, win, lose, save, hold, out, hit, homerun, losepnt, fourball, deadball, winper, image;
 	
 	public BaseballPlayerDTO() {
 		super();
@@ -129,5 +129,11 @@ public class BaseballPlayerDTO {
 	}
 	public void setWinper(String winper) {
 		this.winper = winper;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

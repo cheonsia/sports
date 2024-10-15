@@ -98,6 +98,7 @@ public class RankinigController {
 					.get();
 			// select를 이용해서 tr들을 불러오기
 			Elements baseballTeams = doc.select("#regularTeamRecordList_table > tr");
+			System.out.println(baseballTeams );
 			// tr들의 반복문 돌리기
 			for (Element baseballTeam : baseballTeams) {
 				Element rank = baseballTeam.selectFirst("th"); // 등 수
@@ -134,8 +135,11 @@ public class RankinigController {
 						"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
 				.get();
 		// select를 이용해서 tr들을 불러오기
+		String [] section = {"투수", "타자","기타"};
 		String [] str = {".pitcher", ".hitter",".etc"};
+		String [] title = {"다승 순위","평균 자책 순위","탈삼진 순위","세이브 순위","타율 순위","타점 순위","홈런 순위","도루 순위","WHIP 순위","OPS 순위","투수 WAR 순위","타자 WAR 순위"};
 		for ( int i = 0 ; i<str.length;i++) {
+			int k=0;
 			Elements baseballSelects = doc.select(str[i]+" > tbody tr td li");
 			for (Element baseballSelect : baseballSelects){
 				Element rank = baseballSelect.selectFirst("span.ord"); 
@@ -148,13 +152,16 @@ public class RankinigController {
 					playerRank.setRank(rank.text());
 					playerRank.setName(name.text());
 					playerRank.setTeam(team.text());
-					playerRank.setWin(win.text());
-					String image = srs.getImage(playerRank.getName(),playerRank.getTeam());
+					playerRank.setWin(win.text());					
+					playerRank.setHold(title[k/5+4*i]);k++;	
+					String tname = (playerRank.getTeam().equals("두산")) ? "DOOSAN" :(playerRank.getTeam().equals("삼성")) ? "SAMSUNG" : (playerRank.getTeam().equals("롯데")) ? "LOTTE" : (playerRank.getTeam().equals("한화")) ? "HANHWA" :(playerRank.getTeam().equals("키움")) ? "KIWOOM" : playerRank.getTeam();
+					String image = srs.getImage(playerRank.getName(),tname);					
 					playerRank.setEra(image);
 					sectionlist.add(playerRank);
 				}}}
-		System.out.println(sectionlist);
+		System.out.println(sectionlist.toString());
 		model.addAttribute("sectionlist",sectionlist);
+		model.addAttribute("section",section);
 		return "baseballPlayerRank";
 	}
 }

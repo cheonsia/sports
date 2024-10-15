@@ -6,9 +6,16 @@
 <head>
 <meta charset="UTF-8">
 	<style type="text/css">
+		.header_team_logo{
+			display: none;
+		}
+		h1{
+			margin-top:0;
+		}
 		table{
 			width: 1200px;
 			table-layout: fixed;
+		    margin: 40px auto;
 		}
 		td{
 			text-align: center;
@@ -29,7 +36,7 @@
 		tr th,
 		tr td{
 			width: 100%;
-			height: 36px;
+			height: 40px;
 		}
 		tr th:nth-child(1),
 		tr td:nth-child(1){
@@ -40,10 +47,17 @@
 		tr td:nth-child(2){
 			min-width: 150px;
 			width: 150px;
+			font-weight: bold;
 		}
 		tr td:nth-child(2){
 			text-align: left;
     		padding-left: 35px;
+		}
+		tr td:nth-child(4){
+		    font-weight: bold;
+		    background-color: #e4f4e480;
+		    color: #000000;
+		    font-size: 18px;
 		}
 		tr th:nth-child(12),
 		tr td:nth-child(12){
