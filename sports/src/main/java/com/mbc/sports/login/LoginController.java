@@ -14,6 +14,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -132,5 +133,55 @@ public class LoginController {
 				prw.print("회원정보가 없습니다.\n회원가입 페이지로 이동합니다.");					
 			}
 		}
+	}
+	
+	@RequestMapping(value = "/idsearch")
+	public String idsearch() {
+		return "id_search";
+	}
+	
+	@RequestMapping(value = "/getid",method =RequestMethod.POST)
+	public void getId(String name, String birth, String tel, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter prw = response.getWriter();
+		LoginService ls = sqlsession.getMapper(LoginService.class);
+		String id = ls.getid(name,birth,tel);
+		if(id==null || id=="") {
+			prw.print("아이디를 찾을 수 없습니다.");
+		}
+		else {
+			prw.print("당신의 아이디는 "+id+"입니다.");
+		}
+		
+	}
+	
+	@RequestMapping(value = "/pwsearch")
+	public String pwsearch() {
+		return "pw_search";
+	}
+	
+	@RequestMapping(value = "/getpw",method =RequestMethod.POST)
+	public void getPw(String id, String name, String birth, String tel, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter prw = response.getWriter();
+		LoginService ls = sqlsession.getMapper(LoginService.class);
+		int result = ls.getpw(id,name,birth,tel);
+		prw.print(result);
+	}
+	
+	@RequestMapping(value = "/pwchange")
+	public String pwchange(String id, Model mo) {
+		mo.addAttribute("id", id);
+		return "pw_change";
+	}
+	
+	@RequestMapping(value = "/pwud")
+	public void pw_update(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		pw=passwordEncoder.encode(pw);
+		LoginService ls = sqlsession.getMapper(LoginService.class);
+		ls.pwchange(id,pw);
 	}
 }

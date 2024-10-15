@@ -24,7 +24,30 @@
 			});
 		});
 	});
+
+////아이디 찾기 팝업창
+$(document).ready(function() {
+	$('#is').click(function() {
+		var windowFeatures="width=300px, heigth=600px, popup=yes";
+		var popup = window.open("idsearch","_blank",windowFeatures);
+		popup.resizeTo(350,500);	
+	});
+});
+
+////비밀번호 찾기 팝업창
+$(document).ready(function() {
+	$('#ps').click(function() {
+		var windowFeatures="width=300px, heigth=600px, popup=yes";
+		var pwpopup = window.open("pwsearch","_blank",windowFeatures);
+		pwpopup.resizeTo(350,500);	
+	});
+});
 </script>
+<style type="text/css">
+.isps, .is, .ps {
+font-size: 13px;
+}
+</style>
 </head>
 <body>
 <h1>Login</h1>
@@ -40,7 +63,12 @@
 </tr>
 </table>
 	<input type="submit" id ="login" value="로그인"><br>
-	<p class="p">아직 회원이 아니신가요? <a href="signup">회원가입</a></p>
+		<p class="isps">
+			<a id="is" class="is">아이디 찾기</a>
+			 | 
+			<a id="ps" class="ps">비밀번호 찾기</a>
+		</p>
+		<p class="p">아직 회원이 아니신가요? <a href="signup">회원가입</a></p>
 </form>
 </body>
 </html>

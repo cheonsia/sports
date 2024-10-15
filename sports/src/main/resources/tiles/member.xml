@@ -46,10 +46,26 @@
 		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
 	</definition>
+	
 	<definition name="baseballLogin" extends="memberLayout">
 		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+	</definition>
+	
+	<definition name="id_search" extends="memberLayout">
+		<put-attribute name="title" value="아이디 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/id_search.jsp"/>
+	</definition>
+	
+	<definition name="pw_search" extends="memberLayout">
+		<put-attribute name="title" value="비밀번호 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/pw_search.jsp"/>
+	</definition>
+	
+	<definition name="pw_change" extends="memberLayout">
+		<put-attribute name="title" value="비밀번호 바꾸기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/pw_change.jsp"/>
 	</definition>
    
 </tiles-definitions>
