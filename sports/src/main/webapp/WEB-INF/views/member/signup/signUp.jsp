@@ -9,9 +9,18 @@
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<style type="text/css">
+			.side_rightbar_whole{
+				display: none;
+			}
+			#body{
+				width: 100%;
+			}
 			.main_section{
-				margin: 30px 20px 0 20px;
+				margin: 30px auto 0 auto;
 				overflow: auto;
+			}
+			#footer{
+				width: calc(100% - 40px);
 			}
 			.header_team_logo{
 				display: none;
@@ -21,7 +30,7 @@
 			}
 			.signform{
 				width: 600px;
-				margin: 0 auto;
+				margin: 40px auto 50px 29%;
 			}
 			.signform *{
 				font-size: 14px;
