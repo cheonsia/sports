@@ -10,4 +10,10 @@ public interface LoginService {
 
 	String access(String id);
 
+	String getid(String name, String birth, String tel);
+
+	int getpw(String id, String name, String birth, String tel);
+
+	void pwchange(String id, String pw);
+
 }
