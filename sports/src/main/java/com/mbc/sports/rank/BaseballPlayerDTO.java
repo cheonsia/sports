@@ -130,11 +130,4 @@ public class BaseballPlayerDTO {
 	public void setWinper(String winper) {
 		this.winper = winper;
 	}
-	@Override
-	public String toString() {
-		return "BaseballPlayerDTO [rank=" + rank + ", name=" + name + ", team=" + team + ", era=" + era + ", round="
-				+ round + ", inning=" + inning + ", win=" + win + ", lose=" + lose + ", save=" + save + ", hold=" + hold
-				+ ", out=" + out + ", hit=" + hit + ", homerun=" + homerun + ", losepnt=" + losepnt + ", fourball="
-				+ fourball + ", deadball=" + deadball + ", winper=" + winper + "]";
-	}
 }

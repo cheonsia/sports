@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RankinigController {
 	@Autowired
 	SqlSession sqlSession;
-	
+	//축구 팀별 순위
 	@RequestMapping(value="/soccerTeamRank")
 	public String scteamrank(Model model) throws IOException {
 		ArrayList<SoccerTeamDTO> list = new ArrayList<>();
@@ -25,91 +25,32 @@ public class RankinigController {
 					.userAgent(
 							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
 					.get();
-			// select를 이용해서 tr들을 불러오기
-		Elements soccerTeamsA = doc.select("#splitGroupA_table > tr");
-		// tr들의 반복문 돌리기
-		for (Element soccerTeam : soccerTeamsA) {
-			Element rank = soccerTeam.selectFirst("th"); // 순위
-			Element title = soccerTeam.selectFirst("span:nth-child(2)"); // 팀명
-			Element round = soccerTeam.selectFirst("td:nth-child(3)"); // 경기 수
-			Element points = soccerTeam.selectFirst("td:nth-child(4)"); // 승점
-			Element win = soccerTeam.selectFirst("td:nth-child(5)"); // 승
-			Element draw = soccerTeam.selectFirst("td:nth-child(6)"); // 무
-			Element lose = soccerTeam.selectFirst("td:nth-child(7)"); // 패
-			Element score = soccerTeam.selectFirst("td:nth-child(8)"); // 득점
-			Element conceded = soccerTeam.selectFirst("td:nth-child(9)"); // 실점
-			Element difference = soccerTeam.selectFirst("td:nth-child(10)"); // 득실차
-			Element assist = soccerTeam.selectFirst("td:nth-child(11)"); // 도움
-			Element foul = soccerTeam.selectFirst("td:nth-child(12)"); // 파울
-			if (title != null) {
-				SoccerTeamDTO teamData = new SoccerTeamDTO(rank.text(),title.text(), round.text(), points.text(),win.text(), draw.text(), lose.text(), score.text(), conceded.text(), difference.text(), assist.text(), foul.text());
-				list.add(teamData);
-			}
-		}
-		//
-		Elements soccerTeamsB = doc.select("#splitGroupB_table > tr");
-		for (Element soccerTeam : soccerTeamsB) {
-			Element rank = soccerTeam.selectFirst("th"); // 순위
-			Element title = soccerTeam.selectFirst("span:nth-child(2)"); // 팀명
-			Element round = soccerTeam.selectFirst("td:nth-child(3)"); // 경기 수
-			Element points = soccerTeam.selectFirst("td:nth-child(4)"); // 승점
-			Element win = soccerTeam.selectFirst("td:nth-child(5)"); // 승
-			Element draw = soccerTeam.selectFirst("td:nth-child(6)"); // 무
-			Element lose = soccerTeam.selectFirst("td:nth-child(7)"); // 패
-			Element score = soccerTeam.selectFirst("td:nth-child(8)"); // 득점
-			Element conceded = soccerTeam.selectFirst("td:nth-child(9)"); // 실점
-			Element difference = soccerTeam.selectFirst("td:nth-child(10)"); // 득실차
-			Element assist = soccerTeam.selectFirst("td:nth-child(11)"); // 도움
-			Element foul = soccerTeam.selectFirst("td:nth-child(12)"); // 파울
-			if (title != null) {
-				SoccerTeamDTO teamData = new SoccerTeamDTO(rank.text(),title.text(), round.text(), points.text(),win.text(), draw.text(), lose.text(), score.text(), conceded.text(), difference.text(), assist.text(), foul.text());
-				list.add(teamData);
+		String soccer[] = {"#splitGroupA_table","#splitGroupB_table"};
+		for(int i=0; i < soccer.length; i++) {
+			Elements soccerTeams = doc.select(soccer[i] + " > tr");
+			for (Element soccerTeam : soccerTeams) {
+				Element rank = soccerTeam.selectFirst("th"); // 순위
+				Element title = soccerTeam.selectFirst("span:nth-child(2)"); // 팀명
+				Element round = soccerTeam.selectFirst("td:nth-child(3)"); // 경기 수
+				Element points = soccerTeam.selectFirst("td:nth-child(4)"); // 승점
+				Element win = soccerTeam.selectFirst("td:nth-child(5)"); // 승
+				Element draw = soccerTeam.selectFirst("td:nth-child(6)"); // 무
+				Element lose = soccerTeam.selectFirst("td:nth-child(7)"); // 패
+				Element score = soccerTeam.selectFirst("td:nth-child(8)"); // 득점
+				Element conceded = soccerTeam.selectFirst("td:nth-child(9)"); // 실점
+				Element difference = soccerTeam.selectFirst("td:nth-child(10)"); // 득실차
+				Element assist = soccerTeam.selectFirst("td:nth-child(11)"); // 도움
+				Element foul = soccerTeam.selectFirst("td:nth-child(12)"); // 파울
+				if (title != null) {
+					SoccerTeamDTO teamData = new SoccerTeamDTO(rank.text(),title.text(), round.text(), points.text(),win.text(), draw.text(), lose.text(), score.text(), conceded.text(), difference.text(), assist.text(), foul.text());
+					list.add(teamData);
+				}
 			}
 		}
 		model.addAttribute("list",list);
 		return "soccerTeamRank";
 	}
-
-	// KBO 리그 팀 순위 가져오기 by Jsoup
-	@RequestMapping(value="/baseballTeamRank")
-	public String scrapeRank(Model model) {
-		ArrayList<BaseballTeamDTO> list = new ArrayList<>();
-		try {
-			Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
-					.userAgent(
-							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
-					.get();
-			// select를 이용해서 tr들을 불러오기
-			Elements baseballTeams = doc.select("#regularTeamRecordList_table > tr");
-			// tr들의 반복문 돌리기
-			for (Element baseballTeam : baseballTeams) {
-				Element rank = baseballTeam.selectFirst("th"); // 등 수
-				Element title = baseballTeam.selectFirst("span:nth-child(2)"); // 팀 명
-				Element match = baseballTeam.selectFirst("td:nth-child(3)"); // 경기 수
-				Element victory = baseballTeam.selectFirst("td:nth-child(4)"); // 승
-				Element defeat = baseballTeam.selectFirst("td:nth-child(5)"); // 패
-				Element draw = baseballTeam.selectFirst("td:nth-child(6)"); // 무
-				Element rate = baseballTeam.selectFirst("td:nth-child(7)"); // 승률
-				Element between = baseballTeam.selectFirst("td:nth-child(8)"); // 게임차
-				Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연속
-				Element base = baseballTeam.selectFirst("td:nth-child(10)"); // 출루율
-				Element slugging = baseballTeam.selectFirst("td:nth-child(11)"); // 장타율
-				Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
-				if (title != null) {
-					String image = title.text();
-					BaseballTeamDTO teamData = new BaseballTeamDTO(rank.text(), image, title.text(), match.text(), victory.text(),
-							defeat.text(), draw.text(), rate.text(), between.text(), winning.text(), base.text(), slugging.text(), recent.text());
-					list.add(teamData);
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("list",list);
-		return "baseballPlayerRank";
-	}
-	
-	
+	//축구 선수별 순위
 	@RequestMapping(value="/scPlayerRank")
 	public String scplayerrank(Model model) throws IOException {
 		ArrayList<SoccerPlayerDTO> list = new ArrayList<>();
@@ -145,5 +86,75 @@ public class RankinigController {
 		}
 		model.addAttribute("list",list);
 		return "scPlayerRank";
+	}
+	//야구 팀별 순위
+	@RequestMapping(value="/baseballTeamRank")
+	public String scrapeRank(Model model) {
+		ArrayList<BaseballTeamDTO> list = new ArrayList<>();
+		try {
+			Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
+					.userAgent(
+							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
+					.get();
+			// select를 이용해서 tr들을 불러오기
+			Elements baseballTeams = doc.select("#regularTeamRecordList_table > tr");
+			// tr들의 반복문 돌리기
+			for (Element baseballTeam : baseballTeams) {
+				Element rank = baseballTeam.selectFirst("th"); // 등 수
+				Element title = baseballTeam.selectFirst("span:nth-child(2)"); // 팀 명
+				Element match = baseballTeam.selectFirst("td:nth-child(3)"); // 경기 수
+				Element victory = baseballTeam.selectFirst("td:nth-child(4)"); // 승
+				Element defeat = baseballTeam.selectFirst("td:nth-child(5)"); // 패
+				Element draw = baseballTeam.selectFirst("td:nth-child(6)"); // 무
+				Element rate = baseballTeam.selectFirst("td:nth-child(7)"); // 승률
+				Element between = baseballTeam.selectFirst("td:nth-child(8)"); // 게임차
+				Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연속
+				Element base = baseballTeam.selectFirst("td:nth-child(10)"); // 출루율
+				Element slugging = baseballTeam.selectFirst("td:nth-child(11)"); // 장타율
+				Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
+				if (title != null) {
+					String image = title.text();
+					BaseballTeamDTO teamData = new BaseballTeamDTO(rank.text(), image, title.text(), match.text(), victory.text(),
+							defeat.text(), draw.text(), rate.text(), between.text(), winning.text(), base.text(), slugging.text(), recent.text());
+					list.add(teamData);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("list",list);
+		return "baseballTeamRank";
+	}
+	//야구 선수별 순위
+	@RequestMapping(value="/baseballPlayerRank")
+	public String playerRank(Model model) throws IOException {
+		ArrayList<BaseballPlayerDTO> sectionlist = new ArrayList<>();
+		Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
+				.userAgent(
+						"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
+				.get();
+		// select를 이용해서 tr들을 불러오기
+		String [] str = {".pitcher", ".hitter",".etc"};
+		for ( int i = 0 ; i<str.length;i++) {
+			Elements baseballSelects = doc.select(str[i]+" > tbody tr td li");
+			for (Element baseballSelect : baseballSelects){
+				Element rank = baseballSelect.selectFirst("span.ord"); 
+				Element name = baseballSelect.selectFirst("a"); 
+				Element team = baseballSelect.selectFirst("span.team"); 
+				Element win = baseballSelect.selectFirst("em"); 
+				if (win != null) {
+					RankService srs = sqlSession.getMapper(RankService.class);
+					BaseballPlayerDTO playerRank =new BaseballPlayerDTO();
+					playerRank.setRank(rank.text());
+					playerRank.setName(name.text());
+					playerRank.setTeam(team.text());
+					playerRank.setWin(win.text());
+					String image = srs.getImage(playerRank.getName(),playerRank.getTeam());
+					playerRank.setEra(image);
+					sectionlist.add(playerRank);
+				}}}
+		System.out.println(sectionlist);
+		model.addAttribute("sectionlist",sectionlist);
+		return "baseballPlayerRank";
 	}
 }
