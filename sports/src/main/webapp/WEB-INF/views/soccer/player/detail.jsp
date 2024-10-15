@@ -16,6 +16,16 @@
 		padding-left: 30px;
 		height: 40px;
 	}
+	td:nth-child(2) input,
+	td:nth-child(2) input:hover{
+		width:150px;
+		border: none;
+		outline: none;
+	}
+	td:nth-child(2){
+		display: flex;
+		align-items: center;
+	}
 	h1{
 		font-size: 30px;
 	}
@@ -26,7 +36,7 @@
 	textarea {
 	 height: 500px;
 	 padding: 20px; 
-	 }
+	}
 	.con{
 		width: 100%;
 		max-width: 800px;
@@ -56,7 +66,7 @@
 		display: flex;
     	justify-content: flex-start;
     	align-items: center;
-	}
+    }
 	.click .hovermsg{
 		display: none;
 		position: absolute;
@@ -79,7 +89,7 @@
 	.first1{
 		display: flex; 
 		justify-content: space-between;
-		max-width: 800px;
+		max-width: 800px; 
 		margin: 0 auto;
 	}
 	.comment{
@@ -182,11 +192,37 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var name;
+		var team = `${dto.tname}`;
+		if (team=='kangwon') name='강원';
+		if (team=='gwangju') name='광주';
+		if (team=='gimcheon') name='김천';
+		if (team=='daegu') name='대구';
+		if (team=='daejeon') name='대전';
+		if (team=='seoul') name='서울';
+		if (team=='suwon') name='수원';
+		if (team=='ulsan') name='울산';
+		if (team=='incheon') name='인천';
+		if (team=='jeonbuk') name='전북';
+		if (team=='jeju') name='제주';
+		if (team=='pohang') name='포항';
+		
+		if (team=='KIA')name='KIA';
+        if (team=='KT')name='KT';
+        if (team=='LG')name='LG';
+        if (team=='NC')name='NC';
+        if (team=='SSG')name='SSG';
+        if (team=='DOOSAN')name='두산';
+        if (team=='LOTTE')name='롯데';
+        if (team=='SAMSUNG')name='삼성';
+        if (team=='KIWOOM')name='키움';
+        if (team=='HANHWA')name='한화';
+		$("#team").val(name);		
+		
 		$(".c1_a").click(function(){
 			$(this).parent('.p1').parent(".cocomentresult").next('.c1').toggle();
-		});	
+		});
 	});
-	
 	function heart(playernum,step){
 		$.ajax({
 			type : "post",
@@ -260,26 +296,8 @@
 		</c:choose> 
 		</td>
 		<td>소 속:
-		<c:choose>
-			<c:when test="${dto.play == '축구'}">
-				<c:if test="${dto.tname=='kangwon'}">강원</c:if>
-	            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
-	            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
-	            <c:if test="${dto.tname=='daegu'}">대구</c:if>
-	            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
-	            <c:if test="${dto.tname=='seoul'}">서울</c:if>
-	            <c:if test="${dto.tname=='suwon'}">수원</c:if>
-	            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
-	            <c:if test="${dto.tname=='incheon'}">인천</c:if>
-	            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
-	            <c:if test="${dto.tname=='jeju'}">제주</c:if>
-	            <c:if test="${dto.tname=='pohang'}">포항</c:if>
-			</c:when>
-			<c:otherwise>
-				${dto.tname}
-			</c:otherwise>
-		</c:choose> 
-        </td>
+			<input type="text" id="team" name="team" value="${dto.tname}" readonly>
+		</td>
 	</tr>
 	<tr>
 		<td>선 수 이 름: ${dto.pname}</td>
@@ -334,18 +352,19 @@
 					<input type="hidden" name="id" value="${member.id}"> 
 					<input class="writer" type="text" name="writer" value="${member.name}" placeholder="작성자" readonly> 
 					<input type="text" name="comment" placeholder=" ${dto.pname} 선수에게 응원 메세지 남기기😊" required> 
+					<input type="submit" value="댓글 달기">
 				</c:when>
 				<c:when test="${adminlogin}">
 					<input type="hidden" name="id" value="★"> 
 					<input class="writer" type="text" name="writer" value="관리자" readonly> 
 					<input type="text" name="comment" placeholder="댓글 내용 입력" required> 
+					<input type="submit" value="댓글 달기">
 				</c:when>
 				<c:otherwise>
 					<input class="writer" type="text" name="writer" placeholder="작성자" readonly> 
 					<input type="text" name="comment" placeholder="댓글은 로그인 후 이용가능합니다." readonly> 
 				</c:otherwise>
 			</c:choose>
-			<input type="submit" value="댓글 달기">
 		</div>
 	</form>
 	<div class="commentResult">
@@ -360,10 +379,6 @@
 								┗<input type="text" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
 								</p>
 								<p class="p p2">
-								<!--  
-										<a href="heart?playernum=${dto.playernum}&step=${cli.step}&play=${dto.play}">				
-										</a>
-								-->
 									<img src="./image/soccer/logo/soccer.ico" width="80px" onclick="heart(${dto.playernum},${cli.step})">
 									<input type="text" class="heart" name="heartresult" id="heartresult_${cli.step}" value="${cli.heart}" readonly>
 									<input type="text" class="commentDate" name="cdate" value="${cli.cdate}" readonly>
