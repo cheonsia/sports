@@ -1,16 +1,16 @@
 package com.mbc.sports.rank;
 
 public class SoccerPlayerDTO {
-	String rank,playerName,teamName,score,assist,attackPoint,conceded,conner,
+	String rank,name,team,score,assist,attackPoint,conceded,conner,
 	foul,shooting,offside,warning,exit,scoreless,businessTrip,change,record;
 	public SoccerPlayerDTO() {}
-	public SoccerPlayerDTO(String rank, String playerName, String teamName, String score, String assist,
-			String attackPoint, String conceded, String conner, String foul, String shooting, String offside,
-			String warning, String exit, String scoreless, String businessTrip, String change, String record) {
+	public SoccerPlayerDTO(String rank, String name, String team, String score, String assist, String attackPoint,
+			String conceded, String conner, String foul, String shooting, String offside, String warning, String exit,
+			String scoreless, String businessTrip, String change, String record) {
 		super();
 		this.rank = rank;
-		this.playerName = playerName;
-		this.teamName = teamName;
+		this.name = name;
+		this.team = team;
 		this.score = score;
 		this.assist = assist;
 		this.attackPoint = attackPoint;
@@ -32,17 +32,17 @@ public class SoccerPlayerDTO {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
-	public String getPlayerName() {
-		return playerName;
+	public String getName() {
+		return name;
 	}
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getTeamName() {
-		return teamName;
+	public String getTeam() {
+		return team;
 	}
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
+	public void setTeam(String team) {
+		this.team = team;
 	}
 	public String getScore() {
 		return score;
@@ -127,6 +127,5 @@ public class SoccerPlayerDTO {
 	}
 	public void setRecord(String record) {
 		this.record = record;
-	}
-	
+	}	
 }

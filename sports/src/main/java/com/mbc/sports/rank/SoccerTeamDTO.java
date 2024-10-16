@@ -3,10 +3,7 @@ package com.mbc.sports.rank;
 public class SoccerTeamDTO {
 	
 	String rank, title, round,points,win,draw,lose,score,conceded,difference,assist,foul;
-	public SoccerTeamDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public SoccerTeamDTO() {}
 	public SoccerTeamDTO(String rank, String title, String round, String points, String win, String draw, String lose,
 			String score, String conceded, String difference, String assist, String foul) {
 		super();

@@ -1,5 +1,6 @@
 package com.mbc.sports.rank;
 
 public interface RankService {
-	String getImage(String name, String tname);	
+	String getimage(String tname, String name);	
+	String getImage(String name, String tname);
 }

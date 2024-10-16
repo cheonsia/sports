@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 	<style type="text/css">
+		.header_team_logo {
+			display: none;
+		}
+		.main_section{
+			margin-top: 75px;
+		}
 		table{
 			width: 1200px;
 			table-layout: fixed;
@@ -29,7 +35,7 @@
 		tr th,
 		tr td{
 			width: 100%;
-			height: 36px;
+			height: 40px;
 		}
 		tr th:nth-child(1),
 		tr td:nth-child(1){
@@ -42,13 +48,13 @@
 			width: 150px;
 		}
 		tr td:nth-child(2){
-			text-align: left;
-    		padding-left: 35px;
+			font-weight: bold;
 		}
-		tr th:nth-child(12),
-		tr td:nth-child(12){
-			min-width: 200px;
-			width: 200px;
+		td:nth-child(4){
+		    font-weight: bold;
+		    background-color: #e4f4e480;
+		    color: #000000;
+		    font-size: 18px;
 		}
 	</style>
 </head>
@@ -58,7 +64,7 @@
 		<thead>
 			<tr>
 				<th>순위</th>
-				<th>팀명</th>
+				<th>팀 명</th>
 				<th>경기 수</th>
 				<th>승점</th>
 				<th>승</th>
@@ -76,14 +82,7 @@
 				<tr>
 					<td>${team.rank}</td>
 					<td>
-					<c:choose>
-						<c:when test="${team.title=='수원FC'}">
-							<img src="image/soccer/logo/수원.png" width="25" height="25"> 
-						</c:when>
-						<c:otherwise>
-							<img src="image/soccer/logo/${team.title}.png" width="25" height="25"> 
-						</c:otherwise>
-					</c:choose>
+						<img src="image/soccer/logo/${team.title}.png" width="25" height="25"> 
 						&emsp;${team.title}
 					</td>
 					<td>${team.round}</td>
