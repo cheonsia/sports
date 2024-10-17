@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>메인페이지</title>
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 		<style type="text/css">
 			*{
 				-webkit-user-select: none;
@@ -102,7 +103,7 @@
 			.common_game_whole{
 				width: 100%;
 				height: auto;
-				max-height: 185px;
+				max-height: 200px;
 				margin: 0 auto;
 				display: flex;
 				flex-wrap: wrap;
@@ -393,7 +394,7 @@
 				line-height: 24px;
 				font-weight: 400;
 				text-align: center;
-				padding: 10px 20px;
+				padding: 10px 30px;
 				border: 1px solid #e1e1e1;
 				color: #fff;
 				margin: 20px auto 0 auto;
@@ -574,129 +575,147 @@
 				</div>
 			</div>
 			<div class="common_main_banner">
-				<swiper-container class="mySwiper">
-					<swiper-slide>
-						<div class="banner_link_flex">
-							<div class="banner_link_bg banner_link_bg1">
-								<div class="banner_link_img">
-									<div>
-										<img alt="강원 로고" src="./image/soccer/logo/강원.png">
-										<p>강원</p>
+				<div class="soccerSwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="banner_link_flex">
+								<div class="banner_link_bg banner_link_bg1">
+									<div class="banner_link_img">
+										<div>
+											<img alt="강원FC 로고" src="./image/soccer/logo/강원.png">
+											<p>강원FC</p>
+										</div>
+										<a href="https://www.gangwon-fc.com/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg2">
-								<div class="banner_link_img">
-									<div>
-										<img alt="광주 로고" src="./image/soccer/logo/광주.png">
-										<p>광주</p>
+								<div class="banner_link_bg banner_link_bg2">
+									<div class="banner_link_img">
+										<div>
+											<img alt="광주FC 로고" src="./image/soccer/logo/광주.png">
+											<p>광주FC</p>
+										</div>
+										<a href="https://www.gwangjufc.com/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg3">
-								<div class="banner_link_img">
-									<div>
-										<img alt="김천 로고" src="./image/soccer/logo/김천.png">
-										<p>김천</p>
+								<div class="banner_link_bg banner_link_bg3">
+									<div class="banner_link_img">
+										<div>
+											<img alt="김천상무 로고" src="./image/soccer/logo/김천.png">
+											<p>김천상무</p>
+										</div>
+										<a href="https://www.gimcheonfc.com/index.php" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg4">
-								<div class="banner_link_img">
-									<div>
-										<img alt="대구 로고" src="./image/soccer/logo/대구.png">
-										<p>대구</p>
+								<div class="banner_link_bg banner_link_bg4">
+									<div class="banner_link_img">
+										<div>
+											<img alt="대구FC 로고" src="./image/soccer/logo/대구.png">
+											<p>대구FC</p>
+										</div>
+										<a href="https://www.daegufc.co.kr/main/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
-								</div>
-							</div>
-						</div>
-					</swiper-slide>
-					<swiper-slide>
-						<div class="banner_link_flex">
-							<div class="banner_link_bg banner_link_bg5">
-								<div class="banner_link_img">
-									<div>
-										<img alt="대전 로고" src="./image/soccer/logo/대전.png">
-										<p>대전</p>
-									</div>
-									<a href="">공식 홈페이지 가기</a>
-								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg6">
-								<div class="banner_link_img">
-									<div>
-										<img alt="서울 로고" src="./image/soccer/logo/서울.png">
-										<p>서울</p>
-									</div>
-									<a href="">공식 홈페이지 가기</a>
-								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg7">
-								<div class="banner_link_img">
-									<div>
-										<img alt="수원 로고" src="./image/soccer/logo/수원.png">
-										<p>수원</p>
-									</div>
-									<a href="">공식 홈페이지 가기</a>
-								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg8">
-								<div class="banner_link_img">
-									<div>
-										<img alt="울산 로고" src="./image/soccer/logo/울산.png">
-										<p>울산</p>
-									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
 							</div>
 						</div>
-					</swiper-slide>
-					<swiper-slide>
-						<div class="banner_link_flex">
-							<div class="banner_link_bg banner_link_bg9">
-								<div class="banner_link_img">
-									<div>
-										<img alt="인천 로고" src="./image/soccer/logo/인천.png">
-										<p>인천</p>
+						<div class="swiper-slide">
+							<div class="banner_link_flex">
+								<div class="banner_link_bg banner_link_bg5">
+									<div class="banner_link_img">
+										<div>
+											<img alt="대전하나시티즌 로고" src="./image/soccer/logo/대전.png">
+											<p>대전하나시티즌</p>
+										</div>
+										<a href="https://www.dhcfc.kr/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg10">
-								<div class="banner_link_img">
-									<div>
-										<img alt="전북 로고" src="./image/soccer/logo/전북.png">
-										<p>전북</p>
+								<div class="banner_link_bg banner_link_bg6">
+									<div class="banner_link_img">
+										<div>
+											<img alt="FC 서울 로고" src="./image/soccer/logo/서울.png">
+											<p>FC 서울</p>
+										</div>
+										<a href="https://www.fcseoul.com/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg11">
-								<div class="banner_link_img">
-									<div>
-										<img alt="제주 로고" src="./image/soccer/logo/제주.png">
-										<p>제주</p>
+								<div class="banner_link_bg banner_link_bg7">
+									<div class="banner_link_img">
+										<div>
+											<img alt="수원 FC 로고" src="./image/soccer/logo/수원.png">
+											<p>수원 FC</p>
+										</div>
+										<a href="https://www.suwonfc.com/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
-							</div>
-							<div class="banner_link_bg banner_link_bg12">
-								<div class="banner_link_img">
-									<div>
-										<img alt="포항 로고" src="./image/soccer/logo/포항.png">
-										<p>포항</p>
+								<div class="banner_link_bg banner_link_bg8">
+									<div class="banner_link_img">
+										<div>
+											<img alt="울산 HD FC 로고" src="./image/soccer/logo/울산.png">
+											<p>울산 HD FC</p>
+										</div>
+										<a href="https://www.uhfc.tv/" target="_blank">공식 홈페이지 가기</a>
 									</div>
-									<a href="">공식 홈페이지 가기</a>
 								</div>
 							</div>
 						</div>
-					</swiper-slide>
-				</swiper-container>
+						<div class="swiper-slide">
+							<div class="banner_link_flex">
+								<div class="banner_link_bg banner_link_bg9">
+									<div class="banner_link_img">
+										<div>
+											<img alt="인천유나이티드 로고" src="./image/soccer/logo/인천.png">
+											<p>인천유나이티드</p>
+										</div>
+										<a href="https://www.incheonutd.com/main/index.php" target="_blank">공식 홈페이지 가기</a>
+									</div>
+								</div>
+								<div class="banner_link_bg banner_link_bg10">
+									<div class="banner_link_img">
+										<div>
+											<img alt="전북 현대 모터스 로고" src="./image/soccer/logo/전북.png">
+											<p>전북 현대 모터스</p>
+										</div>
+										<a href="https://hyundai-motorsfc.com/" target="_blank">공식 홈페이지 가기</a>
+									</div>
+								</div>
+								<div class="banner_link_bg banner_link_bg11">
+									<div class="banner_link_img">
+										<div>
+											<img alt="제주유나이티드 로고" src="./image/soccer/logo/제주.png">
+											<p>제주유나이티드</p>
+										</div>
+										<a href="https://www.jeju-utd.com/" target="_blank">공식 홈페이지 가기</a>
+									</div>
+								</div>
+								<div class="banner_link_bg banner_link_bg12">
+									<div class="banner_link_img">
+										<div>
+											<img alt="포항스틸러스 로고" src="./image/soccer/logo/포항.png">
+											<p>포항스틸러스</p>
+										</div>
+										<a href="https://www.steelers.co.kr/" target="_blank">공식 홈페이지 가기</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+	<script type="text/javascript">
+		const swiper = new Swiper('.soccerSwiper', {
+			speed: 400,
+			autoplay: {
+				delay: 3000,
+			},
+		});
+		$('.common_main_banner').on('mouseover', function() {
+			swiper.autoplay.stop();
+		});
+		$('.common_main_banner').on('mouseleave', function() {
+			swiper.autoplay.start();
+		});
+	</script>
 </html>
