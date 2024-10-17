@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mbc.sports.main.MainService">
+	<select id="soccerSelectToday" resultType="com.mbc.sports.game.GameDTO">
+		select team1, team2, to_char(gamedate,'yyyy-MM-dd')gamedate, gametime, gameplace, season from soccer_game where gamedate = to_char(sysdate,'yy-MM-dd') order by gametime, gameplace
+	</select>
+	<select id="baseballSelectToday" resultType="com.mbc.sports.game.GameDTO">
+		select team1, team2, to_char(gamedate,'yyyy-MM-dd')gamedate, gametime, gameplace, season from baseball_game where gamedate = to_char(sysdate,'yy-MM-dd') order by gametime, gameplace
+	</select>
+</mapper>
