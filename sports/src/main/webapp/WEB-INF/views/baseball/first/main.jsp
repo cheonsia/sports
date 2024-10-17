@@ -29,12 +29,27 @@
 				justify-content: space-between;
 			}
 			.common_main_whole h2{
+				display: flex;
+				justify-content: space-between;
+				align-items: end;
 				font-size: 20px;
 				line-height: 29px;
 				font-weight: bold;
 				color: #3d3d3d;
-				text-align: center;
 				margin: 0 auto 24px auto;
+			}
+			.common_main_whole h2 a{
+				font-size: 14px;
+				line-height: 20px;
+				font-weight: 400;
+				color: #999;
+				text-align: end;
+				border-bottom: 1px solid transparent;
+			}
+			.common_main_whole h2 a:hover{
+				font-weight: bold;
+				text-decoration: none;
+				border-color: #e1e1e1;
 			}
 			.common_main_member{
 				width: calc(100% - 42px);
@@ -218,8 +233,8 @@
 				color: #555;
 				margin-left: 15px;
 			}
-			.common_game_row p.no_data_txt{
-				padding: 76px 0;
+			.common_game_whole p.no_data_txt{
+				padding: 80px 0;
 			}
 			.common_main_rank{
 				width: 100%;
@@ -436,6 +451,9 @@
 			.banner_link_img a:hover{
 				background-color: #111;
 			}
+			.swiper-fade .swiper-slide{
+				background-color: #ededed;
+			}
 			@media (max-width: 999px){
 				.common_main_gr{
 					flex-direction: column;
@@ -494,12 +512,19 @@
 							<a href="javascript:void(0)" onclick="baseballStrategyMove()">전략 만들기</a>
 							<a href="javascript:void(0)" onclick="baseballCalendarMove()">훈련 일정</a>
 						</c:if>
+						<!--로그인 후(관리자)-->
+						<c:if test="${adminlogin}">
+							<p class="member_name_txt">관리자 계정</p>
+							<a href="memberList">회원 목록</a>
+							<a href="memberNoList">회원 요청</a>
+							<a href="javascript:void(0)">문의 답변</a>
+						</c:if>
 					</div>
 				</div>
 				<div class="common_main_gr">
 					<!--경기 일정-->
 					<div class="common_main_game">
-						<h2>오늘의 경기 일정</h2>
+						<h2>오늘의 경기 일정<a href="baseball_schedule">더보기</a></h2>
 						<div class="common_game_whole">
 							<!--team1,team2,gametime,gameplace,season-->
 							<c:forEach items="${gamelist}" var="game">
@@ -531,7 +556,7 @@
 					</div>
 					<!--순위-->
 					<div class="common_main_rank">
-						<h2>팀 순위</h2>
+						<h2>팀 순위<a href="baseballTeamRank">더보기</a></h2>
 						<div class="main_rank_whole">
 							<div class="main_rank_title">
 								<div>
@@ -678,10 +703,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 	<script type="text/javascript">
 		const swiper = new Swiper('.baseballSwiper', {
-			speed: 400,
+			//speed: 800,
 			autoplay: {
-				delay: 3000,
+				delay: 5000,//5초마다 스와이퍼 움직임
 			},
+			effect:'fade',
+			loop: true,
 		});
 		$('.common_main_banner').on('mouseover', function() {
 			swiper.autoplay.stop();
