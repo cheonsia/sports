@@ -26,7 +26,9 @@
 
 	.traning_pop_inner::-webkit-scrollbar {
 		display: none;
-	}p.traning_choose_pop_title {
+	}
+	
+	p.traning_choose_pop_title {
 		font-size: 17px;
 		line-height: 28px;
 		color: #777;
@@ -53,10 +55,12 @@
 				display: flex;
 				flex-wrap: wrap;
 			}
-			
+			.traning_people_choose p{
+				margin: 0 20px;
+			}
 			.traning_people_choose label {
 				display: block;
-				width: calc(16.6% - 10px);
+				width: calc(20% - 10px);
 				max-width: 100%;
 				margin: 0;
 			}
@@ -65,7 +69,7 @@
 				margin-left: 10px;
 			}
 			
-			.traning_people_choose label:nth-child(6n + 1) {
+			.traning_people_choose label:nth-child(5n + 1) {
 				margin-left: 0;
 			}
 			
@@ -78,6 +82,8 @@
 			input[name="team2"] + img{
 				border: 2px solid transparent;
 				border-radius: 50px;
+			    margin: 0 auto;
+   				display: block;
 			}
 			
 			input[name="team1"]:checked + img,
@@ -110,6 +116,47 @@
 				width: auto;
 				max-width: none;
 			}
+			
+			/*버튼*/
+			.training_memo_btn_whole {
+				width: 100%;
+				height: auto;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+				margin: 10px auto 30px auto;
+				margin-top: 20px;
+			}
+			
+			.training_memo_btn {
+				display: block;
+				width: 100%;
+				max-width: 100px;
+				height: 40px;
+				font-size: 16px;
+				line-height: 24px;
+				font-weight: 400;
+				border: 1px solid transparent;
+				border-radius: 5px;
+			}
+			
+			.training_memo_btn.memo_btn_cancel {
+				color: #556B2F;
+				background-color: #fff;
+				border-color: #556B2F;				
+			}
+			
+			.training_memo_btn.memo_btn_save {
+				color: #fff;
+				background-color: #556B2F;
+				border-color: #556B2F;
+			}
+			
+			.training_memo_btn + .training_memo_btn {
+				margin-left: 20px;
+			}
+			
 			
 </style>
 <script type="text/javascript">
@@ -254,8 +301,8 @@
 		        			</div>
 		       			</div>
 		       			<div class="training_memo_btn_whole">
-		       				<button type="button" class="training_memo_btn memo_btn_cancel" onclick="location.href='soccer_gameinfo'" >취소</button>
 		       				<button type="submit" class="training_memo_btn memo_btn_save">수정</button>
+		       				<button type="button" class="training_memo_btn memo_btn_cancel" onclick="location.href='baseball_gameinfo'" >취소</button>
 		       			</div>
 	       			</form>
        			</div>
