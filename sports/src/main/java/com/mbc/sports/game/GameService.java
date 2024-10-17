@@ -14,8 +14,6 @@ public interface GameService {
 
 	void update(String team1, String team2, String gamedate, String gametime, String gameplace, int gamenum);
 
-	ArrayList<GameDTO> gameselectdate(String date);
-
 	void Bupdate(String team1, String team2, String gamedate, String gametime, String gameplace, int gamenum);
 
 	GameDTO Bselect(int gamenum);
@@ -27,5 +25,9 @@ public interface GameService {
 	void Bgameinsert(String team1, String team2, String date, String time, String place);
 
 	ArrayList<GameDTO> Bgameselectdate(String date);
+
+	ArrayList<GameDTO> selectCalendarData(String startdate);
+
+	ArrayList<GameDTO> BselectCalendarData(String startdate);
 	
 }

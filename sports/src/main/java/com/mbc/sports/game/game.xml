@@ -3,27 +3,26 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mbc.sports.game.GameService">
-<!-- 
-    <insert id="gameinsert">
-    	insert into soccer_game values(#{param1},#{param2},#{param3},#{param4},#{param5})
-    </insert>
- -->    
+	<!-- 경기일정 저장 -->
     <insert id="gameinsert">
     	insert into soccer_game values(#{param1},#{param2},#{param3},#{param4},#{param5},soccer_game_seq.nextval)
     </insert>
-    
+    <!-- 경기일정 가져오기 -->
     <select id="gameselect" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
        	gametime,gameplace,gamenum
 		FROM soccer_game
-    </select>
-    <select id="gameselectdate" resultType="com.mbc.sports.game.GameDTO">
-    	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
-       	gametime,gameplace,gamenum
-		FROM soccer_game
-		where gamedate = #{param1}
+		order by gamedate,gametime,team1
     </select>
     
+    <select id="selectCalendarData" resultType="com.mbc.sports.game.GameDTO">
+		select team1,team2,to_char(gamedate, 'yyyy-MM-dd') as gamedate,
+       	gametime,gameplace,gamenum
+		from soccer_game
+		where last_day(to_date(#{param1}, 'yyyy-MM-dd')) >= gamedate and gamedate >= to_date(#{param1}, 'yyyy-MM-dd')
+	</select>
+    
+    <!-- delete,update 정보 가져오기 -->
     <select id="select" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
        	gametime,gameplace,gamenum
@@ -31,10 +30,12 @@
 		where gamenum = #{param1}
     </select>
     
+    <!-- 경기삭제 -->
     <delete id="delete">
     	delete from soccer_game where gamenum = #{param1}
     </delete>
     
+    <!-- 경기 수정 -->
     <update id="update">
     	update soccer_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5} where gamenum = #{param6}
     </update>
@@ -49,13 +50,15 @@
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
        	gametime,gameplace,gamenum
 		FROM baseball_game
+		order by gamedate,gametime,team1
     </select>
-    <select id="Bgameselectdate" resultType="com.mbc.sports.game.GameDTO">
-    	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
+    
+    <select id="BselectCalendarData" resultType="com.mbc.sports.game.GameDTO">
+		select team1,team2,to_char(gamedate, 'yyyy-MM-dd') as gamedate,
        	gametime,gameplace,gamenum
-		FROM baseball_game
-		where gamedate = #{param1}
-    </select>
+		from baseball_game
+		where last_day(to_date(#{param1}, 'yyyy-MM-dd')) >= gamedate and gamedate >= to_date(#{param1}, 'yyyy-MM-dd')
+	</select>
     
     <select id="Bselect" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
