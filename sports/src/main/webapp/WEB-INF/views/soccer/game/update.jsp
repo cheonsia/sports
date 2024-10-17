@@ -6,6 +6,47 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
+			/*버튼*/
+			.training_memo_btn_whole {
+				width: 100%;
+				height: auto;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+				margin: 10px auto 30px auto;
+				margin-top: 20px;
+			}
+			
+			.training_memo_btn {
+				display: block;
+				width: 100%;
+				max-width: 100px;
+				height: 40px;
+				font-size: 16px;
+				line-height: 24px;
+				font-weight: 400;
+				border: 1px solid transparent;
+				border-radius: 5px;
+			}
+			
+			.training_memo_btn.memo_btn_cancel {
+				color: #556B2F;
+				background-color: #fff;
+				border-color: #556B2F;				
+			}
+			
+			.training_memo_btn.memo_btn_save {
+				color: #fff;
+				background-color: #556B2F;
+				border-color: #556B2F;
+			}
+			
+			.training_memo_btn + .training_memo_btn {
+				margin-left: 20px;
+			}
+
 	p.traning_pop_subtext {
 		font-size: 16px;
 		line-height: 24px;
@@ -270,8 +311,8 @@
 		        			</div>
 		       			</div>
 		       			<div class="training_memo_btn_whole">
-		       				<button type="button" class="training_memo_btn memo_btn_cancel" onclick="location.href='soccer_gameinfo'" >취소</button>
 		       				<button type="submit" class="training_memo_btn memo_btn_save">수정</button>
+		       				<button type="button" class="training_memo_btn memo_btn_cancel" onclick="location.href='soccer_gameinfo'" >취소</button>
 		       			</div>
 	       			</form>
        			</div>
