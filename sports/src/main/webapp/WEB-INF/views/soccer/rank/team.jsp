@@ -15,6 +15,7 @@
 		table{
 			width: 1200px;
 			table-layout: fixed;
+		    margin: 0 auto;
 		}
 		td{
 			text-align: center;

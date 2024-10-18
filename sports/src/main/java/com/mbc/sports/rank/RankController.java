@@ -53,7 +53,7 @@ public class RankController {
 		return "soccerTeamRank";
 	}
 	//축구 선수별 순위
-	@RequestMapping(value="/scPlayerRank")
+	@RequestMapping(value="/soccerPlayerRank")
 	public String scplayerrank(Model model) throws IOException {
 		ArrayList<SoccerPlayerDTO> sectionlist = new ArrayList<>();
 		
@@ -125,7 +125,7 @@ public class RankController {
 		}
 		model.addAttribute("sectionlist",sectionlist);
 		model.addAttribute("list",list);
-		return "scPlayerRank";
+		return "soccerPlayerRank";
 	}
 	//야구 팀별 순위
 	@RequestMapping(value="/baseballTeamRank")
