@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
    <head>
+   <style type="text/css">
+   .header_login_txt img{
+   	width: 20px;
+   }
+   </style>
       <script type="text/javascript">
          function logoClick() {//헤더&푸터 로고 클릭시
             var location = window.location.pathname;//페이지 이름
@@ -68,7 +73,7 @@
          }
 
          function soccerStrategyMove() {//좌측 사이드메뉴 코치존 클릭 시
-            var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
+        	var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
             if(area_val == "" || area_val== null) area_val = "ALL";
             var area_val_han = $('#side_rightbar_txt').val();//side_rightbar_txt 값 가져옴
             location.href = "soccerstrategy?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
@@ -95,21 +100,22 @@
             $('.common_alert_whole').hide();
          }
 
-         function click_btn1(){
+         function click_btn(){
        		if(window.event.keyCode == 13){
        			var win_href = window.location.pathname;
-       			if(win_href.includes('idsearch')){//아이디 찾기에서 엔터 클릭 시
-	       			findId();
-       			}
-       			if(win_href.includes('pwsearch')){//비번찾기에서 엔터 클릭 시
-	       			findPw();
-       			}
-       			if(win_href.includes('pwupdate')){//비번변경에서 엔터 클릭 시
-	       			check();
-       			}
-	       			commonHide();
+       			if(win_href.includes('idsearch')||win_href.includes('pwsearch') || win_href.includes('pwupdate')){
+       				checkform();
+       			}commonHide();
        		}};
          $(document).ready(function() {//제이쿼리 필수 준비
+       		 $('.header_logo_inner a').removeClass('clicked_on');
+        	 var login = `${superlogin}`;
+        	 if(login){
+        		 var team = `${member.team}`;
+        		 teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : 'pohang';
+                 $('#soccer_'+teamEng).addClass('clicked_on');
+        		 
+        	 }
             $('.side_rightbar_flex a').on('click', function() {
                if($(this).hasClass('side_menu_click')) {
                   $(this).toggleClass("side_menu_on");
@@ -217,12 +223,12 @@
                <div class="side_rightbar_flex scroll_inn">
                   <input type="text" id="side_rightbar_txt" name="team" value="<c:choose><c:when test="${areaset}">${area.area_kor}</c:when><c:otherwise>ALL</c:otherwise></c:choose>" readonly>
                   <!-- 일반 회원 -->
-                  <ul>
+                  	<ul>
                      <li>
                         <a href="javascript:void(0)" class="side_menu_title side_menu_click">선수</a>
                         <ul>
                            <li>
-                              <a href="scPlayerRank">- 순위</a>
+                              <a href="soccerPlayerRank">- 순위</a>
                            </li>   
                            <li>
                               <a href="javascript:void(0)" onclick="playMove()">- 선수 정보</a>
@@ -256,7 +262,6 @@
                         <a href="soccergoods" class="side_menu_title">굿즈</a>
                      </li>
                   </ul>
-                   
 					<c:if test="${superlogin||adminlogin}">
 						<ul>
 							<li>
@@ -340,7 +345,7 @@
             <p class="common_alert_subtxt">서브타이틀</p>
             <div class="common_fixed_btn_whole">
                <button type="button" onclick="commonHide()" class="common_fixed_btn">확인</button>
-               <input type="text" id="alertshowfocus" onkeyup="click_btn1()" style="position: fixed!important; top: -200vw!important; left:-200vh!important; ">
+               <input type="text" id="alertshowfocus" onkeyup="click_btn()" style="position: fixed!important; top: -200vw!important; left:-200vh!important; ">
             </div>
          </div>         
       </div>
