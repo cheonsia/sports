@@ -73,6 +73,7 @@
             var area_val_han = $('#side_rightbar_txt').val();//side_rightbar_txt 값 가져옴
             location.href = "soccerstrategy?name="+area_val+"&area="+area_val_han;//컨트롤러에 영어/한글 지역 가져감
          }
+         
 
          /*팝업 구역*/
          //alert 팝업은 디자인이 들어간 div 폼으로 사용 예정. 코드는 아래와 같이 써주세요!!
@@ -80,12 +81,13 @@
          function alertShow(txt,txt2) {//alert 팝업 보이게
             $('.common_fixed_bg').fadeIn(500, function () {
                $(this).show();
+	            $('#alertshowfocus').focus();
               });;
+            $('.common_alert_whole').addClass('alertOn');
             $('.common_alert_whole').show();
             $('.common_alert_title').html(txt);
             $('.common_alert_subtxt').html(txt2);
          }
-
          function commonHide() {//전체 팝업 닫기
             $('.common_fixed_bg').fadeOut(500, function () {
                $(this).hide();
@@ -93,6 +95,20 @@
             $('.common_alert_whole').hide();
          }
 
+         function click_btn1(){
+       		if(window.event.keyCode == 13){
+       			var win_href = window.location.pathname;
+       			if(win_href.includes('idsearch')){//아이디 찾기에서 엔터 클릭 시
+	       			findId();
+       			}
+       			if(win_href.includes('pwsearch')){//비번찾기에서 엔터 클릭 시
+	       			findPw();
+       			}
+       			if(win_href.includes('pwupdate')){//비번변경에서 엔터 클릭 시
+	       			check();
+       			}
+	       			commonHide();
+       		}};
          $(document).ready(function() {//제이쿼리 필수 준비
             $('.side_rightbar_flex a').on('click', function() {
                if($(this).hasClass('side_menu_click')) {
@@ -319,11 +335,12 @@
       <!-- alert 팝업 -->
       <div class="common_fixed_bg"></div>
       <div class="common_alert_whole common_pop">
-         <div class="common_alert_box">
+         <div class="common_alert_box" >
             <p class="common_alert_title">타이틀</p>
             <p class="common_alert_subtxt">서브타이틀</p>
             <div class="common_fixed_btn_whole">
                <button type="button" onclick="commonHide()" class="common_fixed_btn">확인</button>
+               <input type="text" id="alertshowfocus" onkeyup="click_btn1()" style="position: fixed!important; top: -200vw!important; left:-200vh!important; ">
             </div>
          </div>         
       </div>
