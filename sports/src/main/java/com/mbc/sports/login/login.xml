@@ -9,7 +9,7 @@
 </select>
 
 <select id="logincheck" resultType="com.mbc.sports.member.MemberDTO">
-	select id,pw,name,sport,part from sportsmember where id=#{param1}
+	select id, pw, name, sport, team, part from sportsmember where id=#{param1}
 </select>
 
 <select id="access" resultType="string">
