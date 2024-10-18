@@ -489,6 +489,17 @@
 				.common_main_whole{
 					height: 100%;
 				}
+				a.login{
+			        border: inherit;
+			        display: inline;
+			        background-color: inherit;
+			        padding: 0;
+			        color: #006400;
+				}
+				a.login:hover{
+					box-shadow: inherit;
+					text-decoration: underline;
+				}
 			}
 		</style>
 	</head>
@@ -498,33 +509,32 @@
 			<div>
 				<div class="common_main_member">
 					<div class="common_member_flex">
-						<!--로그인 전-->
+						
 						<c:if test="${!normallogin && !superlogin && !adminlogin}">
-							<p class="member_name_txt">로그인해주세요.</p>
-							<a href="javascript:void(0)" onclick="alertShow('로그인', '로그인 후 이용하실 수 있습니다.')">랜덤 뽑기</a>
-							<a href="soccerTeamRank">선수 순위</a>
-							<a href="soccer_schedule">경기 일정</a>
-						</c:if>
-						<!--로그인 후(일반)-->
-						<c:if test="${normallogin}">
-							<p class="member_name_txt">${member.name} 님</p>
+							<p class="member_name_txt"><a class="login" href="login">로그인</a>을 해주세요.</p>
 							<a href="javascript:void(0)" onclick="playRandom()">랜덤 뽑기</a>
-							<a href="soccerTeamRank">선수 순위</a>
+							<a href="soccerTeamRank">팀 순위</a>
 							<a href="soccer_schedule">경기 일정</a>
 						</c:if>
-						<!--로그인 후(감독)-->
-						<c:if test="${superlogin}">
-							<p class="member_name_txt">${member.name} 님</p>
-							<a href="playerinput?play=축구">선수 등록</a>
-							<a href="javascript:void(0)" onclick="soccerStrategyMove()">전략 만들기</a>
-							<a href="javascript:void(0)" onclick="soccerCalendarMove()">훈련 일정</a>
-						</c:if>
-						<!--로그인 후(관리자)-->
+						<c:if test="${normallogin || superlogin}">
+							<p class="member_name_txt">${member.name} 님 환영합니다.</p>
+							<c:if test="${normallogin}">
+								<a href="javascript:void(0)" onclick="playRandom()">랜덤 뽑기</a>
+								<a href="soccerTeamRank">팀 순위</a>
+								<a href="soccer_schedule">경기 일정</a>
+							</c:if>
+							<c:if test="${superlogin}">
+								<a href="playerinput?play=축구">선수 등록</a>
+								<a href="javascript:void(0)" onclick="soccerStrategyMove()">전략 만들기</a>
+								<a href="javascript:void(0)" onclick="soccerCalendarMove()">훈련 일정</a>
+							</c:if>
+								<a href="mypage?id=${member.id}">마이페이지</a>
+						</c:if>						
 						<c:if test="${adminlogin}">
-							<p class="member_name_txt">관리자 계정</p>
+							<p class="member_name_txt">관리자 페이지 입니다.</p>
 							<a href="memberList">회원 목록</a>
-							<a href="memberNoList">회원 요청</a>
-							<a href="javascript:void(0)">문의 답변</a>
+							<a href="memberNoList">승인 요청</a>
+							<a href="javascript:void(0)">Q＆A</a>
 						</c:if>
 					</div>
 				</div>
