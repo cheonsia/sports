@@ -14,7 +14,7 @@
 				width: 100%;
 			}
 			.main_section{
-				margin: 30px auto 0 auto;
+				margin: -20px auto 0 auto;
 				overflow: auto;
 			}
 			#footer{

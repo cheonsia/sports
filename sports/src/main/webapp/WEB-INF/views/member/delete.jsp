@@ -8,8 +8,8 @@
 <title>회원 삭제</title>
 </head>
 <body>
-<form action="deleteMember" method="post">
-<	<div>
+<form action="deleteMember">
+	<div>
 		<label>아이디</label>
 		<input type="text" name="id" id="id" value="${my.id}" readonly>
 	</div>

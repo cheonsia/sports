@@ -6,12 +6,15 @@
 <head>
 <meta charset="UTF-8">
 	<style type="text/css">
+		..main_section{
+	        max-width: 1400px;
+		}
 		.container{
-		    width: 1300px;
+		    width: 1400px;
 		}
 		.table.table-hover.memlist {
 			width:100%;
-		    min-width: 1200px;
+		    min-width: 1400px;
 		}
 		.table.table-hover.memlist th,
 		.table.table-hover.memlist td

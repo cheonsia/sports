@@ -5,20 +5,107 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<style type="text/css">
+		#footer,
+	.side_rightbar_whole,
+	.header_section,
+	.header_team_logo scroll_div{
+		display: none;
+	}
+    #body {
+		padding: 0;
+    }
+    .main_section {
+  	  margin: 45px auto 0 auto;
+    }
+    h1{
+    	margin-top:0;
+    }
+    .pwupdate{
+        width: 500px;	
+	    margin: 0 auto;
+    }
+	.pwupdate .pw {
+		display:flex;
+		flex-wrap: wrap;
+	    margin: 30px auto;
+	    width: 100%;
+	    text-align: center;
+	    align-items: center;
+	}
+	.pwupdate .pw1 {
+	    width: calc(100% - 110px);
+	}
+	.pwupdate .pw1 i{
+	    margin-left: 20px;
+	}
+	.pwupdate .pw span{
+		margin: 10px 0 0 130px;
+	}
+	.pwupdate .pw label {
+   		width: 100px;
+    	text-align: end;
+    	margin: 0 10px 0 0;
+    	font-weight: 700;
+	}
+	.pwupdate select{
+		border-color: #e8e8e8;
+		margin : 0 5px;
+		height: 30px;
+		width: 60px;
+		border-radius: 5px;
+	}
+	.pwupdate select#month, #day{
+		width: 50px;
+	}
+	.pwupdate input {
+		border: 1px solid #e8e8e8;
+		height:40px;
+		width: 65%;
+		border-radius: 5px;
+	}
+	.pwupdate input:focus {
+		height: 38px;
+		border: 2px solid #0c6042;
+	}
+	.pwupdate input[type="button"]{
+		width: 7+0%;
+		border: 1px solid #08750e20;
+	    background-color: #08750e90;
+	    color: #fff;
+	    height: 50px;
+	    border-radius: 10px;
+	}
+	.pwupdate .button{
+		text-align: center;
+	}
+	.pwupdate input[type="button"]:hover{
+		border-color: #08750e;
+	    background-color: #08750e20;
+	    color: #08750e;
+	}
+</style>
 <script type="text/javascript">
-$(document).ready(function() {
-	//비밀번호 보기 구현
-	$('.pw i').on('click',function(){
-	    $('input').toggleClass('active');
-	    if($('input').hasClass('active')){
-	        $(this).attr('class',"fa fa-eye fa-lg")
-	        .prev('input').attr('type',"text");
-	    }else{
-	        $(this).attr('class',"fa fa-eye-slash fa-lg")
-	        .prev('input').attr('type','password');
-	    }
+	$(document).ready(function() {
+		$('#pw').focus();
+		//비밀번호 보기 구현
+		$('.pw i').on('click',function(){
+		    $('input').toggleClass('active');
+		    if($('input').hasClass('active')){
+		        $(this).attr('class',"fa fa-eye fa-lg")
+		        .prev('input').attr('type',"text");
+		    }else{
+		        $(this).attr('class',"fa fa-eye-slash fa-lg")
+		        .prev('input').attr('type','password');
+		    }
+		});
 	});
-	$('#check').click(function() {
+	function click_btn(){
+		if(window.event.keyCode == 13){
+			check();
+		}
+	};
+	function check(){
 		//비밀번호 체크
 		var vpw = /^[a-zA-Z0-9]{6,16}$/;
 		var pw = $('#pw').val();
@@ -43,9 +130,8 @@ $(document).ready(function() {
 			$('#pwcheck').focus();
 			return false;
 		}
-		$('#pwchange_form').submit();
-	});
-});
+		$('#pwuapdate').submit();
+	};
 
 //비밀번호 일치 유무
 function passwordCheck() {
@@ -67,63 +153,35 @@ function passwordCheck() {
 		pw_message.style.color = wrongColor;
 		pw_message.innerHTML = "비밀번호가 일치하지 않습니다.";
 	}
+		if(window.event.keyCode == 13){
+			check();
+		}
 }
 </script>
-<style type="text/css">
-	#footer,
-	.side_rightbar_whole,
-	.header_section,
-	.header_team_logo scroll_div{
-		display: none;
-	}
-	@media (max-width: 359px) {
-	    #body {
-			padding: 0;
-	    }
-	}
-	.pwchange div {
-		display:flex;
-	    margin: 0 auto;
-	    width: max-content;
-	    max-width: max-content;
-	    text-align: center;
-	}
-	.pwchange label {
-		width: 95px;
-		max-width: 95px;
-	    margin: 0 auto 5px auto;
-	    font-weight: 700;
-	}
-	.pwchange input {
-	text-align: center;
-	}
-</style>
-<title>비밀번호 바꾸기</title>
 </head>
 <body>
 
 <h1>비밀번호 수정</h1>
-<div class="pwchange">
-	<form action="pwud" method="post" id="pwchange_form">
+<div class="pwupdate">
+	<form action="pwUpdate" method="post" id="pwupdate">
 		<div class="pw">
 			<input type="hidden" name="id" value="${id}">
 			<label for="pw">비밀번호</label>
 			<div class="pw1">
-				<input type="password" name="pw" id="pw" placeholder="6~16글자 이내로 입력">
+				<input type="password" name="pw" id="pw" placeholder="6~16글자 이내로 입력" onkeyup="click_btn()">
 				<i class="fa fa-eye-slash fa-lg"></i>
 			</div>
 		</div>
 		<div class="pw">
 			<label for="pwcheck">비밀번호 확인</label>
 			<div class="pw1">
-				<input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호를 한번 더 입력" onkeyup="passwordCheck()">
+				<input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호 확인" onkeyup="passwordCheck()">
 				<i class="fa fa-eye-slash fa-lg"></i>
-				  <span id="pw_message"></span>
 			</div>
+			  <span id="pw_message"></span>
 		</div>
-		<div>
-			<input type="button" value="비밀번호 수정" id="check">
-			<input type="button" value="닫기" onclick="javascript:window.close()">
+		<div class="button">
+			<input type="button" value="비밀번호 수정" id="check" onclick="check()">
 		</div>
 	</form>
 </div>
