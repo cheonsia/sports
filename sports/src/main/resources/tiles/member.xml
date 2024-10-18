@@ -53,19 +53,19 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
 	</definition>
 	
-	<definition name="id_search" extends="memberLayout">
+	<definition name="idsearch" extends="memberLayout">
 		<put-attribute name="title" value="아이디 찾기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/id_search.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/idSearch.jsp"/>
 	</definition>
 	
-	<definition name="pw_search" extends="memberLayout">
+	<definition name="pwsearch" extends="memberLayout">
 		<put-attribute name="title" value="비밀번호 찾기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/pw_search.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/pwSearch.jsp"/>
 	</definition>
 	
-	<definition name="pw_change" extends="memberLayout">
+	<definition name="pwupdate" extends="memberLayout">
 		<put-attribute name="title" value="비밀번호 바꾸기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/pw_change.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/pwUpdate.jsp"/>
 	</definition>
    
 </tiles-definitions>
