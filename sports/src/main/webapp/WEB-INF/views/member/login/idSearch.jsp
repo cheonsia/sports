@@ -84,7 +84,7 @@
 			$('#findid').click();
 		}
 	};
-	function findId() {
+	function checkform() {
 		var vname=/^[가-힣]{2,5}$/;
 		var name=$('#name').val();
 		if(name=="") {
@@ -117,18 +117,33 @@
 			$('#mid_tel').focus();
 			return false;
 		}
-		$.ajax({
-			type:"post",
-			url:"getid",
-			async:true,
-			data:{"name":name, "birth":birth, "tel":tel},
-			success:function(data) {
-					alertShow('아이디 찾기',data);
-			},
-			error:function() {
-				alertShow('에러','다시 입력해주세요.');
-			}
-		});//ajax
+		return true;
+	};
+	function findId() {
+		var name=$('#name').val();
+		var year = $("select[id='year'] option:selected").val();
+		var month = $("select[id='month'] option:selected").val();
+		var day = $("select[id='day'] option:selected").val();
+		var birth= year + "-" + month + "-" + day;
+		var fir_tel = $("select[id='fir_tel'] option:selected").val();
+		var mid_tel = $('#mid_tel').val();
+		var end_tel = $('#end_tel').val();
+		var tel = fir_tel + "-" + mid_tel + "-" + end_tel;		
+		if(checkform()){			
+			$.ajax({
+				type:"post",
+				url:"getid",
+				async:true,
+				data:{"name":name, "birth":birth, "tel":tel},
+				success:function(data) {
+						alertShow('아이디 찾기',data);
+						setTimeout(function(){window.close();}, 1000);  
+				},
+				error:function() {
+					alertShow('에러','다시 입력해주세요.');
+				}
+			});//ajax
+		}
 	};//findid
 </script>
 </head>

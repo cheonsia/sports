@@ -44,28 +44,28 @@
 	<!--  로그인 -->	
 	<definition name="soccerLogin" extends="memberLayout">
 		<put-attribute name="title" value="로그인"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login/login.jsp"/>
 	</definition>
 	
 	<definition name="baseballLogin" extends="memberLayout">
 		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="top" value="/WEB-INF/views/baseball/first/top.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/login.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login/login.jsp"/>
 	</definition>
 	
 	<definition name="idsearch" extends="memberLayout">
 		<put-attribute name="title" value="아이디 찾기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/idSearch.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login/idSearch.jsp"/>
 	</definition>
 	
 	<definition name="pwsearch" extends="memberLayout">
 		<put-attribute name="title" value="비밀번호 찾기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/pwSearch.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login/pwSearch.jsp"/>
 	</definition>
 	
 	<definition name="pwupdate" extends="memberLayout">
 		<put-attribute name="title" value="비밀번호 바꾸기"/>
-		<put-attribute name="body" value="/WEB-INF/views/member/pwUpdate.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/login/pwUpdate.jsp"/>
 	</definition>
    
 </tiles-definitions>

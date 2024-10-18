@@ -164,7 +164,7 @@ public class MemberController {
 		String cpw = passwordEncoder.encode(pw);
 		MemberService ms = sqlsession.getMapper(MemberService.class);
 		ms.pwupdate(id, cpw);
-		prw.print("비밀번호 수정이 완료되었습니다.");
+		prw.print("비밀번호가 변경되었습니다.");
 	}
 	//정보 수정 창으로 가기
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)

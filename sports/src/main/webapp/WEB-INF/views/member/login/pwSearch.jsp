@@ -87,7 +87,7 @@
 	$(document).ready(function() {
 		$('#id').focus();
 	});
-	function findPw() {
+	function checkform() {
 		var id = $('#id').val();
 		var name=$('#name').val();
 		var email=$('#email').val();
@@ -138,24 +138,35 @@
 			$('#email').focus();
 			return false;
 		}
-		
-		$.ajax({
-			type:"post",
-			url:"getpw",
-			async:true,
-			data:{"id":id, "name":name, "tel":tel, "email":email},
-			success:function(data) {
-				if(data==1) {
-					location.href='pwupdate?id='+id;
+		return true;
+	}
+	function findPw() {
+		var id = $('#id').val();
+		var name=$('#name').val();
+		var email=$('#email').val();
+		var fir_tel = $("select[id='fir_tel'] option:selected").val();
+		var mid_tel = $('#mid_tel').val();
+		var end_tel = $('#end_tel').val();
+		var tel = fir_tel + "-" + mid_tel + "-" + end_tel;		
+		if(checkform()){			
+			$.ajax({
+				type:"post",
+				url:"getpw",
+				async:true,
+				data:{"id":id, "name":name, "tel":tel, "email":email},
+				success:function(data) {
+					if(data==1) {
+						location.href='pwupdate?id='+id;
+					}
+					else {
+						alertShow('오류','일치하는 결과가 없습니다.');
+					}
+				},
+				error:function() {
+					alertShow('에러','다시 입력해주세요.');
 				}
-				else {
-					alertShow('오류','일치하는 결과가 없습니다.');
-				}
-			},
-			error:function() {
-				alertShow('에러','다시 입력해주세요.');
-			}
-		});//ajax
+			});//ajax
+		}
 	};//findpw
 </script>
 <title>비밀번호 찾기</title>

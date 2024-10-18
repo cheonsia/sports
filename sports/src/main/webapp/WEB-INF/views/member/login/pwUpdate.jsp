@@ -100,23 +100,19 @@
 		    }
 		});
 	});
-	function click_btn(){
-		if(window.event.keyCode == 13){
-			check();
-		}
-	};
-	function check(){
-		//비밀번호 체크
-		var vpw = /^[a-zA-Z0-9]{6,16}$/;
+
+	function checkform(){
 		var pw = $('#pw').val();
 		var pwcheck = $('#pwcheck').val();
+		var vpw = /^[a-zA-Z0-9]{6,16}$/;
+		//비밀번호 체크
 		if(pw=="") {
 			alertShow('오류','비밀번호를 입력해주세요.');
 			$('#pw').focus();
 			return false;
 		}
 		else if(pwcheck=="") {
-			alertShow('오류','비밀번호 확인을 해주세요.');
+			alertShow('오류','비밀번호 확인을 입력해주세요.');
 			$('#pwcheck').focus();
 			return false;
 		}
@@ -130,7 +126,27 @@
 			$('#pwcheck').focus();
 			return false;
 		}
-		$('#pwuapdate').submit();
+		return true;
+	}
+	function check(){
+		var id= $('#id').val();
+		var pw = $('#pw').val();
+		var pwcheck = $('#pwcheck').val();
+		if(checkform()){			
+			$.ajax({
+				type: "post",
+				url: "pwUpdate",
+				async: true,
+				data: {"id":id,"pw":pw},
+				success:function(){
+					alertShow('변경 완료','비밀번호 변경이 완료되었습니다.');
+					setTimeout(function(){window.close();}, 1000);  
+				},
+				error:function(){
+					alertShow("오류",'비밀번호를 다시 입력해주세요');
+				}
+			});
+		}
 	};
 
 //비밀번호 일치 유무
@@ -163,27 +179,25 @@ function passwordCheck() {
 
 <h1>비밀번호 수정</h1>
 <div class="pwupdate">
-	<form action="pwUpdate" method="post" id="pwupdate">
-		<div class="pw">
-			<input type="hidden" name="id" value="${id}">
-			<label for="pw">비밀번호</label>
-			<div class="pw1">
-				<input type="password" name="pw" id="pw" placeholder="6~16글자 이내로 입력" onkeyup="click_btn()">
-				<i class="fa fa-eye-slash fa-lg"></i>
-			</div>
+	<div class="pw">
+		<input type="hidden" name="id" id="id" value="${id}">
+		<label for="pw">비밀번호</label>
+		<div class="pw1">
+			<input type="password" name="pw" id="pw" placeholder="6~16글자 이내로 입력" onkeyup="click_btn()">
+			<i class="fa fa-eye-slash fa-lg"></i>
 		</div>
-		<div class="pw">
-			<label for="pwcheck">비밀번호 확인</label>
-			<div class="pw1">
-				<input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호 확인" onkeyup="passwordCheck()">
-				<i class="fa fa-eye-slash fa-lg"></i>
-			</div>
-			  <span id="pw_message"></span>
+	</div>
+	<div class="pw">
+		<label for="pwcheck">비밀번호 확인</label>
+		<div class="pw1">
+			<input type="password" name="pwcheck" id="pwcheck" placeholder="비밀번호 확인" onkeyup="passwordCheck()">
+			<i class="fa fa-eye-slash fa-lg"></i>
 		</div>
-		<div class="button">
-			<input type="button" value="비밀번호 수정" id="check" onclick="check()">
+		  <span id="pw_message"></span>
+	</div>
+	<div class="button">
+		<input type="button" value="비밀번호 수정" id="check" onclick="check()">
 		</div>
-	</form>
 </div>
 
 </body>
