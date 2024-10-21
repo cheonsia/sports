@@ -416,8 +416,8 @@
 			    this.list = list;
 			}
 			var acts = new Array();
-			    acts[0] = new Activity('축구', ['강원', '울산', '수원FC', '김천', '서울', '포항', '광주', '제주', '대전', '인천', '전북', '대구']);
-			    acts[1] = new Activity('야구', ['KIA', '삼성', 'LG', '두산', 'KT', '한화', '롯데', 'SSG', 'NC', '키움']);
+			    acts[0] = new Activity('축구', ['강원', '광주', '김천', '대구', '대전', '서울', '수원', '울산', '인천', '전북', '제주', '포항']);
+			    acts[1] = new Activity('야구', ['KIA', 'KT', 'LG', 'NC', 'SSG', '두산', '롯데', '삼성', '키움', '한화']);
 			function updateList(str){
 				var gf = document.memberform;
 			    var teamLen = gf.team.length;
