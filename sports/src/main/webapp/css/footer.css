@@ -1,9 +1,13 @@
 @charset "UTF-8";
-* {
-	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;	
+footer.soccer,
+footer.soccer *{
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;
 }
-
-#footer {
+footer.baseball,
+footer.baseball *{
+	cursor: url('../image/baseball/cursor/cursor2.png'), auto !important;
+}
+#footer{
 	position: fixed;
 	width: calc(100vw - 40px);
 	min-height: 60px;
@@ -16,8 +20,7 @@
 	bottom: 0;
 	z-index: 1;
 }
-
-.footer_flex {
+.footer_flex{
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
@@ -25,66 +28,111 @@
 	width: 100%;
 	height: auto;
 }
-
-.footer_logo {
+.footer_logo{
 	width: max-content;
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
-	margin: 0 20px 0 0;
+	margin: 0;
 }
-
-.footer_logo + p {
-	font-size: 13px;
+footer.soccer .footer_logo:hover,
+footer.soccer .footer_logo:hover *{
+	cursor: url('../image/soccer/cursor/pointer.png'), auto !important;
 }
-
-.footer_logo img {
+footer.baseball .footer_logo:hover,
+footer.baseball .footer_logo:hover *{
+	cursor: url('../image/baseball/cursor/pointer2.png'), auto !important;
+}
+.footer_flex p{
+	font-size: 14px;
+	margin-top: 6px;
+}
+.footer_logo img{
 	display: block;
-	width: 30px;
+	width: 26px;
 	height: auto;
 	background-size: contain;
 }
-
-.footer_logo p.logo_txt {
-	font-size: 20px;
-	line-height: 29px;
+.footer_logo p.logo_txt{
+	font-size: 18px;
+	line-height: 30px;
 	font-weight: bold;
 	color: #3d3d3d;
     font-family: 'SF_HambakSnow';
-    margin-left: 5px;
+    margin: 0 0 0 5px;
 }
-
-
-
-@media (min-width: 1250px) {
-	#footer {
+.footer_flex p + p{
+	font-size: 15px;
+}
+.footer_flex a{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+	line-height: 22px;
+	font-weight: 300;
+	color: #f9f9f9;
+	border-bottom: 1px solid transparent;
+	padding-bottom: 1px;
+}
+footer.soccer .footer_flex a,
+footer.soccer .footer_flex a *{
+	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;	
+}
+footer.soccer .footer_flex a:hover,
+footer.soccer .footer_flex a:hover *{
+	color: #006400;
+	cursor: url('../image/soccer/cursor/pointer.png'), auto !important;	
+}
+footer.baseball .footer_flex a,
+footer.baseball .footer_flex a *{
+	cursor: url('../image/baseball/cursor/cursor2.png'), auto !important;	
+}
+footer.baseball .footer_flex a:hover,
+footer.baseball .footer_flex a:hover *{
+	color: #006400;
+	cursor: url('../image/baseball/cursor/pointer2.png'), auto !important;	
+}
+.footer_flex a span{
+	display: block;
+	min-width: 20px;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	background: url("../image/member/write_wh.png") no-repeat;
+	background-size: contain;
+}
+.footer_flex a:hover{
+	border-color: #006400;
+	text-decoration: none;
+}
+.footer_flex a:hover span{
+	background: url("../image/member/write_gr.png") no-repeat;
+	background-size: contain;
+}
+@media (min-width: 1250px){
+	#footer{
 		width: calc(100vw - 240px);
 		min-height: 60px;
 		margin-left: auto;
 	}
-
-	.footer_logo + p {
+	.footer_logo + p{
 		font-size: 16px;
 	}
 }
-
-
-
-@media (max-width: 359px) {
-	#footer {
+@media (max-width: 359px){
+	#footer{
 		min-height: 80px;
 	}
-	
-	.footer_flex {
+	.footer_flex{
 		display: block;
 	}
-	
-	.footer_flex p {
+	.footer_flex p{
 		font-size: 14px;
 	}
-	
-	.footer_flex + p {
+	.footer_flex + p{
 		font-size: 12px;
 	}
 }
