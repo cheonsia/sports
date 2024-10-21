@@ -584,6 +584,8 @@
 							<a href="memberList">회원 목록</a>
 							<a href="memberNoList">회원 요청</a>
 							<a href="javascript:void(0)">문의 답변</a>
+							<a href="baseballlike">야구 팀별 선호도</a>
+							<a href="agelike?play=야구">연령대별 축구&야구 선호도</a>
 						</c:if>
 					</div>
 				</div>
