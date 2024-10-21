@@ -73,8 +73,8 @@ footer.baseball .footer_logo:hover *{
 	font-size: 15px;
 	line-height: 22px;
 	font-weight: 300;
-	color: #f9f9f9;
-	border-bottom: 1px solid transparent;
+	color: #006400;
+	border-bottom: 1px solid #006400;
 	padding-bottom: 1px;
 }
 footer.soccer .footer_flex a,
@@ -83,7 +83,8 @@ footer.soccer .footer_flex a *{
 }
 footer.soccer .footer_flex a:hover,
 footer.soccer .footer_flex a:hover *{
-	color: #006400;
+	color: #f9f9f9;
+	border-color: #f9f9f9;
 	cursor: url('../image/soccer/cursor/pointer.png'), auto !important;	
 }
 footer.baseball .footer_flex a,
@@ -92,7 +93,7 @@ footer.baseball .footer_flex a *{
 }
 footer.baseball .footer_flex a:hover,
 footer.baseball .footer_flex a:hover *{
-	color: #006400;
+	color: #f9f9f9;
 	cursor: url('../image/baseball/cursor/pointer2.png'), auto !important;	
 }
 .footer_flex a span{
@@ -101,15 +102,14 @@ footer.baseball .footer_flex a:hover *{
 	width: 20px;
 	height: 20px;
 	margin-right: 5px;
-	background: url("../image/member/write_wh.png") no-repeat;
+	background: url("../image/member/write_gr.png") no-repeat;
 	background-size: contain;
 }
 .footer_flex a:hover{
-	border-color: #006400;
 	text-decoration: none;
 }
 .footer_flex a:hover span{
-	background: url("../image/member/write_gr.png") no-repeat;
+	background: url("../image/member/write_wh.png") no-repeat;
 	background-size: contain;
 }
 @media (min-width: 1250px){

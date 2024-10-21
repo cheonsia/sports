@@ -39,8 +39,8 @@
 				margin: 0 auto 24px auto;
 			}
 			.common_main_whole h2 a{
-				font-size: 14px;
-				line-height: 20px;
+				font-size: 15px;
+				line-height: 22px;
 				font-weight: 400;
 				color: #999;
 				text-align: end;
@@ -76,7 +76,20 @@
 				font-weight: 400;
 				color: #777;
 				text-align: center;
-				margin: 0 auto 20px auto;
+				margin: 0 auto;
+			}
+			a.login{
+				font-size: 18px!important;
+		        border: inherit!important;
+		        display: inline!important;
+		        border: none!important;
+		        background-color: inherit;
+		        padding: 0!important;
+		        color: #006400!important;
+			}
+			a.login:hover{
+				box-shadow: inherit!important;
+				text-decoration: underline!important;
 			}
 			.common_member_flex a{
 				display: block;
@@ -86,7 +99,7 @@
 				line-height: 27px;
 				font-weight: 500;
 				color: #333;
-				margin: 0;
+				margin: 20px 0 0 0;
 				text-align: center;
 				padding: 10px 20px;
 				background-color: #fff;
@@ -327,6 +340,7 @@
 				font-weight: 400;
 				color: #3d3d3d;
 				margin-right: auto;
+				min-width: max-content;
 			}
 			.main_rank_row div p + p{
 				margin-left: 0;
@@ -347,18 +361,19 @@
 				display: block;
 				width: 100%;
 				font-size: 24px;
-				font-weight: bold;
-				color: #666;
+				font-weight: 500;
+				color: #888888;
 				text-align: center;
 			}
 			.main_rank_row p:first-child span{
+				font-weight: bold;
 				color: #497749;
 			}
 			.common_main_banner{
 				width: calc(100% + 40px);
 				margin: 0 -20px;
 				background-color: #ededed;
-				padding: 35px 0;
+				padding: 15px 0 35px 0;
 			}
 			.mySwiper{
 				width: 100%;
@@ -369,6 +384,7 @@
 				max-width: 1140px;
 				height: auto;
 				display: flex;
+				flex-wrap: wrap;
 				justify-content: center;
 				align-items: center;
 				margin: 0 auto;
@@ -383,6 +399,7 @@
 				margin: 0 auto;
 			}
 			.banner_link_img div{
+				width: 100%;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -409,11 +426,18 @@
 				line-height: 24px;
 				font-weight: 400;
 				text-align: center;
-				padding: 10px 30px;
+				padding: 10px 20px;
 				border: 1px solid #e1e1e1;
 				color: #fff;
 				margin: 20px auto 0 auto;
 				border-radius: 5px;
+			}
+			.banner_link_bg{
+				width: calc(33.3% - 20px);
+				margin: 20px 0;
+			}
+			.banner_link_bg + .banner_link_bg{
+				margin-left: 20px;
 			}
 			.banner_link_bg.banner_link_bg1 a{
 				background-color: #ea002a;
@@ -445,6 +469,10 @@
 			.banner_link_bg.banner_link_bg10 a{
 				background-color: #ef5100;
 			}
+			.banner_link_bg.banner_link_bg4,
+			.banner_link_bg.banner_link_bg9{
+				margin-left: 0;
+			}
 			.banner_link_img a:hover{
 				text-decoration: none;
 			}
@@ -464,6 +492,30 @@
 				.common_main_game{
 					margin: 0 auto 50px auto;
 				}
+				.common_member_flex a{
+					font-size: 16px;
+					padding: 10px;
+				}
+				.common_member_flex a + a{
+					margin-left: 10px;
+				}
+				.banner_link_img div{
+					flex-direction: column;
+				}
+				.banner_link_img img{
+					margin-right: 0;
+				}
+				.banner_link_img p{
+					width: 100%;
+					font-size: 14px;
+					text-align: center;
+				}
+				.banner_link_img a{
+					max-width: calc(100% - 20px);
+					padding: 10px;
+					font-size: 13px;
+					margin-top: 10px;
+				}
 			}
 			@media (min-width: 1000px){
 				#body{
@@ -471,6 +523,19 @@
 				}
 				.main_section{
 					height: calc(100% - 120px);
+				}
+				.common_main_banner{
+					margin-bottom: 60px;
+				}
+				.banner_link_flex{
+					flex-wrap: nowrap;
+				}
+				.banner_link_bg{
+					width: 100%;
+				}
+				.banner_link_bg.banner_link_bg4,
+				.banner_link_bg.banner_link_bg9{
+					margin-left: 20px;
 				}
 			}
 			@media (min-width: 1250px){
