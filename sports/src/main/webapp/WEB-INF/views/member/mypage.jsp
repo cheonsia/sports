@@ -14,7 +14,7 @@
 				width: 100%;
 			}
 			.main_section{
-				margin: 30px auto 0 auto;
+				margin: -20px auto 0 auto;
 				overflow: auto;
 			}
 			#footer{
@@ -444,7 +444,7 @@
 					<c:when test="${adminlogin}">
 					 	<c:if test="${my.inputaccess == 'no'}">
 							<button type="button" class="appro" onclick="location.href='memberAccess?id=${my.id}'">승인</button>
-							<button type="button" class="reject" onclick="location.href='deleteMember?id=${my.id}'">거부(삭제)</button>
+							<button type="button" class="reject" onclick="location.href='deleteMember?id=${my.id}&part=${my.part}'">거부(삭제)</button>
 					 	</c:if>
 						<c:if test="${my.inputaccess == 'ok'}">
 							<button type="button" class="reject" onclick="location.href='memberAccess?id=${my.id}'">차단(보류)</button>

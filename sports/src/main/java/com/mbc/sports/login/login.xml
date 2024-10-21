@@ -9,7 +9,7 @@
 </select>
 
 <select id="logincheck" resultType="com.mbc.sports.member.MemberDTO">
-	select id,pw,name,sport,part from sportsmember where id=#{param1}
+	select id, pw, name, sport, team, part from sportsmember where id=#{param1}
 </select>
 
 <select id="access" resultType="string">
@@ -21,7 +21,7 @@
 </select>
 
 <select id="getpw" resultType="int">
-	select count(*) from sportsmember where id=#{param1} and name=#{param2} and birth=#{param3} and tel=#{param4}
+	select count(*) from sportsmember where id=#{param1} and name=#{param2} and tel=#{param3} and email=#{param4}
 </select>
 
 <update id="pwchange">

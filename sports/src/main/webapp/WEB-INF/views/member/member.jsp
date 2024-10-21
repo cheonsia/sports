@@ -6,17 +6,29 @@
 <head>
 <meta charset="UTF-8">
 	<style type="text/css">
+		.main_section,
 		.container{
-		    width: 1300px;
+		    width: 1450px;
+	        max-width: 1450px;
 		}
 		.table.table-hover.memlist {
 			width:100%;
-		    min-width: 1200px;
+		    min-width: 1400px;
 		}
 		.table.table-hover.memlist th,
 		.table.table-hover.memlist td
 		{
 			text-align: center;
+		}
+		button{
+		    width: 50px;
+		    border: 1px solid #3da73d;
+		    background-color: #fff;
+		    border-radius: 5px;
+		}
+		button:hover{
+		    background-color: #0c400c80;
+		    color:#fff;
 		}
 	</style>
 </head>
@@ -63,7 +75,7 @@
 					</c:if>
 					<c:if test="${mem.inputaccess=='no'}">
 						<td onclick="location.href='mypage?id=${mem.id}'">✖️</td>
-			      	  	<td onclick="location.href='memberAccess?id=${mem.id}'"><button type="button">승인</button></td>
+			      	  	<td onclick="location.href='memberAccess?id=${mem.id}'"><button type="button"><c:if test="${mem.part=='일반'}">해제</c:if><c:if test="${mem.part=='감독'}">승인</c:if></button></td>
 					</c:if>
 				</tr>
 		    </c:forEach>

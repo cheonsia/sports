@@ -12,7 +12,7 @@ public interface LoginService {
 
 	String getid(String name, String birth, String tel);
 
-	int getpw(String id, String name, String birth, String tel);
+	int getpw(String id, String name, String tel, String email);
 
 	void pwchange(String id, String pw);
 

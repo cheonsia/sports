@@ -435,7 +435,7 @@
 			//유효성 체크
 			function check(){
 				////아이디 체크
-				var vid = /^[a-zA-Z0-9]{4,10}$/;
+				var vid = /^[a-zA-Z0-9]{4,16}$/;
 				var id = $('#id').val();
 			 	var idchecked = $('#idcheck2').val();
 			 	
@@ -445,7 +445,7 @@
 					return false;
 				}
 				else if(!vid.test(id)){
-					alertShow('오류','아이디는 영문자+숫자 4~10글자 이내로 작성해야합니다.');
+					alertShow('오류','아이디는 영문자+숫자 4~16글자 이내로 작성해야합니다.');
 					$('#id').focus();
 					return false;
 				}
@@ -564,7 +564,7 @@
 			<input type="hidden" name="part" id="part" value="${part}">
 			<div class="id">
 				<label for="id">아이디</label>
-				<input type="text" name="id" id="id" placeholder="4~10글자 이내로 입력" onchange="idcheck_reset()">
+				<input type="text" name="id" id="id" placeholder="4~16글자 이내로 입력" onchange="idcheck_reset()">
 				<input type="button" value="중복확인" id="idcheck">
 				<input type="hidden" id="idcheck2" value="">
 			</div>

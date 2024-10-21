@@ -93,6 +93,15 @@
          }
 
          $(document).ready(function() {//제이쿼리 필수 준비
+        	 $('.header_logo_inner a').removeClass('clicked_on');
+        	 var login = `${superlogin}`;
+        	 if(login){
+        		 var team = `${member.team}`;
+        		 teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
+                 console.log(teamEng);
+        		 $('#baseball_'+teamEng).addClass('clicked_on');
+        		 
+        	 }
             $('.side_rightbar_flex a').on('click', function() {
                if($(this).hasClass('side_menu_click')) {
                   $(this).toggleClass("side_menu_on");

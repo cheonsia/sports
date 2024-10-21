@@ -660,8 +660,10 @@
 					<input type="hidden" id="calendar_choosed_mm" value="">
 					<input type="hidden" id="calendar_choosed_dd" value="">
 					<p class="calendar_schedule_date" id="calendar_schedule_date">0000년 00월 00일</p>
-					<button type="button" class="schedule_plus_btn" onclick="scheduleShow()">경기 등록+</button>
-					<button type="button" class="schedule_plus_btn" onclick="location.href='baseball_gameinfo'">경기 목록</button>
+					<c:if test="${adminlogin}">
+						<button type="button" class="schedule_plus_btn" onclick="scheduleShow()">경기 등록+</button>
+						<button type="button" class="schedule_plus_btn" onclick="location.href='baseball_gameinfo'">경기 목록</button>
+					</c:if>
 				</div>
 				<div class="calendar_schedule_inner">
 					<div class="schedule_list_box">

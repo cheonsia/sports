@@ -34,68 +34,11 @@ public class LoginController {
 		if(sports==null) sports="축구";
 		return (sports.equals("야구"))?"baseballLogin":"soccerLogin";
 	}
-	//로그인 관리
-	@RequestMapping(value = "/logincheck",method = RequestMethod.POST)
-	public String logincheck(HttpServletRequest request, HttpServletResponse response)  {
-		String npath="";
-		HttpSession hs = request.getSession();
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		//관리자 로그인
-		String path="classpath:admin.xml";
-		AbstractApplicationContext aac = new GenericXmlApplicationContext(path);		
-		MemberDTO dto = aac.getBean("member",MemberDTO.class);
-		String ADMIN_ID =dto.getADMIN_ID();
-		String ADMIN_PW =dto.getADMIN_PW();
-		if(id.equals(ADMIN_ID)&&pw.equals(ADMIN_PW)) {
-			MemberService ms =sqlsession.getMapper(MemberService.class);			
-			hs.setAttribute("access", ms.countmember());
-			hs.setAttribute("notAccess", ms.countnotmember());
-			hs.setAttribute("adminlogin", true);
-			npath="redirect:/main";
-		}else { //회원 로그인
-			LoginService ls = sqlsession.getMapper(LoginService.class);
-			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			MemberDTO ldto = ls.logincheck(id);
-			if(ldto!=null){
-				if(ls.access(id).equals("ok")){
-					if(passwordEncoder.matches(pw, ldto.getPw())) {
-						String part = ldto.getPart();
-						String sport = ldto.getSport();
-						if(part.equals("일반")) {
-							hs.setAttribute("normallogin", true);				
-						}
-						if(part.equals("감독")) {
-							hs.setAttribute("superlogin", true);
-						}
-						hs.setAttribute("member", ldto);
-						hs.setAttribute("sports", sport);
-						npath="redirect:/main";
-					}else {
-						npath="redirect:/login";				
-					}
-				}else {
-					npath="redirect:/login";									
-				}
-			}else {
-				npath="redirect:/signup";								
-			}
-		}
-		return npath;
-	}
-	//로그아웃
-	@RequestMapping(value = "/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession hs=request.getSession();
-		hs.setAttribute("normallogin", false);
-		hs.setAttribute("superlogin", false);
-		hs.setAttribute("adminlogin", false);
-		
-		return "redirect:/main";
-	}
-	//alert을 띄우기 위함
-	@RequestMapping(value = "/loginpossible",method =RequestMethod.POST)
+	@RequestMapping(value = "/loginCheck",method =RequestMethod.POST)
 	public void loginpossible(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession hs = request.getSession();
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter prw = response.getWriter();
 		String id=request.getParameter("id");
 		String pw=request.getParameter("pw");
 		
@@ -104,40 +47,52 @@ public class LoginController {
 		MemberDTO dto = aac.getBean("member",MemberDTO.class);
 		String ADMIN_ID =dto.getADMIN_ID();
 		String ADMIN_PW =dto.getADMIN_PW();
-		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter prw = response.getWriter();
 		if(id.equals(ADMIN_ID)&&pw.equals(ADMIN_PW)) {
-			prw.print("관리자 계정으로 로그인되었습니다.");				
-		}
-		else {
+				MemberService ms =sqlsession.getMapper(MemberService.class);			
+				hs.setAttribute("access", ms.countmember());
+				hs.setAttribute("notAccess", ms.countnotmember());
+				hs.setAttribute("adminlogin", true);
+				prw.print("관리자 계정으로 로그인되었습니다.");
+		}else {//관리자계정X
 			LoginService ls = sqlsession.getMapper(LoginService.class);
 			MemberDTO ldto = ls.logincheck(id);
-			String msg;
 			if(ldto!=null){
 				if(ldto.getPart().equals("일반") && ls.access(id).equals("no")) {
-					prw.print("관리자가 임의로 차단한 계정입니다.\n추가 문의사항은 F&Q 게시판을 이용해주세요.");					
-				}
-				else if(ls.access(id).equals("no")){
-					prw.print("관리자의 승인이 필요한 계정입니다.");
-				}else {
+					prw.print("1");					
+				}//차단계정
+				else if(ls.access(id).equals("no")){ //감독 승인 전
+					prw.print("2");
+				}else {// 일반계정
 					PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 					if(passwordEncoder.matches(pw, ldto.getPw())) {
+						if(ldto.getPart().equals("일반")) {
+							hs.setAttribute("normallogin", true);											
+						}else{
+							hs.setAttribute("superlogin", true);									
+						}
 						String name = ldto.getName();
+						String sport = ldto.getSport();
+						hs.setAttribute("member", ldto);
+						hs.setAttribute("sports", sport);
 						prw.print(name+"님 환영합니다!");
-					}else {
-					prw.print("아이디 혹은 비밀번호가 틀립니다.");			
-					}
+					}else {	prw.print("0");}
 				}
-			}else {
-				prw.print("회원정보가 없습니다.\n회원가입 페이지로 이동합니다.");					
-			}
+			}else {	prw.print("0");}
 		}
+	}	
+	//로그아웃
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession hs=request.getSession();
+		hs.setAttribute("normallogin", false);
+		hs.setAttribute("superlogin", false);
+		hs.setAttribute("adminlogin", false);
+		return "redirect:/main";
 	}
 	
 	@RequestMapping(value = "/idsearch")
 	public String idsearch() {
-		return "id_search";
+		return "idsearch";
 	}
 	
 	@RequestMapping(value = "/getid",method =RequestMethod.POST)
@@ -147,41 +102,30 @@ public class LoginController {
 		LoginService ls = sqlsession.getMapper(LoginService.class);
 		String id = ls.getid(name,birth,tel);
 		if(id==null || id=="") {
-			prw.print("아이디를 찾을 수 없습니다.");
+			prw.print("회원 정보가 없습니다.");
 		}
 		else {
-			prw.print("당신의 아이디는 "+id+"입니다.");
-		}
-		
+			prw.print("당신의 아이디는 '"+id+"'입니다.");
+		}	
 	}
 	
 	@RequestMapping(value = "/pwsearch")
 	public String pwsearch() {
-		return "pw_search";
+		return "pwsearch";
 	}
-	
+
 	@RequestMapping(value = "/getpw",method =RequestMethod.POST)
-	public void getPw(String id, String name, String birth, String tel, HttpServletResponse response) throws IOException {
+	public void getPw(String id, String name, String tel, String email, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter prw = response.getWriter();
 		LoginService ls = sqlsession.getMapper(LoginService.class);
-		int result = ls.getpw(id,name,birth,tel);
+		int result = ls.getpw(id,name,tel,email);
 		prw.print(result);
 	}
 	
-	@RequestMapping(value = "/pwchange")
-	public String pwchange(String id, Model mo) {
-		mo.addAttribute("id", id);
-		return "pw_change";
-	}
-	
-	@RequestMapping(value = "/pwud")
-	public void pw_update(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		pw=passwordEncoder.encode(pw);
-		LoginService ls = sqlsession.getMapper(LoginService.class);
-		ls.pwchange(id,pw);
+	@RequestMapping(value = "/pwupdate")
+	public String pwchange(String id, Model model) {
+		model.addAttribute("id", id);
+		return "pwupdate";
 	}
 }

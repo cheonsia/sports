@@ -114,7 +114,7 @@ public class MemberController {
 		return "memberDelete";
 	}
 	//회원 삭제
-	@RequestMapping(value = "/deleteMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
 		String id = request.getParameter("id");
 		String part = request.getParameter("part");		
@@ -164,7 +164,7 @@ public class MemberController {
 		String cpw = passwordEncoder.encode(pw);
 		MemberService ms = sqlsession.getMapper(MemberService.class);
 		ms.pwupdate(id, cpw);
-		prw.print("");
+		prw.print("비밀번호가 변경되었습니다.");
 	}
 	//정보 수정 창으로 가기
 	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)

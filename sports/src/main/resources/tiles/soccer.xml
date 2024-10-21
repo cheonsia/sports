@@ -57,10 +57,10 @@
 
    <definition name="soccerTeamRank" extends="soccerLayout">
       <put-attribute name="title" value="축구팀 랭킹 순위"/>
-      <put-attribute name="body" value="/WEB-INF/views/soccer/rank/teamRank.jsp"/>
+      <put-attribute name="body" value="/WEB-INF/views/soccer/rank/team.jsp"/>
    </definition>  
 
-   <definition name="scPlayerRank" extends="soccerLayout">
+   <definition name="soccerPlayerRank" extends="soccerLayout">
       <put-attribute name="title" value="축구팀 선수 랭킹 순위"/>
       <put-attribute name="body" value="/WEB-INF/views/soccer/rank/player.jsp"/>
    </definition>  

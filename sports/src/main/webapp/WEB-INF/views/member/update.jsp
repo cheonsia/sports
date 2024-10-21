@@ -112,8 +112,8 @@
 							url: "pwUpdate",
 							async: true,
 							data: {"id":id,"pw":pw},
-							success:function(){
-								alertShow('변경 완료',"비밀번호가 변경되었습니다");
+							success:function(data){
+								alertShow('변경 완료','비밀번호 변경이 완료되었습니다');
 							},
 							error:function(){
 								alertShow("오류",'비밀번호를 다시 입력해주세요');

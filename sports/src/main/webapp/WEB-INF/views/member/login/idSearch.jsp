@@ -5,9 +5,86 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+	#footer,
+	.side_rightbar_whole,
+	.header_section,
+	.header_team_logo scroll_div{
+		display: none;
+	}
+    #body {
+		padding: 0;
+    }
+    .main_section {
+  	  margin: 45px auto 0 auto;
+    }
+    .idsearch{
+        width: 310px;	
+	    margin: 0 auto;
+    }
+	.idsearch div {
+		display:flex;
+	    margin: 30px auto;
+	    width: 100%;
+	    text-align: center;
+	    align-items: center;
+	}
+	.idsearch label {
+   		width: 60px;
+    	min-width: 60px;
+    	text-align: end;
+    	margin: 0 10px 0 0;
+    	font-weight: 700;
+	}
+	.idsearch select{
+		border-color: #e8e8e8;
+		margin : 0 5px;
+		height: 30px;
+		width: 60px;
+		border-radius: 5px;
+	}
+	.idsearch select#month, #day{
+		width: 50px;
+	}
+	.idsearch input {
+		border: 1px solid #e8e8e8;
+		height:30px;
+		width: 65%;
+		border-radius: 5px;
+	}
+	.idsearch select:focus,
+	.idsearch input:focus {
+		border: 2px solid #0c6042;
+		height: 28px;
+	}
+	.idsearch input#mid_tel,#end_tel{
+		width: 40px;
+		margin : 0 5px;
+	}
+	.idsearch input[type="button"]{
+		width: 100%;
+		border: 1px solid #08750e20;
+	    background-color: #08750e90;
+	    color: #fff;
+	    height: 50px;
+	    border-radius: 10px;
+	}
+	.idsearch input[type="button"]:hover{
+		border-color: #08750e;
+	    background-color: #08750e20;
+	    color: #08750e;
+	}
+</style>
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#findid').click(function() {
+	$(document).ready(function() {
+		$('#name').focus();
+	});
+	function click_btn(){
+		if(window.event.keyCode == 13){
+			$('#findid').click();
+		}
+	};
+	function checkform() {
 		var vname=/^[가-힣]{2,5}$/;
 		var name=$('#name').val();
 		if(name=="") {
@@ -15,7 +92,7 @@ $(document).ready(function() {
 			$('#name').focus();
 			return false;
 		}
-		else if(!vname.test(name)) {
+		if(!vname.test(name)) {
 			alertShow('오류','이름은 한글 2~5글자 이내로 작성해주세요.');
 			$('#name').focus();
 			return false;
@@ -40,62 +117,42 @@ $(document).ready(function() {
 			$('#mid_tel').focus();
 			return false;
 		}
-		$.ajax({
-			type:"post",
-			url:"getid",
-			async:true,
-			data:{"name":name, "birth":birth, "tel":tel},
-			success:function(data) {
-					alertShow('아이디 찾기',data);
-			},
-			error:function() {
-				alertShow('에러','다시 입력해주세요.');
-			}
-		});//ajax
-	});//findid
-});//
+		return true;
+	};
+	function findId() {
+		var name=$('#name').val();
+		var year = $("select[id='year'] option:selected").val();
+		var month = $("select[id='month'] option:selected").val();
+		var day = $("select[id='day'] option:selected").val();
+		var birth= year + "-" + month + "-" + day;
+		var fir_tel = $("select[id='fir_tel'] option:selected").val();
+		var mid_tel = $('#mid_tel').val();
+		var end_tel = $('#end_tel').val();
+		var tel = fir_tel + "-" + mid_tel + "-" + end_tel;		
+		if(checkform()){			
+			$.ajax({
+				type:"post",
+				url:"getid",
+				async:true,
+				data:{"name":name, "birth":birth, "tel":tel},
+				success:function(data) {
+						alertShow('아이디 찾기',data);
+						setTimeout(function(){window.close();}, 1000);  
+				},
+				error:function() {
+					alertShow('에러','다시 입력해주세요.');
+				}
+			});//ajax
+		}
+	};//findid
 </script>
-<style type="text/css">
-	#footer,
-	.side_rightbar_whole,
-	.header_section,
-	.header_team_logo scroll_div{
-		display: none;
-	}
-	@media (max-width: 359px) {
-	    #body {
-			padding: 0;
-	    }
-	}
-	.idsearch div {
-		display:flex;
-	    margin: 0 auto;
-	    width: max-content;
-	    max-width: max-content;
-	    text-align: center;
-	}
-	.idsearch label {
-		width: 90px;
-		max-width: 90px;
-	    margin: 0 auto 5px auto;
-	    font-weight: 700;
-	}
-	
-	.idsearch input {
-	text-align: center;
-	}
-	.idsearch input#mid_tel,#end_tel{
-		width: 80px;
-	}
-</style>
-<title>아이디 찾기</title>
 </head>
 <body>
 <h1>아이디 찾기</h1>
 <div class="idsearch">
 	<div>
-		<label>이름</label>
-		<input type="text" name="name" id="name" placeholder="이름을 입력해주세요.">
+		<label>이&emsp;&nbsp;름</label>
+		<input type="text" name="name" id="name" placeholder="이름을 입력해주세요." onkeyup="click_btn()">
 	</div>
 	<div>
 		<label for="year">생년월일</label>
@@ -110,7 +167,7 @@ $(document).ready(function() {
 				<c:forEach var="i" begin="1" end="12">
 					<c:choose>
 						<c:when test="${i lt 10}">
-							<option value="0${i}">0${i}</option>
+							<option value="0${i}" >0${i}</option>
 						</c:when>
 						<c:otherwise>
 							<option value="${i}">${i}</option>
@@ -143,15 +200,12 @@ $(document).ready(function() {
 			<option value="019">019</option>
 		</select>
 		-
-		<input type="text" maxlength="4" id="mid_tel" size="5">
+		<input type="text" maxlength="4" id="mid_tel" size="5" onkeyup="click_btn()">
 		-
-		<input type="text" maxlength="4" id="end_tel" size="5">
+		<input type="text" maxlength="4" id="end_tel" size="5" onkeyup="click_btn()">
 		<input type="hidden" id="total_tel" name="tel" value="">
 	</div>
-	<div style="text-align: center" class="button">
-		<input type="button" id="findid" value="아이디 찾기">
-		<button type="button" onclick="javascript:window.close()">닫기</button>
-	</div>
+		<input type="button" onclick="findId()" id="findid" value="아이디 찾기">
 </div>
 </body>
 </html>
