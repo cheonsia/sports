@@ -3,14 +3,14 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mbc.sports.board.BoardService">
-	<select id="out">
+	<select id="out" resultType="com.mbc.sports.board.BoardDTO">
 		select *
-		from mvpboard
+		from inquiry
 		order by step
 	</select>
 	<insert id="insert">
-		insert into mvpboard
-		values (mvpnum_seq.nextval(),#{param1},#{param2},#{param3},#{param4},#{param5},0)
+		insert into inquiry
+		values (inquiry_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},0,'no',sysdate)
 	</insert>
 	
 </mapper>

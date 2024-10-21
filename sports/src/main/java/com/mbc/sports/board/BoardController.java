@@ -34,8 +34,9 @@ public class BoardController {
 		String pw= request.getParameter("pw");
 		String title= request.getParameter("title");
 		String value = request.getParameter("value");
+		String check = request.getParameter("checked");
 		BoardService bs = SqlSession.getMapper(BoardService.class);
-		bs.insert(part,writer,pw,title,value);
+		bs.insert(part,writer,pw,title,value,check);
 		return "redirect:/boardMain";
 	}
 }
