@@ -10,317 +10,59 @@
 	</head>
 	<body>
 	<h1>파일을 로드하는데 시간이 걸릴 수 있습니다 :)</h1>
-	<c:choose>
-		<c:when test="${name=='kangwon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCuLjoid8kKTKITvkUP94kJA&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='gwangju'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCPLHmQevKu4uTiOh1UjoL4w&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='gimcheon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='gimcheon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='gimcheon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCSZ-CvpbBm6JnZnWYmiNrlQ&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='daegu'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCI50QJRCvW1NxwbjB57rGVA&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='daejeon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCo2pmNaOCgv26neeCAkLj9w&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='seoul'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCXtWUl6qmPtibHVKIXbZlcA&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='suwon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCHPiDeQQyVcYe-nhyUanSWg&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='ulsan'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCZ8lUWJ0_vZZf-SiNedia7Q&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='incheon'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCGA9gUrYCb4hRk_wHBzB_nQ&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='jeonbuk'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCKxMSkJHBIpn5b4vUQHYliQ&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='jeju'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCQfQeoiJTN2EVqde4_0PlUA&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-		<c:when test="${name=='pohang'}">
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            dataType: "json",
-			            url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&channelId=UCOZQIw1I6ixjQZ_va_eCn7w&type=video&key=key입력",
-			            contentType : "application/json",
-			            success : function(data) {
-			                data.items.forEach(function(element, index) {
-			                    $('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			                });
-			            },
-			            complete : function(data) {
-			            },
-			            error : function(xhr, status, error) {
-			                console.log("유튜브 요청 에러: "+error);
-			            }
-			        });
-			    });
-			</script>
-		</c:when>
-	</c:choose>
-<body>
-</body>
+	<script type="text/javascript">
+		if(`${name}`=='ALL') {
+			var 채널아이디 = 'UCak5ZEX4BjijJcf7fdppuIQ';
+			var 키 = 'API키 입력';
+		} else if (`${name}`=='kangwon') {
+			var 채널아이디 = 'UCuLjoid8kKTKITvkUP94kJA';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='gwangju') {
+			var 채널아이디 = 'UCPLHmQevKu4uTiOh1UjoL4w';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='gimcheon') {
+			var 채널아이디 = 'UCSZ-CvpbBm6JnZnWYmiNrlQ';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='daegu') {
+			var 채널아이디 = 'UCI50QJRCvW1NxwbjB57rGVA';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='daejeon') {
+			var 채널아이디 = 'UCo2pmNaOCgv26neeCAkLj9w';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='seoul') {
+			var 채널아이디 = 'UCXtWUl6qmPtibHVKIXbZlcA';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='suwon') {
+			var 채널아이디 = 'UCHPiDeQQyVcYe-nhyUanSWg';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='ulsan') {
+			var 채널아이디 = 'UCZ8lUWJ0_vZZf-SiNedia7Q';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='incheon') {
+			var 채널아이디 = 'UCGA9gUrYCb4hRk_wHBzB_nQ';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='jeonbuk') {
+			var 채널아이디 = 'UCKxMSkJHBIpn5b4vUQHYliQ';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='jeju') {
+			var 채널아이디 = 'UCQfQeoiJTN2EVqde4_0PlUA';
+			var 키 = 'API키 입력';			
+		} else if (`${name}`=='pohang') {
+			var 채널아이디 = 'UCOZQIw1I6ixjQZ_va_eCn7w';
+			var 키 = 'API키 입력';			
+		}
+		
+		$.ajax({
+			type : "GET",
+			dataType : "json",
+			url : "https://www.googleapis.com/youtube/v3/search?part=id&channelId="+채널아이디+"&maxResults=50&order=date&key="+키,
+			success : function(data) {
+				data.items.forEach(function(element, index) {
+					$('.main_section').append('<iframe width="560" height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');});
+			},
+			complete : function(data) {},
+			error : function(xhr, status, error) {} 
+	});
+	</script>
 	</body>
 </html>
