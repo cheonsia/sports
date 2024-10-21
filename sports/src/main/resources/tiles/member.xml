@@ -67,5 +67,14 @@
 		<put-attribute name="title" value="비밀번호 바꾸기"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/login/pwUpdate.jsp"/>
 	</definition>
+	
+	<definition name="boardMain" extends="memberLayout">
+		<put-attribute name="title" value="문의하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/board/main.jsp"/>
+	</definition>
+	<definition name="boardInput" extends="memberLayout">
+		<put-attribute name="title" value="문의 글 작성하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/board/input.jsp"/>
+	</definition>
    
 </tiles-definitions>
