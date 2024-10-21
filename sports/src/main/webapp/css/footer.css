@@ -94,6 +94,7 @@ footer.baseball .footer_flex a *{
 footer.baseball .footer_flex a:hover,
 footer.baseball .footer_flex a:hover *{
 	color: #f9f9f9;
+	border-color: #f9f9f9;
 	cursor: url('../image/baseball/cursor/pointer2.png'), auto !important;	
 }
 .footer_flex a span{
