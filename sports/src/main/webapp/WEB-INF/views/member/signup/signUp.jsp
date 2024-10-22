@@ -29,7 +29,8 @@
 				margin:	0 auto 10px auto;
 			}
 			.signform{
-				width: 600px;
+				width: 100%;
+				max-width: 600px;
 				margin: 40px auto 50px 29%;
 			}
 			.signform *{
@@ -87,8 +88,8 @@
 			#year,
 			#month,
 			#day{
-				min-width: 78px;
-				width: 78px;
+				min-width: 86px;
+				width: 86px;
 				height: 34px;
 				text-align: center;
 				border: 1px solid #e8e8e8;
@@ -103,8 +104,8 @@
 				text-align: center;
 			}
 			.phone #fir_tel{
-				min-width: 78px;
-				width: 78px;
+				min-width: 86px;
+				width: 86px;
 				height: 34px;
 				text-align: center;
 				border: 1px solid #e8e8e8;	
@@ -113,7 +114,7 @@
 			.signform input[type="text"]#mid_tel,
 			.signform input[type="text"]#end_tel{
 				text-align: center;
-				width: 58px;
+				width: 66px;
 				margin-right: 0;
 			}
 			.signform .col-sm-10{
@@ -141,9 +142,13 @@
 				width: 100%;
 				margin: 5px 0;
 			}
+			.signform .col-sm-10 .add2 + .add2{
+				margin: 0;
+			}
 			.signform .col-sm-10 #UserAdd1,
 			.signform .col-sm-10 #UserAdd2{ 
-				width: 380px;
+				width: 100%;
+				max-width: 328px;
 			}
 			.email{
 				width: 100%;
@@ -158,6 +163,7 @@
 			}
 			.signform .email_write .select{
 				width: 100%;
+				max-width: 128px;
 				height: 34px;
 				text-align: center;
 				margin: 0 0 0 10px;
@@ -185,12 +191,14 @@
 				color:white;
 			}
 			.signform .team{
+				justify-content: end;
 				width: 100%;
 				margin: 0 0 0 96px;
 			}
 			.team select{
 				border: 1px solid #e8e8e8;
 				width: 100%;
+				max-width: 128px;
 				height: 34px;
 				text-align: center;
 				border-radius: 5px;
@@ -228,7 +236,7 @@
 			}
 			.signform .button{
 				width: max-content;
-			    margin: 30px auto 0 auto;
+			    margin: 60px auto;
 			}
 			.signform .button input[type="button"]{
 				min-width: 150px;
@@ -264,6 +272,7 @@
 				display: block;
 			    height: 36px;
 			    border-radius: 5px;
+			    margin-left: 0;
 			}
 		</style>
 		<script>
