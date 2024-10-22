@@ -24,22 +24,22 @@
 					if(month==2){
 						if(year%4==0){//29일까지
 							for(var i = 1;i <= 31;i++){
-								if(i<=29 && $("#day option").length-1 < i) {$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+								if(i<=29 && $("#day option").length-1 < i){$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
 								else{$("#day option[value=\""+i+"\"]").remove();}
 							}
 						}else{//28일까지
 							for(var i = 1;i <= 31;i++){
-								if( i<=28 && $("#day option").length-1 < i) { $("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+								if( i<=28 && $("#day option").length-1 < i){ $("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
 								else{$("#day option[value=\""+i+"\"]").remove();}
 					}}}
 					else if( month==4 || month==6 || month==9 || month==11){//30일까지
 						for(var i = 1;i <= 30;i++){
-							if ($("#day option").length-1 < i) {$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+							if ($("#day option").length-1 < i){$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
 							$("#day option[value=\"31\"]").remove();				
 						}
 					}else{
 						for(var i = 1;i <= 31;i++){
-							if ($("#day option").length-1 < i) {$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+							if ($("#day option").length-1 < i){$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
 					}}
 				});
 				//전화번호 앞자리 선택
@@ -74,35 +74,35 @@
 					}
 				});
 				// 비밀번호 수정 버튼 클릭 시 모달 창 표시
-				$("btn-pwCheck").click(function () {
+				$("btn-pwCheck").click(function (){
 					$("#PwCheckModal").modal("show");
 				});
-				$("#PwCheckModal").on("shown.bs.modal", function () {		
+				$("#PwCheckModal").on("shown.bs.modal", function (){		
 					$("#pw").focus();
 				});
 		
 				//// 비밀번호 수정창으로 이동
-				$("#pwCheck").click(function() {
+				$("#pwCheck").click(function(){
 					var pw = $("#pw").val();	
 					var vpw=/^[a-zA-Z0-9]{6,16}$/;
 					
-					if(pw=="") {
+					if(pw==""){
 						alertShow('오류','비밀번호를 입력해주세요.');
 						$("#PwCheckModal").modal("close")
 						return false;
 					}
-					else if(!vpw.test(pw)) {
+					else if(!vpw.test(pw)){
 						alertShow('오류','비밀번호는 영문자+숫자 6~16글자 이내로 작성해야합니다.');
 						$("#PwCheckModal").modal("close")
 						return false;
 					}
 					$("#PwUpdateModal").modal("show");
 				});
-				$("#PwUpdateModal").on("shown.bs.modal", function () {		
+				$("#PwUpdateModal").on("shown.bs.modal", function (){		
 					$("#pwcheck").focus();
 				});
 				///수정한 비밀번호 유효성 검사
-				$("#pwupdate").click(function() {
+				$("#pwupdate").click(function(){
 					var id=$('#id').val();
 					var pw = $("#pw").val();	
 					var pwcheck = $("#pwcheck").val();	
@@ -111,7 +111,7 @@
 							type: "post",
 							url: "pwUpdate",
 							async: true,
-							data: {"id":id,"pw":pw},
+							data:{"id":id,"pw":pw},
 							success:function(data){
 								alertShow('변경 완료','비밀번호 변경이 완료되었습니다');
 							},
@@ -126,29 +126,29 @@
 				});
 			});
 			//비밀번호 확인 Enter
-			function btn_pwcheck(e) {
-				if(e.key == 'Enter') {
+			function btn_pwcheck(e){
+				if(e.key == 'Enter'){
 					$('#pwCheck').click();
 				}
 			}
 			//비밀번호 수정 Enter
-			function btn_pwupdate(e) {
-				if(e.key == 'Enter') {
+			function btn_pwupdate(e){
+				if(e.key == 'Enter'){
 					$('#pwupdate').click();
 				}
 			}	
 			//주소 API CDN 방식 사용
-			function execDaumPostcode() {
+			function execDaumPostcode(){
 				new daum.Postcode({
-					oncomplete: function(data) {
+					oncomplete: function(data){
 					  	// 팝업을 통한 검색 결과 항목 클릭 시 실행
 						var addr = ''; // 주소_결과값이 없을 경우 공백 
 						var extraAddr = ''; // 참고항목
 		
 						//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 도로명 주소를 선택
+						if (data.userSelectedType === 'R'){ // 도로명 주소를 선택
 							addr = data.roadAddress;
-						} else { // 지번 주소를 선택
+						} else{ // 지번 주소를 선택
 							addr = data.jibunAddress;
 						}
 		
@@ -162,7 +162,7 @@
 							if(extraAddr !== ''){
 								extraAddr = ' (' + extraAddr + ')';
 							}
-						} else {
+						} else{
 							document.getElementById("UserAdd1").value = '';
 						}
 						// 선택된 우편번호와 주소 정보를 input 박스에 넣는다.
@@ -174,12 +174,12 @@
 				}).open();
 			}
 			//이메일 도메인에 값 넣기
-			function mailSelect() {
+			function mailSelect(){
 				var domain = $('#mail_select').find('option:selected').val();		
-				if(domain == 'emailall') {
+				if(domain == 'emailall'){
 					$('#email_domain').val("");
 				}
-				else {
+				else{
 					$('#email_domain').val(domain);
 				}		
 			}
@@ -196,7 +196,7 @@
 				var teamLen = gf.team.length;
 				var numActs;
 				for (var i = 0; i < acts.length; i++){
-					if (str == acts[i].name) {
+					if (str == acts[i].name){
 						numActs = acts[i].list.length;
 						for (var j = 0; j < numActs; j++)
 							gf.team.options[j] = new Option(acts[i].list[j], acts[i].list[j]);
@@ -207,16 +207,16 @@
 			}
 			
 			//유효성 체크
-			function check() {
+			function check(){
 				////이름 체크
 				var vname=/^[가-힣]{2,5}$/;
 				var name=$('#name').val();
-				if(name=="") {
+				if(name==""){
 					alertShow('오류','이름을 입력해주세요.');
 					$('#name').focus();
 					return false;
 				}
-				else if(!vname.test(name)) {
+				else if(!vname.test(name)){
 					alertShow('오류','이름은 한글 2~5글자 이내로 작성해주세요.');
 					$('#name').focus();
 					return false;
@@ -227,10 +227,10 @@
 				var day = $("select[id='day'] option:selected").val();
 				var birth = year + "-" + month + "-" + day;
 				var birth_regexp = /^\d{4}-\d{2}-\d{2}$/;//생년월일 정규식		
-				if(birth_regexp.test(birth)) {
+				if(birth_regexp.test(birth)){
 					$('#birth').val(birth);
 				}
-				else {
+				else{
 					alertShow('오류','생년월일을 입력해주세요');
 					$('#year').focus();
 					return false;
@@ -241,10 +241,10 @@
 				var end_tel = $('#end_tel').val();
 				var total_tel = fir_tel + "-" + mid_tel + "-" + end_tel;		
 				var tel_regexp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;//전화번호 정규식
-				if(tel_regexp.test(total_tel)) {
+				if(tel_regexp.test(total_tel)){
 					$('#total_tel').val(total_tel);
 				}
-				else {
+				else{
 					alertShow('오류','전화번호를 다시 입력해주세요');
 					$('#mid_tel').focus();
 					return false;
@@ -254,10 +254,10 @@
 				var email_domain = $('#email_domain').val();
 				var email = email_id + "@" + email_domain;
 				var email_regexp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;//이메일 정규식
-				if(email_regexp.test(email)) {
+				if(email_regexp.test(email)){
 					$('#email').val(email);				
 				}
-				else {
+				else{
 					alertShow('오류','이메일 형식이 맞지 않습니다');
 					$('#email_id').focus();
 					return false;
@@ -266,11 +266,11 @@
 				var code = $('#zipp_code').val();
 				var cadd1 = $('#UserAdd1').val();
 				var cadd2 = $('#UserAdd2').val();
-				if(code=="" || cadd1=="") {
+				if(code=="" || cadd1==""){
 					alertShow('오류','우편주소를 검색해주세요.');
 					return false;
 				}
-				if(cadd2=="") {
+				if(cadd2==""){
 					alertShow('오류','상세 주소를 입력해주세요.');
 					return false;
 				}
@@ -288,11 +288,19 @@
 				margin: 30px auto 0 auto;
 				overflow: auto;
 			}
+			h1{
+				margin: 0 auto 40px auto;
+			}
 			#footer{
 				width: calc(100% - 40px);
 			}
 			.header_team_logo{
 				display: none;
+			}
+			.updateform{
+				width: 100%;
+				max-width: 600px;
+				margin: 40px auto 50px 29%;
 			}
 			.info_whole{
 				width: 100%;
@@ -313,13 +321,13 @@
 				align-content: center;
 			}
 			.info_whole div + div{
-				margin-top: 20px;
+				margin-top: 10px;
 			}
 			.info_whole label{
-				min-width: 100px;
-				width: 100px;
+				min-width: 120px;
+				width: 120px;
 				line-height: 36px;
-				margin: 0 20px 0 0;
+				margin: 0;
 			}
 			.info_whole div.adr label{
 				line-height: 118px;
@@ -328,11 +336,16 @@
 			.info_whole select{
 				display: block;
 				width: calc(100% - 20px);
+				max-width: 328px;
 				height: 34px;
-				border: 1px solid #e1e1e1;
+				border: 1px solid #e8e8e8;
 				border-radius: 5px;
 				cursor: url('./image/soccer/cursor/text.png'), auto !important;
 				padding: 0 10px;
+			}
+			#id, #pw, #pwcheck{
+				max-width: 170px;
+				margin: 0 10px 0 0;
 			}
 			button.btn.btn-pwCheck{
 				min-width: 120px;
@@ -343,16 +356,21 @@
 				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
 				padding: 0;
 				outline: none!important;
-				background-color: transparent;
+				background-color: #00640005;
 				box-shadow: none!important;
 			}
 			button.btn.btn-pwCheck:hover{
-				background-color: #00640010;
+				background-color: #00640015;
 			}
 			.info_whole select{
-				max-width: 108px;
+				padding: 0;
+				max-width: 86px;
 				text-align: center;
 				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+			}
+			.info_whole select:focus{
+				outline: none;
+				border-color: #006400;
 			}
 			.info_whole select#day + p{
 				margin-right: 0;
@@ -360,21 +378,27 @@
 			.info_whole div + div.phone select,
 			.info_whole div + div.phone input{
 				width: 100%;
-				max-width: 108px;
+				max-width: 88px;
+			}
+			.info_whole div + div.phone input{
+				max-width: 68px;
 			}
 			.info_whole input#mid_tel,
 			.info_whole input#end_tel{
 				text-align: center;
 				cursor: url('./image/soccer/cursor/text.png'), auto !important;
 			}
-			.info_whole input[type="text"],
-			.info_whole input[type="password"]{
-				
+			.info_whole input[type="text"]:focus,
+			.info_whole input[type="password"]:focus{
+				border-color: #006400;
 			}
 			.info_whole input[type="text"]:read-only,
 			.info_whole input[type="password"]:read-only{
 				background-color: #f9f9f9;
 				cursor: url('./image/soccer/cursor/cursor.png'), auto !important;
+			}
+			.info_whole input[type="text"]:read-only:focus{
+				border-color: #e8e8e8;
 			}
 			.info_whole div p{
 				min-width: 16px;
@@ -395,20 +419,26 @@
 			}
 			.info_whole div div.email_write{
 				display: flex;
-			}
-			.info_whole div div.email_write input{
-				max-width: 108px;
+				width: 100%;
 			}
 			.info_whole div div.email_write p{
-				min-width: 11px;
-				width: 11px;
-				max-width: 11px;
+				min-width: 13px;
+				width: 13px;
+				max-width: 13px;
 				text-align: center;
 				margin: 0 10px;
 			}
 			.info_whole div div.email_write select{
-				max-width: 98px;
-				margin-left: 10px;
+				width: 100%;
+				max-width: 128px;
+			    height: 34px;
+			    text-align: center;
+			    margin: 0 0 0 10px;
+			    border: 1px solid #e8e8e8;
+			    border-radius: 5px;
+			}
+			.info_whole div div.email_write select:focus{
+				border-color: #006400;
 			}
 			.info_whole div.part{
 				justify-content: space-between;
@@ -417,7 +447,7 @@
 				display: flex;
 			}
 			.info_whole div.part div + div{
-				margin: 0 0 0 auto;
+				margin: 0 0 0 100px;
 				justify-content: end;
 			}
 			.info_whole div.part div + div label{
@@ -426,10 +456,7 @@
 				margin-right: 0;
 			}
 			.info_whole div.part div + div select{
-				max-width: 100px;
-			}
-			.info_whole div div input + input{
-				margin-top: 5px;
+				max-width: 128px;
 			}
 			.info_whole div div img{
 				display: block;
@@ -441,60 +468,56 @@
 			}
 			.info_whole div.adr{
 				padding: 0;
+				margin-bottom: 10px;
 			}
 			.info_whole div div.adr_inner{
 				display: flex;
 			}
-			.info_whole div div.adr_inner input + input {
-				min-width: 100px;
-				width: 100px;
+			.info_whole div div.adr_inner input + input{
+				min-width: 82px;
+				width: 82px;
 				height: 36px;
-				margin: 0 0 0 5px;
+				margin: 0 0 0 10px;
 				border: none;
 				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-				background-color: #006400;
+				background-color: #4c693f;
 			}
-			.info_whole div div.adr_inner input + input:hover {
-				background-color: #0c400c;
+			.info_whole div div.adr_inner input + input:hover{
+				background-color: #4c693f80;
 			}
 			.info_whole div.adr input{
 				box-shadow: none;
 			}
+			.info_whole div.adr input#zipp_code_id{
+				max-width: 100px;
+				text-align: center;
+				background-color: #fff
+			}
 			.info_whole div.adr input[name="user_add1"]{
 				margin: 5px 0;
+				background-color: #eee;
 			}
-			.info_whole div div.invalid-feedback{
-				font-size: 14px;
-				line-height: 20px;
-				color: #999;
-				margin: 5px auto 20px auto;
-			}
-			.info_whole label + label {
-				min-width: 80px;
-				width: 80px;
-				max-width: 80px;
+			.info_whole label + label{
+				min-width: auto;
+				width: auto;
 			}
 			.info_whole div input[type="radio"]{
 				display: none;
 			}
-			.info_whole div input[type="radio"] + span {
+			.info_whole div input[type="radio"] + span{
 				width: 80px;
 				max-width: 80px;
 				height: 34px;
 				line-height: 34px;
 				text-align: center;
-				border: 1px solid #e1e1e1;
-				border-radius: 20px;
-				background: #fff;
-				margin: 0;
 			}
 			.info_whole div input[type="radio"] + span:hover{
 				background: rgba(0,0,0,0.05);
 			}
-			.info_whole div input[type="radio"]:checked + span {
-				color: white;
-				border-color: #006400;
-				background: #006400;
+			.info_whole div input[type="radio"]:checked + span{
+				color: #f9f9f9;
+				border-color: #556B2F;
+				background: #556B2F;
 			}
 			.info_whole input#voe,
 			.info_whole input#rr{
@@ -576,40 +599,40 @@
 				background-size: contain;
 			}
 			.info_whole div.btn_flex{
-				margin: 20px auto 40px auto;
+				margin: 60px auto;
 				padding: 0;
 				justify-content: center;
 			}
 			.btn_flex input[type="button"]{
 				display: block;
 				width: 100%;
-				max-width: 120px;
-				height: 36px;
-				font-size: 16px;
-				line-height: 24px;
+				max-width: 150px;
+				height: 38px;
+				font-size: 14px;
+				line-height: 20px;
 				font-weight: 400;
 				color: #333;
 				border: 1px solid transparent;
 				background-color: transparent;
 				border-radius: 5px;
 				outline: none;
+				padding: 0;
 			}
 			.btn_flex input[type="button"] + input[type="button"]{
-				margin-left: 10px;
+				margin-left: 20px;
 			}
 			.btn_flex input[type="button"].prev{/*이전으로*/
-				color: #006400;
-				border-color: #006400;
-			}
-			.btn_flex input[type="button"].prev:hover{
-				background-color: #00640010;
+				border: 1px solid #4c693f;
+				background-color: white;
+				color: #4c693f;
 			}
 			.btn_flex input[type="button"].appro{/*수정*/
 				color: #f9f9f9;
-				background-color: #006400;
+				background-color: #4c693f;
 			}
-			.btn_flex input[type="button"].appro:hover{
-				background-color: #0c400c;
+			.btn_flex input[type="button"]:hover{
+				color: #f9f9f9;
+				background-color: #4c693f80;
 			}
 			.modal-header{
 				display: flex;
@@ -658,10 +681,11 @@
 				display: flex;
 				align-items: center;
 				width: 100%;
+				max-width: none;
 				height: 34px;
 				margin: 8px auto 0 auto;
 				padding: 0 10px;
-				border: 1px solid #e1e1e1;
+				border: 1px solid #e8e8e8;
 				border-radius: 5px;
 			}
 			.modal-body .pw1 input#pw:focus,
@@ -682,9 +706,9 @@
 				outline: none;
 			}
 			.modal-footer button.btn-secondary{
-			    color: #006400;
-			    border-color: #006400;
-			    background-color: transparent;
+				color: #006400;
+				border-color: #006400;
+				background-color: transparent;
 			}
 			.modal-footer button.btn-secondary:hover{
 				color: #0c400c;
@@ -702,7 +726,7 @@
 	</head>
 	<body>
 		<h1>'${my.name}'님의 정보 수정</h1>
-		<form action="memberUpdate" method="post" id="updateform" name="updateform" enctype="multipart/form-data">
+		<form action="memberUpdate" method="post" id="updateform" class="updateform" name="updateform" enctype="multipart/form-data">
 			<div class="info_whole">
 				<input type="hidden" name="part" id="part" value="${my.part}">
 				<input type="hidden" name="refvoe" id="refvoe" value="${my.voe}">
@@ -776,6 +800,24 @@
 					<input type="text" maxlength="4" id="end_tel" size="5" value="${my.tel.substring(9,13)}">
 					<input type="hidden" id="total_tel" name="tel" value="">
 				</div>
+				<div class="col-sm-10 adr">
+					<label for="zipp_btn" class="form-label">주소</label>
+					<div>
+						<div class="adr_inner">
+							<c:choose>
+								<c:when test="${my.zzip_code.length() <= 4}">
+									<input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" readonly value="0${my.zzip_code}">
+								</c:when>
+								<c:otherwise>
+							 	   <input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" readonly value="${my.zzip_code}">
+								</c:otherwise>
+							</c:choose>
+							<input type="button" id="zipp_btn" class="btn btn-primary" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+						</div>
+						<input type="text" class="form-control mb-2" name="user_add1" id="UserAdd1" maxlength="40" placeholder="기본 주소를 입력하세요" required readonly value="${my.user_add1}">
+						<input type="text" class="form-control" name="user_add2" id="UserAdd2" maxlength="40" placeholder="상세 주소를 입력하세요" value="${my.user_add2}">
+					</div>
+				</div>
 				<div>
 					<label for="email_id">이메일</label>
 					<div class="email_write">
@@ -795,25 +837,6 @@
 					</div>
 					<input type="hidden" id="email" name="email" value="${my.email}">
 				</div>
-				<div class="col-sm-10 adr">
-					<label for="zipp_btn" class="form-label">주소</label>
-					<div>
-						<div class="adr_inner">
-							<c:choose>
-								<c:when test="${my.zzip_code.length() <= 4}">
-									<input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" readonly value="0${my.zzip_code}">
-								</c:when>
-								<c:otherwise>
-							 	   <input type="text" class="form-control mb-2" id="zipp_code_id" name="zipp_code" maxlength="10" placeholder="우편번호" readonly value="${my.zzip_code}">
-								</c:otherwise>
-							</c:choose>
-							<input type="button" id="zipp_btn" class="btn btn-primary" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-						</div>
-						<input type="text" class="form-control mb-2" name="user_add1" id="UserAdd1" maxlength="40" placeholder="기본 주소를 입력하세요" required readonly value="${my.user_add1}">
-						<input type="text" class="form-control" name="user_add2" id="UserAdd2" maxlength="40" placeholder="상세 주소를 입력하세요" value="${my.user_add2}">
-						<div class="invalid-feedback">주소를 입력해주시기 바랍니다!</div>
-					</div>
-				</div>
 				<div class="part">
 					<div>
 						<label><c:if test="${my.part=='일반'}">선호 </c:if>종목</label>
@@ -828,7 +851,7 @@
 					</div>
 					<div>
 						<c:if test="${my.part == '일반'}">
-							<label>관심 팀</label>
+							<label>선호 팀</label>
 						</c:if>
 						<c:if test="${my.part == '감독'}">
 							<label>관리 팀</label>
