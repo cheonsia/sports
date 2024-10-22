@@ -3,54 +3,46 @@
 기본 초록: #006400
 포인트 초록: #0c400c
 */
-
 /* 폰트 가져옴(보통 눈누 사이트에서 많이 찾아옴; https://noonnu.cc/index) */
-@font-face {
-    font-family: 'RIDIBatang';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@font-face{
+	font-family: 'RIDIBatang';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
-
 /* 모든 요소에 명령어를 줘라(*) */
-* {
+*{
 	font-family: 'RIDIBatang';
 	/* 폰트 크기 */
-    font-size: 16px;
+	font-size: 16px;
 	/* 폰트 라인 높이 */
-    line-height: 24px;
-	/* 폰트 굵기  */
-    font-weight: 400;
-    color: #3d3d3d;
-    margin: 0;
-    padding: 0;
-    box-sizing: content-box;
+	line-height: 24px;
+	/* 폰트 굵기	*/
+	font-weight: 400;
+	color: #3d3d3d;
+	margin: 0;
+	padding: 0;
+	box-sizing: content-box;
 }
-
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance:none;
-  margin: 0;
+input::-webkit-inner-spin-button{
+	-webkit-appearance:none;
+	margin: 0;
 }
-
-input[type="number"] {
-  -moz-appearance: textfield;
+input[type="number"]{
+	-moz-appearance: textfield;
 }
-
 /* 바디 스크롤바 숨김 */
-body::-webkit-scrollbar {
+body::-webkit-scrollbar{
 	display: none;
 }
-
-
-#body {
+#body{
 	width: 100%;
 	min-height: calc(100vh - 180px);
 	padding: 100px 0 80px 0;
 	/* 패당값 부여 */
 }
-
-.main_section {
+.main_section{
 	/* 마진값 부여 */
 	margin: 100px auto 0 auto;
 }
@@ -58,10 +50,8 @@ body::-webkit-scrollbar {
 패딩과 마진의 차이점
 패딩: 영역 안쪽에 여백을 줌
 마진: 영역 바깥쪽에 여백을 줌
- */
-
-
-h1 {
+*/
+h1{
 	/* 폰트 사이즈 */
 	font-size: 32px;
 	/* 폰트 줄 간격 */
@@ -72,15 +62,13 @@ h1 {
 	text-align: center;
 	margin: 50px auto 20px auto;
 }
-
-p {
+p{
 	margin: 0;
 }
-
 input[type="text"],
 input[type="number"],
 input[type="password"],
-textarea {
+textarea{
 	width: 100%;
 	height: 100%;
 	/* 디폴트 테두리 없애기 */
@@ -91,16 +79,14 @@ textarea {
 	resize: none;
 	padding: 0 10px;
 }
-
 input[type="text"]::placeholder,
 input[type="number"]::placeholder,
 input[type="password"]::placeholder,
-textarea:placeholder {
+textarea:placeholder{
 	/* 폰트 컬러 */
 	color: #999;
 }
-
-textarea {
+textarea{
 	width: 100%;
 	height: 300px;
 	padding: 10px;
@@ -108,9 +94,18 @@ textarea {
 	border: none;
 	outline: none;
 }
-
-
-p.no_data_txt {
+select{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url('../image/common/arrow_dw.png') no-repeat calc(100% - 5px) 50%/20px auto;
+	transition: 0.2s;
+}
+select:focus{
+	transition: 0.2s;
+	background: url('../image/common/arrow_up.png') no-repeat calc(100% - 5px) 50%/20px auto;
+}
+p.no_data_txt{
 	font-size: 16px;
 	line-height: 36px;
 	font-weight: 500;
@@ -119,8 +114,7 @@ p.no_data_txt {
 	padding: 50px 0;
 	margin: 0 auto;
 }
- 
-input[type="file"] {
+input[type="file"]{
 	/* 여러 줄을 강제로 한 줄로 만들기(단, 한 줄로 만들고 싶은 태그들을 감싼 태그에 해당 명령어를 줘야 함 */
 	display: flex;
 	/* 여러 줄을 강제로 한 줄로 만들 때 줄 바꿈이 안 되도록 강제로 막음;
@@ -129,28 +123,25 @@ input[type="file"] {
 	/* 한 줄의 세로 정렬을 지정, start/center/end/stretch 등등이 존재 */
 	align-items: center;
 }
- 
-input[type="file"]::file-selector-button {
+input[type="file"]::file-selector-button{
 	font-family: 'RIDIBatang';
 	background-color: #f9f9f9;
 	border: 1px solid #e1e1e1;
 	/*테두리 r값 지정*/
 	border-radius: 5px;
 }
- 
 /*입력창 인풋 버튼들 css*/
-.input_btn {
+.input_btn{
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
 	margin: 40px auto 0 auto;
 }
-
 .input_btn input[type="submit"],
 .input_btn input[type="reset"],
 .input_btn input[type="button"],
-.input_btn button {
+.input_btn button{
 	/*inline, inline-block, flex 등의 display 다른 요소가 한 줄로 꽉 차게 보이도록 명령*/
 	display: block;
 	width: 100px;
@@ -161,37 +152,31 @@ input[type="file"]::file-selector-button {
 	border-radius: 5px;
 	margin: 0;
 }
- 
-.input_btn button + button {
+.input_btn button + button{
 	margin-left: 20px;
 }
-
 .input_btn input[type="submit"],
-.input_btn button.bg {
+.input_btn button.bg{
 	color: #f9f9f9;
 	background-color: #556B2F;
 }
-
 .input_btn input[type="submit"]:hover,
-.input_btn button.bg:hover {
+.input_btn button.bg:hover{
 	background-color: #384522;
 }
-
 .input_btn input[type="reset"],
 .input_btn input[type="button"],
-.input_btn button.bd {
+.input_btn button.bd{
 	border-color: #556B2F;
 }
-
 .input_btn input[type="reset"]:hover,
 .input_btn input[type="button"]:hover,
-.input_btn button.bd:hover {
+.input_btn button.bd:hover{
 	color: #384522;
 	border-color: #384522;
 	background-color: #38452210;
 }
-
-input[type="radio"] + span {
+input[type="radio"] + span{
 	position: relative;
 	display: block;
 	/*최소 넓이 지정*/
@@ -206,8 +191,7 @@ input[type="radio"] + span {
 	background: #fff;
 	margin: 0 10px 0 0;
 }
- 
-input[type="radio"] + span > span {
+input[type="radio"] + span > span{
 	/*요소들 위치 배정*/
 	/*https://creamilk88.tistory.com/197 참고*/
 	position: absolute;
@@ -226,22 +210,17 @@ input[type="radio"] + span > span {
 	/*얼만큼 이동할지*/
 	transform: translate(-50%, -50%);
 }
- 
 /*radio 버튼에 명령 주기*/
-input[type="radio"]:checked + span {
+input[type="radio"]:checked + span{
 	border-color: #556B2F;
 	background: #556B2F;
 }
- 
 /*radio 버튼에 명령 주기*/
-input[type="radio"]:checked + span > span {
+input[type="radio"]:checked + span > span{
 	background: #f9f9f9;
 }
- 
- 
- 
- /*alert 팝업*/
-.common_fixed_bg {
+/*alert 팝업*/
+.common_fixed_bg{
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
@@ -255,8 +234,7 @@ input[type="radio"]:checked + span > span {
 	/*안 보이게*/
 	display: none;
 }
-
-.common_alert_whole {
+.common_alert_whole{
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
@@ -265,8 +243,7 @@ input[type="radio"]:checked + span > span {
 	z-index: 6;
 	display: none;
 }
-
-.common_alert_box {
+.common_alert_box{
 	position: absolute;
 	width: calc(100% - 100px);
 	max-width: 350px;
@@ -278,8 +255,7 @@ input[type="radio"]:checked + span > span {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
-p.common_alert_title {
+p.common_alert_title{
 	font-size: 20px;
 	line-height: 29px;
 	font-weight: bold;
@@ -287,8 +263,7 @@ p.common_alert_title {
 	text-align: center;
 	margin: 0 auto;
 }
-
-p.common_alert_subtxt {
+p.common_alert_subtxt{
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: 400;
@@ -296,8 +271,7 @@ p.common_alert_subtxt {
 	text-align: center;
 	margin: 10px auto 20px auto;
 }
-
-.common_fixed_btn_whole {
+.common_fixed_btn_whole{
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
@@ -306,8 +280,7 @@ p.common_alert_subtxt {
 	height: auto;
 	margin: 0 auto;
 }
-
-button.common_fixed_btn {
+button.common_fixed_btn{
 	display: block;
 	min-width: 100px;
 	width: 100px;
@@ -320,12 +293,10 @@ button.common_fixed_btn {
 	background-color: #006400;
 	border-radius: 5px;
 }
-
-button.common_fixed_btn:hover {
+button.common_fixed_btn:hover{
 	background-color: #0c400c;
 }
-
-p.common_subtitle_txt {
+p.common_subtitle_txt{
 	font-size: 15px;
 	line-height: 22px;
 	font-weight: 500;
@@ -333,11 +304,9 @@ p.common_subtitle_txt {
 	text-align: center;
 	margin: 0 auto;
 }
- 
- 
- /*최소 넓이 00에 대한 css를 따로 부여(반응형 페이지)*/
- @media (min-width: 1250px) {
-	#body {
+/*최소 넓이 00에 대한 css를 따로 부여(반응형 페이지)*/
+@media (min-width: 1250px){
+	#body{
 		width: calc(100vw - 200px);
 		/*최소 높이*/
 		min-height: calc(100vh - 130px);
@@ -345,17 +314,14 @@ p.common_subtitle_txt {
 		padding-top: 50px;
 		padding-bottom: 80px;
 	}
-	
-	.main_section {
+	.main_section{
 		width: calc(100% - 40px);
 		max-width: 1300px;
 		margin-top: 100px;
 	}
 }
-
-
-@media (max-width: 359px) {
-	#body {
+@media (max-width: 359px){
+	#body{
 		min-height: calc(100vh - 280px);
 		padding-bottom: 230px;
 	}
