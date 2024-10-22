@@ -73,8 +73,20 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/board/main.jsp"/>
 	</definition>
 	<definition name="boardInput" extends="memberLayout">
-		<put-attribute name="title" value="문의 글 작성하기"/>
+		<put-attribute name="title" value="게시 글 작성하기"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/board/input.jsp"/>
+	</definition>
+	<definition name="boardDetail" extends="memberLayout">
+		<put-attribute name="title" value="게시 글 보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/board/detail.jsp"/>
+	</definition>
+	<definition name="boardDelete" extends="memberLayout">
+		<put-attribute name="title" value="게시 글 삭제하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/board/delete.jsp"/>
+	</definition>
+	<definition name="boardUpdate" extends="memberLayout">
+		<put-attribute name="title" value="게시글 수정하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/board/update.jsp"/>
 	</definition>
    
 </tiles-definitions>

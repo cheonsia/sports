@@ -206,7 +206,7 @@
 				</div>
 				<div>
 					<label for ="title"> 제 목 </label>
-					<input type="text" id="title" name="title" placeholder="30자 이내로 입력" maxlength="30" readonly>
+					<input type="text" id="title" name="title" maxlength="30" readonly>
 				</div>
 				<div>
 					<label for ="writer"> 작 성 자 </label>

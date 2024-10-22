@@ -4,7 +4,8 @@ public class BoardDTO {
 	   int num;
 	   String part, title, writer, pw, content, checking;
 	   int step;
-	   String status;
+	   String status,rdate, sub;
+	   int readcnt;
 	public BoardDTO() {}
 	public int getNum() {
 		return num;
@@ -59,6 +60,24 @@ public class BoardDTO {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getSub() {
+		return sub;
+	}
+	public void setSub(String sub) {
+		this.sub = sub;
+	}
+	public String getRdate() {
+		return rdate;
+	}
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
+	}
+	public int getReadcnt() {
+		return readcnt;
+	}
+	public void setReadcnt(int readcnt) {
+		this.readcnt = readcnt;
 	}
 	   
 }

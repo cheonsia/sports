@@ -116,6 +116,7 @@ public class MemberController {
 	//회원 삭제
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
 		String id = request.getParameter("id");
 		String part = request.getParameter("part");		
 		if(part.equals("감독")) {
@@ -127,7 +128,9 @@ public class MemberController {
 			rrImg.delete();
 		}		
 		MemberService ms = sqlsession.getMapper(MemberService.class);
-		ms.del_mem(id);
+		ms.delete(id);
+		hs.setAttribute("access", ms.countmember());
+		hs.setAttribute("notAccess", ms.countnotmember());
 		return "redirect:/memberList";
 	}
 	//마이페이지(상세페이지)로 이동
