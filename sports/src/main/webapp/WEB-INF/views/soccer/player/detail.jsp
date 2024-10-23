@@ -138,16 +138,17 @@
 				display: none;
 				position: absolute;
 				min-width: auto;
-				width: 140px;
-				max-width: 140px;
+				width: 150px;
+				max-width: 150px;
 				line-height: 20px;
 				color: #f9f9f9;
-				text-align: end;
+				text-align: center;
 				border-radius: 5px;
 				padding: 10px 20px;
 				top: 20px;
 				right: 0;
 				background-color: #00640080;
+				word-break: break-word;
 			}
 			.click .img{
 				margin-right: 15px;

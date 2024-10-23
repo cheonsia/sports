@@ -10,7 +10,29 @@
 			display: none;
 		}
 		.main_section{
-			margin-top: 75px;
+			width: calc(100% - 40px);
+			margin-top: 50px;
+		}
+		h1{
+			margin-top:0;
+		}
+		.whole_rank{
+			width: 100%;
+			height: calc(100vh - 370px);
+			overflow: auto;
+			margin: 0 auto 50px auto;
+		}
+		.whole_rank::-webkit-scrollbar{
+			width: 10px;
+			height: 10px;
+			background-color: #ddd;
+			border-radius: 5px;
+		}
+		.whole_rank::-webkit-scrollbar-thumb{
+			width: 10px;
+			height: 10px;
+			background-color: #006400;
+			border-radius: 5px;
 		}
 		table{
 			width: 1200px;
@@ -60,45 +82,47 @@
 	</style>
 </head>
 <body>
-<h1>KLeague 팀 순위</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>순위</th>
-				<th>팀 명</th>
-				<th>경기 수</th>
-				<th>승점</th>
-				<th>승</th>
-				<th>무</th>
-				<th>패</th>
-				<th>득점</th>
-				<th>실점</th>
-				<th>득실차</th>
-				<th>도움</th>
-				<th>파울</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="team" items="${list}">
+	<h1>KLeague 팀 순위</h1>
+	<div class="whole_rank">
+		<table>
+			<thead>
 				<tr>
-					<td>${team.rank}</td>
-					<td>
-						<img src="image/soccer/logo/${team.title}.png" width="25" height="25"> 
-						&emsp;${team.title}
-					</td>
-					<td>${team.round}</td>
-					<td>${team.points}</td>
-					<td>${team.win}</td>
-					<td>${team.draw}</td>
-					<td>${team.lose}</td>
-					<td>${team.score}</td>
-					<td>${team.conceded}</td>
-					<td>${team.difference}</td>
-					<td>${team.assist}</td>
-					<td>${team.foul}</td>
+					<th>순위</th>
+					<th>팀 명</th>
+					<th>경기 수</th>
+					<th>승점</th>
+					<th>승</th>
+					<th>무</th>
+					<th>패</th>
+					<th>득점</th>
+					<th>실점</th>
+					<th>득실차</th>
+					<th>도움</th>
+					<th>파울</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach var="team" items="${list}">
+					<tr>
+						<td>${team.rank}</td>
+						<td>
+							<img src="image/soccer/logo/${team.title}.png" width="25" height="25"> 
+							&emsp;${team.title}
+						</td>
+						<td>${team.round}</td>
+						<td>${team.points}</td>
+						<td>${team.win}</td>
+						<td>${team.draw}</td>
+						<td>${team.lose}</td>
+						<td>${team.score}</td>
+						<td>${team.conceded}</td>
+						<td>${team.difference}</td>
+						<td>${team.assist}</td>
+						<td>${team.foul}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
