@@ -593,6 +593,8 @@
 							<a href="memberList">회원 목록</a>
 							<a href="memberNoList">승인 요청</a>
 							<a href="javascript:void(0)">Q＆A</a>
+							<a href="soccerlike">축구 팀별 선호도</a>
+							<a href="agelike?play=축구">연령대별 축구&야구 선호도</a>
 						</c:if>
 					</div>
 				</div>

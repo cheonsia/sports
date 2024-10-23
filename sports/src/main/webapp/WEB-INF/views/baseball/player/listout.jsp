@@ -182,4 +182,13 @@
 			</c:otherwise>
 		</c:choose>
 	</body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var win_pname = window.location.search;
+			var win_bname = win_pname.split('&');
+			var win_tname = win_bname[0].slice(6);
+			$('.header_logo_inner a').removeClass('clicked_on');
+			$('#baseball_'+win_tname).addClass('clicked_on');
+		});
+	</script>
 </html>

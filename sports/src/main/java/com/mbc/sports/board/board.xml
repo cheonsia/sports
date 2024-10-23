@@ -3,14 +3,72 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mbc.sports.board.BoardService">
-	<select id="out">
-		select *
-		from mvpboard
-		order by step
+	<select id="total" resultType="int">
+		select count(*)
+		from inquiry
+	</select>
+	<select id="out" resultType="com.mbc.sports.board.BoardDTO">
+		select * 
+		from (
+			select rownum rn,A.* 
+			from(
+				select num, part, title, writer, pw, content, checking, step, status, 
+	           		case when to_char(rdate,'yyyy-MM-dd') = to_char(sysdate,'yyyy-MM-dd') then 'New'    
+					else '' end as sub 
+	           	from inquiry
+	           	order by num desc)A)
+		   where rn between #{param1} and #{param2}
 	</select>
 	<insert id="insert">
-		insert into mvpboard
-		values (mvpnum_seq.nextval(),#{param1},#{param2},#{param3},#{param4},#{param5},0)
+		insert into inquiry
+		values (inquiry_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},0,'no',sysdate)
 	</insert>
-	
+	<select id="pwCheck" resultType="int">
+		select count(*)
+		from inquiry
+		where num = #{param1} and pw = #{param2}
+	</select>
+	<update id="clickUp">
+		update inquiry
+		set readcnt = readcnt+1
+		where num= #{param1}
+	</update>
+	<select id="select" resultType="com.mbc.sports.board.BoardDTO">
+		select *
+		from inquiry
+		where num = #{param1}
+	</select>
+	<delete id="delete">
+		delete from inquiry
+		where num = #{param1}
+	</delete>
+	<update id="update">
+		update inquiry
+		set part = #{param2}, title = #{param3}, writer = #{param4}, pw = #{param5}, content = #{param6}, checking = #{param7}, status = 'n'
+		where num= #{param1}	
+	</update>
+	<!-- 답변 -->
+	<update id="statusUpdate">
+		update inquiry
+		set status = 'y'
+		where num= #{param1}	
+	</update>
+	<insert id="answer">
+		insert into inquirycomment values (#{param1}, #{param2}, #{param3}, #{param4}, sysdate)
+	</insert>
+	<select id="comment" resultType="com.mbc.sports.board.BCommentDTO">
+		select *
+		from inquiry comment
+		where num = #{param1}
+	</select>
+	<update id="setStep">
+		update inquiry
+		set step = #{param2}
+		where num= #{param1}
+	</update>
+	<select id="getStep" resultType="int">
+		select NVL(max(step),0)
+		from inquirycomment
+		where num = #{param1}
+	</select>
 </mapper>

@@ -16,7 +16,7 @@ public interface MemberService {
 
 	MemberDTO select(String id);
 
-	void del_mem(String id);
+	void delete(String id);
 
 	String pwCheck(String id);
 
@@ -30,6 +30,7 @@ public interface MemberService {
 	int countnotmember();
 
 	void updateAccess(String id);
+
 
 
 }

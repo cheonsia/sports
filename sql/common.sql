@@ -110,3 +110,27 @@ CREATE SEQUENCE STNUM_SEQ;
 , GAMENUM NUMBER(10, 0) 
 , SEASON VARCHAR2(50 BYTE) 
 ) ;
+    -- 게시판 테이블
+    create table inquiry (
+   num number(6)
+,  part varchar2(100)
+,  title varchar2(100)
+,  writer varchar2(100)
+,  pw varchar2(100)
+, content varchar2(3000)
+, checking varchar2(100)
+, step number(6) 
+, status varchar2(50)
+, rdate date default sysdate
+, readcnt number(6) 
+);
+create SEQUENCE inquiry_seq;
+
+create table inquirycomment(
+    num number(6)
+,   step number(6)
+,   writer varchar2(50)
+,   value varchar2(3000)
+,   rdate date default sysdate
+);
+drop table inquirycomment;
