@@ -12,10 +12,16 @@
 			}
 			#body{
 				width: 100%;
+				min-height: calc(100vh - 130px);
+				padding-top: 50px;
 			}
 			.main_section{
-				margin: -20px auto 0 auto;
+				width: calc(100% - 40px);
+				margin: 0 auto;
 				overflow: auto;
+			}
+			h1{
+				margin-top: 30px;
 			}
 			#footer{
 				width: calc(100% - 40px);
@@ -49,7 +55,7 @@
 			}
 			.info_whole input{
 				display: block;
-				width: calc(100% - 20px);
+				width: calc(100% - 22px);
 				height: 34px;
 				border: 1px solid #e1e1e1;
 				border-radius: 5px;
