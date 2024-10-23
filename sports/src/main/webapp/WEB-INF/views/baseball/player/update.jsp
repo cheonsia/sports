@@ -69,16 +69,16 @@
 				<td>
 					<input type="hidden" id="tnameRef" value="${dto.tname}">
 					<select name="tname" id="tname">
-						<option value="kia">KIA</option>
-						<option value="kt">KT</option>
-						<option value="lg">LG</option>
-						<option value="nc">NC</option>
-						<option value="ssg">SSG</option>
-						<option value="doosan">두산</option>
-						<option value="lotte">롯데</option>
-						<option value="samsung">삼성</option>
-						<option value="kiwoom">키움</option>
-						<option value="hanwha">한화</option>
+						<option value="KIA">KIA</option>
+						<option value="KT">KT</option>
+						<option value="LG">LG</option>
+						<option value="NC">NC</option>
+						<option value="SSG">SSG</option>
+						<option value="DOOSAN">두산</option>
+						<option value="LOTTE">롯데</option>
+						<option value="SAMSUNG">삼성</option>
+						<option value="KIWOOM">키움</option>
+						<option value="HANHWA">한화</option>
 					</select>
 				</td>
 			</tr>

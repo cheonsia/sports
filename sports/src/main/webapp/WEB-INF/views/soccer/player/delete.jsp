@@ -140,6 +140,34 @@
 	}
 	
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var team = `${dto.tname}`;
+		if (team=='kangwon') name='강원';
+		if (team=='gwangju') name='광주';
+		if (team=='gimcheon') name='김천';
+		if (team=='daegu') name='대구';
+		if (team=='daejeon') name='대전';
+		if (team=='seoul') name='서울';
+		if (team=='suwon') name='수원';
+		if (team=='ulsan') name='울산';
+		if (team=='incheon') name='인천';
+		if (team=='jeonbuk') name='전북';
+		if (team=='jeju') name='제주';
+		if (team=='pohang') name='포항';
+		if (team=='KIA')name='KIA';
+        if (team=='KT')name='KT';
+        if (team=='LG')name='LG';
+        if (team=='NC')name='NC';
+        if (team=='SSG')name='SSG';
+        if (team=='DOOSAN')name='두산';
+        if (team=='LOTTE')name='롯데';
+        if (team=='SAMSUNG')name='삼성';
+        if (team=='KIWOOM')name='키움';
+        if (team=='HANHWA')name='한화';
+		$("#team").text(name);	
+	});
+</script>
 </head>
 <body>
 	<h1>${dto.pname} 선수의 정보를 삭제하시겠습니까?</h1>
@@ -157,25 +185,7 @@
 					</div>
 				</td>
 				<td>소속: 
-					<c:choose>
-						<c:when test="${dto.play == '축구'}">
-							<c:if test="${dto.tname=='kangwon'}">강원</c:if>
-				            <c:if test="${dto.tname=='gwangju'}">광주</c:if>
-				            <c:if test="${dto.tname=='gimcheon'}">김천</c:if>
-				            <c:if test="${dto.tname=='daegu'}">대구</c:if>
-				            <c:if test="${dto.tname=='daejeon'}">대전</c:if>
-				            <c:if test="${dto.tname=='seoul'}">서울</c:if>
-				            <c:if test="${dto.tname=='suwon'}">수원</c:if>
-				            <c:if test="${dto.tname=='ulsan'}">울산</c:if>
-				            <c:if test="${dto.tname=='incheon'}">인천</c:if>
-				            <c:if test="${dto.tname=='jeonbuk'}">전북</c:if>
-				            <c:if test="${dto.tname=='jeju'}">제주</c:if>
-				            <c:if test="${dto.tname=='pohang'}">포항</c:if>
-						</c:when>
-						<c:otherwise>
-							${dto.tname}
-						</c:otherwise>
-					</c:choose>
+					<p id="team">${dto.tname}</p>
 		        </td>
 			</tr>
 			<tr>
