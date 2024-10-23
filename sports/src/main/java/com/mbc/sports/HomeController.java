@@ -121,4 +121,30 @@ public class HomeController {
 		hs.setAttribute("area", top);
 		return "main";
 	}
+	@RequestMapping(value = "/baseballlike")
+	public String baseballlike(HttpServletRequest request) throws IOException {
+		String path="C:\\project\\sports\\sports\\src\\main\\webapp\\python\\mvp_project(baseball_team).py";
+		ProcessBuilder pb = new ProcessBuilder("python",path);
+		pb.start();
+		return "redirect:/baseballmain";
+	}
+	@RequestMapping(value = "/soccerlike")
+	public String soccerlike(HttpServletRequest request) throws IOException {
+		String path="C:\\project\\sports\\sports\\src\\main\\webapp\\python\\mvp_project(soccer_team).py";
+		ProcessBuilder pb = new ProcessBuilder("python",path);
+		pb.start();
+		return "redirect:/soccermain";
+	}
+	@RequestMapping(value = "/agelike")
+	public String agelike(HttpServletRequest request) throws IOException {
+		String play = request.getParameter("play");
+		String path="C:\\project\\sports\\sports\\src\\main\\webapp\\python\\mvp_project(age).py";
+		ProcessBuilder pb = new ProcessBuilder("python",path);
+		pb.start();
+		if(play.equals("√‡±∏")) {
+			return "redirect:/soccermain";
+		} else {
+			return "redirect:/baseballmain";
+		}
+	}
 }
