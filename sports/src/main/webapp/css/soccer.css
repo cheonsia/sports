@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*커서*/
-* {
+*{
 	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;	
 }
 .cursor,
@@ -16,29 +16,25 @@ input[type="button"] *,
 input[type="reset"],
 input[type="reset"] *,
 label,
-label *
- {
+label *{
 	cursor: url('../image/soccer/cursor/pointer.png'), auto !important;
 }
-input:read-only {
+input:read-only{
 	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;
 }
 input[type="text"],
 input[type="number"],
 input[type="password"],
-textarea {
+textarea{
 	cursor: url('../image/soccer/cursor/text.png'), auto !important;
 }
 input:disabled,
 textarea:disabled,
-button:disabled {
+button:disabled{
 	cursor: url('../image/soccer/cursor/cursor.png'), auto !important;
 }
-
-
-
 /*코치존 캘린더*/
-.header {
+.header{
 	display: flex;
 	font-size: 48px;
 	justify-content: space-around;/*아이템들을 일정한 간격으로 벌려 배치합니다.*/
@@ -47,25 +43,23 @@ button:disabled {
 	margin: 12px 24px 12px 24px;
 	border-bottom: 2px solid var(--line-color);/*header쪽과 달력을 구분하기 위해 밑에만 선을 넣어줍시다.*/
 }
-
-.title {
+.title{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-
-.main {
+.main{
 	/*요일과 날짜는 가로가아니라 세로로 정렬되야 하므로 flex-diretion: column;을 해줍시다.*/
 	display: flex;
 	flex-direction: column;
 	margin: 12px 24px 0px 24px;
 }
-.daies {
+.daies{
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
 }
-.dates {
+.dates{
 	/*wrap을 주어서 한줄에 날짜가 7개만 나오게 만들겁니다.*/
 	display: flex;
 	flex-wrap: wrap;
@@ -79,24 +73,22 @@ button:disabled {
 	box-sizing: border-box;
 }
 .date:nth-child(7n),
-.day:nth-child(7n) {
+.day:nth-child(7n){
 	/*.date와 .day의 7n번째 요소만 적용시킵니다. 즉 토요일의 세로줄만 적용합니다.*/
 	background-color: var(--sat-color);
 	color: blue;/*글자색입니다.*/
 }
 .date:nth-child(7n+1),
-.day:nth-child(7n+1) {
+.day:nth-child(7n+1){
 	/*.date와 .day의 7n+1번째 요소만 적용시킵니다. 즉 일요일의 세로줄만 적용합니다.*/
 	background-color: var(--sun-color);
 	color: red;
 }
-.today {
+.today{
 	/*오늘 날짜에 테두리를 줍니다. !important로 border의 우선순위를 1순위로 만들 수 있습니다.*/
 	border: 2px solid var(--today-color) !important;
 }
-
-
-.common_pop_hide {
+.common_pop_hide{
 	display: block;
 	min-width: 20px;
 	width: 20px;
@@ -106,8 +98,7 @@ button:disabled {
 	border: none;
 	outline: none;
 }
-
-.common_pop_hide img {
+.common_pop_hide img{
 	display: block;
 	width: 100%;
 	height: auto;
