@@ -8,6 +8,7 @@
 		<style type="text/css">
 			.main_section{
 				width: calc(100% - 40px);
+				max-width: 1450px;
 			}
 			.whole_rank{
 				width: 100%;
