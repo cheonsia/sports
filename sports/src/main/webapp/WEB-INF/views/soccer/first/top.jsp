@@ -108,20 +108,19 @@
        			}commonHide();
        		}};
          $(document).ready(function() {//제이쿼리 필수 준비
-       		 $('.header_logo_inner a').removeClass('clicked_on');
-        	 var login = `${superlogin}`;
-        	 if(login){
-        		 var team = `${member.team}`;
+        	if(`${normallogin}` ||`${superlogin}`){
+        		 var team = $("#memberTeam").val();
         		 teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : 'pohang';
+        		 $('#soccer_area').attr("value", teamEng);
+                 $('#side_rightbar_txt').val(team);//side_rightbar_txt 에 data-type 값 할당
+                 $('.header_logo_inner a').removeClass('clicked_on');
                  $('#soccer_'+teamEng).addClass('clicked_on');
-        		 
-        	 }
+        	}
             $('.side_rightbar_flex a').on('click', function() {
                if($(this).hasClass('side_menu_click')) {
                   $(this).toggleClass("side_menu_on");
                }
             });
-
 
             /*서버 절대 불필요(건드리지 않아요~~)*/
             var origin_scroll = 0;
@@ -188,6 +187,8 @@
       </script>
    </head>
    <body>
+	 <input type="hidden" id="normallogin" value="${normallogin}">
+  	 <input type="hidden" id="superlogin" value="${superlogin}">
       <input type="hidden" id="offsetX" value="">
       <input type="hidden" id="offset_scroll_left" value="">
       <header class="header_section">
@@ -207,6 +208,7 @@
 							<a href="login">로그인</a>
 	               		</c:when>
 	               		<c:when test="${normallogin || superlogin}">
+	               			<input type="hidden" id="memberTeam" value="${member.team}">
 							<a href="mypage?id=${member.id}">${member.name}님(${member.part})</a>
 							<a href="logout">로그아웃</a>
 	               		</c:when>

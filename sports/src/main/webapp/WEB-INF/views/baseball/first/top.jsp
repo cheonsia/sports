@@ -94,12 +94,13 @@
 
          $(document).ready(function() {//제이쿼리 필수 준비
         	 $('.header_logo_inner a').removeClass('clicked_on');
-        	 var login = `${superlogin}`;
-        	 if(login){
+        	 if(`${normallogin}` ||`${superlogin}`){
         		 var team = `${member.team}`;
         		 teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
-                 console.log(teamEng);
-        		 $('#baseball_'+teamEng).addClass('clicked_on');
+        		 $('#baseball_area').attr("value", teamEng);//soccer_area 에 data-id 값 할당
+                 $('#side_rightbar_txt').val(team);//side_rightbar_txt 에 data-type 값 할당
+                 $('.header_logo_inner a').removeClass('clicked_on');
+                 $('#baseball_'+teamEng).addClass('clicked_on');
         		 
         	 }
             $('.side_rightbar_flex a').on('click', function() {
