@@ -1,16 +1,16 @@
 package com.mbc.sports;
+
 import java.io.IOException;
-import java.time.LocalDate;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +20,11 @@ import com.mbc.sports.game.GameDTO;
 import com.mbc.sports.main.MainService;
 import com.mbc.sports.main.MainSoccerTeamDTO;
 import com.mbc.sports.main.MainBaseballTeamDTO;
+
 @Controller
 public class HomeController {
 	@Autowired
 	SqlSession sqlSession;
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@RequestMapping(value = "/")
 	public String main(HttpServletRequest request) {
 		HttpSession hs=request.getSession();
@@ -108,18 +108,20 @@ public class HomeController {
 		}
 		return path;
 	}
+	TopDTO top = new TopDTO();
+
 	@RequestMapping(value = "/areaClick", method = RequestMethod.POST)
-	public String areaClick(HttpServletRequest request, Model model) {
+	public void areaClick(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		String area_en = request.getParameter("area_en");
 		String area_ko = request.getParameter("area_ko");
-		TopDTO top = new TopDTO();
 		top.setArea_eng(area_en);
 		top.setArea_kor(area_ko);
-		model.addAttribute("area", top);
 		HttpSession hs = request.getSession(); 
 		hs.setAttribute("areaset", true);
 		hs.setAttribute("area", top);
-		return "main";
+		PrintWriter prw = response.getWriter();
+		prw.print("");
 	}
 	@RequestMapping(value = "/baseballlike")
 	public String baseballlike(HttpServletRequest request) throws IOException {
