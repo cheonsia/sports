@@ -31,7 +31,7 @@
 			.whole_rank::-webkit-scrollbar-thumb{
 				width: 10px;
 				height: 10px;
-				background-color: #006400;
+				background-color: #00640030;
 				border-radius: 5px;
 			}
 			table{

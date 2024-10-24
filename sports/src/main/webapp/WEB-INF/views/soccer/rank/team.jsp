@@ -31,13 +31,18 @@
 		.whole_rank::-webkit-scrollbar-thumb{
 			width: 10px;
 			height: 10px;
-			background-color: #006400;
+			background-color: #00640030;
 			border-radius: 5px;
 		}
 		table{
 			width: 1200px;
 			table-layout: fixed;
 		    margin: 0 auto;
+		}
+		table thead{
+			position: -webkit-sticky; /* 사파리 브라우저 지원 */
+			position: sticky;
+			top: 0;
 		}
 		td{
 			text-align: center;
