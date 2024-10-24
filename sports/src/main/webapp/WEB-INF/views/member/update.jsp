@@ -141,7 +141,7 @@
 			function execDaumPostcode(){
 				new daum.Postcode({
 					oncomplete: function(data){
-					  	// 팝업을 통한 검색 결과 항목 클릭 시 실행
+						// 팝업을 통한 검색 결과 항목 클릭 시 실행
 						var addr = ''; // 주소_결과값이 없을 경우 공백 
 						var extraAddr = ''; // 참고항목
 		
@@ -275,6 +275,17 @@
 					return false;
 				}
 				$('#updateform').submit();
+			}
+			
+			function memOut() {
+				if(confirm("정말 탈퇴하시겠습니까?\n한 번 탈퇴하시면 되돌릴 수 없습니다.")){
+					alert("떠나신다니 아쉬워요ㅠ-ㅠ");
+					var id = $('input[name="id"]').val();
+					var part = $('input[name="part"]').val();
+					var voe = $('input[name="voe"]').val();
+					var rr = $('input[name="rr"]').val();
+					location.href='outMember?id='+id+"&part="+part+"&voe="+voe+"&rr="+rr;
+				}
 			}
 		</script>
 		<style type="text/css">
@@ -431,11 +442,11 @@
 			.info_whole div div.email_write select{
 				width: 100%;
 				max-width: 128px;
-			    height: 34px;
-			    text-align: center;
-			    margin: 0 0 0 10px;
-			    border: 1px solid #e8e8e8;
-			    border-radius: 5px;
+				height: 34px;
+				text-align: center;
+				margin: 0 0 0 10px;
+				border: 1px solid #e8e8e8;
+				border-radius: 5px;
 			}
 			.info_whole div div.email_write select:focus{
 				border-color: #006400;
@@ -553,63 +564,25 @@
 				min-width: 80px;
 				width: 80px;
 			}
-			.big_img_whole{
-				position: fixed;
-				width: 100vw;
-				height: 100vh;
-				top: 0;
-				left: 0;
-				z-index: 4;
-				display: none;
-			}
-			.big_img_bg{
-				position: absolute;
-				width: 100vw;
-				height: 100vh;
-				top: 0;
-				left: 0;
-				background: rgba(0,0,0,0.5);
-			}
-			.big_img_box{
-				position: absolute;
-				width: auto;
-				height: auto;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-			}
-			.big_img_box img{
+			.info_whole div + div > label + img{
 				display: block;
-				width: auto;
-				max-width: calc(100vw - 100px);
+				min-width: 80px;
+				width: 80px;
 				height: auto;
-				max-height: calc(100vh - 100px);
-				margin: 0 0 0 auto;
-				background-size: contain;
-			}
-			img.hide_img{
-				position: absolute;
-				display: flex;
-				min-width: 36px;
-				width: 36px;
-				height: auto;
-				top: 0;
-				right: -80px;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
 				background-size: contain;
 			}
 			.info_whole div.btn_flex{
-				margin: 60px auto;
+				margin: 60px auto 0 auto;
 				padding: 0;
 				justify-content: center;
 			}
 			.btn_flex input[type="button"]{
 				display: block;
 				width: 100%;
-				max-width: 150px;
-				height: 38px;
-				font-size: 14px;
-				line-height: 20px;
+				max-width: 118px;
+				height: 48px;
+				font-size: 15px;
+				line-height: 22px;
 				font-weight: 400;
 				color: #333;
 				border: 1px solid transparent;
@@ -633,6 +606,25 @@
 			.btn_flex input[type="button"]:hover{
 				color: #f9f9f9;
 				background-color: #4c693f80;
+			}
+			.info_whole div + div.memberout{
+				margin: 30px auto 0 auto;
+				justify-content: end;
+			}
+			.info_whole div + div.memberout button{
+				font-size: 14px;
+				line-height: 20px;
+				font-weight: 500;
+				color: #00640080;
+				background-color: transparent;
+				border: none;
+				outline: none;
+				padding-bottom: 1px;
+				border-bottom: 1px solid transparent;
+			}
+			.info_whole div + div.memberout button:hover{
+				color: #006400;
+				border-color: #006400;
 			}
 			.modal-header{
 				display: flex;
@@ -887,6 +879,9 @@
 				<div class="btn_flex">
 					<input type="button" class="prev" value="취소" onclick="location.href='mypage?id=${my.id}'">
 					<input type="button" class="appro" value="수정 완료" onclick="check()">
+				</div>
+				<div class="memberout">
+					<button type="button" onclick="memOut()">회원탈퇴</button>
 				</div>
 			</div>
 		</form>

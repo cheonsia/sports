@@ -189,7 +189,7 @@
 				<tr>
 					<th>팀</th>
 					<td>
-						<select name="tname">
+						<select name="tname" disabled="disabled">
 							<option value="all">구단을 선택하세요.</option>
 							<option value="kangwon">강원</option>
 							<option value="gwangju">광주</option>
@@ -278,7 +278,6 @@
 				var reader = new FileReader();
 				reader.onload = function(e) {
 					$('#imgpreview').attr('src',e.target.result);
-					console.log('이미지 로드 완료');
 				};
 				reader.readAsDataURL(input.files[0]);
 			}else {
@@ -338,5 +337,9 @@
 			}
 			$('#form1').submit();
 		}
+		$(document).ready(function(){
+			var team = $('#soccer_area').val();
+			$("select[name='tname']").val(team).prop("selected", true);
+		});
 	</script>
 </html>

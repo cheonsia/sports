@@ -189,18 +189,18 @@
 					<th>팀</th>
 						<td colspan="2">
 						<div id="baseballteam">
-							<select name="tname">
+							<select name="tname" disabled="disabled">
 								<option value="all">구단을 선택하세요.</option>
-								<option value="kia">KIA</option>
-								<option value="kt">KT</option>
-								<option value="lg">LG</option>
-								<option value="nc">NC</option>
-								<option value="ssg">SSG</option>
-								<option value="doosan">두산</option>
-								<option value="lotte">롯데</option>
-								<option value="samsung">삼성</option>
-								<option value="kiwoom">키움</option>
-								<option value="hanwha">한화</option>
+								<option value="KIA">KIA</option>
+								<option value="KT">KT</option>
+								<option value="LG">LG</option>
+								<option value="NC">NC</option>
+								<option value="SSG">SSG</option>
+								<option value="DOOSAN">두산</option>
+								<option value="LOTTE">롯데</option>
+								<option value="SAMSUNG">삼성</option>
+								<option value="KIWOOM">키움</option>
+								<option value="HANHWA">한화</option>
 							</select>
 						</div>
 					</td>
@@ -336,5 +336,20 @@
 			}
 			$('#form1').submit();
 		}
+		$(document).ready(function(){
+			var team = $('#baseball_area').val();
+			if(team == '두산'){
+				team = 'DOOSAN';
+			}else if(team == '롯데'){
+				team = 'LOTTE';
+			}else if(team == '삼성'){
+				team = 'SAMSUNG';
+			}else if(team == '키움'){
+				team = 'KIWOOM';
+			}else if(team == '한화'){
+				team = 'HANHWA';
+			}
+			$("select[name='tname']").val(team).prop("selected", true);
+		});
 	</script>
 </html>
