@@ -34,4 +34,16 @@
 		update player_baseball set tname=#{param1},pname=#{param2},pnumber=#{param3},pbirth=#{param4},height=#{param5},weight=#{param6},main=#{param7},pimage=#{param8},pchar=#{param9} where playernum=#{param10}
 	</update>
 
+	<select id="bmain" resultType="com.mbc.sports.player.PlayerDTO">
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play
+		 from player_baseball 
+		where main like '%'||#{param1}||'%'
+	</select>
+	
+	<select id="bpname" resultType="com.mbc.sports.player.PlayerDTO">
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play
+		 from player_baseball 
+		where pname like '%'||#{param1}||'%'
+	</select>
+
 </mapper>

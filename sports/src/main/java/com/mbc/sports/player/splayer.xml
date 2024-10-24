@@ -36,4 +36,16 @@
 		where playernum=#{param10}
 	</update>
 
+	<select id="smain" resultType="com.mbc.sports.player.PlayerDTO">
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play
+		 from player_soccer 
+		where main like '%'||#{param1}||'%'
+	</select>
+	
+	<select id="spname" resultType="com.mbc.sports.player.PlayerDTO">
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play
+		 from player_soccer 
+		where pname like '%'||#{param1}||'%'
+	</select>
+
 </mapper>

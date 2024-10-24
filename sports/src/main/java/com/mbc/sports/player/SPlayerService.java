@@ -19,5 +19,9 @@ public interface SPlayerService {
 
 	void update(String tname, String pname, int pnumber, String pbirth, int height, int weight, String main,
 			String pimage, String pchar, int playernum);
+
+	ArrayList<PlayerDTO> smain(String value);
+
+	ArrayList<PlayerDTO> spname(String value);
 	
 }
