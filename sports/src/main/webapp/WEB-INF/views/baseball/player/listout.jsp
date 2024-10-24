@@ -9,9 +9,10 @@
 			.main_section{
 				width: calc(100% - 40px);
 				max-width: 1020px;
+				margin-bottom: 70px;
 			}
 			h1{
-				margin-top: 150px;
+				margin-top: 60px;
 			}
 			.A{
 				display: flex;
@@ -115,9 +116,49 @@
 					margin-top: 30px;
 				}
 			}
+			select{
+				width: 80px;
+				border-color: #ccc;
+				padding-top: 3px;
+			    padding-bottom: 3px;
+			    padding-left: 5px;
+			}
+			input[type=search] {
+				width: 310px;
+				margin-left: 10px;
+			}
+			.btn{
+				margin-left: 10px;
+			}
+			.d-flex{
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body>
+		<!-- 검색 -->
+		<form class="d-flex" role="search" action="Ssearchlist">
+			<input type="text" name="kind" value="야구" class="hidden">
+			<table>
+				<tr>
+					<td>
+						<div class="selectBox">
+						  <select name="searchcategory" class="select">
+						    <option value="포지션">포지션</option>
+				        	<option value="선수명">선수명</option>
+						  </select>
+						</div>
+					</td>
+					<td>
+				        <input class="form-control me-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="searchval">
+					</td>
+					<td>
+				        <button class="btn btn-outline-success" type="submit">검색</button>						
+					</td>
+				</tr>
+			</table>
+      	</form>
+		<!--     -->
 		<c:choose>
 			<c:when test="${empty list}">
 				<p class="no_data_txt">선수 목록이 없습니다.</p>
