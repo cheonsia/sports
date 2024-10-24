@@ -14,11 +14,14 @@
 				-ms-use-select: none;
 				user-select: none;
 			}
+			.header_team_logo{
+				display: none;
+			}
 			.main_section{
 				width: calc(100% - 40px);
 				max-width: none;
 				height: auto;
-				margin-top: 120px;
+				margin-top: 0;
 			}
 			.common_main_whole{
 				width: 100%;
@@ -59,7 +62,7 @@
 				background-color: #00640005;
 				border: 1px solid #e1e1e1;
 				border-radius: 10px;
-				margin: 0 auto 60px auto;
+				margin: 60px auto;
 			}
 			.common_member_flex{
 				display: flex;
@@ -531,10 +534,10 @@
 					height: calc(100vh - 180px);
 				}
 				.main_section{
-					height: calc(100% - 120px);
+					height: 100%;
 				}
-				.common_main_banner{
-					margin-bottom: 60px;
+				.common_main_whole{
+					height: 100%;
 				}
 				.banner_link_flex{
 					flex-wrap: nowrap;
@@ -551,12 +554,6 @@
 			@media (min-width: 1250px){
 				#body{
 					height: calc(100vh - 130px);
-				}
-				.main_section{
-					height: calc(100% - 120px);
-				}
-				.common_main_whole{
-					height: 100%;
 				}
 			}
 		</style>
@@ -586,7 +583,7 @@
 								<a href="javascript:void(0)" onclick="soccerStrategyMove()">전략 만들기</a>
 								<a href="javascript:void(0)" onclick="soccerCalendarMove()">훈련 일정</a>
 							</c:if>
-								<a href="mypage?id=${member.id}">마이페이지</a>
+							<a href="mypage?id=${member.id}">마이페이지</a>
 						</c:if>						
 						<c:if test="${adminlogin}">
 							<p class="member_name_txt">관리자 페이지 입니다.</p>

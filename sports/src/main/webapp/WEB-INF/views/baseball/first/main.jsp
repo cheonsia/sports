@@ -14,11 +14,14 @@
 				-ms-use-select: none;
 				user-select: none;
 			}
+			.header_team_logo{
+				display: none;
+			}
 			.main_section{
 				width: calc(100% - 40px);
 				max-width: none;
 				height: auto;
-				margin-top: 120px;
+				margin-top: 0;
 			}
 			.common_main_whole{
 				width: 100%;
@@ -59,7 +62,7 @@
 				background-color: #00640005;
 				border: 1px solid #e1e1e1;
 				border-radius: 10px;
-				margin: 0 auto 60px auto;
+				margin: 60px auto;
 			}
 			.common_member_flex{
 				display: flex;
@@ -522,10 +525,10 @@
 					height: calc(100vh - 180px);
 				}
 				.main_section{
-					height: calc(100% - 120px);
+					height: 100%;
 				}
-				.common_main_banner{
-					margin-bottom: 60px;
+				.common_main_whole{
+					height: 100%;
 				}
 				.banner_link_flex{
 					flex-wrap: nowrap;
@@ -542,12 +545,6 @@
 				#body{
 					height: calc(100vh - 130px);
 				}
-				.main_section{
-					height: calc(100% - 120px);
-				}
-				.common_main_whole{
-					height: 100%;
-				}
 			}
 		</style>
 	</head>
@@ -563,21 +560,20 @@
 							<a href="baseballTeamRank">팀 순위</a>
 							<a href="baseball_schedule">경기 일정</a>
 						</c:if>
-					<c:if test="${normallogin || superlogin}">
+						<c:if test="${normallogin || superlogin}">
 							<p class="member_name_txt">${member.name} 님 환영합니다.</p>
-						<c:if test="${normallogin}">
-							<a href="javascript:void(0)" onclick="playRandom()">랜덤 뽑기</a>
-							<a href="baseballTeamRank">팀 순위</a>
-							<a href="baseball_schedule">경기 일정</a>
+							<c:if test="${normallogin}">
+								<a href="javascript:void(0)" onclick="playRandom()">랜덤 뽑기</a>
+								<a href="baseballTeamRank">팀 순위</a>
+								<a href="baseball_schedule">경기 일정</a>
+							</c:if>
+							<c:if test="${superlogin}">
+								<a href="playerinput?play=야구">선수 등록</a>
+								<a href="javascript:void(0)" onclick="baseballStrategyMove()">전략 만들기</a>
+								<a href="javascript:void(0)" onclick="baseballCalendarMove()">훈련 일정</a>
+							</c:if>
+							<a href="mypage?id=${member.id}">마이페이지</a>
 						</c:if>
-						<c:if test="${superlogin}">
-							<p class="member_name_txt">${member.name} 님</p>
-							<a href="playerinput?play=야구">선수 등록</a>
-							<a href="javascript:void(0)" onclick="baseballStrategyMove()">전략 만들기</a>
-							<a href="javascript:void(0)" onclick="baseballCalendarMove()">훈련 일정</a>
-						</c:if>
-						<a href="mypage?id=${member.id}">마이페이지</a>
-					</c:if>
 						<!--로그인 후(관리자)-->
 						<c:if test="${adminlogin}">
 							<p class="member_name_txt">관리자 계정</p>
