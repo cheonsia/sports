@@ -396,12 +396,12 @@
 			    justify-content: center;
 			    align-items: center;
 			    width: 100%;
-				margin: 30px auto 60px auto;
+				margin: 50px auto 80px auto;
 			}
 			.button_align input[type="button"]{
 				width: 100%;
-				max-width: 98px;
-				height: 38px;
+				max-width: 118px;
+				height: 48px;
 				font-size: 16px;
 				line-height: 24px;
 				font-weight: 400;
