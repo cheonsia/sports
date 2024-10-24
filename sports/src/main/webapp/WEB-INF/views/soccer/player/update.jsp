@@ -8,7 +8,13 @@
 		<title>선수 정보 수정</title>
 		<style type="text/css">
 			h1{
-				margin-top: 120px;
+				margin-top: 0;
+			}
+			.main_section{
+				margin-top: 70px;
+			}
+			.header_team_logo{
+				display: none;
 			}
 			table{
 				table-layout: fixed;
