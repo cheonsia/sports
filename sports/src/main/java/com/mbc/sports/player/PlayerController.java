@@ -8,6 +8,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.mbc.sports.HomeController;
 import com.mbc.sports.comment.CommentService;
 import com.mbc.sports.comment.PageDTO;
 
@@ -28,6 +31,7 @@ public class PlayerController {
 	
 	@Autowired
 	SqlSession sqlsession;
+	private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
 	
 	@RequestMapping(value = "/playerinput")
 	public String playerin(HttpServletRequest request,Model model) {
@@ -271,4 +275,34 @@ public class PlayerController {
 		return "baseballgoods";
 	}
 
+	@RequestMapping(value = "/Ssearchlist")
+	public String Ssearchlist(HttpServletRequest request, Model model) {
+		String sports = request.getParameter("kind");
+		String category = request.getParameter("searchcategory");
+		String value = request.getParameter("searchval");
+		SPlayerService sp = sqlsession.getMapper(SPlayerService.class);
+		BPlayerService bp = sqlsession.getMapper(BPlayerService.class);
+		if(sports.equals("축구")) {
+			if(category.equals("포지션")) {
+				ArrayList<PlayerDTO> list =sp.smain(value);
+				model.addAttribute("list",list);
+				return "soccerplayerlist";
+			} else {
+				ArrayList<PlayerDTO> list =sp.spname(value);
+				model.addAttribute("list",list);
+				return "soccerplayerlist";
+			}
+		} else {
+			if(category.equals("포지션")) {
+				ArrayList<PlayerDTO> list =bp.bmain(value);
+				model.addAttribute("list",list);
+				return "baseballplayerlist";
+			} else {
+				ArrayList<PlayerDTO> list =bp.bpname(value);
+				model.addAttribute("list",list);
+				return "baseballplayerlist";
+			}
+		}
+	}
+	
 }
