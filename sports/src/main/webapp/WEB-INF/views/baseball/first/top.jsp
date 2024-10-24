@@ -14,16 +14,13 @@
                window.location.href = 'baseballmain';//메인으로 이동
             }
          }
-
-         function baseballClick(ths) {//top 속 야구 로고 클릭 시
-             var ths_id = ths.dataset.id;//각 야구 로고 속 data-id 값을 가져옴
-             var ths_type = ths.dataset.type;//각 야구 로고 속 data-type 값을 가져옴
-             $('#baseball_area').attr("value", ths_id);//soccer_area 에 data-id 값 할당
-             $('#side_rightbar_txt').val(ths_type);//side_rightbar_txt 에 data-type 값 할당
+         function sessionSet(eng, kor){
+        	 $('#baseball_area').attr("value", eng);//soccer_area 에 data-id 값 할당
+             $('#side_rightbar_txt').val(kor);//side_rightbar_txt 에 data-type 값 할당
              $.ajax({//동기화 자세한 설명은 패스한다. 모르시면 안 돼요...ㅠㅠ
                 type: "post",
                 url: "areaClick",
-                data: {"area_en":ths_id,"area_ko":ths_type},
+                data: {"area_en":eng,"area_ko":kor},
                 async: true,
                 success: function() {
                    //addAttribute, HttpSession에 저장시키기 위함이라 별다른 문구 송출 X
@@ -34,8 +31,12 @@
              });
 
              $('.header_logo_inner a').removeClass('clicked_on');
-             $('#baseball_'+ths_id).addClass('clicked_on');
-             
+             $('#baseball_'+eng).addClass('clicked_on');
+         }
+         function baseballClick(ths) {//top 속 야구 로고 클릭 시
+             var ths_id = ths.dataset.id;//각 야구 로고 속 data-id 값을 가져옴
+             var ths_type = ths.dataset.type;//각 야구 로고 속 data-type 값을 가져옴
+             sessionSet(ths_id, ths_type);
              var ths_href = window.location.pathname;
              if(ths_href.includes('playerinput')||ths_href.includes('detail')||ths_href.includes('playerdelete')||ths_href.includes('playerupdate')) {ths_href="selectTeam";}
              window.location.replace(ths_href + "?name=" + ths_id + "&play=야구");
@@ -93,14 +94,13 @@
          }
 
          $(document).ready(function() {//제이쿼리 필수 준비
-        	 $('.header_logo_inner a').removeClass('clicked_on');
-        	 if(`${normallogin}` ||`${superlogin}`){
-        		 var team = `${member.team}`;
+        	var normallogin = $("#normallogin").val();
+        	var superlogin = $("#superlogin").val();
+      		var memberTeam = $("#memberTeam").val(); 
+         	if(normallogin=='true' || superlogin=='true'){
+         		 var team = $("#memberTeam").val();
         		 teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
-        		 $('#baseball_area').attr("value", teamEng);//soccer_area 에 data-id 값 할당
-                 $('#side_rightbar_txt').val(team);//side_rightbar_txt 에 data-type 값 할당
-                 $('.header_logo_inner a').removeClass('clicked_on');
-                 $('#baseball_'+teamEng).addClass('clicked_on');
+        		 sessionSet(teamEng,team);
         		 
         	 }
             $('.side_rightbar_flex a').on('click', function() {
@@ -175,6 +175,8 @@
       </script>
    </head>
    <body>
+	  <input type="hidden" id="normallogin" value="${normallogin}">
+  	  <input type="hidden" id="superlogin" value="${superlogin}">
       <input type="hidden" id="offsetX" value="">
       <input type="hidden" id="offset_scroll_left" value="">
       <header class="header_section">
@@ -194,6 +196,7 @@
 							<a href="login">로그인</a>
 	               		</c:when>
 	               		<c:when test="${normallogin || superlogin}">
+		               		<input type="hidden" id="memberTeam" value="${member.team}">
 							<a href="mypage?id=${member.id}">${member.name}님(${member.part})</a>
 							<a href="logout">로그아웃</a>
 	               		</c:when>

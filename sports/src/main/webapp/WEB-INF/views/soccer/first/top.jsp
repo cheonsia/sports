@@ -19,19 +19,15 @@
                window.location.href = 'soccermain';//메인으로 이동
             }
          }
-
-         function soccerClick(ths) {//top 속 축구 로고 클릭 시
-            var ths_id = ths.dataset.id;//각 축구 로고 속 data-id 값을 가져옴
-            var ths_type = ths.dataset.type;//각 축구 로고 속 data-type 값을 가져옴
-            $('#soccer_area').attr("value", ths_id);//soccer_area 에 data-id 값 할당
-            $('#side_rightbar_txt').val(ths_type);//side_rightbar_txt 에 data-type 값 할당
+         function sessionSet(eng, kor) {//top 속 축구 로고 클릭 시
+            $('#soccer_area').attr("value", eng);//soccer_area 에 data-id 값 할당
+            $('#side_rightbar_txt').val(kor);//side_rightbar_txt 에 data-type 값 할당
             $.ajax({//동기화 자세한 설명은 패스한다. 모르시면 안 돼요...ㅠㅠ
                type: "post",
                url: "areaClick",
-               data: {"area_en":ths_id,"area_ko":ths_type},
+               data: {"area_en":eng,"area_ko":kor},
                async: true,
                success: function() {
-                  //addAttribute, HttpSession에 저장시키기 위함이라 별다른 문구 송출 X
                },
                error: function() {
                   alertShow('로딩 중','로딩 중입니다.<br/>잠시만 기다려주세요.');
@@ -39,11 +35,16 @@
             });
 
             $('.header_logo_inner a').removeClass('clicked_on');
-            $('#soccer_'+ths_id).addClass('clicked_on');
+            $('#soccer_'+eng).addClass('clicked_on');
             
+         }
+         function soccerClick(ths){
+            var ths_id = ths.dataset.id;//각 축구 로고 속 data-id 값을 가져옴
+            var ths_type = ths.dataset.type;//각 축구 로고 속 data-type 값을 가져옴
+        	sessionSet(ths_id, ths_type);
             var ths_href = window.location.pathname;
             if(ths_href.includes('playerinput')||ths_href.includes('detail')||ths_href.includes('playerdelete')||ths_href.includes('playerupdate')) {ths_href="selectTeam";}
-            window.location.replace(ths_href + "?name=" + ths_id + "&play=축구");
+			window.location.replace(ths_href + "?name=" + ths_id + "&play=축구");
          }
 
          function playMove() { //좌측 사이드메뉴 선수 목록 클릭 시
@@ -108,13 +109,14 @@
        			}commonHide();
        		}};
          $(document).ready(function() {//제이쿼리 필수 준비
-        	if(`${normallogin}` ||`${superlogin}`){
+       		var normallogin = $("#normallogin").val();
+       		var superlogin = $("#superlogin").val();
+     		var memberTeam = $("#memberTeam").val(); 
+        	if(normallogin=='true' || superlogin=='true'){
         		 var team = $("#memberTeam").val();
-        		 teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : 'pohang';
-        		 $('#soccer_area').attr("value", teamEng);
-                 $('#side_rightbar_txt').val(team);//side_rightbar_txt 에 data-type 값 할당
-                 $('.header_logo_inner a').removeClass('clicked_on');
-                 $('#soccer_'+teamEng).addClass('clicked_on');
+        		 teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
+                 sessionSet(teamEng,team);
+                 
         	}
             $('.side_rightbar_flex a').on('click', function() {
                if($(this).hasClass('side_menu_click')) {
