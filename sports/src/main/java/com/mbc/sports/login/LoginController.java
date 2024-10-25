@@ -70,6 +70,7 @@ public class LoginController {
 					if(passwordEncoder.matches(pw, ldto.getPw())) {
 						String name = ldto.getName();
 						String sport = ldto.getSport();
+						String sportteam = ldto.getTeam();
 						if(ldto.getPart().equals("일반")) {
 							hs.setAttribute("normallogin", true);											
 						}else{
@@ -78,6 +79,7 @@ public class LoginController {
 						hs.setAttribute("member", ldto);
 						hs.setAttribute("sports", sport);
 						hs.setAttribute("sportstype", sport);
+						hs.setAttribute("sportteam", sportteam);
 						prw.print(name+"님 환영합니다!");
 					}else {	prw.print("0");}
 				}
