@@ -23,7 +23,7 @@
 		margin: 20px auto;
 	}
 	.board div.button{
-	    margin: -30px auto -30px auto;
+	    margin: -30px auto -6px auto;
 	}
 	.button .inquiry{
 		width:80px;
@@ -36,29 +36,6 @@
 	.button .inquiry:hover{
 		border-color:#0c400c20;
 		background-color:#0c400c10;
-	}
-	.board .page{
-	    display: flex;
-	    margin: 0 auto;
-   	 	width: 700px;
-   	 	align-items:center;
-   	 	letter-spacing: 10px;
-	}
-	.board .page a{
-		color: #939393;
-		font-size:18px;
-		text-align:center;
-	    text-decoration: none;
-	}
-	.board .page a:hover{
-		color: #000;
-		font-size: 21px;
-		font-weight: bold;
-	}
-	.board .page span{
-		color: teal;
-		font-size: 18px;
-		font-weight: bold;
 	}
 	div.result{
 		text-align: center;
@@ -338,6 +315,28 @@
 	</style>
 		<meta charset="UTF-8">
 		<script type="text/javascript">
+		$(document).ready(function(){
+			var option = `${option}`;
+			var value = `${value}`;
+			console.log(value);
+			$('#option').val(option).attr("selected",true);
+			if(option == 'writer'){
+				$('.writer').show();				
+				$('.part').hide();
+				$('.status').hide();
+				$('#writer').val(value);				
+			}else if(option == 'part'){
+				$('.writer').hide();
+				$('.part').show();
+				$('.status').hide();
+				$('input[name="part"][value="'+value+'"]').prop("checked",true);
+			}else if(option == 'status'){
+				$('.writer').hide();
+				$('.part').hide();
+				$('.status').show();
+				$('input[name="status"][value="'+value+'"]').prop("checked",true);
+			}
+		});
 		function optionChange() {
 			var option = $('#option').val();
 			if(option == 'writer'){
@@ -452,24 +451,6 @@
 			<div class="button">
 				<input type="button" class="inquiry" value="문의하기" onclick="location.href='boardInput'"/>
 			</div>
-			<div class="page">
-				<c:if test="${paging.startPage!=1}">
-			      <a href="boardMain?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
-				</c:if>   
-		     	<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p"> 
-		        	<c:choose>
-		           		<c:when test="${p == paging.nowPage}">
-		              		<b><span>${p}</span></b>
-		            	</c:when>   
-		            	<c:when test="${p != paging.nowPage}">
-		               		<a href="boardMain?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
-		            	</c:when>   
-		         	</c:choose>
-		      	</c:forEach>
-				<c:if test="${paging.endPage != paging.lastPage}">
-					<a href="boardMain?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}"></a>
-				</c:if>
-			</div>
 			<!--  조회 화면 -->
 			<div class="result <c:if test='${adminlogin}'>admin</c:if>">
 				<table>
@@ -486,36 +467,38 @@
 						<tr><td colspan="3">아직 게시글이 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${list}" var="li">
+						<c:forEach var="i" begin="0" end="${list.size()-1}">
 							<tr>
-								<td><input type="hidden" id="num" value="${li.num}">
-									${max -li.num + 1}
+								<td><input type="hidden" id="num" value="${list[i].num}">
+									${i+1}
 								</td>
 								<td>
 									<div>
-										<c:if test="${li.checking=='n'}">
+										<c:if test="${list[i].checking=='n'}">
 											<img alt="" src="./image/member/logo/keyoff.png">
-											<a href="boardSelect?num=${li.num}&way=detail">
-												<c:if test="${li.part == 'etc'}">기타 문의</c:if>
-												<c:if test="${li.part != 'etc'}">${li.title}</c:if>
+											<a href="boardSelect?num=${list[i].num}&way=detail">
+												<c:if test="${list[i].part == 'etc'}">기타 문의</c:if>
+												<c:if test="${list[i].part != 'etc'}">${list[i].title}</c:if>
 											</a>
 										</c:if>
-										<c:if test="${li.checking=='y'}">
+										<c:if test="${list[i].checking=='y'}">
 											<img alt="" src="./image/member/logo/keyon.png">
-											<a onclick="pwCheck(${li.num})">
-												<c:if test="${li.part == 'etc'}">기타 문의</c:if>
-												<c:if test="${li.part != 'etc'}">${li.title}</c:if>
+											<a onclick="pwCheck(${list[i].num})">
+												<c:if test="${list[i].part == 'etc'}">기타 문의</c:if>
+												<c:if test="${list[i].part != 'etc'}">${list[i].title}</c:if>
 											</a>
 										</c:if>
 									</div>
 								</td>
-								<c:if test="${adminlogin}"><td>${li.title}</td></c:if>
+								<c:if test="${adminlogin}">
+									<td><a href="boardSelect?num=${list[i].num}&way=detail">${list[i].title}</a></td>
+								</c:if>
 								<td>
-									<c:if test="${li.status=='no'}"><span style="color:#bb0000;">대기</span></c:if>
-									<c:if test="${li.status=='yes'}"><span style="color:#999;">완료</span></c:if>
+									<c:if test="${list[i].status=='no'}"><span style="color:#bb0000;">대기</span></c:if>
+									<c:if test="${list[i].status=='yes'}"><span style="color:#999;">완료</span></c:if>
 								</td>
-								<td>${li.readcnt}</td>
-								<td>${li.writer}</td>
+								<td>${list[i].readcnt}</td>
+								<td>${list[i].writer}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

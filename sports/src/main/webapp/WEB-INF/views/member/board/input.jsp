@@ -124,8 +124,11 @@
 		<meta charset="UTF-8">
 	<script type="text/javascript">
 		$(document).ready(function(){
-			if(${normallogin} ||  ${superlogin}){
+			if(`${normallogin}`== 'true' ||  `${superlogin}`== 'true'){
 				$('#writer').val(`${member.id}`);	
+				$('#writer').attr("readonly",true);
+			}else if(`${adminlogin}`== 'true'){
+				$('#writer').val("관리자");	
 				$('#writer').attr("readonly",true);
 			}else{
 				$('#writer').val("");	
@@ -229,7 +232,7 @@
 				<hr>
 				<div class="value">
 					<label for ="value"> 내 용 </label>
-					<textarea id="value" name="value" placeholder="내용을 500자 이내로 입력해주세요" onkeyup="textlength()" maxlength="500" required></textarea>
+					<textarea id="value" name="value" placeholder="내용을 500자 이내로 입력해주세요" onkeyup="textlength()" maxlength="500"></textarea>
 					<p>
 						<span id="textlen">0</span>/500
 					</p>
