@@ -70,7 +70,6 @@ public class LoginController {
 					if(passwordEncoder.matches(pw, ldto.getPw())) {
 						String name = ldto.getName();
 						String sport = ldto.getSport();
-						logger.info("∆¿ = "+sport);
 						if(ldto.getPart().equals("¿œπ›")) {
 							hs.setAttribute("normallogin", true);											
 						}else{
@@ -92,6 +91,8 @@ public class LoginController {
 		hs.setAttribute("normallogin", false);
 		hs.setAttribute("superlogin", false);
 		hs.setAttribute("adminlogin", false);
+		hs.setAttribute("areaset", false);
+		hs.setAttribute("area", null);
 		return "redirect:/main";
 	}
 	
