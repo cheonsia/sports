@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mbc.sports.baseballdirect.BaseballDirectController;
 import com.mbc.sports.member.MemberDTO;
 import com.mbc.sports.member.MemberService;
 
@@ -25,7 +28,7 @@ import com.mbc.sports.member.MemberService;
 public class LoginController {
 	@Autowired
 	SqlSession sqlsession;
-
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	//로그인 창 이동
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest request) {
@@ -65,15 +68,18 @@ public class LoginController {
 				}else {// 일반계정
 					PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 					if(passwordEncoder.matches(pw, ldto.getPw())) {
+						String name = ldto.getName();
+						String sport = ldto.getSport();
+						String sportteam = ldto.getTeam();
 						if(ldto.getPart().equals("일반")) {
 							hs.setAttribute("normallogin", true);											
 						}else{
-							hs.setAttribute("superlogin", true);									
+							hs.setAttribute("superlogin", true);
 						}
-						String name = ldto.getName();
-						String sport = ldto.getSport();
 						hs.setAttribute("member", ldto);
 						hs.setAttribute("sports", sport);
+						hs.setAttribute("sportstype", sport);
+						hs.setAttribute("sportteam", sportteam);
 						prw.print(name+"님 환영합니다!");
 					}else {	prw.print("0");}
 				}
@@ -87,6 +93,8 @@ public class LoginController {
 		hs.setAttribute("normallogin", false);
 		hs.setAttribute("superlogin", false);
 		hs.setAttribute("adminlogin", false);
+		hs.setAttribute("areaset", false);
+		hs.setAttribute("area", null);
 		return "redirect:/main";
 	}
 	
