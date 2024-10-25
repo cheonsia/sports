@@ -102,11 +102,15 @@
 			$(document).ready(function(){//제이쿼리 필수 준비
 		 		var normallogin = $("#normallogin").val();
 		 		var superlogin = $("#superlogin").val();
-		  		var memberTeam = $("#memberTeam").val(); 
-			  	if(normallogin=='true' || superlogin=='true'){
-		  			var team = $("#memberTeam").val();
-			  		teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
-					sessionSet(teamEng,team);
+				var sportstype = `${sportstype}`;
+				if(sportstype == '축구'){
+				  	if(normallogin=='true' || superlogin=='true'){
+			  			var team = $("#memberTeam").val();
+				  		teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
+						sessionSet(teamEng,team);
+					}
+				}else{
+					sessionSet("ALL","ALL");
 				}
 				$('.side_rightbar_flex a').on('click', function(){
 					if($(this).hasClass('side_menu_click')){

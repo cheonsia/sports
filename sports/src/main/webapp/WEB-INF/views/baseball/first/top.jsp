@@ -90,11 +90,15 @@
 			$(document).ready(function(){//제이쿼리 필수 준비
 				var normallogin = $("#normallogin").val();
 				var superlogin = $("#superlogin").val();
-				var memberTeam = $("#memberTeam").val(); 
-			 	if(normallogin=='true' || superlogin=='true'){
-			 		var team = $("#memberTeam").val();
-					teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
-					sessionSet(teamEng,team);
+				var sportstype = `${sportstype}`;
+				if(sportstype == '야구'){
+				 	if(normallogin=='true' || superlogin=='true'){
+				 		var team = $("#memberTeam").val();
+						teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
+						sessionSet(teamEng,team);
+					}
+				}else{
+					sessionSet("ALL","ALL");
 				}
 				$('.side_rightbar_flex a').on('click', function(){
 					if($(this).hasClass('side_menu_click')){
