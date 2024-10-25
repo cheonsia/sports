@@ -699,23 +699,23 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="click">	
-						<div class="img">
-							 <button class="likebutton" type="button" onclick="location.href='clickup?playernum=${dto.playernum}&play=${dto.play}'">
-								<c:choose>
-									<c:when test="${dto.play == '축구'}">
-								 		 <img alt="" src="./image/soccer/logo/soccer.png" width="40px">
-									</c:when>
-									<c:otherwise>
-										 <img alt="" src="./image/baseball/logo/baseball.png" width="40px">					
-									</c:otherwise>
-								</c:choose>
-							</button>
-						</div>
-						<div>
-							<p>${dto.clickup}</p>
-							<p class="hovermsg">버튼을 눌러 선수를 응원해주세요!</p>
-						</div>
+					<td class="click">   
+		            	<div class="img">
+					       <button class="likebutton" type="button" onclick="location.href='clickup?playernum=${dto.playernum}&play=${dto.play}'" <c:if test="${!normallogin && !superlogin && !adminlogin}"> disabled </c:if> >
+					         <c:choose>
+					            <c:when test="${dto.play == '축구'}">
+					                 <img alt="" src="./image/soccer/logo/soccer.png" width="40px">
+					            </c:when>
+					            <c:otherwise>
+					                <img alt="" src="./image/baseball/logo/baseball.png" width="40px">               
+					            </c:otherwise>
+					         </c:choose>
+					      </button>
+					   </div>
+					   <div>
+					      <p>${dto.clickup}</p>
+					      <p class="hovermsg"><c:if test="${!normallogin && !superlogin && !adminlogin}"> 로그인 후 이용 가능합니다. </c:if><c:if test="${normallogin || superlogin || adminlogin}"> 버튼을 눌러 선수를 응원해주세요!</c:if></p>
+					   </div>
 					</td>
 				</tr>
 			</table>
