@@ -24,10 +24,10 @@
 				margin-top: 40px;
 				overflow: hidden;
 			}
-			.B + .B{
+			.B+.B{
 				margin-left: 30px;
 			}
-			.B:nth-child(6n + 1){
+			.B:nth-child(6n+1){
 				margin-left: 0;
 			}
 			.B:nth-child(1),
@@ -64,7 +64,7 @@
 				padding-top: 5px;
 				text-align: center;
 			}
-			.B p + p{
+			.B p+p{
 				font-size: 14px;
 				line-height: 20px;
 				font-weight: 400;
@@ -97,10 +97,10 @@
 				.B +.B{
 					margin-left: 20px;
 				}
-				.B:nth-child(6n + 1){
+				.B:nth-child(6n+1){
 					margin-left: 20px;
 				}
-				.B:nth-child(3n + 1){
+				.B:nth-child(3n+1){
 					margin-left: 0;
 				}
 				.B:nth-child(4),
@@ -113,10 +113,10 @@
 				.B{
 					width: calc(50% - 10px);
 				}
-				.B:nth-child(3n + 1){
+				.B:nth-child(3n+1){
 					margin-left: 20px;
 				}
-				.B:nth-child(2n + 1){
+				.B:nth-child(2n+1){
 					margin-left: 0;
 				}
 				.B:nth-child(3){
@@ -133,11 +133,11 @@
 			select{
 				min-width: 98px;
 				width: 98px;
-				border-color: #e1e1e1;
+				border-color: #006400;
 				padding-top: 5px;
 			    padding-bottom: 5px;
 			    padding-left: 10px;
-			    border-radius: 5px;
+			    border-radius: 20px;
 			    outline: none;
 			}
 			select:focus{
@@ -159,6 +159,9 @@
 				width: max-content;
 				margin: 0 0 0 5px;
 			}
+			.posi_radio div label:first-child{
+				margin-left: 15px;
+			}
 			input[name="posival"]{
 				display: none;
 			}
@@ -173,13 +176,17 @@
 				color: #00640080;
 				background-color: transparent;
 				border: 1px solid #00640080;
-				border-radius: 5px;
+				border-radius: 25px;
 				margin-right: 0;
 				padding: 6px 20px;
 			}
+			input[name="posival"]:hover+span{
+				color: #006400;
+				background-color: #00640040;
+			}
 			input[name="posival"]:checked+span{
-				color: #f9f9f9;
-				background-color: #006400;
+				color: #006400;
+				background-color: #00640050;
 				border-color: #006400;
 			}
 			input[type="search"]{
@@ -200,8 +207,8 @@
 			}
 			.btn{
 				display: block;
-				min-width: 68px;
-				width: 68px;
+				min-width: 88px;
+				width: 88px;
 				height: 34px;
 				font-size: 15px;
 				line-height: 36px;
@@ -211,13 +218,11 @@
 				background-color: #00640010;
 				border: 1px solid #006400;
 				outline: none!important;
+				border-radius: 25px;
 			}
 			.btn:hover{
-				background-color: #00640030;
-			}
-			.btn:focus{
 				color: #f9f9f9;
-				background-color: #006400;
+				background-color: #0c400c;
 			}
 			.d-flex{
 				text-align: center;
