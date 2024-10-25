@@ -1,49 +1,48 @@
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mbc.sports.player.BPlayerService">
- 
-    <insert id="playerbaseball">
-    	insert into player_baseball values(playernum_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},0,0,#{param10})
-    </insert>
-    
-    <select id="selectTeam" resultType="com.mbc.sports.player.PlayerDTO">
+	<insert id="playerbaseball">
+		insert into player_baseball values(playernum_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9},0,0,#{param10})
+	</insert>
+	<select id="selectTeam" resultType="com.mbc.sports.player.PlayerDTO">
 		select * from player_baseball where tname=#{param1} order by main asc
 	</select>
-	
 	<select id="allTeamSelect" resultType="com.mbc.sports.player.PlayerDTO">
 		select * from player_baseball order by tname
 	</select>
-	
 	<select id="select" resultType="com.mbc.sports.player.PlayerDTO">
 		select playernum,pimage,tname,pname,pnumber,to_char(pbirth,'yyyy-MM-dd')pbirth,height,weight,main,pchar,clickup,step,play
 		from player_baseball 
 		where playernum=#{param1}
 	</select>
-
 	<update id="clickup">
 		update player_baseball set clickup=clickup+1 where playernum=#{param1}
 	</update>
-	
 	<delete id="delete">
 		delete from player_baseball where playernum=#{param1}
 	</delete>
-	
 	<update id="update">
 		update player_baseball set tname=#{param1},pname=#{param2},pnumber=#{param3},pbirth=#{param4},height=#{param5},weight=#{param6},main=#{param7},pimage=#{param8},pchar=#{param9} where playernum=#{param10}
 	</update>
-
 	<select id="bmain" resultType="com.mbc.sports.player.PlayerDTO">
-		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play
-		 from player_baseball 
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play 
+		from player_baseball 
 		where main like '%'||#{param1}||'%'
 	</select>
-	
 	<select id="bpname" resultType="com.mbc.sports.player.PlayerDTO">
-		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play
-		 from player_baseball 
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play 
+		from player_baseball 
 		where pname like '%'||#{param1}||'%'
 	</select>
-
+	<select id="bmainarea" resultType="com.mbc.sports.player.PlayerDTO">
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play 
+		from player_baseball 
+		where main like '%'||#{param1}||'%' and tname = #{param2}
+	</select>
+	<select id="bpnamearea" resultType="com.mbc.sports.player.PlayerDTO">
+		select playernum, pimage, tname, pname, pnumber, to_char(pbirth,'yyyy-MM-dd')pbirth, height, weight, main, pchar, clickup, step, play 
+		from player_baseball 
+		where pname like '%'||#{param1}||'%' and tname = #{param2}
+	</select>
 </mapper>
