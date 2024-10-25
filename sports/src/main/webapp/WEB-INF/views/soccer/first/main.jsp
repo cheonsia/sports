@@ -637,8 +637,8 @@
 									<p>순위</p>
 									<p>팀명</p>
 									<p>승</p>
-									<p>무</p>
 									<p>패</p>
+									<p>무</p>
 								</div>
 							</div>
 							<c:forEach items="${teamlist}" var="team" end="2">
@@ -657,8 +657,8 @@
 									</div>
 									<div>
 										<p><span>${team.win}</span></p>
-										<p><span>${team.draw}</span></p>
 										<p><span>${team.lose}</span></p>
+										<p><span>${team.draw}</span></p>
 									</div>
 								</div>
 							</c:forEach>
