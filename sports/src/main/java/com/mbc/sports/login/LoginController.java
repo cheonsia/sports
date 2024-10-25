@@ -74,10 +74,10 @@ public class LoginController {
 							hs.setAttribute("normallogin", true);											
 						}else{
 							hs.setAttribute("superlogin", true);
-							hs.setAttribute("sportstype", sport);
 						}
 						hs.setAttribute("member", ldto);
 						hs.setAttribute("sports", sport);
+						hs.setAttribute("sportstype", sport);
 						prw.print(name+"님 환영합니다!");
 					}else {	prw.print("0");}
 				}
