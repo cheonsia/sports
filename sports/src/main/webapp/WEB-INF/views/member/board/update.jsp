@@ -11,7 +11,11 @@
 		margin-top: 20px;
 	}
 	h1{
-		margin: 40px auto;	
+		margin-top: 0px;	
+	}
+	p{
+	    width: max-content;
+	    margin: 0 auto;
 	}
 	.mainFrame{
 		width: 500px;
@@ -19,7 +23,7 @@
 		text-align: center;
 	}
 	.mainFrame div{
-		margin: 15px auto;
+		margin: 12px auto;
 		height: 35px;
 	}
 	.mainFrame label{
@@ -41,7 +45,11 @@
 		padding: 0 10px; 
 		border-radius: 5px;
 	}
-
+	#value:focus,
+	.mainFrame select:focus,
+	.mainFrame input:focus{
+		border-color: #0c400c;
+	}
 	#value{
 		border: 1px solid #e8e8e8;
 		width: 95%;
@@ -50,7 +58,7 @@
 	    padding: 10px 10px 0 10px;	
 	}
 	.mainFrame input[type="button"]{
-		width: 25%;
+		width: 95%;
 	    height: 50px;
 	    border-radius: 10px;
 	    background-color: #fff;
@@ -62,9 +70,6 @@
 	}
 	.mainFrame input[type="text"]:read-only{
 	    background-color: #e8e8e8;
-	}
-	.mainFrame input[type="button"]+input[type="button"]{
-		margin-left: 20px;
 	}
 	.mainFrame div.value,
 	.mainFrame div.button{
@@ -83,6 +88,7 @@
 	.mainFrame .value p{
 		display:block;
 	    text-align: right;
+	    margin: 0;
 	}
 	.mainFrame hr{
 		margin: 0;
@@ -97,6 +103,9 @@
 		width: 100%;
 		margin: 0;
 	    align-items: center;
+	}
+	.mainFrame .check .checking p{
+		margin: 0;
 	}
 	.mainFrame .check .checking{
 		width: 130px;
@@ -135,20 +144,69 @@
 				$('#checkval').text("전 체 공 개");		
 			}
 		});
-		function deleted(){
-			alert('삭제되었습니다.');
-			$("#deleteboard").submit();
+		function partChange(){
+			var part= $('#part').find('option:selected').val();		
+			if(part == 'login'){
+				$('#title').val("로그인 관련 문의");
+			}else if(part == 'player'){
+				$('#title').val("선수 정보 문의");
+			}else if(part == 'content'){
+				$('#title').val("내용 수정/삭제 문의");
+			}else if(part == 'member'){
+				$('#title').val("댓글 비방/모욕 신고");
+			}else if(part == 'error'){
+				$('#title').val("오류 신고");
+			}else{
+				$('#title').attr("readonly",false);
+				$('#title').val("");
+				$('#title').focus();
+			}
+		}
+		function textlength() {
+			var len = $('#value').val().length;
+			$('#textlen').text(len);
+		}
+		function lockcheck() {
+			if( $('#check').is(':checked')){
+				$('#checkval').text("나 만 보 기");
+			}else{
+				$('#checkval').text("전 체 공 개");		
+			}
+		}
+		function updated(){
+			var check = $('#check').is(':checked') ? "y":"n";	
+			$("#checked").val(check);
+			
+			var title = $('#title').val();
+			var pw = $('#pw').val();
+			var value = $('#value').val();
+			
+			if (title==null || title==""){
+				alertShow('오류', '제목을 입력해주세요');
+				return false;
+			}else if (pw==null || pw==""){
+				alertShow('오류', '비밀번호를 입력해주세요');
+				return false;
+			}else if (value==null || value==""){
+				alertShow('오류', '문의 내용을 입력해주세요');
+				return false;
+			}else{
+				alert('수정 되었습니다.');
+				$("#updateboard").submit();
+			}
 		}
 	</script>
 </head>
 	<body>
-		<h1>정말로 삭제하시겠습니까?</h1>
-		<form action="deleteBoard" id="deleteboard" method="post">
+		<h1>게시글 수정</h1>
+		<p>수정 시 작성된 답변은 삭제 됩니다.</p>
+		<form action="updateBoard" id="updateboard" method="post">
 			<input type="hidden" name="num" value="${dto.num}">
+			<input type="hidden" name="step" id="step" value="${dto.step}">
 			<div class="mainFrame">
 				<div>
 					<label for ="part">분 류	</label>
-					<select name="part" id="part" disabled>
+					<select name="part" id="part" onchange="partChange()">
 						<option value="login">로그인 관련 문의</option>
 						<option value="player">선수 정보 문의</option>
 						<option value="content">내용 추가/오류 수정/삭제 문의</option>
@@ -165,12 +223,16 @@
 					<label for ="writer"> 작 성 자 </label>
 					<input type="text" id="writer" name="writer" value="${dto.writer}" readonly>
 				</div>
+				<div>
+					<label for ="pw"> 비 밀 번 호 </label>
+					<input type="password" id="pw" name="pw" value="${dto.pw}">
+				</div>
 				<div class="check">
 					<label for ="check">
 						 잠 금 여 부
 						 <div class="checking">
 							<input type="hidden" id="checked" name="checked">
-							<input type="checkbox" id="check" name="check" hidden="hidden" disabled><span></span>
+							<input type="checkbox" id="check" name="check" hidden="hidden" onclick="lockcheck()"><span></span>
 							<p id="checkval"></p>
 						 </div>
 					</label>
@@ -178,11 +240,10 @@
 				<hr>
 				<div class="value">
 					<label for ="value"> 내 용 </label>
-					<textarea id="value" name="value" placeholder="내용을 500자 이내로 입력해주세요" onkeyup="textlength()" maxlength="500" readonly>${dto.content}</textarea>
+					<textarea id="value" name="value" placeholder="내용을 500자 이내로 입력해주세요" onkeyup="textlength()" maxlength="500" >${dto.content}</textarea>
 				</div>
 				<div class="button">
-					<input type="button" value="취소" onclick="history.back()">
-					<input type="button" value="삭제하기" onclick="deleted()">
+					<input type="button" value="수정하기" onclick="updated()">
 				</div>
 			</div>
 		</form>
