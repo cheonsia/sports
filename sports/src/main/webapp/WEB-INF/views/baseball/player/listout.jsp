@@ -133,7 +133,7 @@
 			select{
 				min-width: 98px;
 				width: 98px;
-				border-color: #006400;
+				border-color: #00640050;
 				padding-top: 5px;
 			    padding-bottom: 5px;
 			    padding-left: 10px;
@@ -180,13 +180,12 @@
 				margin-right: 0;
 				padding: 6px 20px;
 			}
-			input[name="posival"]:hover+span{
-				color: #006400;
-				background-color: #00640040;
+			input[name="posival"]:hover + span{
+				background-color: #00640020;
 			}
-			input[name="posival"]:checked+span{
-				color: #006400;
-				background-color: #00640050;
+			input[name="posival"]:checked + span{
+				color: #f9f9f9;
+				background-color: #00640090;
 				border-color: #006400;
 			}
 			input[type="search"]{
@@ -195,8 +194,8 @@
 				height: 36px;
 				margin-left: 10px;
 				font-size: 15px;
-				border: 1px solid #e1e1e1;
-				border-radius: 5px;
+				border: 1px solid #00640050;
+				border-radius: 25px;
 				padding: 5px 10px;
 				display: none;
 			}
@@ -233,6 +232,7 @@
 		<!-- 검색 -->
 		<form class="d-flex" id="searchlist" role="search" action="Ssearchlist">
 			<input type="text" name="sports" value="야구" class="hidden">
+			<input type="text" id="team_area" name="area" value="" class="hidden">
 			<div class="selectBox">
 				<select name="searchcategory" onchange="searchChange()" class="select">
 					<option value="포지션">포지션</option>
@@ -341,7 +341,7 @@
 			}
 		}
 		function playSearch() {
-			var baseball_area = $('#baseball_area').val();
+			var baseball_area = $('#team_area').val();
 			var sports = $('input[name="sports"]').val();
 			var searchcategory = $('select[name="searchcategory"]').val();
 			var posival = $('input[name="posival"]:checked').val();
@@ -374,6 +374,7 @@
 			var win_tname = win_bname[0].slice(6);
 			$('.header_logo_inner a').removeClass('clicked_on');
 			$('#baseball_'+win_tname).addClass('clicked_on');
+			$('#team_area').val(win_tname);
 			var category = `${category}`;
 			var posival = `${posival}`;
 			var vocavalue = `${vocavalue}`;
