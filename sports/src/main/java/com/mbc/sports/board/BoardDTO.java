@@ -5,7 +5,7 @@ public class BoardDTO {
 	   String part, title, writer, pw, content, checking;
 	   int step;
 	   String status,rdate, sub;
-	   int readcnt;
+	   int readcnt, max;
 	public BoardDTO() {}
 	public int getNum() {
 		return num;

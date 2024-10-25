@@ -25,11 +25,8 @@ public class BoardController {
 	@RequestMapping(value="boardMain")
 	public String main(HttpServletRequest request, PageDTO page, Model model) {
 		BoardService bs = sqlSession.getMapper(BoardService.class);
-		CommentService cs = sqlSession.getMapper(CommentService.class);	
-
 		String nowPage=request.getParameter("nowPage");
 		String cntPerPage=request.getParameter("cntPerPage");
-
 	     int total=bs.total();
 	     if(nowPage==null && cntPerPage == null) {
 	        nowPage="1";
@@ -42,6 +39,7 @@ public class BoardController {
 	        cntPerPage="10";
 	     }      
 	     page = new PageDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+	     model.addAttribute("max",bs.max());
 	     model.addAttribute("paging",page);
 	     model.addAttribute("list",bs.out(page.getStart(),page.getEnd()));
 	     return "boardMain";
@@ -61,8 +59,7 @@ public class BoardController {
 		BoardService bs = sqlSession.getMapper(BoardService.class);
 		bs.insert(part,title,writer,pw,value,check);
 		return "redirect:/boardMain";
-	}
-	
+	}	
 	@RequestMapping(value="boardPwCheck", method = RequestMethod.POST)
 	public void pwCheck(int num, String pw, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
@@ -71,14 +68,92 @@ public class BoardController {
 		int result = bs.pwCheck(num,pw);
 		prw.print(result);
 	}
-	
 	@RequestMapping(value="boardSelect")
-	public String detail(int num, String way , Model model){
+	public String detail(HttpServletRequest request, int num, String way , Model model){
 		BoardService bs = sqlSession.getMapper(BoardService.class);
-		if (way.equals("detail")) { bs.clickUp(num); }
+		if (way.equals("detail")) {
+			bs.clickUp(num);
+		    model.addAttribute("clist",bs.comment(num));	
+		}
 		BoardDTO dto = bs.select(num);
 		model.addAttribute("dto",dto);
-		System.out.println(way);
 		return (way.equals("detail")) ? "boardDetail" :(way.equals("delete")) ? "boardDelete" : "boardUpdate";
 	}
+	@RequestMapping(value="deleteBoard", method = RequestMethod.POST)
+	public String delete(int num){
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		bs.delete(num);
+		bs.commentDelete(num);
+		return "redirect:/boardMain";
+	}
+	@RequestMapping(value="updateBoard", method = RequestMethod.POST)
+	public String update(HttpServletRequest request, Model model) {
+		int num = Integer.parseInt(request.getParameter("num"));
+		String part = request.getParameter("part");
+		String writer= request.getParameter("writer");
+		String pw= request.getParameter("pw");
+		String title= request.getParameter("title");
+		String value = request.getParameter("value");
+		String check = request.getParameter("checked");
+		
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		bs.update(num,part,title,writer,pw,value,check);
+		bs.commentDelete(num);
+		bs.setStep(num,bs.getStep(num));
+		model.addAttribute("num", num);
+		model.addAttribute("way", "detail");
+		return "redirect:/boardSelect";
+	}	
+	
+	//´äº¯
+	@RequestMapping(value="answerComplete")
+	public String complete(int num){
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		bs.statusUpdate(num);
+		return "redirect:/boardMain";
+	}
+	@RequestMapping(value="boardCommentSave", method = RequestMethod.POST)
+	public String commentSave(HttpServletRequest request, Model model){
+		int num = Integer.parseInt(request.getParameter("num"));
+		String writer = request.getParameter("writer");
+		String comment = request.getParameter("comment");
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		int step =bs.getStep(num)+1;
+		bs.answer(num,step,writer,comment);
+		bs.setStep(num,step);
+		model.addAttribute("num", num);
+		model.addAttribute("way", "detail");
+		return "redirect:/boardSelect";
+	}
+
+	@RequestMapping(value="bcommentdelete")
+	public String commentdelete(int num, String way, Model model){
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		bs.commentDelete(num);
+		bs.setStep(num, 0);
+		model.addAttribute("num", num);
+		model.addAttribute("way", way);
+		return "redirect:/boardSelect";
+	}
+	@RequestMapping(value="bcommentupdate")
+	public String commentupdate(int num, String ucomment, String way, Model model){
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		bs.commentUpdate(num, ucomment);;
+		model.addAttribute("num", num);
+		model.addAttribute("way", way);
+		return "redirect:/boardSelect";
+	}
+
+	@RequestMapping(value="boardSearch",method = RequestMethod.POST)
+	public String search(HttpServletRequest request, Model model){
+		String option = request.getParameter("option");
+		String value = (option.equals("writer")) ? request.getParameter("writer") : (option.equals("part")) ? request.getParameter("part") : request.getParameter("status");
+		BoardService bs = sqlSession.getMapper(BoardService.class);
+		model.addAttribute("option", option);
+		model.addAttribute("value", value);
+		model.addAttribute("list", bs.search(option,value));
+		return "boardSearch";
+	}
+	
 }
+

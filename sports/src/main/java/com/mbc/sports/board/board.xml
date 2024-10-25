@@ -7,21 +7,25 @@
 		select count(*)
 		from inquiry
 	</select>
+	<select id="max" resultType="int">
+		select NVL(max(num),0)
+		from inquiry
+	</select>
 	<select id="out" resultType="com.mbc.sports.board.BoardDTO">
 		select * 
 		from (
 			select rownum rn,A.* 
 			from(
-				select num, part, title, writer, pw, content, checking, step, status, 
+				select num, part, title, writer, pw, content, checking, step, status, readcnt,
 	           		case when to_char(rdate,'yyyy-MM-dd') = to_char(sysdate,'yyyy-MM-dd') then 'New'    
-					else '' end as sub 
+					else '' end as sub
 	           	from inquiry
 	           	order by num desc)A)
 		   where rn between #{param1} and #{param2}
 	</select>
 	<insert id="insert">
 		insert into inquiry
-		values (inquiry_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},0,'no',sysdate)
+		values (inquiry_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},0,'no',sysdate,0)
 	</insert>
 	<select id="pwCheck" resultType="int">
 		select count(*)
@@ -31,44 +35,60 @@
 	<update id="clickUp">
 		update inquiry
 		set readcnt = readcnt+1
-		where num= #{param1}
+		where num = #{param1}
 	</update>
 	<select id="select" resultType="com.mbc.sports.board.BoardDTO">
-		select *
+		select num, part, title, writer, pw, content, checking, step, status, to_char(rdate,'yyyy-MM-dd') as rdate, readcnt
 		from inquiry
 		where num = #{param1}
 	</select>
+	
 	<delete id="delete">
 		delete from inquiry
 		where num = #{param1}
 	</delete>
+	
 	<update id="update">
 		update inquiry
-		set part = #{param2}, title = #{param3}, writer = #{param4}, pw = #{param5}, content = #{param6}, checking = #{param7}, status = 'n'
+		set part = #{param2}, title = #{param3}, writer = #{param4}, pw = #{param5}, content = #{param6}, checking = #{param7}, status = 'no'
 		where num= #{param1}	
 	</update>
 	<!-- 답변 -->
 	<update id="statusUpdate">
 		update inquiry
-		set status = 'y'
+		set status = 'yes'
 		where num= #{param1}	
-	</update>
-	<insert id="answer">
-		insert into inquirycomment values (#{param1}, #{param2}, #{param3}, #{param4}, sysdate)
-	</insert>
-	<select id="comment" resultType="com.mbc.sports.board.BCommentDTO">
-		select *
-		from inquiry comment
-		where num = #{param1}
-	</select>
-	<update id="setStep">
-		update inquiry
-		set step = #{param2}
-		where num= #{param1}
 	</update>
 	<select id="getStep" resultType="int">
 		select NVL(max(step),0)
 		from inquirycomment
 		where num = #{param1}
+	</select>
+	<insert id="answer">
+		insert into inquirycomment values (#{param1}, #{param2}, #{param3}, #{param4}, sysdate)
+	</insert>
+	<update id="setStep">
+		update inquiry
+		set step = #{param2}
+		where num= #{param1}
+	</update>
+	<select id="comment" resultType="com.mbc.sports.board.BCommentDTO">
+		select *
+		from inquirycomment
+		where num = #{param1}
+	</select>
+	<delete id="commentDelete">
+		delete from inquirycomment
+		where num = #{param1}
+	</delete>
+	<update id="commentUpdate">
+		update inquirycomment
+		set value = #{param2}
+		where num = #{param1}
+	</update>
+	<select id="search" resultType="com.mbc.sports.board.BoardDTO">
+		select num, part, title, writer, pw, content, checking, step, status, to_char(rdate,'yyyy-MM-dd') as rdate, readcnt
+		from inquiry
+		where ${param1} like '%'||#{param2}||'%'
 	</select>
 </mapper>
