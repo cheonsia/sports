@@ -258,9 +258,41 @@
 				cursor: url('./image/baseball/cursor/cursor2.png'), auto !important;
 			}
 			.commentResult{
+				position: relative;
 			 	width: 100%;
 			 	max-width: 700px;
 			 	margin: 20px auto 0 auto;
+			}
+			.no_login.commentResult{
+				min-height: 240px;
+				max-height: 240px;
+				overflow: hidden;
+			}
+			.no_login_txt{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background-color: #ffffff70;
+				z-index: 1;
+			}
+			.no_login_txt img{
+				width: auto;
+				height: 100%;
+				background-size: contain;
+			    filter: blur(7px);
+			}
+			.no_login_txt p{
+				position: absolute;
+				font-size: 18px;
+				line-height: 27px;
+				font-weight: 400;
+				color: #999;
+				text-align: center;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 			}
 			.commentResult hr{
 				width: 100%;
@@ -703,58 +735,66 @@
 					</c:choose>
 				</div>
 			</form>
-			<div class="commentResult">
-				<c:if test="${dto.step!=0}">
-					<c:forEach items="${clist}" var="cli">
-						<div class="eachResult">				
-							<p class="p0"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.id}(${fn:substring(cli.writer, 0, cli.writer.length()-2)}*${fn:substring(cli.writer, cli.writer.length()-1, cli.writer.length())})</p>
-							<div class="commentvalue">
-								<p class="p1">
-									┗
-									<span id="span_${cli.playernum}_${cli.step}">${cli.ucomment}</span>
-									<input type="text" class="comment_input" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
-								</p>
-								<p class="p p2">
-									<c:if test="${dto.play == '축구'}">
-										<img src="./image/soccer/logo/soccer.png" width="80px" onclick="heart(${dto.playernum},${cli.step})">
-									</c:if>
-									<c:if test="${dto.play == '야구'}">
-										<img src="./image/baseball/logo/baseball.png" width="80px" onclick="heart(${dto.playernum},${cli.step})">
-									</c:if>
-									<input type="text" class="heart" name="heartresult" id="heartresult_${cli.step}" value="${cli.heart}" readonly>
-									<input type="text" class="commentDate" name="cdate" value="${cli.cdate}" readonly>
-								</p>
-								<c:if test="${cli.id == member.id || adminlogin}">
-									<p class="p3">
-										<a href="javascript:void(0)" id="edit_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step},'${dto.play}')">수정</a>&emsp;
-										<a href="javascript:void(0)" class="p3_delete" id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step},'${dto.play}')">삭제</a>
-									</p>
-								</c:if>
-							</div>
-						</div>
-						<hr>
-					</c:forEach>
-					<div class="page">
-						<c:if test="${paging.startPage!=1 }">
-					      <a href="pagedetail?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
-						</c:if>
-				  		<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
-				     		<c:choose>
-				        		<c:when test="${p == paging.nowPage}">
-					  				<span>${p}</span>
-								</c:when>
-								<c:when test="${p != paging.nowPage}">
-									<a href="playerdetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}&play=${dto.play}">${p}</a>
-								</c:when>   
-				      		</c:choose>
-				   		</c:forEach>
-						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="playerdetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}&play=${dto.play}"></a>
-						</c:if>
+			<div class="<c:if test="${!normallogin && !superlogin && !adminlogin}">no_login </c:if>commentResult">
+				<c:if test="${!normallogin && !superlogin && !adminlogin}">
+					<div class="no_login_txt">
+						<img alt="로그인 전 이미지" src="./image/common/no_login_comment.png">
+						<p>로그인 후 보실 수 있습니다.</p>
 					</div>
 				</c:if>
-				<c:if test="${dto.step==0}">
-					<div class="no_show">선수에게 첫번째 응원메세지를 남겨주세요.</div>
+				<c:if test="${normallogin || superlogin || adminlogin}">
+					<c:if test="${dto.step!=0}">
+						<c:forEach items="${clist}" var="cli">
+							<div class="eachResult">				
+								<p class="p0"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.id}(${fn:substring(cli.writer, 0, cli.writer.length()-2)}*${fn:substring(cli.writer, cli.writer.length()-1, cli.writer.length())})</p>
+								<div class="commentvalue">
+									<p class="p1">
+										┗
+										<span id="span_${cli.playernum}_${cli.step}">${cli.ucomment}</span>
+										<input type="text" class="comment_input" value="${cli.ucomment}" id="${cli.playernum}_${cli.step}" name="comment_val_${cli.playernum}_${cli.step}" readonly>&emsp;
+									</p>
+									<p class="p p2">
+										<c:if test="${dto.play == '축구'}">
+											<img src="./image/soccer/logo/soccer.png" width="80px" onclick="heart(${dto.playernum},${cli.step})">
+										</c:if>
+										<c:if test="${dto.play == '야구'}">
+											<img src="./image/baseball/logo/baseball.png" width="80px" onclick="heart(${dto.playernum},${cli.step})">
+										</c:if>
+										<input type="text" class="heart" name="heartresult" id="heartresult_${cli.step}" value="${cli.heart}" readonly>
+										<input type="text" class="commentDate" name="cdate" value="${cli.cdate}" readonly>
+									</p>
+									<c:if test="${cli.id == member.id || adminlogin}">
+										<p class="p3">
+											<a href="javascript:void(0)" id="edit_${cli.playernum}_${cli.step}" onclick="commentChange(${cli.playernum},${cli.step},'${dto.play}')">수정</a>&emsp;
+											<a href="javascript:void(0)" class="p3_delete" id="delete_${cli.playernum}_${cli.step}" onclick="commentDelete(${cli.playernum},${cli.step},'${dto.play}')">삭제</a>
+										</p>
+									</c:if>
+								</div>
+							</div>
+							<hr>
+						</c:forEach>
+						<div class="page">
+							<c:if test="${paging.startPage!=1 }">
+						      <a href="pagedetail?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
+							</c:if>
+					  		<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+					     		<c:choose>
+					        		<c:when test="${p == paging.nowPage}">
+						  				<span>${p}</span>
+									</c:when>
+									<c:when test="${p != paging.nowPage}">
+										<a href="playerdetail?playernum=${dto.playernum}&nowPage=${p}&cntPerPage=${paging.cntPerPage}&play=${dto.play}">${p}</a>
+									</c:when>   
+					      		</c:choose>
+					   		</c:forEach>
+							<c:if test="${paging.endPage != paging.lastPage}">
+								<a href="playerdetail?playernum=${dto.playernum}&nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}&play=${dto.play}"></a>
+							</c:if>
+						</div>
+					</c:if>
+					<c:if test="${dto.step==0}">
+						<div class="no_show">선수에게 첫번째 응원메세지를 남겨주세요.</div>
+					</c:if>
 				</c:if>
 				<c:if test="${!normallogin || !superlogin || !adminlogin}">
 				</c:if>
