@@ -30,7 +30,7 @@ public class GameController {
 	@RequestMapping(value = "/soccer_highlight")
 	public String soccer_highlight(HttpServletRequest request, Model mo) {
 		String name = request.getParameter("name");
-		mo.addAttribute(name);
+		mo.addAttribute("name",name);
 		return "soccer_highlight";
 	}
 	
