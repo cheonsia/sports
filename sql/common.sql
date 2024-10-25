@@ -133,4 +133,3 @@ create table inquirycomment(
 ,   value varchar2(3000)
 ,   rdate date default sysdate
 );
-drop table inquirycomment;
