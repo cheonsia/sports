@@ -430,7 +430,14 @@
 			    width: 100%;
 				margin: 50px auto 80px auto;
 			}
+			.btn_direct div{
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: start;
+				align-items: center;
+			}
 			.button_align input[type="button"]{
+				min-width: 118px;
 				width: 100%;
 				max-width: 118px;
 				height: 48px;
@@ -470,6 +477,9 @@
 				color: #bb0000;
 				border-color: #bb0000;
 				background-color: #bb000015;
+			}
+			.btn_direct div input{
+				margin-left: 10px;
 			}
 			@media (min-width: 600px){
 				.img1{
@@ -519,6 +529,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				var name;
+				var namekr;
 				var team = `${dto.tname}`;
 				if (team=='kangwon') name='강원';
 				if (team=='gwangju') name='광주';
@@ -542,10 +553,15 @@
 		        if (team=='SAMSUNG')name='삼성';
 		        if (team=='KIWOOM')name='키움';
 		        if (team=='HANHWA')name='한화';
+		        console.log(name);
 				$("#team").text(name);	
 				$(".c1_a").click(function(){
 					$(this).parent('.p1').parent(".cocomentresult").next('.c1').toggle();
 				});
+				
+				if(${superlogin} == true && `${sportstype}` == `${dto.play}` && `${sportteam}` == $('#team').text() || ${adminlogin} == true){
+					$('.btn_direct').show();
+				}
 			});
 			function heart(playernum,step){
 				$.ajax({
@@ -800,11 +816,13 @@
 				</c:if>
 			</div>
 			<div class="button_align">
-				<input type="button" class="btn_confirm" value="확인" onclick="location.href='selectTeam?name=${dto.tname}&play=${dto.play}'">	
-				<c:if test="${superlogin || adminlogin}">
-					<input type="button" class="btn_change" value="수정" onclick="location.href='playerupdate?playernum=${dto.playernum}&play=${dto.play}'">
-					<input type="button" class="btn_delete" value="삭제" onclick="location.href='goplayerdelete?playernum=${dto.playernum}&play=${dto.play}'">
-				</c:if>
+				<input type="button" class="btn_confirm" value="확인" onclick="location.href='selectTeam?name=${dto.tname}&play=${dto.play}'">
+				<div class="btn_direct" hidden="hidden">
+					<div>
+						<input type="button" class="btn_change" value="수정" onclick="location.href='playerupdate?playernum=${dto.playernum}&play=${dto.play}'">
+						<input type="button" class="btn_delete" value="삭제" onclick="location.href='goplayerdelete?playernum=${dto.playernum}&play=${dto.play}'">
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
