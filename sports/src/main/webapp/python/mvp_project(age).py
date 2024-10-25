@@ -6,8 +6,8 @@ import numpy as np
 plt.rcParams['font.family'] ='Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] =False
 
-oracledb.init_oracle_client(lib_dir="C:\\mbc6\\python\\db\\instantclient_11_2") #오라클 라이브러리 경로가 들어감
-connect = oracledb.connect(user='csa', password='1234',dsn='localhost')
+oracledb.init_oracle_client(lib_dir="C:\\mbc6\\python\\db\\instantclient-basic-windows.x64-11.2.0.4.0\\instantclient_11_2") #오라클 라이브러리 경로가 들어감
+connect = oracledb.connect(user='kkr', password='1234',dsn='localhost')
 c=connect.cursor() #오라클 DB 쿼리문
 
 c.execute("select case when 2024-substr(birth,0,4)+1 <20 then '10대' when 2024-substr(birth,0,4)+1 <30 then '20대' when 2024-substr(birth,0,4)+1 <40 then '30대'when 2024-substr(birth,0,4)+1 <50 then '40대'when 2024-substr(birth,0,4)+1 <60 then '50대'when 2024-substr(birth,0,4)+1 >70 then '60대 이상'end as age from sportsmember where sport='축구'")
