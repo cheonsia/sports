@@ -246,14 +246,14 @@
 			.signform .button input[type="button"] + input[type="button"]{
 				margin-left: 20px;
 			}
-			.signform .button input:first-child{
+			.signform .button input{
 				border: 1px solid #4c693f;
 				background-color: white;
-				color:#4c693f;
+				color: #4c693f;
 			    border-radius: 5px;
 			    margin: 0;
 			}
-			.signform .button input:first-child:hover{
+			.signform .button input:hover{
 				background-color: #4c693f80;
 				color: white;
 			}
@@ -293,7 +293,6 @@
 				$("#idcheck").click(function(){
 					var id = $("#id").val();
 					var vid=/^[a-zA-Z0-9]{4,10}$/;
-					
 					if(id==""){
 						alertShow('오류','아이디를 입력해주세요.');
 						return false;
@@ -302,7 +301,6 @@
 						alertShow('오류','아이디는 영문자와 숫자로만 4~10글자 이내로만 작성해야합니다.');
 						return false;
 					}
-					
 					$.ajax({
 						type:"post",
 						url:"idcheck",
@@ -334,18 +332,28 @@
 							}
 						}else{//28일까지
 							for(var i = 1;i <= 31;i++){
-								if( i<=28 && $("#day option").length-1 < i){ $("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
-								else{$("#day option[value=\""+i+"\"]").remove();}
-					}}}
-					else if( month==4 || month==6 || month==9 || month==11){//30일까지
+								if(i<=28 && $("#day option").length-1 < i){
+									$("#day").append("<option value=\"" + i + "\">" + i + "</option>");
+								}
+								else{
+									$("#day option[value=\""+i+"\"]").remove();
+								}
+							}
+						}
+					}else if(month==4 || month==6 || month==9 || month==11){//30일까지
 						for(var i = 1;i <= 30;i++){
-							if ($("#day option").length-1 < i){$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
+							if($("#day option").length-1 < i){
+								$("#day").append("<option value=\"" + i + "\">" + i + "</option>");
+							}
 							$("#day option[value=\"31\"]").remove();				
 						}
 					}else{
 						for(var i = 1;i <= 31;i++){
-					    	if ($("#day option").length-1 < i){$("#day").append("<option value=\"" + i + "\">" + i + "</option>");}
-					}}
+					    	if($("#day option").length-1 < i){
+					    		$("#day").append("<option value=\"" + i + "\">" + i + "</option>");
+					    	}
+						}
+					}
 				});
 			});
 			//주소 API CDN 방식 사용
@@ -355,14 +363,12 @@
 		              	// 팝업을 통한 검색 결과 항목 클릭 시 실행
 		                var addr = ''; // 주소_결과값이 없을 경우 공백 
 		                var extraAddr = ''; // 참고항목
-		
 		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 		                if (data.userSelectedType === 'R'){ // 도로명 주소를 선택
 		                    addr = data.roadAddress;
 		                } else{ // 지번 주소를 선택
 		                    addr = data.jibunAddress;
 		                }
-		
 		                if(data.userSelectedType === 'R'){
 		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
 		                        extraAddr += data.bname;
@@ -399,7 +405,7 @@
 					else{
 						pw_message.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
 						pw_message.innerHTML = "비밀번호가 일치합니다.";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
-				}
+					}
 				}else{
 					pw_message.style.color = wrongColor;
 					pw_message.innerHTML = "비밀번호가 일치하지 않습니다.";
@@ -447,7 +453,6 @@
 				var vid = /^[a-zA-Z0-9]{4,16}$/;
 				var id = $('#id').val();
 			 	var idchecked = $('#idcheck2').val();
-			 	
 				if(id == ""){
 					alertShow('오류','아이디를 입력해주세요.');
 					$('#id').focus();
@@ -716,6 +721,7 @@
 			</c:if>
 			<div class="button">
 				<input type="button" value="취소" onclick="location.href='./'">
+				<input type="button" class="btn_before" value="이전으로" onclick="history.back()">
 				<input type="button" value="회원가입" onclick="check()">
 			</div>
 		</form>
