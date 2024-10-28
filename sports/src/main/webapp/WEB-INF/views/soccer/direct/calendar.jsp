@@ -141,7 +141,7 @@
 					<input type="hidden" id="calendar_choosed_mm" value="">
 					<input type="hidden" id="calendar_choosed_dd" value="">
 					<p class="calendar_schedule_date" id="calendar_schedule_date">0000년 00월 00일</p>
-					<button type="button" class="schedule_plus_btn" onclick="scheduleShow()">훈련 일기+</button>
+					<button type="button" class="schedule_plus_btn" onclick="scheduleShow()">훈련 일지+</button>
 				</div>
 				<div class="calendar_schedule_inner">
 					<div class="schedule_list_box">

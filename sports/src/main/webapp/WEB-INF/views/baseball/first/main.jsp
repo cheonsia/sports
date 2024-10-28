@@ -569,8 +569,8 @@
 							</c:if>
 							<c:if test="${superlogin}">
 								<a href="playerinput?play=야구">선수 등록</a>
-								<a href="javascript:void(0)" onclick="baseballStrategyMove()">전략 만들기</a>
-								<a href="javascript:void(0)" onclick="baseballCalendarMove()">훈련 일정</a>
+								<a href="javascript:void(0)" onclick="baseballStrategyMove()">전략</a>
+								<a href="javascript:void(0)" onclick="baseballCalendarMove()">훈련 일지</a>
 							</c:if>
 							<a href="mypage?id=${member.id}">마이페이지</a>
 						</c:if>

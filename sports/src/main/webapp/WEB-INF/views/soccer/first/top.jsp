@@ -259,7 +259,7 @@
 										<a href="javascript:void(0)" class="side_menu_title" onclick="soccerStrategyMove()">전략</a>
 								  	</li>
 								  	<li>
-								  		<a href="javascript:void(0)" class="side_menu_title" onclick="soccerCalendarMove()">캘린더</a>								
+								  		<a href="javascript:void(0)" class="side_menu_title" onclick="soccerCalendarMove()">훈련 일지</a>								
 								  	</li>
 						  		</ul>
 						 	</c:if>
