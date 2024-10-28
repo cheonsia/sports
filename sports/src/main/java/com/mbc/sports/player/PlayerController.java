@@ -247,55 +247,47 @@ public class PlayerController{
 		if(name.equals("ALL") || name.equals("")) name = "ALL";
 		String sports = request.getParameter("sports");
 		String category = request.getParameter("searchcategory");//포지션
-		String posival = request.getParameter("posival");//라디오
-		String value = request.getParameter("searchval");//검색어
+		String npath = "soccerplayerlist";
 		SPlayerService sp = sqlsession.getMapper(SPlayerService.class);
 		BPlayerService bp = sqlsession.getMapper(BPlayerService.class);
+		
 		model.addAttribute("category",category);
-		model.addAttribute("posival",posival);
-		model.addAttribute("vocavalue",value);
-		if(sports.equals("축구")){
-			if(category.equals("포지션")){
-				if(name.equals("ALL") || name.equals("ALL") || name.equals("")){//지역
-					ArrayList<PlayerDTO> list =sp.smain(posival);
-					model.addAttribute("list",list);
-				}else{
-					ArrayList<PlayerDTO> list =sp.smainarea(posival,name);					
-					model.addAttribute("list",list);
+
+		if(category.equals("포지션")) {
+			String posival = request.getParameter("posival");//라디오
+			model.addAttribute("posival",posival);
+			if(sports.equals("축구")){
+				if(name.equals("ALL")) {
+					model.addAttribute("list",sp.smain(posival));					
+				}else {
+					model.addAttribute("list",sp.smainarea(posival,name));
 				}
-				return "soccerplayerlist";
-			}else{
-				if(name.equals("ALL") || name.equals("")){
-					ArrayList<PlayerDTO> list =sp.spname(value);
-					model.addAttribute("list",list);
-				}else{
-					ArrayList<PlayerDTO> list =sp.spnamearea(value,name);
-					model.addAttribute("list",list);
+			}else {
+				npath = "baseballplayerlist";
+				if(name.equals("ALL")) {
+					model.addAttribute("list", bp.bmain(posival));
+				}else {
+					model.addAttribute("list", bp.bmainarea(posival,name));
 				}
-				return "soccerplayerlist";
 			}
-		}else{
-			if(category.equals("포지션")){
-				if(name.equals("ALL") || name.equals("")){
-					ArrayList<PlayerDTO> list =bp.bmain(posival);
-					model.addAttribute("list",list);
-					model.addAttribute("posival",posival);
-				}else{
-					ArrayList<PlayerDTO> list =bp.bmainarea(posival,name);
-					model.addAttribute("list",list);
-					model.addAttribute("posival",posival);
+		}else { //선수명
+			String value = request.getParameter("searchval");//검색어
+			model.addAttribute("vocavalue",value);
+			if(sports.equals("축구")){
+				if(name.equals("ALL")) {
+					model.addAttribute("list",sp.spname(value));					
+				}else {
+					model.addAttribute("list",sp.spnamearea(value,name));
 				}
-				return "baseballplayerlist";
-			}else{
-				if(name.equals("ALL") || name.equals("")){
-					ArrayList<PlayerDTO> list =bp.bpname(value);
-					model.addAttribute("list",list);
-				}else{
-					ArrayList<PlayerDTO> list =bp.bpnamearea(value,name);
-					model.addAttribute("list",list);
-				}
-				return "baseballplayerlist";
+			}else {
+				npath = "baseballplayerlist";
+				if(name.equals("ALL")) {
+					model.addAttribute("list",bp.bpname(value));					
+				}else {
+					model.addAttribute("list",bp.bpnamearea(value,name));
+				}				
 			}
 		}
+		return npath;
 	}
 }

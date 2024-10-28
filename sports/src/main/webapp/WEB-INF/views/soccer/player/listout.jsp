@@ -241,25 +241,25 @@
 				<div class="posi_radio">
 					<div>
 						<label for="posival1">
-							<input type="radio" name="posival" id="posival1" value="FW">
-							<span>FW</span>
+							<input type="radio" name="posival" id="posival1" value="MF">
+							<span>미드필더</span>
 						</label>
 						<label for="posival2">
-							<input type="radio" name="posival" id="posival2" value="MF">
-							<span>MF</span>
+							<input type="radio" name="posival" id="posival2" value="FW">
+							<span>포워드</span>
 						</label>
 						<label for="posival3">
-							<input type="radio" name="posival" id="posival3" value="DF">
-							<span>DF</span>
+							<input type="radio" name="posival" id="posival3" value="GK">
+							<span>골키퍼</span>
 						</label>
 						<label for="posival4">
-							<input type="radio" name="posival" id="posival4" value="GK">
-							<span>GK</span>
+							<input type="radio" name="posival" id="posival4" value="DF">
+							<span>수비수</span>
 						</label>
 					</div>
 				</div>
-		        <input class="search_input" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="searchval">
-		        <button class="btn btn-outline-success" type="button" onclick="playSearch()">검색</button>						
+		        <input class="search_input" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="searchval" onkeyup="searchClick()">
+		        <button class="btn btn-outline-success" type="button" id="searchClickItem" onclick="playSearch()">검색</button>						
 			</div>
       	</form>
 		<!--     -->
@@ -267,8 +267,10 @@
 			<c:when test="${empty list}">
 				<p class="no_data_txt">선수 목록이 없습니다.</p>
 			</c:when>
-			<c:otherwise>
+			<c:otherwise>				
+			<c:if test="${posival == null || posival == 'undefined' || posival=='MF'}">
 				<h1>미드필더</h1>
+			</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='MF'}">
@@ -282,7 +284,9 @@
 					</c:if>
 					</c:forEach>
 				</div>
-				<h1>포워드</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='FW'}">
+					<h1>포워드</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 						<c:if test="${j.main=='FW'}">
@@ -296,7 +300,9 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<h1>골키퍼</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='GK'}">
+					<h1>골키퍼</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 						<c:if test="${j.main=='GK'}">
@@ -310,7 +316,9 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<h1>수비수</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='DF'}">
+					<h1>수비수</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 						<c:if test="${j.main=='DF'}">
@@ -337,6 +345,7 @@
 				$('input[name="posival"]').prop('checked', false);
 			}
 			if(select_val=='선수명'){
+				$('input[name="posival"]').prop('checked', false);
 				$('.posi_radio').hide();
 				$('.search_input').show();
 			}
@@ -361,6 +370,11 @@
 				else{
 					window.location.href='Ssearchlist?name='+soccer_area+'&sports='+sports+'&searchcategory='+searchcategory+'&posival='+posival+'&searchval='+searchval;					
 				}
+			}
+		}
+		function searchClick() {
+			if(window.event.keyCode == 13){
+				$('#searchClickItem').click();
 			}
 		}
 		function soccerClick(ths){

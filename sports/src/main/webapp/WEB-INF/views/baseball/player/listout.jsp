@@ -258,8 +258,8 @@
 						</label>
 					</div>
 				</div>
-		        <input class="search_input" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="searchval">
-		        <button class="btn btn-outline-success" type="button" onclick="playSearch()">검색</button>						
+		        <input class="search_input" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="searchval" onkeyup="searchClick()">
+		        <button class="btn btn-outline-success" type="button" id="searchClickItem" onclick="playSearch()">검색</button>						
 			</div>
       	</form>
 		<c:choose>
@@ -267,7 +267,9 @@
 				<p class="no_data_txt">선수 목록이 없습니다.</p>
 			</c:when>
 			<c:otherwise>
-				<h1>투수</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='투수'}">
+					<h1>투수</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 					<c:if test="${j.main=='투수'}">
@@ -281,7 +283,9 @@
 					</c:if>
 					</c:forEach>
 				</div>
-				<h1>포수</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='포수'}">
+					<h1>포수</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 						<c:if test="${j.main=='포수'}">
@@ -295,7 +299,9 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<h1>내야수</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='내야수'}">
+					<h1>내야수</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 						<c:if test="${j.main=='내야수'}">
@@ -309,7 +315,9 @@
 						</c:if>
 					</c:forEach>
 				</div>
-				<h1>외야수</h1>
+				<c:if test="${posival == null || posival == 'undefined' || posival=='외야수'}">
+					<h1>외야수</h1>
+				</c:if>
 				<div class="A">
 					<c:forEach items="${list}" var="j">
 						<c:if test="${j.main=='외야수'}">
@@ -336,6 +344,7 @@
 				$('input[name="posival"]').prop('checked', false);
 			}
 			if(select_val=='선수명'){
+				$('input[name="posival"]').prop('checked', false);
 				$('.posi_radio').hide();
 				$('.search_input').show();
 			}
@@ -360,6 +369,11 @@
 				else{
 					window.location.href='Ssearchlist?name='+baseball_area+'&sports='+sports+'&searchcategory='+searchcategory+'&posival='+posival+'&searchval='+searchval;					
 				}
+			}
+		}
+		function searchClick() {
+			if(window.event.keyCode == 13){
+				$('#searchClickItem').click();
 			}
 		}
         function baseballClick(ths) {
