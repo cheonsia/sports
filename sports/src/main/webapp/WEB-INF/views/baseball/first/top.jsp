@@ -240,7 +240,7 @@
 								<a href="baseballgoods" class="side_menu_title">굿즈</a>
 							</li>
 						</ul>
-						<c:if test="${superlogin && sportstype == '야구'}">
+						<c:if test="${adminlogin || superlogin && sports == '야구'}">
 							<ul>
 								<li>
 									<a href="javascript:void(0)" class="side_menu_title" onclick="baseballStrategyMove()">전략</a>

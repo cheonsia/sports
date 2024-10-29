@@ -253,7 +253,7 @@
 									<a href="soccergoods" class="side_menu_title">굿즈</a>
 								</li>
 							</ul>
-							<c:if test="${superlogin && sportstype == '축구'}">
+							<c:if test="${adminlogin || superlogin && sports == '축구'}">
 								<ul>
 									<li>
 										<a href="javascript:void(0)" class="side_menu_title" onclick="soccerStrategyMove()">전략</a>

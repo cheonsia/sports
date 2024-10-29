@@ -12,11 +12,9 @@ public interface CommentService {
 	//출력 시 사용되는 함수
 	int total(int playernum);
 	ArrayList<CommentDTO> comment(int playernum, int start, int end);
-
 	void delete(int playernum, int step);
-
 	void update(int playernum, int step, String ucomment);
-	
 	void heartUp(int playernum, String step);
 	int heart(int playernum, String step);
+	void setStep(int playernum, int step);
 }

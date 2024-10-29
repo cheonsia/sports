@@ -62,6 +62,11 @@ public class CommentController {
 		String play = request.getParameter("play");
 		CommentService cs = sqlsession.getMapper(CommentService.class);
 		cs.delete(playernum,step);
+		if(play.equals("√‡±∏")) {
+			cs.updateSplayerStep(cs.getStep(playernum), playernum);			
+		}else {			
+			cs.updateBplayerStep(cs.getStep(playernum), playernum);
+		}
 		model.addAttribute("playernum",playernum); 
 		model.addAttribute("play",play);
 		
