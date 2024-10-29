@@ -971,3 +971,9 @@ insert into BASEBALL_GAME values('LG','삼성','2024-10-15','18:30','대구삼성라이�
 insert into BASEBALL_GAME values('삼성','LG','2024-10-17','18:30','잠실야구장',BASEBALL_GAME_SEQ.nextval,'포스트');
 insert into BASEBALL_GAME values('삼성','LG','2024-10-18','18:30','잠실야구장',BASEBALL_GAME_SEQ.nextval,'포스트');
 insert into BASEBALL_GAME values('LG','삼성','2024-10-20','14:00','대구삼성라이온즈파크',BASEBALL_GAME_SEQ.nextval,'포스트');
+
+insert into BASEBALL_GAME values('삼성','KIA','2024-10-21','18:30','기아챔피언스필드',BASEBALL_GAME_SEQ.nextval,'포스트');
+insert into BASEBALL_GAME values('삼성','KIA','2024-10-23','18:30','기아챔피언스필드',BASEBALL_GAME_SEQ.nextval,'포스트');
+insert into BASEBALL_GAME values('KIA','삼성','2024-10-25','18:30','대구삼성라이온즈파크',BASEBALL_GAME_SEQ.nextval,'포스트');
+insert into BASEBALL_GAME values('KIA','삼성','2024-10-26','14:00','대구삼성라이온즈파크',BASEBALL_GAME_SEQ.nextval,'포스트');
+insert into BASEBALL_GAME values('삼성','KIA','2024-10-28','18:30','기아챔피언스필드',BASEBALL_GAME_SEQ.nextval,'포스트');

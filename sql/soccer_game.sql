@@ -1,4 +1,4 @@
-#3¿ù
+--3¿ù
 insert into SOCCER_GAME values('¿ï»ê','Æ÷Ç×','2024-03-01','14:00','¿ï»ê¹®¼ö¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('ÀüºÏ','´ëÀü','2024-03-01','16:30','ÀüÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
@@ -32,7 +32,7 @@ insert into SOCCER_GAME values('¼ö¿ø','±èÃµ','2024-03-30','16:30','¼ö¿øÁ¾ÇÕ¿îµ¿À
 insert into SOCCER_GAME values('°­¿ø','¼­¿ï','2024-03-31','14:00','ÃáÃµ¼Û¾Ï½ºÆ÷Ã÷Å¸¿î',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('±¤ÁÖ','´ë±¸','2024-03-31','16:30','±¤ÁÖÃà±¸Àü¿ë±¸Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#4¿ù
+--4¿ù
 insert into SOCCER_GAME values('Æ÷Ç×','¼ö¿ø','2024-04-02','19:30','Æ÷Ç×½ºÆ¿¾ßµå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('´ëÀü','¿ï»ê','2024-04-02','19:30','´ëÀü¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
@@ -75,7 +75,7 @@ insert into SOCCER_GAME values('¿ï»ê','Á¦ÁÖ','2024-04-28','16:30','¿ï»ê¹®¼ö¿ùµåÄ
 insert into SOCCER_GAME values('´ëÀü','±èÃµ','2024-04-30','19:30','´ëÀü¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('¼ö¿ø','¼­¿ï','2024-04-30','19:30','¼ö¿øÁ¾ÇÕ¿îµ¿Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#5¿ù
+--5¿ù
 insert into SOCCER_GAME values('Á¦ÁÖ','±¤ÁÖ','2024-05-01','19:00','Á¦ÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('´ë±¸','¿ï»ê','2024-05-01','19:00','DGB´ë±¸ÀºÇàÆÄÅ©',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('ÀÎÃµ','ÀüºÏ','2024-05-01','19:00','ÀÎÃµÃà±¸Àü¿ë°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
@@ -124,7 +124,7 @@ insert into SOCCER_GAME values('ÀÎÃµ','¿ï»ê','2024-05-29','19:30','ÀÎÃµÃà±¸Àü¿ë°
 insert into SOCCER_GAME values('°­¿ø','ÀüºÏ','2024-05-29','19:30','ÃáÃµ¼Û¾Ï½ºÆ÷Ã÷Å¸¿î',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('¼ö¿ø','´ë±¸','2024-05-29','19:30','¼ö¿øÁ¾ÇÕ¿îµ¿Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#6¿ù
+--6¿ù
 insert into SOCCER_GAME values('¿ï»ê','ÀüºÏ','2024-06-01','16:30','¿ï»ê¹®¼ö¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
 insert into SOCCER_GAME values('¼ö¿ø','ÀÎÃµ','2024-06-01','19:00','¼ö¿øÁ¾ÇÕ¿îµ¿Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
@@ -166,7 +166,7 @@ insert into SOCCER_GAME values('Æ÷Ç×','¿ï»ê','2024-06-30','18:00','Æ÷Ç×½ºÆ¿¾ßµå'
 insert into SOCCER_GAME values('ÀÎÃµ','°­¿ø','2024-06-30','19:00','ÀÎÃµÃà±¸Àü¿ë°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('±¤ÁÖ','Á¦ÁÖ','2024-06-30','19:00','±¤ÁÖÃà±¸Àü¿ë±¸Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#7¿ù
+--7¿ù
 insert into SOCCER_GAME values('ÀÎÃµ','±èÃµ','2024-07-05','19:30','ÀÎÃµÃà±¸Àü¿ë°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('¼ö¿ø','¿ï»ê','2024-07-05','19:30','¼ö¿øÁ¾ÇÕ¿îµ¿Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
@@ -209,7 +209,7 @@ insert into SOCCER_GAME values('ÀÎÃµ','¼­¿ï','2024-07-27','19:00','ÀÎÃµÃà±¸Àü¿ë°
 
 insert into SOCCER_GAME values('Æ÷Ç×','±èÃµ','2024-07-28','19:00','Æ÷Ç×½ºÆ¿¾ßµå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#8¿ù
+--8¿ù
 insert into SOCCER_GAME values('ÀüºÏ','±¤ÁÖ','2024-08-09','19:30','ÀüÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('±èÃµ','°­¿ø','2024-08-09','19:30','±èÃµÁ¾ÇÕ¿îµ¿Àå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
@@ -239,7 +239,7 @@ insert into SOCCER_GAME values('±èÃµ','´ëÀü','2024-08-25','19:00','±èÃµÁ¾ÇÕ¿îµ¿À
 insert into SOCCER_GAME values('¿ï»ê','Æ÷Ç×','2024-08-31','19:00','¿ï»ê¹®¼ö¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('´ë±¸','ÀÎÃµ','2024-08-31','19:30','DGB´ë±¸ÀºÇàÆÄÅ©',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#9¿ù
+--9¿ù
 insert into SOCCER_GAME values('Á¦ÁÖ','±èÃµ','2024-09-01','18:00','Á¦ÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('ÀüºÏ','¼­¿ï','2024-09-01','19:00','ÀüÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('´ëÀü','±¤ÁÖ','2024-09-01','19:00','´ëÀü¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
@@ -271,7 +271,7 @@ insert into SOCCER_GAME values('±èÃµ','±¤ÁÖ','2024-09-28','19:00','±èÃµÁ¾ÇÕ¿îµ¿À
 
 insert into SOCCER_GAME values('¼­¿ï','¼ö¿ø','2024-09-29','16:30','¼­¿ï¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 
-#10¿ù
+--10¿ù
 insert into SOCCER_GAME values('¿ï»ê','±èÃµ','2024-10-06','15:00','¿ï»ê¹®¼ö¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('Æ÷Ç×','¼ö¿ø','2024-10-06','15:00','Æ÷Ç×½ºÆ¿¾ßµå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
 insert into SOCCER_GAME values('Á¦ÁÖ','´ëÀü','2024-10-06','15:00','Á¦ÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'Á¤±Ô');
@@ -296,7 +296,7 @@ insert into SOCCER_GAME values('´ëÀü','´ë±¸','2024-10-27','14:00','´ëÀü¿ùµåÄÅ°æ±
 insert into SOCCER_GAME values('Á¦ÁÖ','ÀüºÏ','2024-10-27','16:30','Á¦ÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
 insert into SOCCER_GAME values('ÀÎÃµ','±¤ÁÖ','2024-10-27','16:30','ÀÎÃµÃà±¸Àü¿ë°æ±âÀå',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
 
-#11¿ù
+--11¿ù
 insert into SOCCER_GAME values('¿ï»ê','°­¿ø','2024-11-01','19:30','¿ï»ê¹®¼ö¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
 
 insert into SOCCER_GAME values('ÀüºÏ','ÀÎÃµ','2024-11-02','14:00','ÀüÁÖ¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
@@ -321,46 +321,3 @@ insert into SOCCER_GAME values('±èÃµ','¼­¿ï','2024-11-23','14:00','±¤ÁÖÃà±¸Àü¿ë±
 insert into SOCCER_GAME values('´ëÀü','Á¦ÁÖ','2024-11-24','14:00','´ëÀü¿ùµåÄÅ°æ±âÀå',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
 insert into SOCCER_GAME values('´ë±¸','ÀÎÃµ','2024-11-24','14:00','DGB´ë±¸ÀºÇàÆÄÅ©',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
 insert into SOCCER_GAME values('±¤ÁÖ','ÀüºÏ','2024-11-24','14:00','±¤ÁÖÃà±¸Àü¿ë±¸Àå',SOCCER_GAME_SEQ.nextval,'ÆÄÀÌ³Î');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
