@@ -21,6 +21,8 @@ public class CommentController {
 	@RequestMapping(value = "/commentsave")
 	public String commentsave(HttpServletRequest request,PageDTO page, Model model) {
 		String id= request.getParameter("id");
+		String team= request.getParameter("team");
+		String part= request.getParameter("part");
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
 		String play = request.getParameter("play");
 		String writer= request.getParameter("writer");
@@ -28,7 +30,7 @@ public class CommentController {
 
 		CommentService cs = sqlsession.getMapper(CommentService.class);
 		int step= cs.getStep(playernum)+1;
-		cs.input(playernum,step,id,writer,comment);
+		cs.input(playernum,step,id,writer,team,part,comment);
 		if(play.equals("√‡±∏"))cs.updateSplayerStep(step, playernum);
 		else cs.updateBplayerStep(step, playernum) ;
 		

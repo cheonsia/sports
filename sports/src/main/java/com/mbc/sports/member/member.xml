@@ -44,7 +44,7 @@
 	
 	<update id="update">
 		update sportsmember set name=#{param2}, birth=#{param3}, tel=#{param4}, zzip_code=#{param5}, user_add1=#{param6}, user_add2=#{param7}, 
-		sport=#{param8}, team=#{param9}, voe=#{param10}, rr=#{param11} where id=#{param1}
+		email=#{param8}, sport=#{param9}, team=#{param10}, voe=#{param11}, rr=#{param12} where id=#{param1}
 	</update>
 	<update id="voeFileChange">
 		update sportsmember set voe=#{param2} where id=#{param1}

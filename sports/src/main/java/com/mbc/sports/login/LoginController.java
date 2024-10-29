@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -20,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mbc.sports.baseballdirect.BaseballDirectController;
 import com.mbc.sports.member.MemberDTO;
 import com.mbc.sports.member.MemberService;
 
@@ -28,7 +25,7 @@ import com.mbc.sports.member.MemberService;
 public class LoginController {
 	@Autowired
 	SqlSession sqlsession;
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 	//로그인 창 이동
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest request) {

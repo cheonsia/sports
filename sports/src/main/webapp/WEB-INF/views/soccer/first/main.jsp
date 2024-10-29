@@ -583,13 +583,13 @@
 								<a href="javascript:void(0)" onclick="soccerStrategyMove()">전략</a>
 								<a href="javascript:void(0)" onclick="soccerCalendarMove()">훈련 일지</a>
 							</c:if>
-							<a href="mypage?id=${member.id}">마이페이지</a>
+							<a href="mypage?id=${member.id}&sport=${member.sport}">마이페이지</a>
 						</c:if>						
 						<c:if test="${adminlogin}">
 							<p class="member_name_txt">관리자 페이지 입니다.</p>
 							<a href="memberList">회원 목록</a>
 							<a href="memberNoList">승인 요청</a>
-							<a href="javascript:void(0)">Q＆A</a>
+							<a href="boardMain">Q＆A</a>
 							<a href="soccerlike">축구 팀별 선호도</a>
 							<a href="agelike?play=축구">연령대별 축구&야구 선호도</a>
 						</c:if>

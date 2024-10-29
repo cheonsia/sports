@@ -8,7 +8,434 @@
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<meta charset="UTF-8">
-		<script>
+		<style type="text/css">
+			.side_rightbar_whole{
+				display: none;
+			}
+			#body{
+				width: 100%;
+			}
+			.main_section{
+				margin: 30px auto 0 auto;
+				overflow: auto;
+			}
+			h1{
+				margin: 0 auto 30px auto;
+			}
+			#footer{
+				width: calc(100% - 40px);
+			}
+			.header_team_logo{
+				display: none;
+			}
+			.updateform{
+				width: 100%;
+				max-width: 600px;
+				margin: 0 auto 0 29%;
+			}
+			.info_whole{
+				width: 100%;
+				max-width: 600px;
+				margin: 0 auto;
+				font-size: 14px;
+				line-height: 20px;
+			}
+			.info_whole *{
+				font-size: 14px;
+				line-height: 20px;
+			}
+			.info_whole div{
+				width: 100%;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: start;
+				align-content: center;
+			}
+			.info_whole div + div{
+				margin-top: 10px;
+			}
+			.info_whole label{
+				min-width: 120px;
+				width: 120px;
+				line-height: 36px;
+				margin: 0;
+			}
+			.info_whole div.adr label{
+				line-height: 118px;
+			}
+			.info_whole input,
+			.info_whole select{
+				display: block;
+				width: calc(100% - 20px);
+				max-width: 328px;
+				height: 34px;
+				border: 1px solid #e8e8e8;
+				border-radius: 5px;
+				cursor: url('./image/soccer/cursor/text.png'), auto !important;
+				padding: 0 10px;
+			}
+			#id, #pw, #pwcheck{
+				max-width: 170px;
+				margin: 0 10px 0 0;
+			}
+			button.btn.btn-pwCheck{
+				min-width: 120px;
+				width: 120px;
+				height: 34px;
+				border: 1px solid #006400;
+				border-radius: 5px;
+				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+				padding: 0;
+				outline: none!important;
+				background-color: #00640005;
+				box-shadow: none!important;
+			}
+			button.btn.btn-pwCheck:hover{
+				background-color: #00640015;
+			}
+			.info_whole select{
+				padding: 0;
+				max-width: 86px;
+				text-align: center;
+				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+			}
+			.info_whole select:focus{
+				outline: none;
+				border-color: #006400;
+			}
+			.info_whole select#day + p{
+				margin-right: 0;
+			}
+			.info_whole div + div.phone select,
+			.info_whole div + div.phone input{
+				width: 100%;
+				max-width: 88px;
+			}
+			.info_whole div + div.phone input{
+				max-width: 68px;
+			}
+			.info_whole input#mid_tel,
+			.info_whole input#end_tel{
+				text-align: center;
+				cursor: url('./image/soccer/cursor/text.png'), auto !important;
+			}
+			.info_whole input[type="text"]:focus,
+			.info_whole input[type="password"]:focus{
+				border-color: #006400;
+			}
+			.info_whole input[type="text"]:read-only,
+			.info_whole input[type="password"]:read-only{
+				background-color: #f9f9f9;
+				cursor: url('./image/soccer/cursor/cursor.png'), auto !important;
+			}
+			.info_whole input[type="text"]:read-only:focus{
+				border-color: #e8e8e8;
+			}
+			.info_whole div p{
+				min-width: 16px;
+				width: 16px;
+				font-size: 14px;
+				line-height: 36px;
+				margin: 0 10px 0 5px;
+			}
+			.info_whole div.phone p{
+				min-width: 11px;
+				width: 11px;
+				text-align: center;
+				margin: 0 10px;
+			}
+			.info_whole div div{
+				display: block;
+				width: 100%;
+			}
+			.info_whole div div.email_write{
+				display: flex;
+				width: 100%;
+			}
+			.info_whole div div.email_write p{
+				min-width: 13px;
+				width: 13px;
+				max-width: 13px;
+				text-align: center;
+				margin: 0 10px;
+			}
+			.info_whole div div.email_write select{
+				width: 100%;
+				max-width: 128px;
+				height: 34px;
+				text-align: center;
+				margin: 0 0 0 10px;
+				border: 1px solid #e8e8e8;
+				border-radius: 5px;
+			}
+			.info_whole div div.email_write select:focus{
+				border-color: #006400;
+			}
+			.info_whole div.part{
+				justify-content: space-between;
+			}
+			.info_whole div.part div{
+				display: flex;
+			}
+			.info_whole div.part div + div{
+				margin: 0 0 0 100px;
+				justify-content: end;
+			}
+			.info_whole div.part div + div label{
+				min-width: 60px;
+				width: 60px;
+				margin-right: 0;
+			}
+			.info_whole div.part div + div select{
+				max-width: 128px;
+			}
+			.info_whole div div img{
+				display: block;
+				width: 100%;
+				max-width: 190px;
+				height: auto;
+				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+				background-size: contain;
+			}
+			.info_whole div.adr{
+				padding: 0;
+				margin-bottom: 10px;
+			}
+			.info_whole div div.adr_inner{
+				display: flex;
+			}
+			.info_whole div div.adr_inner input + input{
+				min-width: 82px;
+				width: 82px;
+				height: 36px;
+				margin: 0 0 0 10px;
+				border: none;
+				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+				background-color: #4c693f;
+			}
+			.info_whole div div.adr_inner input + input:hover{
+				background-color: #4c693f80;
+			}
+			.info_whole div.adr input{
+				box-shadow: none;
+			}
+			.info_whole div.adr input#zipp_code_id{
+				max-width: 100px;
+				text-align: center;
+				background-color: #fff
+			}
+			.info_whole div.adr input[name="user_add1"]{
+				margin: 5px 0;
+				background-color: #eee;
+			}
+			.info_whole label + label{
+				min-width: auto;
+				width: auto;
+			}
+			.info_whole div input[type="radio"]{
+				display: none;
+			}
+			.info_whole div input[type="radio"] + span{
+				width: 80px;
+				max-width: 80px;
+				height: 34px;
+				line-height: 34px;
+				text-align: center;
+			}
+			.info_whole div input[type="radio"] + span:hover{
+				background: rgba(0,0,0,0.05);
+			}
+			.info_whole div input[type="radio"]:checked + span{
+				color: #f9f9f9;
+				border-color: #556B2F;
+				background: #556B2F;
+			}
+			.info_whole input#voe,
+			.info_whole input#rr{
+				width: 100%;
+				height: 30px;
+				line-height: 26px;
+				border: none;
+				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+			}
+			.info_whole input#voe::file-selector-button,
+			.info_whole input#rr::file-selector-button{
+				width: 100px;
+				height: 30px;
+				line-height: 26px;
+				border: 1px solid #e8e8e8;
+				border-radius: 5px;
+				margin-right: 10px;
+				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
+			}
+			#pw,
+			#pwcheck{
+				margin: 0 10px 0 10px;
+			}
+			.info_whole div.img,
+			.info_whole div.img div{
+				display: flex;
+			}
+			.info_whole div.img div{
+				width: 100%;
+				margin-top: 0;
+			}
+			.info_whole div.img div + div label{
+				min-width: 80px;
+				width: 80px;
+			}
+			.info_whole div + div > label + img{
+				display: block;
+				min-width: 80px;
+				width: 80px;
+				height: auto;
+				background-size: contain;
+			}
+			.info_whole div.btn_flex{
+				margin: 0 auto;
+				padding: 0;
+				justify-content: center;
+			}
+			.btn_flex input[type="button"]{
+				display: block;
+				width: 100%;
+				max-width: 118px;
+				height: 48px;
+				font-size: 15px;
+				line-height: 22px;
+				font-weight: 400;
+				color: #333;
+				border: 1px solid transparent;
+				background-color: transparent;
+				border-radius: 5px;
+				outline: none;
+				padding: 0;
+			}
+			.btn_flex input[type="button"] + input[type="button"]{
+				margin-left: 20px;
+			}
+			.btn_flex input[type="button"].prev{/*이전으로*/
+				border: 1px solid #4c693f;
+				background-color: white;
+				color: #4c693f;
+			}
+			.btn_flex input[type="button"].appro{/*수정*/
+				color: #f9f9f9;
+				background-color: #4c693f;
+			}
+			.btn_flex input[type="button"]:hover{
+				color: #f9f9f9;
+				background-color: #4c693f80;
+			}
+			.info_whole div + div.memberout{
+				margin: -20px auto 0 auto;
+				justify-content: end;
+			}
+			.info_whole div + div.memberout button{
+				font-size: 14px;
+				line-height: 20px;
+				font-weight: 500;
+				color: #00640080;
+				background-color: transparent;
+				border: none;
+				outline: none;
+				padding-bottom: 1px;
+				border-bottom: 1px solid transparent;
+			}
+			.info_whole div + div.memberout button:hover{
+				color: #006400;
+				border-color: #006400;
+			}
+			.modal-header{
+				display: flex;
+				justify-content: space-between;
+			}
+			.modal-header:before,
+			.modal-header:after,
+			.modal-footer:before,
+			.modal-footer:after{
+				content: inherit;
+			}
+			.modal-header .close{
+				display: block;
+				min-width: 30px;
+				width: 30px;
+				height: 24px;
+				margin: 0;
+				opacity: 1;
+			}
+			.modal-header .close span{
+				display: block;
+				width: 100%;
+				height: auto;
+				font-size: 40px;
+				color: #777;
+				background-size: contain;
+			}
+			.modal-header .close span:hover{
+				color: #333;
+			}
+			.modal-title{
+				font-size: 16px;
+				line-height: 24px;
+			}
+			.modal-body .pw1{
+				display: flex;
+				flex-wrap: nowrap;
+			}
+			.modal-body .pw p{
+				font-size: 15px;
+				line-height: 22px;
+				font-weight: 500;
+			}
+			.modal-body .pw1 input#pw,
+			.modal-body .pw1 input#pwcheck{
+				display: flex;
+				align-items: center;
+				width: 100%;
+				max-width: none;
+				height: 34px;
+				margin: 8px auto 0 auto;
+				padding: 0 10px;
+				border: 1px solid #e8e8e8;
+				border-radius: 5px;
+			}
+			.modal-body .pw1 input#pw:focus,
+			.modal-body .pw1 input#pwcheck:focus{
+				border-color: darkgreen;
+				box-shadow: 0 0 20px rgba(0,100,0,0.15);
+			}
+			.modal-body .pw1 i{
+				margin: auto auto auto 10px;
+				color: darkgreen;
+			}
+			.modal-footer{
+				display: flex;
+				justify-content: center;
+			}
+			.modal-footer button{
+				width: 80px;
+				outline: none;
+			}
+			.modal-footer button.btn-secondary{
+				color: #006400;
+				border-color: #006400;
+				background-color: transparent;
+			}
+			.modal-footer button.btn-secondary:hover{
+				color: #0c400c;
+				border-color: #0c400c;
+				background-color: #00640010;
+			}
+			.modal-footer button.btn-primary{
+				color: #f9f9f9;
+				background-color: #006400;
+			}
+			.modal-footer button.btn-primary:hover{
+				background-color: #0c400c;
+			}
+		</style>
+				<script>
 			$(document).ready(function(){
 				//생년월일 가져와서 선택
 				var year = $('#birth').val().substr(0,4);
@@ -288,433 +715,6 @@
 				}
 			}
 		</script>
-		<style type="text/css">
-			.side_rightbar_whole{
-				display: none;
-			}
-			#body{
-				width: 100%;
-			}
-			.main_section{
-				margin: 30px auto 0 auto;
-				overflow: auto;
-			}
-			h1{
-				margin: 0 auto 40px auto;
-			}
-			#footer{
-				width: calc(100% - 40px);
-			}
-			.header_team_logo{
-				display: none;
-			}
-			.updateform{
-				width: 100%;
-				max-width: 600px;
-				margin: 40px auto 50px 29%;
-			}
-			.info_whole{
-				width: 100%;
-				max-width: 600px;
-				margin: 0 auto;
-				font-size: 14px;
-				line-height: 20px;
-			}
-			.info_whole *{
-				font-size: 14px;
-				line-height: 20px;
-			}
-			.info_whole div{
-				width: 100%;
-				display: flex;
-				flex-wrap: nowrap;
-				justify-content: start;
-				align-content: center;
-			}
-			.info_whole div + div{
-				margin-top: 10px;
-			}
-			.info_whole label{
-				min-width: 120px;
-				width: 120px;
-				line-height: 36px;
-				margin: 0;
-			}
-			.info_whole div.adr label{
-				line-height: 118px;
-			}
-			.info_whole input,
-			.info_whole select{
-				display: block;
-				width: calc(100% - 20px);
-				max-width: 328px;
-				height: 34px;
-				border: 1px solid #e8e8e8;
-				border-radius: 5px;
-				cursor: url('./image/soccer/cursor/text.png'), auto !important;
-				padding: 0 10px;
-			}
-			#id, #pw, #pwcheck{
-				max-width: 170px;
-				margin: 0 10px 0 0;
-			}
-			button.btn.btn-pwCheck{
-				min-width: 120px;
-				width: 120px;
-				height: 34px;
-				border: 1px solid #006400;
-				border-radius: 5px;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-				padding: 0;
-				outline: none!important;
-				background-color: #00640005;
-				box-shadow: none!important;
-			}
-			button.btn.btn-pwCheck:hover{
-				background-color: #00640015;
-			}
-			.info_whole select{
-				padding: 0;
-				max-width: 86px;
-				text-align: center;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-			}
-			.info_whole select:focus{
-				outline: none;
-				border-color: #006400;
-			}
-			.info_whole select#day + p{
-				margin-right: 0;
-			}
-			.info_whole div + div.phone select,
-			.info_whole div + div.phone input{
-				width: 100%;
-				max-width: 88px;
-			}
-			.info_whole div + div.phone input{
-				max-width: 68px;
-			}
-			.info_whole input#mid_tel,
-			.info_whole input#end_tel{
-				text-align: center;
-				cursor: url('./image/soccer/cursor/text.png'), auto !important;
-			}
-			.info_whole input[type="text"]:focus,
-			.info_whole input[type="password"]:focus{
-				border-color: #006400;
-			}
-			.info_whole input[type="text"]:read-only,
-			.info_whole input[type="password"]:read-only{
-				background-color: #f9f9f9;
-				cursor: url('./image/soccer/cursor/cursor.png'), auto !important;
-			}
-			.info_whole input[type="text"]:read-only:focus{
-				border-color: #e8e8e8;
-			}
-			.info_whole div p{
-				min-width: 16px;
-				width: 16px;
-				font-size: 14px;
-				line-height: 36px;
-				margin: 0 10px 0 5px;
-			}
-			.info_whole div.phone p{
-				min-width: 11px;
-				width: 11px;
-				text-align: center;
-				margin: 0 10px;
-			}
-			.info_whole div div{
-				display: block;
-				width: 100%;
-			}
-			.info_whole div div.email_write{
-				display: flex;
-				width: 100%;
-			}
-			.info_whole div div.email_write p{
-				min-width: 13px;
-				width: 13px;
-				max-width: 13px;
-				text-align: center;
-				margin: 0 10px;
-			}
-			.info_whole div div.email_write select{
-				width: 100%;
-				max-width: 128px;
-				height: 34px;
-				text-align: center;
-				margin: 0 0 0 10px;
-				border: 1px solid #e8e8e8;
-				border-radius: 5px;
-			}
-			.info_whole div div.email_write select:focus{
-				border-color: #006400;
-			}
-			.info_whole div.part{
-				justify-content: space-between;
-			}
-			.info_whole div.part div{
-				display: flex;
-			}
-			.info_whole div.part div + div{
-				margin: 0 0 0 100px;
-				justify-content: end;
-			}
-			.info_whole div.part div + div label{
-				min-width: 60px;
-				width: 60px;
-				margin-right: 0;
-			}
-			.info_whole div.part div + div select{
-				max-width: 128px;
-			}
-			.info_whole div div img{
-				display: block;
-				width: 100%;
-				max-width: 190px;
-				height: auto;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-				background-size: contain;
-			}
-			.info_whole div.adr{
-				padding: 0;
-				margin-bottom: 10px;
-			}
-			.info_whole div div.adr_inner{
-				display: flex;
-			}
-			.info_whole div div.adr_inner input + input{
-				min-width: 82px;
-				width: 82px;
-				height: 36px;
-				margin: 0 0 0 10px;
-				border: none;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-				background-color: #4c693f;
-			}
-			.info_whole div div.adr_inner input + input:hover{
-				background-color: #4c693f80;
-			}
-			.info_whole div.adr input{
-				box-shadow: none;
-			}
-			.info_whole div.adr input#zipp_code_id{
-				max-width: 100px;
-				text-align: center;
-				background-color: #fff
-			}
-			.info_whole div.adr input[name="user_add1"]{
-				margin: 5px 0;
-				background-color: #eee;
-			}
-			.info_whole label + label{
-				min-width: auto;
-				width: auto;
-			}
-			.info_whole div input[type="radio"]{
-				display: none;
-			}
-			.info_whole div input[type="radio"] + span{
-				width: 80px;
-				max-width: 80px;
-				height: 34px;
-				line-height: 34px;
-				text-align: center;
-			}
-			.info_whole div input[type="radio"] + span:hover{
-				background: rgba(0,0,0,0.05);
-			}
-			.info_whole div input[type="radio"]:checked + span{
-				color: #f9f9f9;
-				border-color: #556B2F;
-				background: #556B2F;
-			}
-			.info_whole input#voe,
-			.info_whole input#rr{
-				width: 100%;
-				height: 30px;
-				line-height: 26px;
-				border: none;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-			}
-			.info_whole input#voe::file-selector-button,
-			.info_whole input#rr::file-selector-button{
-				width: 100px;
-				height: 30px;
-				line-height: 26px;
-				border: 1px solid #e8e8e8;
-				border-radius: 5px;
-				margin-right: 10px;
-				cursor: url('./image/soccer/cursor/pointer.png'), auto !important;
-			}
-			#pw,
-			#pwcheck{
-				margin: 0 10px 0 10px;
-			}
-			.info_whole div.img,
-			.info_whole div.img div{
-				display: flex;
-			}
-			.info_whole div.img div{
-				width: 100%;
-				margin-top: 0;
-			}
-			.info_whole div.img div + div label{
-				min-width: 80px;
-				width: 80px;
-			}
-			.info_whole div + div > label + img{
-				display: block;
-				min-width: 80px;
-				width: 80px;
-				height: auto;
-				background-size: contain;
-			}
-			.info_whole div.btn_flex{
-				margin: 60px auto 0 auto;
-				padding: 0;
-				justify-content: center;
-			}
-			.btn_flex input[type="button"]{
-				display: block;
-				width: 100%;
-				max-width: 118px;
-				height: 48px;
-				font-size: 15px;
-				line-height: 22px;
-				font-weight: 400;
-				color: #333;
-				border: 1px solid transparent;
-				background-color: transparent;
-				border-radius: 5px;
-				outline: none;
-				padding: 0;
-			}
-			.btn_flex input[type="button"] + input[type="button"]{
-				margin-left: 20px;
-			}
-			.btn_flex input[type="button"].prev{/*이전으로*/
-				border: 1px solid #4c693f;
-				background-color: white;
-				color: #4c693f;
-			}
-			.btn_flex input[type="button"].appro{/*수정*/
-				color: #f9f9f9;
-				background-color: #4c693f;
-			}
-			.btn_flex input[type="button"]:hover{
-				color: #f9f9f9;
-				background-color: #4c693f80;
-			}
-			.info_whole div + div.memberout{
-				margin: 30px auto 0 auto;
-				justify-content: end;
-			}
-			.info_whole div + div.memberout button{
-				font-size: 14px;
-				line-height: 20px;
-				font-weight: 500;
-				color: #00640080;
-				background-color: transparent;
-				border: none;
-				outline: none;
-				padding-bottom: 1px;
-				border-bottom: 1px solid transparent;
-			}
-			.info_whole div + div.memberout button:hover{
-				color: #006400;
-				border-color: #006400;
-			}
-			.modal-header{
-				display: flex;
-				justify-content: space-between;
-			}
-			.modal-header:before,
-			.modal-header:after,
-			.modal-footer:before,
-			.modal-footer:after{
-				content: inherit;
-			}
-			.modal-header .close{
-				display: block;
-				min-width: 30px;
-				width: 30px;
-				height: 24px;
-				margin: 0;
-				opacity: 1;
-			}
-			.modal-header .close span{
-				display: block;
-				width: 100%;
-				height: auto;
-				font-size: 40px;
-				color: #777;
-				background-size: contain;
-			}
-			.modal-header .close span:hover{
-				color: #333;
-			}
-			.modal-title{
-				font-size: 16px;
-				line-height: 24px;
-			}
-			.modal-body .pw1{
-				display: flex;
-				flex-wrap: nowrap;
-			}
-			.modal-body .pw p{
-				font-size: 15px;
-				line-height: 22px;
-				font-weight: 500;
-			}
-			.modal-body .pw1 input#pw,
-			.modal-body .pw1 input#pwcheck{
-				display: flex;
-				align-items: center;
-				width: 100%;
-				max-width: none;
-				height: 34px;
-				margin: 8px auto 0 auto;
-				padding: 0 10px;
-				border: 1px solid #e8e8e8;
-				border-radius: 5px;
-			}
-			.modal-body .pw1 input#pw:focus,
-			.modal-body .pw1 input#pwcheck:focus{
-				border-color: darkgreen;
-				box-shadow: 0 0 20px rgba(0,100,0,0.15);
-			}
-			.modal-body .pw1 i{
-				margin: auto auto auto 10px;
-				color: darkgreen;
-			}
-			.modal-footer{
-				display: flex;
-				justify-content: center;
-			}
-			.modal-footer button{
-				width: 80px;
-				outline: none;
-			}
-			.modal-footer button.btn-secondary{
-				color: #006400;
-				border-color: #006400;
-				background-color: transparent;
-			}
-			.modal-footer button.btn-secondary:hover{
-				color: #0c400c;
-				border-color: #0c400c;
-				background-color: #00640010;
-			}
-			.modal-footer button.btn-primary{
-				color: #f9f9f9;
-				background-color: #006400;
-			}
-			.modal-footer button.btn-primary:hover{
-				background-color: #0c400c;
-			}
-		</style>
 	</head>
 	<body>
 		<h1>'${my.name}'님의 정보 수정</h1>
@@ -827,7 +827,7 @@
 							<option value="yahoo.com">yahoo.com</option>
 						</select>
 					</div>
-					<input type="hidden" id="email" name="email" value="${my.email}">
+					<input type="hidden" id="email" name="email">
 				</div>
 				<div class="part">
 					<div>

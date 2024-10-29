@@ -453,6 +453,7 @@
 				<input type="button" class="inquiry" value="문의하기" onclick="location.href='boardInput'"/>
 			</div>
 			<div class="page">
+				<c:if test="${empty list}"><b><span>1</span></b></c:if>
 				<c:if test="${paging.startPage!=1}">
 			      <a href="boardMain?nowPage=${paging.startPage-1}&cntPerPage=${paging.cntPerPage}"></a>
 				</c:if>   
@@ -463,7 +464,7 @@
 		            	</c:when>   
 		            	<c:when test="${p != paging.nowPage}">
 		               		<a href="boardMain?nowPage=${p}&cntPerPage=${paging.cntPerPage}">${p}</a>
-		            	</c:when>   
+		            	</c:when> 
 		         	</c:choose>
 		      	</c:forEach>
 				<c:if test="${paging.endPage != paging.lastPage}">
@@ -483,7 +484,7 @@
 					</tr>
 				<c:choose>
 					<c:when test="${empty list}">
-						<tr><td colspan="3">아직 게시글이 없습니다.</td></tr>
+						<tr><c:if test="${adminlogin}"><td colspan="6"></c:if><c:if test="${!adminlogin}"><td colspan="5"></c:if>아직 게시글이 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list}" var="li">

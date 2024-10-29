@@ -572,14 +572,14 @@
 								<a href="javascript:void(0)" onclick="baseballStrategyMove()">전략</a>
 								<a href="javascript:void(0)" onclick="baseballCalendarMove()">훈련 일지</a>
 							</c:if>
-							<a href="mypage?id=${member.id}">마이페이지</a>
+							<a href="mypage?id=${member.id}&sport=${member.sport}">마이페이지</a>
 						</c:if>
 						<!--로그인 후(관리자)-->
 						<c:if test="${adminlogin}">
 							<p class="member_name_txt">관리자 계정</p>
 							<a href="memberList">회원 목록</a>
 							<a href="memberNoList">회원 요청</a>
-							<a href="javascript:void(0)">문의 답변</a>
+							<a href="boardMain">문의 답변</a>
 							<a href="baseballlike">야구 팀별 선호도</a>
 							<a href="agelike?play=야구">연령대별 축구&야구 선호도</a>
 						</c:if>

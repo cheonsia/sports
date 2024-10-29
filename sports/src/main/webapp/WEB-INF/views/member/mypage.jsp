@@ -298,9 +298,9 @@
 				// 내 정보 수정 버튼 클릭 시 모달 창 표시
 				$("btn_updateModal").click(function (){
 					$("#updateModal").modal("show");
-					$("#pw").focus();
 				});
 				$("#updateModal").on("shown.bs.modal", function (){		
+					$("#pw").val("");
 					$("#pw").focus();
 				});
 				//비밀번호 보기 구현
@@ -314,20 +314,15 @@
 						.prev('input').attr('type','password');
 					}
 				});
-				//비밀번호 확인(유효성 검사,AJAX) 후 마이페이지 수정창으로 이동
+				//비밀번호 확인 후 마이페이지 수정창으로 이동
 				$("#mypageupdate").click(function(){
-					var vpw=/^[a-zA-Z0-9]{6,16}$/;
 					var id=$('#id').val();
 					var pw=$('#pw').val();
 					
 					if(pw==""){
-						alertShow('비밀번호 입력오류','비밀번호를 입력해주세요.');
+						alertShow('오류','비밀번호를 입력해주세요.');
 						return false;
 					}
-					else if(!vpw.test(pw)){
-						alertShow('비밀번호 입력오류','비밀번호는 영문자와 숫자로만 6~16글자 이내로만 작성해야합니다.');
-						return false;
-					}			
 					$.ajax({
 						type:"post",
 						url:"pwCheck",
@@ -339,7 +334,7 @@
 								location.href="memberupdate?id="+id;	
 							}
 							else{
-								alertShow('비밀번호 확인',"비밀번호가 다릅니다 다시 입력해주세요.");
+								alertShow('오류',"비밀번호가 다릅니다. 다시 입력해주세요.");
 							}
 						},
 						error:function(){
@@ -445,7 +440,7 @@
 				</c:if>
 			</div>
 			<div class="btn_flex">
-				<button type="button" class="prev" onclick="javascript:history.go(-1)">이전으로</button>
+				<button type="button" class="prev" onclick="location.href='main'">메인으로</button>
 				<c:choose>
 					<c:when test="${adminlogin}">
 					 	<c:if test="${my.inputaccess == 'no'}">

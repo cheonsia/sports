@@ -7,6 +7,7 @@
       <meta charset="UTF-8">
       <title>하이라이트</title>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <style type="text/css">
          h1{
             margin-top: 0px;
@@ -59,55 +60,64 @@
       </style>
    </head>
    <body>
-   <input type="hidden" id="name" value="${name}">
-   <p style="text-align: center;">영상은 최신 순으로 50개만 보여집니다.</p>
-   <h1>파일을 로드하는데 시간이 걸릴 수 있습니다 :)</h1>
-   <div class="iframe_whole"></div>
+      <input type="hidden" id="team_area" value="">
+      <input type="hidden" id="name" value="${name}">
+      <p style="text-align: center;">영상은 최신 순으로 50개만 보여집니다.</p>
+      <h1>파일을 로드하는데 시간이 걸릴 수 있습니다 :)</h1>
+      <div class="iframe_whole"></div>
+   </body>
    <script type="text/javascript">
-   $(document).ready(function() {
-      var name =$('#name').val()
-      var 키 = '키 입력';
-      if(name=='ALL') {
-         var 채널아이디 = 'UCak5ZEX4BjijJcf7fdppuIQ';
-      }else if(name=='kangwon') {
-         var 채널아이디 = 'UCuLjoid8kKTKITvkUP94kJA';
-      } else if (name=='gwangju') {
-         var 채널아이디 = 'UCPLHmQevKu4uTiOh1UjoL4w';
-      } else if (name=='gimcheon') {
-         var 채널아이디 = 'UCSZ-CvpbBm6JnZnWYmiNrlQ';
-      } else if (name=='daegu') {
-         var 채널아이디 = 'UCI50QJRCvW1NxwbjB57rGVA';
-      } else if (name=='daejeon') {
-         var 채널아이디 = 'UCo2pmNaOCgv26neeCAkLj9w';
-      } else if (name=='seoul') {
-         var 채널아이디 = 'UCXtWUl6qmPtibHVKIXbZlcA';
-      } else if (name=='suwon') {
-         var 채널아이디 = 'UCHPiDeQQyVcYe-nhyUanSWg';
-      } else if (name=='ulsan') {
-         var 채널아이디 = 'UCZ8lUWJ0_vZZf-SiNedia7Q';
-      } else if (name=='incheon') {
-         var 채널아이디 = 'UCGA9gUrYCb4hRk_wHBzB_nQ';
-      } else if (name=='jeonbuk') {
-         var 채널아이디 = 'UCKxMSkJHBIpn5b4vUQHYliQ';
-      } else if (name=='jeju') {
-         var 채널아이디 = 'UCQfQeoiJTN2EVqde4_0PlUA';
-      } else if (name=='pohang') {
-         var 채널아이디 = 'UCOZQIw1I6ixjQZ_va_eCn7w';
-      }
-        $.ajax({
+      $(document).ready(function(){
+         var win_pname = window.location.search;
+         var win_bname = win_pname.split('&');
+         var win_tname = win_bname[0].slice(6);
+         $('#soccer_area').val(win_tname);
+         $('#team_area').val(win_tname);
+         $('.header_logo_inner a').removeClass('clicked_on');
+         $('#soccer_'+win_tname).addClass('clicked_on');
+         var name = $('#name').val();
+         var 키 = '';
+         if(name=='ALL') {
+            var 채널아이디 = 'UCak5ZEX4BjijJcf7fdppuIQ';
+         }else if(name=='kangwon') {
+            var 채널아이디 = 'UCuLjoid8kKTKITvkUP94kJA';
+         } else if (name=='gwangju') {
+            var 채널아이디 = 'UCPLHmQevKu4uTiOh1UjoL4w';
+         } else if (name=='gimcheon') {
+            var 채널아이디 = 'UCSZ-CvpbBm6JnZnWYmiNrlQ';
+         } else if (name=='daegu') {
+            var 채널아이디 = 'UCI50QJRCvW1NxwbjB57rGVA';
+         } else if (name=='daejeon') {
+            var 채널아이디 = 'UCo2pmNaOCgv26neeCAkLj9w';
+         } else if (name=='seoul') {
+            var 채널아이디 = 'UCXtWUl6qmPtibHVKIXbZlcA';
+         } else if (name=='suwon') {
+            var 채널아이디 = 'UCHPiDeQQyVcYe-nhyUanSWg';
+         } else if (name=='ulsan') {
+            var 채널아이디 = 'UCZ8lUWJ0_vZZf-SiNedia7Q';
+         } else if (name=='incheon') {
+            var 채널아이디 = 'UCGA9gUrYCb4hRk_wHBzB_nQ';
+         } else if (name=='jeonbuk') {
+            var 채널아이디 = 'UCKxMSkJHBIpn5b4vUQHYliQ';
+         } else if (name=='jeju') {
+            var 채널아이디 = 'UCQfQeoiJTN2EVqde4_0PlUA';
+         } else if (name=='pohang') {
+            var 채널아이디 = 'UCOZQIw1I6ixjQZ_va_eCn7w';
+         }
+         $.ajax({
             type: "GET",
             dataType: "json",
             url: "https://www.googleapis.com/youtube/v3/search?part=id&maxResults=50&order=date&channelId="+채널아이디+"&type=video&key="+키,
             contentType : "application/json",
             success : function(data) {
-                data.items.forEach(function(element, index) {
-                    $('.iframe_whole').append('<iframe height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-                });
+               data.items.forEach(function(element, index) {
+                  $('.iframe_whole').append('<iframe height="315" src="https://www.youtube.com/embed/'+element.id.videoId+'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+               });
             },
             complete : function(data) {},
             error : function(xhr, status, error) {}
-        });
-   });
+         });
+      });
    </script>
-   </body>
 </html>
+

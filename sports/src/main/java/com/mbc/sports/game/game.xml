@@ -41,7 +41,6 @@
     </update>
     
     <!-- 야구 -->
-    
     <insert id="Bgameinsert">
     	insert into baseball_game values(#{param1},#{param2},#{param3},#{param4},#{param5},baseball_game_seq.nextval)
     </insert>

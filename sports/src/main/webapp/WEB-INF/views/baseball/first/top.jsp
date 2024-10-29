@@ -87,20 +87,21 @@
 				});;
 				$('.common_alert_whole').hide();
 			}
-			$(document).ready(function(){//제이쿼리 필수 준비
-				var normallogin = $("#normallogin").val();
-				var superlogin = $("#superlogin").val();
-				var sportstype = `${sportstype}`;
-				if(sportstype == '야구'){
-				 	if(normallogin=='true' || superlogin=='true'){
-				 		var team = $("#memberTeam").val();
-						teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
-						sessionSet(teamEng,team);
-					}
-				}else{
-					sessionSet("ALL","ALL");
-				}
-				$('.side_rightbar_flex a').on('click', function(){
+	         $(document).ready(function(){//제이쿼리 필수 준비
+	             var normallogin = $("#normallogin").val();
+	             var superlogin = $("#superlogin").val();
+	             var memsports = `${member.sport}`;
+	             var sportstype = `${sports}`;
+	             if(memsports == '야구'){
+	                 if(normallogin=='true' || superlogin=='true'){
+	                    var team = $("#memberTeam").val();
+	                   teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
+	                   sessionSet(teamEng,team);
+	                }
+	             }else{
+	                sessionSet("ALL","ALL");
+	             }				
+	             $('.side_rightbar_flex a').on('click', function(){
 					if($(this).hasClass('side_menu_click')){
 						$(this).toggleClass("side_menu_on");
 				 	}
@@ -186,7 +187,7 @@
 					 		</c:when>
 					 		<c:when test="${normallogin || superlogin}">
 						 		<input type="hidden" id="memberTeam" value="${member.team}">
-								<a href="mypage?id=${member.id}">${member.name}님(${member.part})</a>
+								<a href="mypage?id=${member.id}&sport=${member.sport}">${member.name}님(${member.part})</a>
 								<a href="logout">로그아웃</a>
 					 		</c:when>
 					 		<c:when test="${adminlogin}">
@@ -212,7 +213,7 @@
 									<li>
 										<a href="javascript:void(0)" onclick="playMove()">- 선수 정보</a>
 									</li>
-									<c:if test="${superlogin||adminlogin}">
+									<c:if test="${superlogin && member.sport == '야구' ||adminlogin}">
 										<li>
 											<a href="baseballplayerinput?play=야구" onclick="playMove()">- 선수 등록</a>
 										</li>
@@ -240,7 +241,7 @@
 								<a href="baseballgoods" class="side_menu_title">굿즈</a>
 							</li>
 						</ul>
-						<c:if test="${adminlogin || superlogin && sports == '야구'}">
+						<c:if test="${adminlogin || superlogin && member.sport == '야구'}">
 							<ul>
 								<li>
 									<a href="javascript:void(0)" class="side_menu_title" onclick="baseballStrategyMove()">전략</a>

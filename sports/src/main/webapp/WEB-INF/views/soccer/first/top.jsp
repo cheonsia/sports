@@ -21,8 +21,6 @@
 				}
 			}
 			function sessionSet(eng, kor){//top 속 축구 로고 클릭 시
-				$('#soccer_area').attr("value", eng);//soccer_area 에 data-id 값 할당
-				$('#side_rightbar_txt').val(kor);//side_rightbar_txt 에 data-type 값 할당
 				$.ajax({//동기화 자세한 설명은 패스한다. 모르시면 안 돼요...ㅠㅠ
 					type: "post",
 					url: "areaClick",
@@ -34,6 +32,10 @@
 						alertShow('로딩 중','로딩 중입니다.<br/>잠시만 기다려주세요.');
 					},
 				});
+			}
+			function iconSet(eng, kor){
+				$('#soccer_area').attr("value", eng);//soccer_area 에 data-id 값 할당
+				$('#side_rightbar_txt').val(kor);//side_rightbar_txt 에 data-type 값 할당
 				$('.header_logo_inner a').removeClass('clicked_on');
 				$('#soccer_'+eng).addClass('clicked_on');
 			}
@@ -41,9 +43,11 @@
 				var ths_id = ths.dataset.id;//각 축구 로고 속 data-id 값을 가져옴
 				var ths_type = ths.dataset.type;//각 축구 로고 속 data-type 값을 가져옴
 		  		sessionSet(ths_id, ths_type);
+
 				var ths_href = window.location.pathname;
 				if(ths_href.includes('playerinput')||ths_href.includes('detail')||ths_href.includes('playerdelete')||ths_href.includes('playerupdate')){ths_href="selectTeam";}
-				window.location.replace(ths_href + "?name=" + ths_id + "&play=축구");
+				else if(ths_href.includes('soccer_highlight')){ths_href="soccer_highlight";}
+				window.location.replace(ths_href + "?name=" + ths_id + "&play=축구");		  		
 			}
 			function playMove(){ //좌측 사이드메뉴 선수 목록 클릭 시
 				var area_val = $('#soccer_area').val();//soccer_area 값 가져옴
@@ -99,19 +103,21 @@
 		 			}commonHide();
 		 		}
 		 	};
-			$(document).ready(function(){//제이쿼리 필수 준비
-		 		var normallogin = $("#normallogin").val();
-		 		var superlogin = $("#superlogin").val();
-				var sportstype = `${sportstype}`;
-				if(sportstype == '축구'){
-				  	if(normallogin=='true' || superlogin=='true'){
-			  			var team = $("#memberTeam").val();
-				  		teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
-						sessionSet(teamEng,team);
-					}
-				}else{
-					sessionSet("ALL","ALL");
-				}
+	         $(document).ready(function(){//제이쿼리 필수 준비
+	             var normallogin = $("#normallogin").val();
+	             var superlogin = $("#superlogin").val();
+	             var memsports = `${member.sport}`;
+	            var sportstype = `${sports}`;
+	            if(memsports == '축구'){
+	                 if(normallogin=='true' || superlogin=='true'){
+	                    var team = $("#memberTeam").val();
+	                    teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
+	                  	iconSet(teamEng,team);
+	               }
+	            }else{
+	               iconSet("ALL","ALL");
+	            }
+
 				$('.side_rightbar_flex a').on('click', function(){
 					if($(this).hasClass('side_menu_click')){
 						$(this).toggleClass("side_menu_on");
@@ -198,7 +204,7 @@
 							</c:when>
 							<c:when test="${normallogin || superlogin}">
 								<input type="hidden" id="memberTeam" value="${member.team}">
-								<a href="mypage?id=${member.id}">${member.name}님(${member.part})</a>
+								<a href="mypage?id=${member.id}&sport=${member.sport}">${member.name}님(${member.part})</a>
 								<a href="logout">로그아웃</a>
 							</c:when>
 							<c:when test="${adminlogin}">
@@ -224,7 +230,7 @@
 										<li>
 											<a href="javascript:void(0)" onclick="playMove()">- 선수 정보</a>
 										</li>
-										<c:if test="${superlogin || adminlogin}">
+										<c:if test="${superlogin && member.sport == '축구' || adminlogin}">
 											<li>
 												<a href="playerinput?play=축구" onclick="playMove()">- 선수 등록</a>
 											</li>
@@ -253,7 +259,7 @@
 									<a href="soccergoods" class="side_menu_title">굿즈</a>
 								</li>
 							</ul>
-							<c:if test="${adminlogin || superlogin && sports == '축구'}">
+							<c:if test="${adminlogin || superlogin && member.sport == '축구'}">
 								<ul>
 									<li>
 										<a href="javascript:void(0)" class="side_menu_title" onclick="soccerStrategyMove()">전략</a>

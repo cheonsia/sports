@@ -23,7 +23,7 @@ public interface MemberService {
 	void pwupdate(String id, String pw);
 
 	void update(String id, String name, String birth, String tel, String zipp_code, String user_add1, String user_add2,
-			String sport, String team, String voe_fname, String rr_fname);
+			String sport, String team, String voe_fname, String rr_fname, String rr);
 	
 	int countmember();
 	

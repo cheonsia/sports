@@ -306,6 +306,9 @@
 				font-weight: bold;
 				margin-bottom: 10px;
 			}
+			.eachResult .p0 img{
+				width: 28px;
+			}
 			.commentvalue{
 				display: flex;
 				flex-wrap: wrap;
@@ -727,7 +730,9 @@
 				<div class="comment">
 					<c:choose>
 						<c:when test="${normallogin || superlogin}">
-							<input type="hidden" name="id" value="${member.id}"> 
+							<input type="hidden" name="id" value="${member.id}">
+							<input type="hidden" name="team" value="${member.team}">
+							<input type="hidden" name="part" value="${member.part}">
 							<input class="writer" type="text" name="writer" value="${member.name}" placeholder="작성자" readonly> 
 							<div class="comment_flex">
 								<input type="text" name="comment" placeholder=" ${dto.pname} 선수에게 응원 메세지 남기기😊" required> 
@@ -735,6 +740,8 @@
 							</div>
 						</c:when>
 						<c:when test="${adminlogin}">
+							<input type="hidden" name="team" value="관리자">
+							<input type="hidden" name="part" value="ALL">
 							<input type="hidden" name="id" value="★"> 
 							<input class="writer" type="text" name="writer" value="관리자" readonly> 
 							<div class="comment_flex">
@@ -762,7 +769,19 @@
 					<c:if test="${dto.step!=0}">
 						<c:forEach items="${clist}" var="cli">
 							<div class="eachResult">				
-								<p class="p0"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.id}(${fn:substring(cli.writer, 0, cli.writer.length()-2)}*${fn:substring(cli.writer, cli.writer.length()-1, cli.writer.length())})</p>
+								<p class="p0">
+								<c:choose>
+									<c:when test="${cli.team == '관리자'}">
+										<span class="glyphicon glyphicon-user"></span>
+									</c:when>
+									<c:when test="${dto.play == '축구'}">
+										<img src="./image/soccer/logo/${cli.team}.png">
+									</c:when>
+									<c:when test="${dto.play == '야구'}">
+										<img src="./image/baseball/logo/${cli.team}.png">
+									</c:when>
+								</c:choose>
+								&nbsp;&nbsp;${cli.id}(${fn:substring(cli.writer, 0, cli.writer.length()-2)}*${fn:substring(cli.writer, cli.writer.length()-1, cli.writer.length())})<c:if test="${cli.part=='감독'}">_감독</c:if></p>
 								<div class="commentvalue">
 									<p class="p1">
 										┗

@@ -144,11 +144,11 @@ public class MemberController{
 	}
 	//마이페이지(상세페이지)로 이동
 	@RequestMapping(value = "/mypage")
-	public String mypage(String id, Model model){
+	public String mypage(String id, String sport, Model model){
 		MemberService ms = sqlsession.getMapper(MemberService.class);
 		MemberDTO member = ms.select(id);
 		model.addAttribute("my", member);
-		return "mypage";
+		return (sport.equals("축구")) ? "soccerMypage" : "baseballMypage";
 	}	
 	//비밀번호 확인
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
@@ -191,17 +191,18 @@ public class MemberController{
 	//정보 수정
 	@RequestMapping(value = "/memberUpdate", method = RequestMethod.POST)
 	public String memberUpdate(MultipartHttpServletRequest mul, Model mo) throws IOException{
-		String voe="", rr="";
-		String part=mul.getParameter("part");
-		String id=mul.getParameter("id");
-		String name=mul.getParameter("name");
+		String voe = "", rr = "";
+		String part = mul.getParameter("part");
+		String id = mul.getParameter("id");
+		String name = mul.getParameter("name");
 		String birth = mul.getParameter("birth");
-		String tel=mul.getParameter("tel");
-		String zipp_code=mul.getParameter("zipp_code");
-		String user_add1=mul.getParameter("user_add1");
-		String user_add2=mul.getParameter("user_add2");
-		String sport=mul.getParameter("sport");
-		String team=mul.getParameter("team");
+		String tel = mul.getParameter("tel");
+		String zipp_code = mul.getParameter("zipp_code");
+		String user_add1 = mul.getParameter("user_add1");
+		String user_add2 = mul.getParameter("user_add2");
+		String email = mul.getParameter("email");
+		String sport = mul.getParameter("sport");
+		String team = mul.getParameter("team");
 		//감독
 		if(part.equals("감독")){
 			String refvoe=mul.getParameter("refvoe");
@@ -228,8 +229,9 @@ public class MemberController{
 			}
 		}
 		MemberService ms = sqlsession.getMapper(MemberService.class);
-		ms.update(id,name,birth,tel,zipp_code,user_add1,user_add2,sport,team,voe,rr);
+		ms.update(id,name,birth,tel,zipp_code,user_add1,user_add2,email,sport,team,voe,rr);
 		mo.addAttribute("id", id);
+		mo.addAttribute("sport", sport);
 		return "redirect:/mypage";
 	}
 	//관리자 권한: 회원 승인 관리
