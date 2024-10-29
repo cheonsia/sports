@@ -314,9 +314,9 @@ insert into SOCCER_GAME values('제주','광주','2024-11-10','16:30','제주월드컵경�
 insert into SOCCER_GAME values('전북','대구','2024-11-10','16:30','전주월드컵경기장',SOCCER_GAME_SEQ.nextval,'파이널');
 insert into SOCCER_GAME values('인천','대전','2024-11-10','16:30','인천축구전용경기장',SOCCER_GAME_SEQ.nextval,'파이널');
 
-insert into SOCCER_GAME values('인천','대전','2024-11-23','14:00','대전월드컵경기장',SOCCER_GAME_SEQ.nextval,'파이널');
-insert into SOCCER_GAME values('인천','대전','2024-11-23','14:00','DGB대구은행파크',SOCCER_GAME_SEQ.nextval,'파이널');
-insert into SOCCER_GAME values('인천','대전','2024-11-23','14:00','광주축구전용구장',SOCCER_GAME_SEQ.nextval,'파이널');
+insert into SOCCER_GAME values('울산','수원','2024-11-23','14:00','대전월드컵경기장',SOCCER_GAME_SEQ.nextval,'파이널');
+insert into SOCCER_GAME values('강원','포항','2024-11-23','14:00','DGB대구은행파크',SOCCER_GAME_SEQ.nextval,'파이널');
+insert into SOCCER_GAME values('김천','서울','2024-11-23','14:00','광주축구전용구장',SOCCER_GAME_SEQ.nextval,'파이널');
 
 insert into SOCCER_GAME values('대전','제주','2024-11-24','14:00','대전월드컵경기장',SOCCER_GAME_SEQ.nextval,'파이널');
 insert into SOCCER_GAME values('대구','인천','2024-11-24','14:00','DGB대구은행파크',SOCCER_GAME_SEQ.nextval,'파이널');
