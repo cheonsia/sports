@@ -176,7 +176,7 @@
 						<img src="./image/soccer/logo/soccer.png" alt="축구 로고" onclick="location.href='soccermain'" class="go_other_img">
 					 	<div class="header_logo cursor" onclick="logoClick()">
 							<img src="./image/baseball/logo/baseball.png" alt="야구 로고">
-							<p class="logo_txt">MVP</p>
+							<p class="logo_txt">IN:OUT</p>
 						</div>
 					</div>
 					<div class="header_login_txt">
