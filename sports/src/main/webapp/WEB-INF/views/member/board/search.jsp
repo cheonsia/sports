@@ -88,14 +88,15 @@
 		text-align: left;
 		padding-left: 20px;
 	}
-	td:nth-child(2) a{
+	td:nth-child(2) a,
+	td:nth-child(3) a{
 		color: #666;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		width: 100%;
 		display: block;
-		text-align: start;
+		text-align: center;
 		margin-right: 30%;
 	}
 	td:nth-child(2) img{

@@ -111,14 +111,15 @@
 		text-align: left;
 		padding-left: 20px;
 	}
-	td:nth-child(2) a{
+	td:nth-child(2) a,
+	td:nth-child(3) a{
 		color: #666;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		width: 100%;
 		display: block;
-		text-align: start;
+		text-align: center;
 		margin-right: 30%;
 	}
 	td:nth-child(2) img{
@@ -507,7 +508,7 @@
 										</c:if>
 									</div>
 								</td>
-								<c:if test="${adminlogin}"><td>${li.title}</td></c:if>
+								<c:if test="${adminlogin}"><td><a href="boardSelect?num=${li.num}&way=detail">${li.title}</a></td></c:if>
 								<td>
 									<c:if test="${li.status=='no'}"><span style="color:#bb0000;">대기</span></c:if>
 									<c:if test="${li.status=='yes'}"><span style="color:#999;">완료</span></c:if>

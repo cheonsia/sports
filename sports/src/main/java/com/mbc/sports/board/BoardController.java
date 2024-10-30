@@ -73,7 +73,7 @@ public class BoardController {
 		BoardService bs = sqlSession.getMapper(BoardService.class);
 		if (way.equals("detail")) {
 			bs.clickUp(num);
-		    model.addAttribute("clist",bs.comment(num));	
+		    model.addAttribute("cli",bs.comment(num));	
 		}
 		BoardDTO dto = bs.select(num);
 		model.addAttribute("dto",dto);
@@ -138,7 +138,7 @@ public class BoardController {
 	@RequestMapping(value="bcommentupdate")
 	public String commentupdate(int num, String ucomment, String way, Model model){
 		BoardService bs = sqlSession.getMapper(BoardService.class);
-		bs.commentUpdate(num, ucomment);;
+		bs.commentUpdate(num, ucomment);
 		model.addAttribute("num", num);
 		model.addAttribute("way", way);
 		return "redirect:/boardSelect";

@@ -11,7 +11,7 @@ public interface BoardService {
 	int pwCheck(int num, String pw);
 	void clickUp(int num);
 	BoardDTO select(int num);
-	ArrayList<BCommentDTO> comment(int num);
+	BCommentDTO comment(int num);
 	int getStep(int num);
 	void answer(int num, int step, String writer, String comment);
 	void setStep(int num, int step);

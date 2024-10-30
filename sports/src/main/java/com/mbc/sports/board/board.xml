@@ -84,7 +84,7 @@
 	<update id="commentUpdate">
 		update inquirycomment
 		set value = #{param2}
-		where num = #{param1}
+		where num = #{param1} and step = 1
 	</update>
 	<select id="search" resultType="com.mbc.sports.board.BoardDTO">
 		select num, part, title, writer, pw, content, checking, step, status, to_char(rdate,'yyyy-MM-dd') as rdate, readcnt

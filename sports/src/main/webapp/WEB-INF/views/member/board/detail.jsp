@@ -182,6 +182,17 @@
 	   margin: 20px auto 0 auto;
 	   align-items: center;
 	}
+	.mainFrame .comment #comment{
+		width: 100%;
+	    height: 38px;
+	    padding: 0 0 0 10px;
+	    margin: 0 5px 0 0;
+	    border: 1px solid #e8e8e8;
+	    border-radius: 5px;
+	    text-indent: 10px;
+	    line-height: 40px;
+	    overflow: hidden;
+	}
  	.mainFrame .comment_flex{
 	   display: flex;
 	   flex-wrap: nowrap;
@@ -254,9 +265,18 @@
 	}
 	.mainFrame .commentvalue .p1{
 	   display: flex;
-	    width: 100%;
+	   width: 100%;
 	   justify-content: flex-start;
 	   margin-bottom: 5px;
+	   white-space: pre-line;
+	}
+	.mainFrame .commentvalue textarea{
+	   width: 100%;
+	   height:auto;
+       box-sizing: border-box;
+       overflow: hidden; 
+       resize: none; 
+       wrap: hard;
 	}
 	.mainFrame .p1 span{
 	   word-break: break-all;
@@ -439,7 +459,7 @@
 			}
 		}
 		function commentUpdate(num){
-			var ucomment =$('#'+num).val();
+			var ucomment =$('#commentEdit').val().replace(/\n/g, "<br>");
 			if(!confirm("수정하시겠습니까?")){
 				alert("취소되었습니다.");
 				
@@ -449,10 +469,11 @@
 			}
 		}
 		function commentChange(num){
-			$('#span_'+num).hide();
-			$('input[name="comment_val_'+num+'"]').show();
-			$('input[name="comment_val_'+num+'"]').prop('readonly', false);
-			$('input[name="comment_val_'+num+'"]').focus();
+			var edit = $('#commentValue').val();
+			$('#commentValue').prop('hidden', true);
+			$('#commentEdit').val(edit);
+			$('#commentEdit').prop('hidden', false);
+			$('#commentEdit').focus();
 			$('#edit_'+num).text('수정하기');
 			$('#delete_'+num).text('취소');
 			setTimeout(function(){
@@ -461,8 +482,6 @@
 			}, 100);
 		}
 		function reCommentChange(num){
-			$('#span_'+num).show();
-			$('input[name="comment_val_'+num+'""]').hide();
 			$('#edit_'+num).text('수정');
 			$('#delete_'+num).text('삭제');
 			setTimeout(function(){
@@ -477,7 +496,16 @@
 			var check = `${dto.checking}`;
 			(check == 'y') ? $('#check').prop('checked',true) : $('#check').prop('checked',false);
 			
-			<!-- 모달창 자바스크립트: 비밀번호 확인 -->
+			var comment = `${cli.value}`;
+			var text = comment.replaceAll("<br>","\r\n");
+			$('#commentValue').val(text);
+			$('.p1').on( 'keyup', 'textarea', function (e){
+		        $(this).css('height', 'auto' );
+		        $(this).height( this.scrollHeight );
+		      });
+		      $('.p1').find( 'textarea' ).keyup();
+		    
+		<!-- 모달창 자바스크립트: 비밀번호 확인 -->
 			$("#pwCheckModal").on("shown.bs.modal", function (){		
 				$("#pw").focus();
 			});
@@ -550,20 +578,20 @@
 				<div class="value">
 					<label for ="value"> 내 용 </label>
 				<hr>
-					<textarea id="value" name="value" placeholder="내용을 500자 이내로 입력해주세요" onkeyup="textlength()" maxlength="500" readonly>${dto.content}</textarea>
+					<textarea id="value" name="value" placeholder="내용을 500자 이내로 입력해주세요" maxlength="500" readonly>${dto.content}</textarea>
 				</div>
 				<p>${dto.rdate}</p>
 			</div>
 			<div class="commentResult">
 			<c:if test="${dto.step!=0}">
-				<c:forEach items="${clist}" var="cli">
-					<div class="eachResult">				
-						<p class="p0"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.writer}</p>
-						<div class="commentvalue">
-							<p class="p1">
-							┗<input type="text" value="${cli.value}" id="${cli.num}" name="comment_val_${cli.num}" readonly>&emsp;
-							</p>
-							<div class="p1_p2">
+				<div class="eachResult">				
+					<p class="p0"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;${cli.writer}</p>
+					<div class="commentvalue">
+						<p class="p1">
+						<textarea id="commentEdit" name="commentEdit" hidden="hidden"></textarea>
+						<textarea id="commentValue" name="commentValue" readonly></textarea>
+						</p>
+						<div class="p1_p2">
 							<p class="p p2">
 								<input type="text" class="commentDate" name="rdate" value="${cli.rdate}" readonly>
 							</p>
@@ -573,10 +601,9 @@
 									<a id="delete_${cli.num}" onclick="commentDelete(${cli.num})">삭제</a>
 								</p>
 							</c:if>
-							</div>
 						</div>
-					</div><hr>
-				</c:forEach>
+					</div>
+				</div><hr>
 			</c:if>
 			<c:if test="${dto.step==0}">
 				<div class="no_show">아직 답변이 없습니다.</div>
@@ -586,7 +613,7 @@
 						<input type="hidden" name="step" value="${dto.step}">
 						<div class="comment">
 							<input class="writer" type="text" name="writer" value="관리자" readonly> 
-							<input type="text" name="comment" placeholder="답변을 입력해주세요" required> 
+							<textarea id="comment" name="comment" placeholder="답변을 입력해주세요" required></textarea>
 							<input type="submit" value="답변 달기">						
 						</div>
 					</form>
