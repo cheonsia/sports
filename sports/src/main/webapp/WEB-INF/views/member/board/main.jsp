@@ -386,10 +386,9 @@
 		
 		<!-- 모달창 자바스크립트: 내 정보 수정 -->
 		// 비밀 글 클릭 시 모달 창 표시
-		function pwCheck(num){
+		function pwCheck(num, login){
 			$("#pw").val("");
-			var login = `${adminlogin}`;
-			if(login){location.href="boardSelect?num="+num+"&way=detail";}	
+			if(login == 'true'){location.href="boardSelect?num="+num+"&way=detail";}	
 			else{$("#pwCheckModal").modal("show");}
 		};
 		///비밀번호 확인 Enter
@@ -422,8 +421,6 @@
 					pw.focus();
 					return false;
 				}
-				console.log(num);
-				console.log(pw);
 				$.ajax({
 					type:"post",
 					url:"boardPwCheck",
@@ -503,7 +500,7 @@
 										</c:if>
 										<c:if test="${li.checking=='y'}">
 											<img alt="" src="./image/member/logo/keyon.png">
-											<a onclick="pwCheck(${li.num})">
+											<a onclick="pwCheck(${li.num},'${adminlogin}')">
 												<c:if test="${li.part == 'etc'}">기타 문의</c:if>
 												<c:if test="${li.part != 'etc'}">${li.title}</c:if>
 											</a>
