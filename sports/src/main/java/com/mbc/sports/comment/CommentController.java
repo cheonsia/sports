@@ -49,7 +49,7 @@ public class CommentController {
 		PrintWriter prw = response.getWriter();
 
 		int playernum = Integer.parseInt(request.getParameter("playernum"));
-		String step= request.getParameter("step");
+		int step = Integer.parseInt(request.getParameter("step"));
 		
 		CommentService cs = sqlsession.getMapper(CommentService.class);
 		cs.heartUp(playernum,step);

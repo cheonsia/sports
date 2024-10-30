@@ -440,9 +440,9 @@
 				</c:if>
 			</div>
 			<div class="btn_flex">
-				<button type="button" class="prev" onclick="location.href='main'">메인으로</button>
 				<c:choose>
 					<c:when test="${adminlogin}">
+						<button type="button" class="prev" onclick="javascript:history.go(-1)">이전으로</button>
 					 	<c:if test="${my.inputaccess == 'no'}">
 							<button type="button" class="appro" onclick="location.href='memberAccess?id=${my.id}'">승인</button>
 							<button type="button" class="reject" onclick="location.href='deleteMember?id=${my.id}&part=${my.part}'">거부(삭제)</button>
@@ -452,6 +452,7 @@
 						</c:if>
 					</c:when>
 					<c:when test="${!adminlogin}">
+						<button type="button" class="prev" onclick="location.href='main'">메인으로</button>
 						<button type="button" class="btn_updateModal" data-toggle="modal" data-target="#updateModal">내 정보 수정</button>
 					</c:when>
 				</c:choose>

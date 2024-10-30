@@ -14,7 +14,7 @@ public interface CommentService {
 	ArrayList<CommentDTO> comment(int playernum, int start, int end);
 	void delete(int playernum, int step);
 	void update(int playernum, int step, String ucomment);
-	void heartUp(int playernum, String step);
-	int heart(int playernum, String step);
+	void heartUp(int playernum, int step);
+	int heart(int playernum, int step);
 	void setStep(int playernum, int step);
 }

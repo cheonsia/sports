@@ -505,6 +505,7 @@
 					$("#PwCheckModal").modal("show");
 				});
 				$("#PwCheckModal").on("shown.bs.modal", function (){		
+					$("#pw").val("");
 					$("#pw").focus();
 				});
 		
@@ -514,18 +515,19 @@
 					var vpw=/^[a-zA-Z0-9]{6,16}$/;
 					
 					if(pw==""){
+						setTimeout(function(){$("#PwCheckModal").modal("hide"),1000});
 						alertShow('오류','비밀번호를 입력해주세요.');
-						$("#PwCheckModal").modal("close")
 						return false;
 					}
 					else if(!vpw.test(pw)){
-						alertShow('오류','비밀번호는 영문자+숫자 6~16글자 이내로 작성해야합니다.');
-						$("#PwCheckModal").modal("close")
+						setTimeout(function(){$("#PwCheckModal").modal("hide"),1000});
+						alertShow('오류','영문자+숫자 6~16글자 이내로 작성해주세요.');
 						return false;
 					}
 					$("#PwUpdateModal").modal("show");
 				});
 				$("#PwUpdateModal").on("shown.bs.modal", function (){		
+					$("#pwcheck").val("");
 					$("#pwcheck").focus();
 				});
 				///수정한 비밀번호 유효성 검사
@@ -543,12 +545,13 @@
 								alertShow('변경 완료','비밀번호 변경이 완료되었습니다');
 							},
 							error:function(){
+								$("#PwUpdateModal").modal("hide");
 								alertShow("오류",'비밀번호를 다시 입력해주세요');
 							}
 						});				
 					}else{
+						$("#PwUpdateModal").modal("hide");
 						alertShow('오류',"비밀번호가 다릅니다 다시 확인해주세요");
-						$("#PwUpdateModal").modal("close")
 					}
 				});
 			});
@@ -725,6 +728,7 @@
 				<input type="hidden" name="refrr" id="refrr" value="${my.rr}">
 				<input type="hidden" name="sportvalue" id="sportvalue" value="${my.sport}">
 				<input type="hidden" name="teamvalue" id="teamvalue" value="${my.team}">
+				<input type="hidden" id="birth" name="birth" value="${my.birth}">
 				<div class="id">
 					<label for="id">아이디</label>
 					<input type="text" name="id" id="id" value="${my.id}" readonly>
@@ -739,7 +743,6 @@
 				</div>
 				<div>
 					<label for="year">생년월일</label>
-					<input type="hidden" id="birth" name="birth" value="${my.birth}">
 					<select name="year" id="year">
 						<option value="">--</option>
 						<c:forEach var="i" begin="1920" end="2024">
@@ -878,7 +881,7 @@
 					</div>
 				</c:if>
 				<div class="btn_flex">
-					<input type="button" class="prev" value="취소" onclick="location.href='mypage?id=${my.id}'">
+					<input type="button" class="prev" value="취소" onclick="location.href='mypage?id=${my.id}&sport=${my.sport}'">
 					<input type="button" class="appro" value="수정 완료" onclick="check()">
 				</div>
 				<div class="memberout">

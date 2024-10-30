@@ -562,7 +562,7 @@
 					$(this).parent('.p1').parent(".cocomentresult").next('.c1').toggle();
 				});
 				
-				if(${superlogin} == true && `${sportstype}` == `${dto.play}` && `${sportteam}` == $('#team').text() || ${adminlogin} == true){
+				if(${superlogin} == true && `${sports}` == `${dto.play}` && `${sportteam}` == $('#team').text() || `${adminlogin}` == "true"){
 					$('.btn_direct').show();
 				}
 			});
@@ -573,7 +573,6 @@
 					async : true,
 					data :{"playernum" : playernum,"step":step},
 					success:function(data){
-						console.log(step);
 						$('#heartresult_'+step).val(data);
 					},
 					error:function(data){

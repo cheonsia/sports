@@ -126,23 +126,23 @@
 						<c:when test="${!empty list}">
 							<c:forEach items="${list}" var="mem">
 								<tr>
-							  		<td onclick="location.href='mypage?id=${mem.id}'">${mem.part}</td>
-								   	<td onclick="location.href='mypage?id=${mem.id}'">${mem.id}</td>
-							   		<td onclick="location.href='mypage?id=${mem.id}'">${mem.name}</td>
-							   		<td onclick="location.href='mypage?id=${mem.id}'">${mem.birth}</td>
-							   		<td onclick="location.href='mypage?id=${mem.id}'">${mem.tel}</td>
-									<td onclick="location.href='mypage?id=${mem.id}'">${mem.email}</td>
-									<td onclick="location.href='mypage?id=${mem.id}'">${mem.zzip_code}</td>
-									<td onclick="location.href='mypage?id=${mem.id}'">${mem.user_add1}</td>
-									<td onclick="location.href='mypage?id=${mem.id}'">${mem.user_add2}</td>
-									<td onclick="location.href='mypage?id=${mem.id}'">${mem.sport}</td>
-									<td onclick="location.href='mypage?id=${mem.id}'">${mem.team}</td>
+							  		<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.part}</td>
+								   	<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.id}</td>
+							   		<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.name}</td>
+							   		<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.birth}</td>
+							   		<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.tel}</td>
+									<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.email}</td>
+									<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.zzip_code}</td>
+									<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.user_add1}</td>
+									<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.user_add2}</td>
+									<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.sport}</td>
+									<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">${mem.team}</td>
 									<c:if test="${mem.inputaccess=='ok'}">
-										<td onclick="location.href='mypage?id=${mem.id}'">✔️</td>
+										<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">✔️</td>
 								  	  	<td onclick="location.href='memberAccess?id=${mem.id}'"><button type="button">보류</button></td>
 									</c:if>
 									<c:if test="${mem.inputaccess=='no'}">
-										<td onclick="location.href='mypage?id=${mem.id}'">✖️</td>
+										<td onclick="location.href='mypage?id=${mem.id}&sport=${mem.sport}'">✖️</td>
 										<td onclick="location.href='memberAccess?id=${mem.id}'"><button type="button"><c:if test="${mem.part=='일반'}">해제</c:if><c:if test="${mem.part=='감독'}">승인</c:if></button></td>
 									</c:if>
 								</tr>
