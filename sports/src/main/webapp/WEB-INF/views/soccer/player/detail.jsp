@@ -732,6 +732,7 @@
 						<c:when test="${normallogin || superlogin}">
 							<input type="hidden" name="id" value="${member.id}">
 							<input type="hidden" name="team" value="${member.team}">
+							<input type="hidden" name="sport" value="${member.sport}">
 							<input type="hidden" name="part" value="${member.part}">
 							<input class="writer" type="text" name="writer" value="${member.name}" placeholder="작성자" readonly> 
 							<div class="comment_flex">
@@ -774,10 +775,10 @@
 									<c:when test="${cli.team == '관리자'}">
 										<span class="glyphicon glyphicon-user"></span>
 									</c:when>
-									<c:when test="${dto.play == '축구'}">
+									<c:when test="${cli.sport == '축구'}">
 										<img src="./image/soccer/logo/${cli.team}.png">
 									</c:when>
-									<c:when test="${dto.play == '야구'}">
+									<c:when test="${cli.sport== '야구'}">
 										<img src="./image/baseball/logo/${cli.team}.png">
 									</c:when>
 								</c:choose>

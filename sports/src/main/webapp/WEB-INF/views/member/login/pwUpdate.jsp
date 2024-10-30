@@ -140,7 +140,7 @@
 				data: {"id":id,"pw":pw},
 				success:function(){
 					alertShow('변경 완료','비밀번호 변경이 완료되었습니다.');
-					setTimeout(function(){window.close();}, 1000);  
+					setTimeout(function(){window.close();}, 10000);  
 				},
 				error:function(){
 					alertShow("오류",'비밀번호를 다시 입력해주세요');

@@ -2,7 +2,7 @@ package com.mbc.sports.comment;
 
 public class CommentDTO {
 	int playernum,step;
-	String id,writer,team,part,ucomment,cdate;
+	String id,writer,sport,team,part,ucomment,cdate;
 	int heart;
 	public CommentDTO() {}
 	public int getHeart() {
@@ -22,6 +22,12 @@ public class CommentDTO {
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	public String getSport() {
+		return sport;
+	}
+	public void setSport(String sport) {
+		this.sport = sport;
 	}
 	public String getTeam() {
 		return team;

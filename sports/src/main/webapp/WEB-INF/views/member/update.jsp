@@ -292,7 +292,7 @@
 				background-size: contain;
 			}
 			.info_whole div.btn_flex{
-				margin: 0 auto;
+				margin: 50px auto 0 auto;;
 				padding: 0;
 				justify-content: center;
 			}
@@ -474,7 +474,7 @@
 				$('#fir_tel').val(fir_tel).prop("selected",true);
 				
 				//이메일 가져와서 선택
-				var email = $('#email').val().split('@');		
+				var email = $('#hideEmail').val().split('@');		
 				$('#email_id').val(email[0]);
 				$('#mail_select').val(email[1]).prop("selected",true);
 				mailSelect();
@@ -827,6 +827,7 @@
 							<option value="yahoo.com">yahoo.com</option>
 						</select>
 					</div>
+					<input type="hidden" id="hideEmail" name="hideEmail" value="${my.email}">
 					<input type="hidden" id="email" name="email">
 				</div>
 				<div class="part">

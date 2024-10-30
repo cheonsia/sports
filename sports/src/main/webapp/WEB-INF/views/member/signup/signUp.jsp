@@ -527,6 +527,18 @@
 					$('#mid_tel').focus();
 					return false;
 				}
+				//주소 체크
+				var code = $('#zipp_code_id').val();
+				var cadd1 = $('#UserAdd1').val();
+				var cadd2 = $('#UserAdd2').val();
+				if(code=="" || cadd1==""){
+					alertShow('오류','우편주소를 검색해주세요.');
+					return false;
+				}
+				if(cadd2==""){
+					alertShow('오류','상세 주소를 입력해주세요.');
+					return false;
+				}
 				//이메일 이어붙이기
 				var email_val1 = $('#email_id').val();
 				var email_val2 = $('#email_domain').val();
@@ -540,18 +552,6 @@
 					$('#email_id').focus();
 					return false;
 				}			
-				//주소 체크
-				var code = $('#zipp_code').val();
-				var cadd1 = $('#UserAdd1').val();
-				var cadd2 = $('#UserAdd2').val();
-				if(code=="" || cadd1==""){
-					alertShow('오류','우편주소를 검색해주세요.');
-					return false;
-				}
-				if(cadd2==""){
-					alertShow('오류','상세 주소를 입력해주세요.');
-					return false;
-				}
 				//파일 체크
 				var part = $('#part').val();
 				if(part == '감독'){
@@ -562,7 +562,7 @@
 						return false;
 					}
 					//등본 확인
-					var rr = $('#rr').value;		
+					var rr = $('#rr').val();		
 					if(rr == ""){
 						alertShow('등본 등록 오류','등본을 등록해주세요.');
 						return false;

@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="input">
-		insert into player_comment(playernum, step, id, writer, team, part, ucomment) values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+		insert into player_comment(playernum, step, id, writer, sport, team, part, ucomment) values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
 	</insert>
 	
 	<update id="updateSplayerStep">
@@ -32,7 +32,7 @@
 		from (
 			select rownum rn,A.* 
 			from(  
-				select playernum, step, id, writer, team, part, ucomment,
+				select playernum, step, id, writer,sport, team, part, ucomment,
 					case  to_char(cdate,'yyyy-MM-dd') when to_char(sysdate,'yyyy-MM-dd')then to_char(cdate,'HH24:MI')
 					else to_char(cdate,'yy/MM/dd') end  as cdate
 					,heart

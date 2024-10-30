@@ -137,7 +137,6 @@
 				data:{"name":name, "birth":birth, "tel":tel},
 				success:function(data) {
 						alertShow('아이디 찾기',data);
-						setTimeout(function(){window.close();}, 1000);  
 				},
 				error:function() {
 					alertShow('에러','다시 입력해주세요.');

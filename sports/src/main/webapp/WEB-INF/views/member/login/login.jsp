@@ -113,7 +113,7 @@
 			}
 			.div_form h1{
 				margin: 0;
-				font-size: 50px;
+				font-size: 38px;
 				color: #0c400c;
 			}
 			h1{
@@ -223,7 +223,7 @@
 	</head>
 	<body>
 		<div class="div_form">
-			<h1>MVP</h1>
+			<h1>IN:OUT</h1>
 			<div class="loginValue">
 				<div>
 					<input type="text" id="id" name="id" placeholder="아이디" onkeyup="click_btn()">
