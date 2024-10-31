@@ -388,6 +388,7 @@
 		// 비밀 글 클릭 시 모달 창 표시
 		function pwCheck(num, login){
 			$("#pw").val("");
+			$('#num').val(num);
 			if(login == 'true'){location.href="boardSelect?num="+num+"&way=detail";}	
 			else{$("#pwCheckModal").modal("show");}
 		};
@@ -446,6 +447,7 @@
 		<div class="board">
 			<h1>문의 게시판</h1>
 			<!--  글작성 버튼-->
+			<input type="hidden" id="num">
 			<div class="button">
 				<input type="button" class="inquiry" value="문의하기" onclick="location.href='boardInput'"/>
 			</div>
@@ -479,45 +481,45 @@
 						<th>조 회 수</th>
 						<th>작 성 자</th>
 					</tr>
-				<c:choose>
-					<c:when test="${empty list}">
-						<tr><c:if test="${adminlogin}"><td colspan="6"></c:if><c:if test="${!adminlogin}"><td colspan="5"></c:if>아직 게시글이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${list}" var="li">
-							<tr>
-								<td><input type="hidden" id="num" value="${li.num}">
-									${max -li.num + 1}
-								</td>
-								<td>
-									<div>
-										<c:if test="${li.checking=='n'}">
-											<img alt="" src="./image/member/logo/keyoff.png">
-											<a href="boardSelect?num=${li.num}&way=detail">
-												<c:if test="${li.part == 'etc'}">기타 문의</c:if>
-												<c:if test="${li.part != 'etc'}">${li.title}</c:if>
-											</a>
-										</c:if>
-										<c:if test="${li.checking=='y'}">
-											<img alt="" src="./image/member/logo/keyon.png">
-											<a onclick="pwCheck(${li.num},'${adminlogin}')">
-												<c:if test="${li.part == 'etc'}">기타 문의</c:if>
-												<c:if test="${li.part != 'etc'}">${li.title}</c:if>
-											</a>
-										</c:if>
-									</div>
-								</td>
-								<c:if test="${adminlogin}"><td><a href="boardSelect?num=${li.num}&way=detail">${li.title}</a></td></c:if>
-								<td>
-									<c:if test="${li.status=='no'}"><span style="color:#bb0000;">대기</span></c:if>
-									<c:if test="${li.status=='yes'}"><span style="color:#999;">완료</span></c:if>
-								</td>
-								<td>${li.readcnt}</td>
-								<td>${li.writer}</td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+					<c:choose>
+						<c:when test="${empty list}">
+							<tr><td colspan="<c:if test='${adminlogin}'>6</c:if><c:if test='${!adminlogin}'>5</c:if>">아직 게시글이 없습니다.</td></tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="li">
+								<tr>
+									<td>
+										${max -li.num + 1}
+									</td>
+									<td>
+										<div>
+											<c:if test="${li.checking=='n'}">
+												<img alt="" src="./image/member/logo/keyoff.png">
+												<a href="boardSelect?num=${li.num}&way=detail">
+													<c:if test="${li.part == 'etc'}">기타 문의</c:if>
+													<c:if test="${li.part != 'etc'}">${li.title}</c:if>
+												</a>
+											</c:if>
+											<c:if test="${li.checking=='y'}">
+												<img alt="" src="./image/member/logo/keyon.png">
+												<a onclick="pwCheck(${li.num},'${adminlogin}')">
+													<c:if test="${li.part == 'etc'}">기타 문의</c:if>
+													<c:if test="${li.part != 'etc'}">${li.title}</c:if>
+												</a>
+											</c:if>
+										</div>
+									</td>
+									<c:if test="${adminlogin}"><td><a href="boardSelect?num=${li.num}&way=detail">${li.title}</a></td></c:if>
+									<td>
+										<c:if test="${li.status=='no'}"><span style="color:#bb0000;">대기</span></c:if>
+										<c:if test="${li.status=='yes'}"><span style="color:#999;">완료</span></c:if>
+									</td>
+									<td>${li.readcnt}</td>
+									<td>${li.writer}</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 		</div>

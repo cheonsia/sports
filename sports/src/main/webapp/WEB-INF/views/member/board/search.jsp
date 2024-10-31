@@ -387,6 +387,7 @@
 		// 비밀 글 클릭 시 모달 창 표시
 		function pwCheck(num){
 			$("#pw").val("");
+			$('#num').val(num);
 			var login = `${adminlogin}`;
 			if(login){location.href="boardSelect?num="+num+"&way=detail";}	
 			else{$("#pwCheckModal").modal("show");}
@@ -447,6 +448,7 @@
 	<body>
 		<div class="board">
 			<h1>문의 게시판</h1>
+			<input type="hidden" id="num">
 			<!--  글작성 버튼-->
 			<div class="button">
 				<input type="button" class="inquiry" value="문의하기" onclick="location.href='boardInput'"/>
@@ -464,12 +466,12 @@
 					</tr>
 				<c:choose>
 					<c:when test="${empty list}">
-						<tr><c:if test="${adminlogin}"><td colspan="6"></c:if><c:if test="${!adminlogin}"><td colspan="5"></c:if>아직 게시글이 없습니다.</td></tr>
+						<tr><td colspan="<c:if test='${adminlogin}'>6</c:if><c:if test='${!adminlogin}'>5</c:if>">아직 게시글이 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="i" begin="0" end="${list.size()-1}">
 							<tr>
-								<td><input type="hidden" id="num" value="${list[i].num}">
+								<td>
 									${i+1}
 								</td>
 								<td>
