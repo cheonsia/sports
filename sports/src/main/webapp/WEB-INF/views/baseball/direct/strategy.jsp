@@ -699,6 +699,9 @@
 					strategyShow();
 				}
 				else{
+					if(${adminlogin}){
+						location.href="baseballStrategyListFind?name=ALL&area=ALL&stnum="+stnum;					
+					}
 					location.href="baseballStrategyListFind?name="+area_eng+"&area="+area_kor+"&stnum="+stnum;
 				}
 			}
@@ -749,21 +752,22 @@
 			<div class="strategy_inner">
 				<div class="strategy_side_whole">
 					<div class="strategy_img_box">
-						<c:choose>
-							<c:when test="${areaset}">
-								<div class="strategy_img">
-									<img alt="전략 팀 추가 아이콘" src="./image/baseball/logo/${area.area_kor}.png">
-								</div>
-								<h1 class="strategy_title">전략</h1>
-							</c:when>
-						</c:choose>
+						<div class="strategy_img">
+							<c:if test="${!adminlogin}">
+								<img alt="전략 팀 추가 아이콘" src="./image/baseball/logo/${member.team}.png">
+							</c:if>
+							<c:if test="${adminlogin}">
+								<img alt="전략 팀 추가 아이콘" src="./image/baseball/logo/all.png">
+							</c:if>
+						</div>
+						<h1 class="strategy_title">전략</h1>
 					</div>
 					<div class="traning_people_inner">
 						<p onclick="strategyListShow()" data-area="<c:if test="${areaset}">${area.area_kor}</c:if>" class="traning_choose_pop_title2">
 						<c:if test="${strategyPlayerList != null}">
 							${strategyPlayerList.stname}
 						</c:if>
-						<c:if test="${empty strategyPlayerList}">제목 없음</c:if></p>
+						<c:if test="${empty strategyPlayerList}">새로운 전략</c:if></p>
 						
 						<c:if test="${strategyPlayerList != null}">
 							<p class="traning_choose_pop_title">${strategyPlayerList.stdate}</p>

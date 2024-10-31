@@ -4,7 +4,10 @@
 <mapper namespace="com.mbc.sports.soccerdirect.DirectService">
 	<!-- 팀원들에 대한 캘린더 정보를 모두 가져옴 -->
 	<select id="selectCalendarArea" resultType="com.mbc.sports.soccerdirect.DirectDTO">
-	select playernum, tname, pname, pimage from player_soccer where tname = #{param1} order by main, pname
+		select playernum, tname, pname, pimage from player_soccer where tname = #{param1} order by main, pname
+	</select>
+	<select id="selectCalendarAreaAll" resultType="com.mbc.sports.soccerdirect.DirectDTO">
+		select playernum, tname, pname, pimage from player_soccer where play = #{param1} order by main, pname
 	</select>
 	<!-- 훈련일정 저장 -->
 	<insert id="soccercalendarsave">
@@ -29,13 +32,13 @@
 	
 	<!-- 전술 -->
 	<select id="selectStrategyList" resultType="com.mbc.sports.soccerdirect.SoccerStrategyDTO">
-		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where starea = #{param1}
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where starea = #{param1} and stkind = #{param2}
 	</select>
 	<insert id="soccerstrategysave">
 		insert into direct_strategy values (stnum_seq.nextval, #{param1}, #{param2}, SYSDATE, #{param3}, #{param4})
 	</insert>
 	<select id="strategylistfind" resultType="com.mbc.sports.soccerdirect.SoccerStrategyDTO">
-		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where stnum = #{param1}
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where stnum = #{param1} order by stdate, stname asc
 	</select>
 	<delete id="soccerStrategyDelete">
 		delete from direct_strategy where stnum = #{param1}

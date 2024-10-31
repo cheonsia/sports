@@ -7,6 +7,12 @@
 		<meta charset="UTF-8">
 		<title>훈련 일정</title>
 		<link rel="stylesheet" href="./css/calendar.css">
+		<style type="text/css">
+			.traning_people_list div div label{
+				height: auto!important;
+				margin-bottom: 25px!important;
+			}
+		</style>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 		<script type="text/javascript">
 			//캘린더 날짜 데이터 값이 없을 때 현재 날짜를 넣어주기 위함

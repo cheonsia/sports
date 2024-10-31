@@ -737,11 +737,18 @@
 				if($('#strategy_btn_flex').hasClass('btn_on') || $('#strategy_btn_change').hasClass('strategy_btn_change')){
 					strategyListHide();
 					strategyShow();
+					location.href='soccerstrategy?name=${area.area_eng}&area=${area.area_kor}';
 				}
 				else{
 					location.href='soccerstrategy?name=${area.area_eng}&area=${area.area_kor}';
 				}
 			}
+			
+			$(document).ready(function() {
+                var team = $("#area_kor").val();
+                teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
+				$('#area_eng').val(teamEng);
+			});
 	   </script>
 	</head>
 	<body>
@@ -750,21 +757,22 @@
 			<div class="strategy_inner">
 				<div class="strategy_side_whole">
 					<div class="strategy_img_box">
-						<c:choose>
-							<c:when test="${areaset}">
-								<div class="strategy_img">
-									<img alt="전략 팀 추가 아이콘" src="./image/soccer/logo/${area.area_kor}.png">
-								</div>
-								<h1 class="strategy_title">전략</h1>
-							</c:when>
-						</c:choose>
+						<div class="strategy_img">
+							<c:if test="${!adminlogin}">
+								<img alt="전략 팀 추가 아이콘" src="./image/soccer/logo/${member.team}.png">
+							</c:if>
+							<c:if test="${adminlogin}">
+								<img alt="전략 팀 추가 아이콘" src="./image/soccer/logo/all.png">
+							</c:if>
+						</div>
+						<h1 class="strategy_title">전략</h1>
 					</div>
 		   			<div class="traning_people_inner">
 						<p onclick="strategyListShow()" data-area="<c:if test="${areaset}">${area.area_kor}</c:if>" class="traning_choose_pop_title2">
 						<c:if test="${strategyPlayerList != null}">
 							${strategyPlayerList.stname}
 						</c:if>
-						<c:if test="${empty strategyPlayerList}">제목 없음</c:if></p>
+						<c:if test="${empty strategyPlayerList}">새로운 전략</c:if></p>
 						
 						<c:if test="${strategyPlayerList != null}">
 							<p class="traning_choose_pop_title">${strategyPlayerList.stdate}</p>
@@ -803,10 +811,8 @@
 	   				<c:if test="${strategyPlayerList != null}">
 	   					<!-- 불러오기 및 수정 영역 -->
 						<form action="soccerStrategyUpdate" method="post" id="strategy_form_update">
-							<c:if test="${areaset != null}">
-								<input type="hidden" value="${area.area_eng}" name="area_eng">
-								<input type="hidden" value="${area.area_kor}" name="area_kor">
-							</c:if>
+							<input type="hidden" value="" id="area_eng" name="area_eng">
+							<input type="hidden" value="${member.team}" id="area_kor" name="area_kor">
 							<input type="hidden" id="chked_member_val" value="${strategyPlayerList.stinfo}" name="chked_member_val">
 							<div class="strategy_map" ondrag='playerDragMove(this, event)'></div>
 							<script type="text/javascript">
@@ -864,10 +870,8 @@
 	   				<c:if test="${empty strategyPlayerList}">
 	  					<!-- 처음 시작 영역 -->
 						<form action="soccerStrategySave" method="post" id="strategy_form">
-							<c:if test="${areaset != null}">
-								<input type="hidden" value="${area.area_eng}" name="area_eng">
-								<input type="hidden" value="${area.area_kor}" name="area_kor">
-							</c:if>
+							<input type="hidden" value="" id="area_eng" name="area_eng">
+							<input type="hidden" value="${member.team}" id="area_kor" name="area_kor">
 							<input type="hidden" id="chked_member_val" name="chked_member_val">
 							<div class="strategy_map" ondrag='playerDragMove(this, event)'></div>
 							<img alt="경기장 이미지" src="./image/soccer/icon/soccer_play_bg.png" class="strategy_bg">
