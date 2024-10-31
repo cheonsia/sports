@@ -366,18 +366,17 @@
 
 			if(option == 'writer'){
 				if(writer==""){
-					alertShow('오류','작성자를 입력해주세요');
-					$('#writer').focus();
+					location.href="boardMain";
 					return false;
 				}
 			}else if(option == 'part'){
 				if(part == "" || part == null){
-					alertShow('오류','문의 분야을 선택해주세요');
+					location.href="boardMain";
 					return false;
 				}
 			}else if(option == 'status'){
 				if(status=="" || status==null){
-					alertShow('오류','답변 상태를 선택해주세요');
+					location.href="boardMain";
 					return false;
 				}
 			}

@@ -741,7 +741,8 @@
 						</c:when>
 						<c:when test="${adminlogin}">
 							<input type="hidden" name="team" value="관리자">
-							<input type="hidden" name="part" value="ALL">
+							<input type="hidden" name="part" value="all">
+							<input type="hidden" name="sport" value="${dto.play}">
 							<input type="hidden" name="id" value="★"> 
 							<input class="writer" type="text" name="writer" value="관리자" readonly> 
 							<div class="comment_flex">

@@ -44,12 +44,9 @@ public class CommentController {
 	}
 	
 	@RequestMapping(value = "/heart",method = RequestMethod.POST)
-	public void heart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void heart(int playernum, int step, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter prw = response.getWriter();
-
-		int playernum = Integer.parseInt(request.getParameter("playernum"));
-		int step = Integer.parseInt(request.getParameter("step"));
 		
 		CommentService cs = sqlsession.getMapper(CommentService.class);
 		cs.heartUp(playernum,step);

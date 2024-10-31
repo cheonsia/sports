@@ -365,18 +365,17 @@
 
 			if(option == 'writer'){
 				if(writer==""){
-					alertShow('오류','작성자를 입력해주세요');
-					$('#writer').focus();
+					location.href="boardMain";
 					return false;
 				}
 			}else if(option == 'part'){
 				if(part == "" || part == null){
-					alertShow('오류','문의 분야을 선택해주세요');
+					location.href="boardMain";
 					return false;
 				}
 			}else if(option == 'status'){
 				if(status=="" || status==null){
-					alertShow('오류','답변 상태를 선택해주세요');
+					location.href="boardMain";
 					return false;
 				}
 			}
@@ -465,7 +464,7 @@
 					</tr>
 				<c:choose>
 					<c:when test="${empty list}">
-						<tr><td colspan="3">아직 게시글이 없습니다.</td></tr>
+						<tr><c:if test="${adminlogin}"><td colspan="6"></c:if><c:if test="${!adminlogin}"><td colspan="5"></c:if>아직 게시글이 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="i" begin="0" end="${list.size()-1}">
