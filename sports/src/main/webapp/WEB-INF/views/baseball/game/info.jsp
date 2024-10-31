@@ -33,38 +33,55 @@
 		tr th:nth-child(1),
 		tr td:nth-child(1){
 			min-width: 70px;
-			width: 260px;
+			width: 100px;
 		}		
 		tr th:nth-child(2),
 		tr td:nth-child(2){
 			min-width: 150px;
-			width: 150px;
+			width: 250px;
 		}
 		tr td:nth-child(2){
-			text-align: left;
-    		padding-left: 35px;
+			text-align: center;
+    		padding: 15px 35px;
 		}
 		tr th:nth-child(12),
 		tr td:nth-child(12){
 			min-width: 200px;
 			width: 200px;
 		}
+		tr:nth-child(2n+1) td {
+			background-color: #00640012;
+		}
+		tr th:last-child,
+		td.upgrade{
+			width: 120px;
+		}
+		tr th:third-child,
+		td.date{
+			width: 300px;
+		}
 	</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	th,td{
-		text-align: center;
-	}
-</style>
 </head>
 <body>
 <table border="1" align="center" width="800px">
 	<tr>
-		<th>대전팀</th><th>날짜</th><th>시간</th><th>장소</th><th>수정 및 삭제</th>
+		<th>시즌</th><th>대전팀</th><th>날짜</th><th>시간</th><th>장소</th><th>수정 및 삭제</th>
 	</tr>
 	<c:forEach items="${list}" var="list">
 	<tr>
+		<c:choose>
+			<c:when test="${list.season == '취소' }">
+				<td style="color: red;">${list.season}</td>
+			</c:when>
+			<c:when test="${list.season == '포스트' }">
+				<td style="color: blue;">${list.season}</td>
+			</c:when>
+			<c:otherwise>
+				<td>${list.season}</td>
+			</c:otherwise>
+		</c:choose>
 		<td style="width:100px;">
 		<img alt="" src="./image/baseball/logo/${list.team1}.png" width="30px">
 		${list.team1} vs 

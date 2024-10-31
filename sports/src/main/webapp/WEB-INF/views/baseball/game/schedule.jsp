@@ -225,7 +225,6 @@
 			input.traning_calendar_datepicker2{
 				width: calc(100% - 22px);
 				height: 40px;
-				line-height: 60px;
 				border: 1px solid #e1e1e1;
 				border-radius: 5px;
 				padding: 0 10px;				
@@ -556,6 +555,17 @@
 							</script>
 							<div class="schedule_list_inner day_${calendar.gamedate}" data-number="${calendar.gamenum}">
 								<div class="schedule_list_txt">
+									<c:choose>
+										<c:when test="${calendar.season == '포스트'}">
+											<p style="color: blue"> <${calendar.season} 시즌> </p>
+										</c:when>
+										<c:when test="${calendar.season == '취소'}">
+											<p style="color: red"> <${calendar.season}> </p>											
+										</c:when>
+										<c:otherwise>
+											<p> <${calendar.season} 시즌> </p>											
+										</c:otherwise>
+									</c:choose>
 									<p>
 										<img alt="" src="./image/baseball/logo/${calendar.team1}.png" width="25px"> ${calendar.team1} vs ${calendar.team2} <img alt="" src="./image/baseball/logo/${calendar.team2}.png" width="25px">
 									</p>
@@ -586,6 +596,15 @@
 						<input type="hidden" id="chked_member_val" name="chked_member_val">
 						<input type="hidden" id="chked_traing_val" name="chked_traing_val">
 						<input type="hidden" id="calendar_info_val" name="calendar_info_val" value="soccer">
+						<div class="traning_map_inner">
+							<p class="traning_choose_pop_title">시즌 선택</p>
+							<div class="traning_map_flex">
+								<select name="gameSeason" id="gameSeason">
+									<option value="정규">정규
+									<option value="파이널">포스트
+								</select>
+							</div>
+						</div>
 						<div class="traning_date_pop_choose">
 							<p class="traning_choose_pop_title">경기 날짜 및 시간 선택</p>
 							<div class="traning_date_pop_flex">
