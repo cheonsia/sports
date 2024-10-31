@@ -122,15 +122,17 @@
 				nowDate = new Date(startyy, startmm-1, '01');
 				calendarMaker($("#calendarForm"), nowDate);
 			});
+			
+			$(document).ready(function() {
+                var team = $("#area_kor").val();
+                teamEng = (team == '강원') ? 'kangwon' : (team == '광주') ? 'gwangju' : (team == '김천') ? 'gimcheon' : (team == '대구') ? 'daegu' : (team == '대전') ? 'daejeon' : (team == '서울') ? 'seoul' : (team == '수원') ? 'suwon' : (team == '울산') ? 'ulsan' : (team == '전북') ? 'jeonbuk' : (team == '제주') ? 'jeju' : (team == '포항') ? 'pohang' : 'ALL';
+				$('#area_eng').val(teamEng);
+			});
 		</script>
 	</head>
 	<body>
-		<c:choose>
-			<c:when test="${areaset}">
-				<input type="hidden" value="${area.area_eng}" id="area_eng" name="area_eng">
-				<input type="hidden" value="${area.area_kor}" id="area_kor" name="area_kor">
-			</c:when>
-		</c:choose>
+		<input type="hidden" value="" id="area_eng" name="area_eng">
+		<input type="hidden" value="${member.team}" id="area_kor" name="area_kor">
 		<c:if test="${calendar_data != null}">
 			<input type="hidden" value="${calendar_data}" id="startdate" name="startdate">
 		</c:if>
@@ -236,12 +238,8 @@
 					<p class="traning_show_subtext">작성하신 훈련 일지입니다.</p>
 					<div class="traning_show_inner">
 						<form action="soccerCalendarUpdate" id="soccer_calendar_update" method="post">
-							<c:choose>
-								<c:when test="${areaset}">
-									<input type="hidden" value="${area.area_eng}" id="area_eng" name="soccer_team1">
-									<input type="hidden" value="${area.area_kor}" id="area_kor" name="soccer_team2">
-								</c:when>
-							</c:choose>
+							<input type="hidden" value="" id="area_eng" name="soccer_team1">
+							<input type="hidden" value="${member.team}" id="area_kor" name="soccer_team2">
 							<c:if test="${calendar_data != null}">
 								<input type="hidden" value="${calendar_data}" id="startdate2" name="startdate2">
 							</c:if>
@@ -422,12 +420,7 @@
 				<p class="traning_pop_subtext">오늘의 훈련이 어땠는지 적어주세요.</p>
 				<div class="traning_pop_inner">
 					<form action="soccerCalendarSave" id="soccer_calendar_save" method="post">
-						<c:choose>
-							<c:when test="${areaset}">
-								<input type="hidden" value="${area.area_eng}" name="soccer_calendar_team1">
-								<input type="hidden" value="${area.area_kor}" name="soccer_calendar_team2">
-							</c:when>
-						</c:choose>
+						<input type="hidden" value="${member.team}" name="soccer_calendar_team">
 						<input type="hidden" id="chked_member_val" name="chked_member_val">
 						<input type="hidden" id="chked_traing_val" name="chked_traing_val">
 						<input type="hidden" id="calendar_info_val" name="calendar_info_val" value="soccer">

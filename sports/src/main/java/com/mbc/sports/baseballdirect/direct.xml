@@ -6,6 +6,9 @@
 	<select id="selectPlayerArea" resultType="com.mbc.sports.baseballdirect.DirectDTO">
 		select playernum, tname, pname, pimage from player_baseball where tname = #{param1} order by main, pname
 	</select>
+	<select id="selectPlayerAreaAll" resultType="com.mbc.sports.baseballdirect.DirectDTO">
+		select playernum, tname, pname, pimage from player_baseball where play = #{param1} order by main, pname
+	</select>
 	<!-- 훈련일정 저장 -->
 	<insert id="baseballcalendarsave">
 		insert into direct_trade values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, TRNUM_SEQ.nextval, #{param8})
@@ -29,13 +32,13 @@
 
 	<!-- 전술 -->
 	<select id="selectStrategyList" resultType="com.mbc.sports.baseballdirect.BaseballStrategyDTO">
-		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where starea = #{param1}
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where starea = #{param1} and stkind = #{param2}
 	</select>
 	<insert id="baseballStrategySave">
 		insert into direct_strategy values (stnum_seq.nextval, #{param1}, #{param2}, SYSDATE, #{param3}, #{param4})
 	</insert>
 	<select id="strategyListFind" resultType="com.mbc.sports.baseballdirect.BaseballStrategyDTO">
-		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where stnum = #{param1}
+		select stnum, stname, stkind, to_char(stdate, 'yyyy-MM-dd')stdate, starea, stinfo from direct_strategy where stnum = #{param1} order by stdate, stname asc
 	</select>
 	<delete id="baseballStrategyDelete">
 		delete from direct_strategy where stnum = #{param1}
