@@ -5,19 +5,19 @@
 <mapper namespace="com.mbc.sports.game.GameService">
 	<!-- 경기일정 저장 -->
     <insert id="gameinsert">
-    	insert into soccer_game values(#{param1},#{param2},#{param3},#{param4},#{param5},soccer_game_seq.nextval)
+    	insert into soccer_game values(#{param1},#{param2},#{param3},#{param4},#{param5},soccer_game_seq.nextval,#{param6})
     </insert>
     <!-- 경기일정 가져오기 -->
     <select id="gameselect" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
-       	gametime,gameplace,gamenum
+       	gametime,gameplace,gamenum,season
 		FROM soccer_game
 		order by gamedate,gametime,team1
     </select>
     
     <select id="selectCalendarData" resultType="com.mbc.sports.game.GameDTO">
 		select team1,team2,to_char(gamedate, 'yyyy-MM-dd') as gamedate,
-       	gametime,gameplace,gamenum
+       	gametime,gameplace,gamenum,seson
 		from soccer_game
 		where last_day(to_date(#{param1}, 'yyyy-MM-dd')) >= gamedate and gamedate >= to_date(#{param1}, 'yyyy-MM-dd')
 	</select>
@@ -25,7 +25,7 @@
     <!-- delete,update 정보 가져오기 -->
     <select id="select" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
-       	gametime,gameplace,gamenum
+       	gametime,gameplace,gamenum,season
 		FROM soccer_game
 		where gamenum = #{param1}
     </select>
@@ -37,31 +37,31 @@
     
     <!-- 경기 수정 -->
     <update id="update">
-    	update soccer_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5} where gamenum = #{param6}
+    	update soccer_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5},season=#{param6} where gamenum = #{param6}
     </update>
     
     <!-- 야구 -->
     <insert id="Bgameinsert">
-    	insert into baseball_game values(#{param1},#{param2},#{param3},#{param4},#{param5},baseball_game_seq.nextval)
+    	insert into baseball_game values(#{param1},#{param2},#{param3},#{param4},#{param5},baseball_game_seq.nextval,#{param6})
     </insert>
     
     <select id="Bgameselect" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
-       	gametime,gameplace,gamenum
+       	gametime,gameplace,gamenum,season
 		FROM baseball_game
 		order by gamedate,gametime,team1
     </select>
     
     <select id="BselectCalendarData" resultType="com.mbc.sports.game.GameDTO">
 		select team1,team2,to_char(gamedate, 'yyyy-MM-dd') as gamedate,
-       	gametime,gameplace,gamenum
+       	gametime,gameplace,gamenum,season
 		from baseball_game
 		where last_day(to_date(#{param1}, 'yyyy-MM-dd')) >= gamedate and gamedate >= to_date(#{param1}, 'yyyy-MM-dd')
 	</select>
     
     <select id="Bselect" resultType="com.mbc.sports.game.GameDTO">
     	SELECT team1,team2,TO_CHAR(gamedate, 'yyyy-MM-dd') AS gamedate,
-       	gametime,gameplace,gamenum
+       	gametime,gameplace,gamenum,season
 		FROM baseball_game
 		where gamenum = #{param1}
     </select>
@@ -71,7 +71,7 @@
     </delete>
     
     <update id="Bupdate">
-    	update baseball_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5} where gamenum = #{param6}
+    	update baseball_game set team1=#{param1},team2=#{param2},gamedate=#{param3},gametime=#{param4},gameplace=#{param5},season=#{param6} where gamenum = #{param6}
     </update>
     
 </mapper>

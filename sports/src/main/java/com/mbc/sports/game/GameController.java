@@ -51,8 +51,9 @@ public class GameController {
 		String date = request.getParameter("gameDate");
 		String time = request.getParameter("gameTime");
 		String place = request.getParameter("gamePlace");
+		String season = request.getParameter("gameSeason");
 		GameService gs = sqlsession.getMapper(GameService.class);
-		gs.gameinsert(team1,team2,date,time,place);
+		gs.gameinsert(team1,team2,date,time,place,season);
 		
 		return "redirect:/soccer_schedule";
 	}
@@ -104,13 +105,14 @@ public class GameController {
 	@RequestMapping(value = "/soccerGameUpdate")
 	public String soccerGameUpdate(HttpServletRequest request, Model mo) {
 		int gamenum = Integer.parseInt(request.getParameter("gamenum"));
+		String season = request.getParameter("gameSeason");
 		String team1 = request.getParameter("team1");
 		String team2 = request.getParameter("team2");
 		String gamedate = request.getParameter("gameDate");
 		String gametime = request.getParameter("gameTime");
 		String gameplace = request.getParameter("gamePlace");
 		GameService gs = sqlsession.getMapper(GameService.class);
-		gs.update(team1,team2,gamedate,gametime,gameplace,gamenum);
+		gs.update(team1,team2,gamedate,gametime,gameplace,gamenum,season);
 		return "redirect:/soccer_gameinfo";
 	}
 	
@@ -149,8 +151,9 @@ public class GameController {
 		String date = request.getParameter("gameDate");
 		String time = request.getParameter("gameTime");
 		String place = request.getParameter("gamePlace");
+		String season = request.getParameter("gameSeason");		
 		GameService gs = sqlsession.getMapper(GameService.class);
-		gs.Bgameinsert(team1,team2,date,time,place);
+		gs.Bgameinsert(team1,team2,date,time,place,season);
 		
 		return "redirect:/baseball_schedule";
 	}
@@ -199,8 +202,9 @@ public class GameController {
 		String gamedate = request.getParameter("gameDate");
 		String gametime = request.getParameter("gameTime");
 		String gameplace = request.getParameter("gamePlace");
+		String season = request.getParameter("gameSeason");
 		GameService gs = sqlsession.getMapper(GameService.class);
-		gs.Bupdate(team1,team2,gamedate,gametime,gameplace,gamenum);
+		gs.Bupdate(team1,team2,gamedate,gametime,gameplace,gamenum,season);
 		return "redirect:/baseball_gameinfo";
 	}
 }
