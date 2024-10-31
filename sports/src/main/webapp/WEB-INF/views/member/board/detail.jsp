@@ -556,7 +556,8 @@
 			<div class="more">
 				<img alt="" src="./image/member/logo/readmore.png" onmouseover="showdata()">
 				<ul id="moredata" hidden="hidden" onmouseleave="hidedata()">
-					<li onclick="pwCheck('delete')">삭제</li>
+					<c:if test="${adminlogin}"><li onclick="location.href='boardSelect?num=${dto.num}&way=delete'">삭제</li></c:if>
+					<c:if test="${!adminlogin}"><li onclick="pwCheck('delete')">삭제</li></c:if>
 					<li onclick="pwCheck('update')">수정</li>
 					<c:if test="${adminlogin}"><li onclick="location.href='answerComplete?num=${dto.num}'">답변 완료</li></c:if>
 				</ul>
