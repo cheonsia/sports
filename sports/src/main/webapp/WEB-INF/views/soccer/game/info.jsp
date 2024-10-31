@@ -30,10 +30,15 @@
 			width: 100%;
 			height: 36px;
 		}
+		tr th:nth-child(1),
+		tr td:nth-child(1){
+			min-width: 200px;
+			width: 100px;
+		}
 		tr th:nth-child(2),
 		tr td:nth-child(2){
 			min-width: 200px;
-			width: 200px;
+			width: 350px;
 		}
 		tr td:nth-child(2){
 			text-align: center;
@@ -41,6 +46,11 @@
 		}
 		tr th:nth-child(3),
 		tr td:nth-child(3){
+			min-width: 200px;
+			width: 130px;
+		}
+		tr th:nth-child(4),
+		tr td:nth-child(4){
 			min-width: 200px;
 			width: 130px;
 		}
@@ -62,10 +72,18 @@
 <body>
 <table border="1" align="center" width="800px">
 	<tr>
-		<th>대전팀</th><th>날짜</th><th>시간</th><th>장소</th><th>수정 및 삭제</th>
+		<th>시즌</th><th>대전팀</th><th>날짜</th><th>시간</th><th>장소</th><th>수정 및 삭제</th>
 	</tr>
 	<c:forEach items="${list}" var="list">
 	<tr>
+		<c:choose>
+			<c:when test="${list.season == '파이널'}">
+				<td style="color: blue">${list.season}</td>
+			</c:when>
+			<c:otherwise>
+				<td>${list.season}</td>
+			</c:otherwise>
+		</c:choose>
 		<td style="width:100px;">
 		<img alt="" src="./image/soccer/logo/${list.team1}.png" width="30px">
 		${list.team1} vs 

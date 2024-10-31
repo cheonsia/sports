@@ -136,7 +136,6 @@
 			input.traning_calendar_datepicker2 {
 				width: calc(100% - 22px);
 				height: 40px;
-				line-height: 60px;
 				border: 1px solid #e1e1e1;
 				border-radius: 5px;
 				padding: 0 10px;				
@@ -174,6 +173,15 @@
 	        		<form action="soccerGameUpdate" method="post">
 	        		<input type="hidden" name="gamenum" value="${dto.gamenum}">
 		       			<div class="traning_people_inner" >
+		       				<div class="traning_map_inner">
+								<p class="traning_choose_pop_title">시즌 선택</p>
+								<div class="traning_map_flex">
+									<select name="gameSeason" id="gameSeason">
+										<option value="정규">정규
+										<option value="파이널">파이널
+									</select>
+								</div>
+							</div>
 		        			<p class="traning_choose_pop_title">팀 선택</p>
 		       				<div class="traning_people_choose">
 			       				<div>
