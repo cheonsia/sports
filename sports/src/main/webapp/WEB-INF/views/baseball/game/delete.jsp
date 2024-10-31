@@ -102,7 +102,6 @@
 			input.traning_calendar_datepicker2 {
 				width: calc(100% - 22px);
 				height: 40px;
-				line-height: 60px;
 				border: 1px solid #e1e1e1;
 				border-radius: 5px;
 				padding: 0 10px;				
@@ -165,9 +164,11 @@
 		var team1 = $('#gt1').val();
 		var team2 = $('#gt2').val();
 		var place = $('#place').val();
+		var season = $('#season').val();
 		$('input[name="team1"]:input[value="'+team1+'"]').prop("checked",true);
 		$('input[name="team2"]:input[value="'+team2+'"]').prop("checked",true);
 	    $("#gamePlace").val(place).prop("selected", true);
+	    $("#gameSeason").val(season).prop("selected", true);
 		
 	});
 </script>
@@ -176,11 +177,20 @@
 <input type="hidden" name="gt1" id="gt1" value="${dto.team1}">
 <input type="hidden" name="gt2" id="gt2" value="${dto.team2}">
 <input type="hidden" name="place" id="place" value="${dto.gameplace}">
+<input type="hidden" name="season" id="season" value="${dto.season}">
 <p class="traning_pop_subtext">경기를 삭제하시겠습니까?</p>
         		<div class="traning_pop_inner">
 	        		<form action="baseballgamedelete" method="post">
 	        		<input type="hidden" name="gamenum" value="${dto.gamenum}">
 		       			<div class="traning_people_inner" >
+		       				<p class="traning_choose_pop_title">시즌</p>
+							<div class="traning_map_flex">
+								<select name="gameSeason" id="gameSeason" disabled>
+									<option value="정규">정규
+									<option value="포스트">포스트
+									<option value="취소">취소
+								</select>
+							</div>
 		        			<p class="traning_choose_pop_title">팀 선택</p>
 		       				<div class="traning_people_choose">
 			       				<div>
