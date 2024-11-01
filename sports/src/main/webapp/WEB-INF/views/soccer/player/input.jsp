@@ -189,21 +189,40 @@
 				<tr>
 					<th>팀</th>
 					<td>
-						<select name="tname" disabled="disabled">
-							<option value="all">구단을 선택하세요.</option>
-							<option value="kangwon">강원</option>
-							<option value="gwangju">광주</option>
-							<option value="gimcheon">김천</option>
-							<option value="daegu">대구</option>
-							<option value="daejeon">대전</option>
-							<option value="seoul">서울</option>
-							<option value="suwon">수원</option>
-							<option value="ulsan">울산</option>
-							<option value="incheon">인천</option>
-							<option value="jeonbuk">전북</option>
-							<option value="jeju">제주</option>
-							<option value="pohang">포항</option>
-						</select>
+						<c:if test="${!adminlogin}">
+							<select name="tname" disabled="disabled">
+								<option value="all">구단을 선택하세요.</option>
+								<option value="kangwon">강원</option>
+								<option value="gwangju">광주</option>
+								<option value="gimcheon">김천</option>
+								<option value="daegu">대구</option>
+								<option value="daejeon">대전</option>
+								<option value="seoul">서울</option>
+								<option value="suwon">수원</option>
+								<option value="ulsan">울산</option>
+								<option value="incheon">인천</option>
+								<option value="jeonbuk">전북</option>
+								<option value="jeju">제주</option>
+								<option value="pohang">포항</option>
+							</select>
+						</c:if>
+						<c:if test="${adminlogin}">
+							<select name="tname">
+								<option value="all">구단을 선택하세요.</option>
+								<option value="kangwon">강원</option>
+								<option value="gwangju">광주</option>
+								<option value="gimcheon">김천</option>
+								<option value="daegu">대구</option>
+								<option value="daejeon">대전</option>
+								<option value="seoul">서울</option>
+								<option value="suwon">수원</option>
+								<option value="ulsan">울산</option>
+								<option value="incheon">인천</option>
+								<option value="jeonbuk">전북</option>
+								<option value="jeju">제주</option>
+								<option value="pohang">포항</option>
+							</select>
+						</c:if>
 					</td>
 				</tr>
 				<tr>
@@ -338,8 +357,11 @@
 			$('#form1').submit();
 		}
 		$(document).ready(function(){
-			var team = $('#soccer_area').val();
-			$("select[name='tname']").val(team).prop("selected", true);
+			var admin = `${adminlogin}`;
+			if(admin != true){
+				var team = $('#soccer_area').val();
+				$("select[name='tname'] option[value="+team+"]").prop("selected", true);
+			};
 		});
 	</script>
 </html>

@@ -767,7 +767,7 @@
 						<c:if test="${strategyPlayerList != null}">
 							${strategyPlayerList.stname}
 						</c:if>
-						<c:if test="${empty strategyPlayerList}">새로운 전략</c:if></p>
+						<c:if test="${empty strategyPlayerList}">전략 불러오기</c:if></p>
 						
 						<c:if test="${strategyPlayerList != null}">
 							<p class="traning_choose_pop_title">${strategyPlayerList.stdate}</p>
