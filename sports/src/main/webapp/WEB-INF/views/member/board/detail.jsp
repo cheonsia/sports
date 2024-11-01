@@ -562,7 +562,9 @@
 					</c:if>
 					<c:if test="${adminlogin}">
 						<li onclick="location.href='boardSelect?num=${dto.num}&way=delete'">삭제</li>
-						<li onclick="location.href='answerComplete?num=${dto.num}'">답변 완료</li>
+						<c:if test="${dto.step == 1}">
+							<li onclick="location.href='answerComplete?num=${dto.num}'">답변 완료</li>
+						</c:if>
 					</c:if>
 				</ul>
 				<input type="hidden" name="way" id="way"/>
