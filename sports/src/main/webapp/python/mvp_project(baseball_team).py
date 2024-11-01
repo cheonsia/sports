@@ -5,8 +5,8 @@ from matplotlib import pyplot as plt
 plt.rcParams['font.family'] ='Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] =False
 
-oracledb.init_oracle_client(lib_dir="C:\\mbc6\\python\\db\\instantclient-basic-windows.x64-11.2.0.4.0\\instantclient_11_2") #오라클 라이브러리 경로가 들어감
-connect = oracledb.connect(user='kkr', password='1234',dsn='localhost')
+oracledb.init_oracle_client(lib_dir="instantclient_11_2 경로") #오라클 라이브러리 경로가 들어감
+connect = oracledb.connect(user='오라클계정', password='오라클비번',dsn='localhost')
 c=connect.cursor() #오라클 DB 쿼리문
 
 c.execute("select team,count(team) from sportsmember where sport='야구' group by team order by team")

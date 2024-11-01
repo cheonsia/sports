@@ -76,7 +76,7 @@
          $('.header_logo_inner a').removeClass('clicked_on');
          $('#soccer_'+win_tname).addClass('clicked_on');
          var name = $('#name').val();
-         var 키 = '';
+         var 키 = '키입력';
          if(name=='ALL') {
             var 채널아이디 = 'UCak5ZEX4BjijJcf7fdppuIQ';
          }else if(name=='kangwon') {

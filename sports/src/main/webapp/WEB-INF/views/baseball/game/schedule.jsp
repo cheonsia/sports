@@ -429,7 +429,7 @@
 				$('.map_pop_whole').removeClass("pop_show");
 				$('.map_pop_bg').hide();
 			}//mapHide
-			function gameMap(gameplace){
+			function gameMap(gameplace,team2){
 				mapShow();
 				var gyung = "";
 				var wui = "";
@@ -570,7 +570,7 @@
 										<img alt="" src="./image/baseball/logo/${calendar.team1}.png" width="25px"> ${calendar.team1} vs ${calendar.team2} <img alt="" src="./image/baseball/logo/${calendar.team2}.png" width="25px">
 									</p>
 									<p style="text-align: center;">${calendar.gametime}</p>
-									<button type="button" onclick="gameMap('${calendar.gameplace}')" data-area="${calendar.gameplace}" class="selectPlace">${calendar.gameplace}</button>
+									<button type="button" onclick="gameMap('${calendar.gameplace}','${calendar.team2}')" data-area="${calendar.gameplace}" class="selectPlace">${calendar.gameplace}</button>
 								</div>
 							</div>
 						</c:forEach>
@@ -735,7 +735,7 @@
 			</div>
 		</div>
 		<!-- 지도 팝업 -->
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6fc5c2706f2e6d4c77d545c0c0bd345e"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키입력"></script>
 		<div class="map_pop_whole">
 			<div class="map_pop_bg"></div>
 			<div class="traning_pop_box">

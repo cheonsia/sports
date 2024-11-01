@@ -71,7 +71,7 @@
             teamEng = (team == '두산') ? 'DOOSAN' : (team == '삼성') ? 'SAMSUNG' : (team == '롯데') ? 'LOTTE' : (team == '키움') ? 'KIWOOM' : (team == '한화') ? 'HANHWA' : team;
             $('.header_logo_inner a').removeClass('clicked_on');
             $('#baseball_'+teamEng).addClass('clicked_on');
-            var 키 = '';
+            var 키 = '키입력';
             if(`${name}`=='ALL') {
                var 채널아이디 = 'UCoVz66yWHzVsXAFG8WhJK9g';
             }else if(`${name}`=='KIA') {
