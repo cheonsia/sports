@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -189,19 +190,36 @@
 					<th>팀</th>
 						<td colspan="2">
 						<div id="baseballteam">
-							<select name="tname" disabled="disabled">
-								<option value="all">구단을 선택하세요.</option>
-								<option value="KIA">KIA</option>
-								<option value="KT">KT</option>
-								<option value="LG">LG</option>
-								<option value="NC">NC</option>
-								<option value="SSG">SSG</option>
-								<option value="DOOSAN">두산</option>
-								<option value="LOTTE">롯데</option>
-								<option value="SAMSUNG">삼성</option>
-								<option value="KIWOOM">키움</option>
-								<option value="HANHWA">한화</option>
-							</select>
+							<c:if test="${!adminlogin}">
+								<select name="tname" disabled="disabled">
+									<option value="all">구단을 선택하세요.</option>
+									<option value="KIA">KIA</option>
+									<option value="KT">KT</option>
+									<option value="LG">LG</option>
+									<option value="NC">NC</option>
+									<option value="SSG">SSG</option>
+									<option value="DOOSAN">두산</option>
+									<option value="LOTTE">롯데</option>
+									<option value="SAMSUNG">삼성</option>
+									<option value="KIWOOM">키움</option>
+									<option value="HANHWA">한화</option>
+								</select>
+							</c:if>
+							<c:if test="${adminlogin}">
+								<select name="tname">
+									<option value="all">구단을 선택하세요.</option>
+									<option value="KIA">KIA</option>
+									<option value="KT">KT</option>
+									<option value="LG">LG</option>
+									<option value="NC">NC</option>
+									<option value="SSG">SSG</option>
+									<option value="DOOSAN">두산</option>
+									<option value="LOTTE">롯데</option>
+									<option value="SAMSUNG">삼성</option>
+									<option value="KIWOOM">키움</option>
+									<option value="HANHWA">한화</option>
+								</select>
+							</c:if>
 						</div>
 					</td>
 				</tr>
@@ -337,19 +355,22 @@
 			$('#form1').submit();
 		}
 		$(document).ready(function(){
-			var team = $('#baseball_area').val();
-			if(team == '두산'){
-				team = 'DOOSAN';
-			}else if(team == '롯데'){
-				team = 'LOTTE';
-			}else if(team == '삼성'){
-				team = 'SAMSUNG';
-			}else if(team == '키움'){
-				team = 'KIWOOM';
-			}else if(team == '한화'){
-				team = 'HANHWA';
-			}
-			$("select[name='tname']").val(team).prop("selected", true);
+			var admin = `${adminlogin}`;
+			if(admin != true){
+				var team = $('#baseball_area').val();
+				if(team == '두산'){
+					team = 'DOOSAN';
+				}else if(team == '롯데'){
+					team = 'LOTTE';
+				}else if(team == '삼성'){
+					team = 'SAMSUNG';
+				}else if(team == '키움'){
+					team = 'KIWOOM';
+				}else if(team == '한화'){
+					team = 'HANHWA';
+				}
+				$("select[name='tname'] option[value="+team+"]").prop("selected", true);
+			};
 		});
 	</script>
 </html>
