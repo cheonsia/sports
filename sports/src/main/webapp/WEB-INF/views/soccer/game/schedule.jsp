@@ -283,6 +283,11 @@
          .custom_calendar_table tbody td:nth-child(7).calendar_td.select_day span.work_in{
             display: none!important;
          }
+        @media (min-width: 1250px) {
+		    .schedule_list_box {
+		        max-height: calc(100vh - 250px);
+		    }	
+		}
       </style>
       <meta charset="UTF-8">
       <title>경기 일정</title>

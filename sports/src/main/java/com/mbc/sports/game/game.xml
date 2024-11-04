@@ -17,7 +17,7 @@
     
     <select id="selectCalendarData" resultType="com.mbc.sports.game.GameDTO">
 		select team1,team2,to_char(gamedate, 'yyyy-MM-dd') as gamedate,
-       	gametime,gameplace,gamenum,seson
+       	gametime,gameplace,gamenum,season
 		from soccer_game
 		where last_day(to_date(#{param1}, 'yyyy-MM-dd')) >= gamedate and gamedate >= to_date(#{param1}, 'yyyy-MM-dd')
 	</select>
